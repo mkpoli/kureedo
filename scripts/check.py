@@ -1,0 +1,102 @@
+#!/usr/bin/env python3
+"""Check the built fonts: names, coverage, feature switches, mark composition, vertical metrics."""
+from io import BytesIO
+from pathlib import Path
+
+import uharfbuzz as hb
+from fontTools.ttLib import TTFont
+
+ROOT = Path(__file__).resolve().parent.parent
+KLEE = TTFont(ROOT / "sources/klee/KleeOne-Regular.ttf")
+
+
+def shaper(font: TTFont):
+    font.flavor = None
+    buffer = BytesIO()
+    font.save(buffer)
+    hb_font = hb.Font(hb.Face(buffer.getvalue()))
+    hb_font.scale = (1000, 1000)
+    order = font.getGlyphOrder()
+
+    def shape(text, direction="ltr", features=None):
+        buf = hb.Buffer()
+        buf.add_str(text)
+        buf.guess_segment_properties()
+        buf.direction = direction
+        hb.shape(hb_font, buf, features or {})
+        return [(order[i.codepoint], p.x_advance, p.y_advance) for i, p in zip(buf.glyph_infos, buf.glyph_positions)]
+    return shape
+
+
+def check(path: Path, family: str, full: bool):
+    font = TTFont(path)
+    cmap = font.getBestCmap()
+    shape = shaper(font)
+    name = font["name"]
+    assert name.getDebugName(1) == family, name.getDebugName(1)
+    assert name.getDebugName(6) == family.replace(" ", "") + "-Regular"
+    assert name.getDebugName(5) == "Version 0.100" and abs(font["head"].fontRevision - 0.1) < 1e-4
+    assert "Klee Project Authors" in name.getDebugName(0) and name.getDebugName(13).startswith("This Font Software")
+    assert all(c in cmap for c in [*range(0x30A1, 0x30FB), *range(0x31F0, 0x3200), 0x3099, 0x309A, 0x309B, 0x309C, 0x30F0, 0x30F1, 0x30F2, 0x30F4])
+    if not full:
+        assert 0x5B50 not in cmap and 0x4E95 not in cmap
+
+    # Default glyphs are Klee's; the historical forms sit behind the features.
+    ne, wi = cmap[0x30CD], cmap[0x30F0]
+    assert font["glyf"][ne].compile(font["glyf"]) == KLEE["glyf"][ne].compile(KLEE["glyf"])
+    assert font["glyf"][wi].compile(font["glyf"]) == KLEE["glyf"][wi].compile(KLEE["glyf"])
+    assert shape("ネヰ") == [(ne, 1000, 0), (wi, 1000, 0)]
+    for features in ({"hist": True}, {"ss01": True}, {"cv01": True, "cv02": True}):
+        assert [g for g, *_ in shape("ネヰ", features=features)] == [ne + ".hist", wi + ".hist"], features
+        assert [g for g, *_ in shape("ネヰ", "ttb", features=features)] == [ne + ".hist", wi + ".hist"], features
+        assert [g for g, *_ in shape("ネヰ", "ttb", features={**features, "vkna": True})] == [ne + ".hist", wi + ".hist"]
+    assert [g for g, *_ in shape("ネヰ", features={"cv01": True})] == [ne + ".hist", wi]
+    assert [g for g, *_ in shape("ネヰ", features={"cv02": True})] == [ne, wi + ".hist"]
+    for glyph in (ne + ".hist", wi + ".hist"):
+        assert font["hmtx"][glyph][0] == 1000
+        assert font["glyf"][glyph].yMax + font["vmtx"][glyph][1] == 880, glyph
+        assert font["glyf"][glyph].xMin >= 0 and font["glyf"][glyph].xMax <= 1000
+
+    # Marked kana shape into one cell in both directions; precomposed and decomposed agree.
+    for text in ["ツ゚", "ト゚", "セ゚", "ㇷ゚", "カ゚", "キ゚", "ク゚", "ケ゚", "コ゚", "パ", "ガ", "ヅ"]:
+        for direction in ("ltr", "ttb"):
+            glyphs = shape(text, direction)
+            assert len(glyphs) == 1 and glyphs[0][0] != ".notdef", (text, direction, glyphs)
+            assert glyphs[0][1:] == ((1000, 0) if direction == "ltr" else (0, -1000)), (text, direction, glyphs)
+    for plain, decomposed in [("パ", "パ"), ("ガ", "ガ"), ("ヅ", "ヅ")]:
+        assert shape(plain) == shape(decomposed) and shape(plain, "ttb") == shape(decomposed, "ttb")
+    assert shape("ㇷ", "ttb")[0] != shape("ㇷ゚", "ttb")[0]
+    assert font["vmtx"][cmap[0x31F7]] == font["vmtx"][cmap[0x30D5]]
+
+    tags = [r.FeatureTag for r in font["GSUB"].table.FeatureList.FeatureRecord]
+    assert tags == sorted(tags), tags
+    for r in font["GSUB"].table.FeatureList.FeatureRecord:
+        if r.FeatureTag == "aalt":
+            for i in r.Feature.LookupListIndex:
+                for st in font["GSUB"].table.LookupList.Lookup[i].SubTable:
+                    if st.LookupType == 3:
+                        assert ne + ".hist" in st.alternates[ne] and wi + ".hist" in st.alternates[wi]
+    ja = {n.nameID: str(n) for n in name.names if n.langID == 0x411}
+    assert ja[1] in ("クレード", "クレード カタ") and ja[4].endswith(" Regular"), ja
+
+    # Feature UI names are present for the character variants and the stylistic set.
+    labels = {name.getDebugName(i) for i in range(256, 300) if name.getDebugName(i)}
+    assert {"Katakana ne, 子-shaped", "Katakana wi, 井-shaped", "Edo-period printed forms"} <= labels, labels
+
+    if full:
+        # Every glyph Klee One ships is still there and unchanged.
+        klee_order = KLEE.getGlyphOrder()
+        assert font.getGlyphOrder()[:len(klee_order)] == klee_order
+        changed = [g for g in klee_order if font["glyf"][g].compile(font["glyf"]) != KLEE["glyf"][g].compile(KLEE["glyf"])]
+        assert not changed, changed[:10]
+        assert 0x3042 in cmap and 0x6F22 in cmap
+        assert shape("漢字かな", features={"vert": True})[0][0] == cmap[0x6F22]
+    return font
+
+
+check(ROOT / "fonts/Kureedo-Regular.ttf", "Kureedo", full=True)
+kata = check(ROOT / "fonts/KureedoKata-Regular.ttf", "Kureedo Kata", full=False)
+woff = check(ROOT / "fonts/KureedoKata-Regular.woff2", "Kureedo Kata", full=False)
+assert kata.getGlyphOrder() == woff.getGlyphOrder()
+assert 0x3042 not in woff.getBestCmap()
+print("Checks passed: names, coverage, hist/ss01/cv01/cv02 in both directions, marks, small kana, Klee glyphs intact.")
