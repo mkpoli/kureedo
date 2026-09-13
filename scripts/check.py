@@ -35,7 +35,7 @@ def check(path: Path, family: str, full: bool):
     name = font["name"]
     assert name.getDebugName(1) == family, name.getDebugName(1)
     assert name.getDebugName(6) == family.replace(" ", "") + "-Regular"
-    assert name.getDebugName(5) == "Version 0.100" and abs(font["head"].fontRevision - 0.1) < 1e-4
+    assert name.getDebugName(5) == "Version 0.101" and abs(font["head"].fontRevision - 0.101) < 1e-4
     assert "Klee Project Authors" in name.getDebugName(0) and name.getDebugName(13).startswith("This Font Software")
     assert all(c in cmap for c in [*range(0x30A1, 0x30FB), *range(0x31F0, 0x3200), 0x3099, 0x309A, 0x309B, 0x309C, 0x30F0, 0x30F1, 0x30F2, 0x30F4])
     if not full:
@@ -63,10 +63,15 @@ def check(path: Path, family: str, full: bool):
             glyphs = shape(text, direction)
             assert len(glyphs) == 1 and glyphs[0][0] != ".notdef", (text, direction, glyphs)
             assert glyphs[0][1:] == ((1000, 0) if direction == "ltr" else (0, -1000)), (text, direction, glyphs)
-    for plain, decomposed in [("パ", "パ"), ("ガ", "ガ"), ("ヅ", "ヅ")]:
+    for plain, decomposed in [("\u30D1", "\u30CF\u309A"), ("\u30AC", "\u30AB\u3099"), ("\u30C5", "\u30C4\u3099")]:
         assert shape(plain) == shape(decomposed) and shape(plain, "ttb") == shape(decomposed, "ttb")
     assert shape("ㇷ", "ttb")[0] != shape("ㇷ゚", "ttb")[0]
     assert font["vmtx"][cmap[0x31F7]] == font["vmtx"][cmap[0x30D5]]
+    # An unsupported base + mark sequence still takes one cell vertically: the mark has no vertical advance.
+    for mark in (cmap[0x3099], cmap[0x309A]):
+        assert font["vmtx"][mark][0] == 0 and font["hmtx"][mark][0] == 0
+        assert font["GDEF"].table.GlyphClassDef.classDefs[mark] == 3
+    assert [y for _, _, y in shape("ネ゙", "ttb")] == [-1000, 0]
 
     tags = [r.FeatureTag for r in font["GSUB"].table.FeatureList.FeatureRecord]
     assert tags == sorted(tags), tags

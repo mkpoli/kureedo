@@ -8,7 +8,7 @@ Each historical glyph is drawn from Klee One's own strokes so that it sits besid
 - A comparison shows two candidates side by side in the same passage of Moshiogusa transcription, horizontal and vertical text together, at 24 px. The options are A, B, tie, and neither. Sides and passages are shuffled; some pairs repeat with sides reversed.
 - One judge (the project owner) records every vote. The records in `votes/` are that judge's ballots; they measure one reader's preference, not agreement among readers.
 - Ranking counts one point per win and half a point per tie, excluding repeat judgments.
-- From the fifth ネ round on, a regularized preference model (a Davidson model with a separate "neither" outcome, fitted to rasterized outlines) screened weak candidates before a round and proposed the next pairs. Its predictions were never shown while voting. On held-out pairs it predicted the preferred side in 22 of 23 decisive ネ comparisons and 28 of 35 decisive ヰ comparisons; it did not predict ties.
+- From the fifth ネ round on, a regularized preference model (a Davidson model with a separate "neither" outcome, fitted to rasterized outlines) screened weak candidates before a round and proposed the next pairs. Its predictions were never shown while voting, and the final choice in every round rests on the recorded votes, not on the model.
 
 ## ネ
 

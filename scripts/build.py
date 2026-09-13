@@ -36,7 +36,7 @@ KLEE_URL = f"https://raw.githubusercontent.com/fontworks-fonts/Klee/{KLEE_COMMIT
 KLEE_SHA256 = "74cb0a6523cc22b221ceaa7b78b56cea66512ec14b4145fd0102ffe27c30d084"
 KLEE_PATH = ROOT / "sources/klee/KleeOne-Regular.ttf"
 
-VERSION = (0, 1, 0)  # release tag v0.1.0; name ID 5 and head.fontRevision carry 0.100
+VERSION = (0, 1, 1)  # release tag v0.1.1; name ID 5 and head.fontRevision carry 0.101
 COPYRIGHT = ("Copyright 2020 The Klee Project Authors (https://github.com/fontworks-fonts/Klee); "
              "historical glyphs Copyright 2026 The Kureedo Project Authors (https://github.com/mkpoli/kureedo)")
 URL = "https://github.com/mkpoli/kureedo"
@@ -76,12 +76,14 @@ class Builder:
         self.name_id = max(n.nameID for n in font["name"].names if n.nameID < 256) + 1
         self.name_id = max(self.name_id, 256)
 
-    def put(self, name, glyph, advance=1000, origin=BASELINE):
+    def put(self, name, glyph, advance=1000, origin=BASELINE, mark=False):
         glyph.recalcBounds(self.font["glyf"])
         self.font["glyf"][name] = glyph
         self.font["hmtx"][name] = (advance, glyph.xMin)
-        self.font["vmtx"][name] = (1000, origin - glyph.yMax)
+        self.font["vmtx"][name] = (0 if mark else 1000, origin - glyph.yMax)
         self.order.append(name)
+        if mark:
+            self.font["GDEF"].table.GlyphClassDef.classDefs[name] = 3
 
     def encode(self, code, name):
         for table in self.font["cmap"].tables:
@@ -169,7 +171,7 @@ class Builder:
         substitutions = {}
         for code in (0x309A, 0x3099):
             mark = f"kanaMark{code:04X}"
-            self.put(mark, svg_glyph(GLYPHS / f"mark-{code:04x}.svg"), advance=0)
+            self.put(mark, svg_glyph(GLYPHS / f"mark-{code:04x}.svg"), advance=0, mark=True)
             self.encode(code, mark)
             for base, base_name in self.cmap.items():
                 if not (0x30A1 <= base <= 0x30FA or 0x31F0 <= base <= 0x31FF):
