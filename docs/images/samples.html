@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ja"><meta charset="utf-8">
+<style>
+  @font-face { font-family: "Kureedo Kata"; src: url("../../fonts/KureedoKata-Regular.woff2") format("woff2"); }
+  body { margin: 0; background: #f8f5ef; color: #1d1a17; font-family: "Kureedo Kata", "Klee One", serif; }
+  .s { display: inline-block; padding: 20px 28px; }
+  .label { font: 13px ui-monospace, monospace; color: #6b655c; margin: 0 0 6px; }
+  .forms { display: flex; gap: 40px; }
+  .forms div { text-align: center; }
+  .big { font-size: 96px; line-height: 1.1; }
+  .hist { font-feature-settings: "hist"; } .cv01 { font-feature-settings: "cv01"; } .cv02 { font-feature-settings: "cv02"; }
+  .run { font-size: 28px; line-height: 1.7; margin: 0; white-space: nowrap; }
+  .vert { display: flex; gap: 48px; }
+  .vert p { writing-mode: vertical-rl; font-size: 28px; line-height: 1.7; height: 15em; margin: 0; }
+  .kana { font-size: 34px; letter-spacing: .2em; margin: 0; line-height: 1.6; white-space: nowrap; }
+</style>
+<div class="s" id="forms"><div class="forms">
+  <div><p class="label">default</p><div class="big">ネヰ</div></div>
+  <div><p class="label">hist / ss01</p><div class="big hist">ネヰ</div></div>
+  <div><p class="label">cv01</p><div class="big cv01">ネヰ</div></div>
+  <div><p class="label">cv02</p><div class="big cv02">ネヰ</div></div>
+</div></div><br>
+<div class="s" id="running"><p class="label">default</p><p class="run">タネ シネ ニハテキ ヲカイ。ネウシヤラシリニ。イヰヱカラカ。</p><p class="label" style="margin-top:14px">hist</p><p class="run hist">タネ シネ ニハテキ ヲカイ。ネウシヤラシリニ。イヰヱカラカ。</p></div><br>
+<div class="s" id="vertical"><div class="vert"><p>タネ シネ ニハテキ ヲカイ。イヰヱカラカ。</p><p class="hist">タネ シネ ニハテキ ヲカイ。イヰヱカラカ。</p></div></div><br>
+<div class="s" id="ainu"><p class="kana">ㇰㇱㇲㇳㇴㇵㇶㇷㇸㇹㇺㇻㇼㇽㇾㇿ</p><p class="kana">セ゚ ツ゚ ト゚ ㇷ゚ カ゚ キ゚ ク゚ ケ゚ コ゚ パ ガ ヅ</p></div>
+</html>

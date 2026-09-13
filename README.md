@@ -2,6 +2,8 @@
 
 Klee One with the letterforms of Edo-period Japanese print. The first release adds two katakana that woodblock editions used and modern fonts lack: a ネ written like 子 and a ヰ written like 井. Both sit behind OpenType features, so the default glyphs are Klee One's and the text stays ordinary katakana.
 
+![ネ and ヰ: default, hist, cv01, cv02](docs/images/forms.png)
+
 Two fonts come out of one build:
 
 | Font | File | Use |
@@ -29,11 +31,17 @@ Download both from the [releases page](https://github.com/mkpoli/kureedo/release
 | `cv01` | ネ only. |
 | `cv02` | ヰ only. |
 
+![Running text with and without hist](docs/images/running.png)
+
+![Vertical text with and without hist](docs/images/vertical.png)
+
 Klee One's own `hkna`/`vkna` alternates of ネ and ヰ also become the historical forms when a historical feature is on. In the full font, `hwid` and `ruby` keep Klee One's shapes and `aalt` lists the historical forms; Kureedo Kata carries none of those three features. Word processors list the character variants under their feature names; the fonts carry English and Japanese names.
 
 ## Coverage of Kureedo Kata
 
 The subset requests U+0020, U+3000–303F, U+3099–309C, U+30A0–30FF and U+31F0–31FF; code points Klee One does not cover (for example U+3031–3032, U+30A0, U+30FF) stay absent. `fonttools ttx -t cmap` lists the exact set. The two historical glyphs are unencoded alternates. Glyphs Klee One does not have and this font adds: the Ainu small kana ㇰ–ㇿ (U+31F0–31FF), scaled from the full-size letters; combining ゛ and ゜ with zero advance; and `ccmp` ligatures that set セ゚ ツ゚ ト゚ ㇷ゚ カ゚ キ゚ ク゚ ケ゚ コ゚ in one cell, horizontally and vertically.
+
+![Ainu small kana and composed marks](docs/images/ainu.png)
 
 ## Sources of the forms
 
