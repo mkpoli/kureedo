@@ -49,6 +49,12 @@ HISTORICAL = [
 ]
 KATA_UNICODES = [0x20, *range(0x3000, 0x3040), *range(0x3099, 0x309D), *range(0x30A0, 0x3100), *range(0x31F0, 0x3200)]
 
+# Ainu small kana: scale of the full-size letter, its offset in horizontal text, and the
+# top side bearing that places it in vertical text. Marks on a small base are scaled and
+# set with their centre at (base.xMax + cx, base.yMax + cy).
+SMALL = dict(scale=0.65, x=280, y=-45, vertTop=224, vertX=0, vertY=0)
+SMALL_MARK = dict(scale=1.0, cx=13, cy=188)
+
 
 def fetch_klee():
     if not KLEE_PATH.exists():
@@ -69,7 +75,10 @@ def svg_glyph(path: Path):
 
 
 class Builder:
-    def __init__(self, font: TTFont):
+    def __init__(self, font: TTFont, small=None, small_mark=None):
+        self.small = {**SMALL, **(small or {})}
+        self.small_mark = {**SMALL_MARK, **(small_mark or {})}
+        self.vertical = {}  # glyph -> its vertical variant, registered under vert and vrt2
         self.font = font
         self.cmap = font.getBestCmap()
         self.order = list(font.getGlyphOrder())
@@ -185,7 +194,22 @@ class Builder:
                     dx, dy = positions[sequence]
                     pen = TTGlyphPen(self.font.getGlyphSet())
                     pen.addComponent(base_name, (1, 0, 0, 1, 0, 0))
-                    pen.addComponent(mark, (1, 0, 0, 1, dx, dy))
+                    if 0x31F0 <= base <= 0x31FF:
+                        m = self.small_mark
+                        box = self.font["glyf"][mark]
+                        mx, my = (box.xMin + box.xMax) / 2, (box.yMin + box.yMax) / 2
+                        b = self.font["glyf"][base_name]
+                        tx, ty = b.xMax + m["cx"] - mx * m["scale"], b.yMax + m["cy"] - my * m["scale"]
+                        pen.addComponent(mark, (m["scale"], 0, 0, m["scale"], round(tx), round(ty)))
+                        if base_name in self.vertical:
+                            vpen = TTGlyphPen(self.font.getGlyphSet())
+                            vpen.addComponent(self.vertical[base_name], (1, 0, 0, 1, 0, 0))
+                            vb = self.font["glyf"][self.vertical[base_name]]
+                            vpen.addComponent(mark, (m["scale"], 0, 0, m["scale"], round(tx + vb.xMax - b.xMax), round(ty + vb.yMax - b.yMax)))
+                            self.put(composed + ".vert", vpen.glyph(), origin=vb.yMax + self.font["vmtx"][self.vertical[base_name]][1])
+                            self.vertical[composed] = composed + ".vert"
+                    else:
+                        pen.addComponent(mark, (1, 0, 0, 1, dx, dy))
                     # Small kana sit lower than full-size kana in vertical text.
                     origin = self.font["glyf"][base_name].yMax + self.font["vmtx"][base_name][1]
                     self.put(composed, pen.glyph(), origin=origin)
@@ -193,20 +217,29 @@ class Builder:
                     continue
                 substitutions[(base_name, mark)] = composed
         self.add_feature("ccmp", buildLookup([buildLigatureSubstSubtable(substitutions)]))
+        if self.vertical:
+            for tag in ("vert", "vrt2"):
+                self.add_feature(tag, buildLookup([buildSingleSubstSubtable(dict(self.vertical))]))
 
     def add_small_kana(self):
         """Klee One lacks U+31F0–31FF. Scale its full-size kana to 65%, set at the lower right."""
         glyphs = self.font.getGlyphSet()
+        sm = self.small
         for code, base in zip(range(0x31F0, 0x3200), "クシストヌハヒフヘホムラリルレロ"):
             name = f"uni{code:04X}"
-            pen = TTGlyphPen(glyphs)
-            glyphs[self.cmap[ord(base)]].draw(TransformPen(pen, (0.65, 0, 0, 0.65, 280, -45)))
-            small = pen.glyph()
-            small.recalcBounds(self.font["glyf"])
-            self.font["glyf"][name] = small
-            self.font["hmtx"][name] = (1000, small.xMin)
-            self.font["vmtx"][name] = self.font["vmtx"][self.cmap[ord(base)]]
-            self.order.append(name)
+            for suffix, dx, dy in (("", 0, 0), (".vert", sm["vertX"], sm["vertY"])):
+                if suffix and not (dx or dy):
+                    continue
+                pen = TTGlyphPen(glyphs)
+                glyphs[self.cmap[ord(base)]].draw(TransformPen(pen, (sm["scale"], 0, 0, sm["scale"], sm["x"] + dx, sm["y"] + dy)))
+                small = pen.glyph()
+                small.recalcBounds(self.font["glyf"])
+                self.font["glyf"][name + suffix] = small
+                self.font["hmtx"][name + suffix] = (1000, small.xMin)
+                self.font["vmtx"][name + suffix] = (1000, sm["vertTop"])
+                self.order.append(name + suffix)
+                if suffix:
+                    self.vertical[name] = name + suffix
             self.encode(code, name)
             self.cmap[code] = name
 
@@ -257,26 +290,27 @@ def set_names(font: TTFont, family: str):
         if record.nameID in names and record.langID == 0x409:
             record.string = names[record.nameID].encode(record.getEncoding())
     table.names = [n for n in table.names if n.langID != 0x411]
-    table.setName(JAPANESE[family], 1, 3, 1, 0x411)
+    ja = JAPANESE.get(family, family)
+    table.setName(ja, 1, 3, 1, 0x411)
     table.setName("Regular", 2, 3, 1, 0x411)
-    table.setName(JAPANESE[family] + " Regular", 4, 3, 1, 0x411)
+    table.setName(ja + " Regular", 4, 3, 1, 0x411)
     font["head"].fontRevision = float(version)
     font["OS/2"].achVendID = "KRDO"
 
 
-def build():
+def build(out_dir: Path = FONTS, small=None, small_mark=None, family_suffix=""):
     font = fetch_klee()
-    builder = Builder(font)
+    builder = Builder(font, small, small_mark)
     builder.add_small_kana()
     builder.add_historical()
     builder.add_marks()
     builder.finish()
-    FONTS.mkdir(exist_ok=True)
+    out_dir.mkdir(parents=True, exist_ok=True)
 
-    set_names(font, "Kureedo")
-    full = FONTS / "Kureedo-Regular.ttf"
+    set_names(font, "Kureedo" + family_suffix)
+    full = out_dir / f"Kureedo{family_suffix.replace(' ', '')}-Regular.ttf"
     font.save(full)
-    print(f"Built {full.relative_to(ROOT)} ({full.stat().st_size:,} bytes)")
+    print(f"Built {full} ({full.stat().st_size:,} bytes)")
 
     options = subset.Options()
     options.hinting = False
@@ -290,12 +324,13 @@ def build():
     sub = subset.Subsetter(options=options)
     sub.populate(unicodes=KATA_UNICODES)
     sub.subset(kata)
-    set_names(kata, "Kureedo Kata")
+    set_names(kata, "Kureedo Kata" + family_suffix)
     for flavor, suffix in ((None, ".ttf"), ("woff2", ".woff2")):
         kata.flavor = flavor
-        out = FONTS / f"KureedoKata-Regular{suffix}"
+        out = out_dir / f"KureedoKata{family_suffix.replace(' ', '')}-Regular{suffix}"
         kata.save(out)
-        print(f"Built {out.relative_to(ROOT)} ({out.stat().st_size:,} bytes)")
+        print(f"Built {out} ({out.stat().st_size:,} bytes)")
+    return full, out
 
 
 if __name__ == "__main__":
