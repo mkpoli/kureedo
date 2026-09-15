@@ -1,0 +1,104 @@
+[
+ {
+  "id": "w98ce06729593df2b",
+  "design": {
+   "height": 0,
+   "gapReduction": 60,
+   "midpoint": 0,
+   "upperSpan": 60,
+   "lowerSpan": 60,
+   "upperX": 0,
+   "lowerX": 0,
+   "leftX": 0,
+   "rightX": 0,
+   "level": 0
+  },
+  "control": true,
+  "label": "L"
+ },
+ {
+  "id": "w0caf9495cba451a8",
+  "design": {
+   "height": 0,
+   "gapReduction": 30,
+   "midpoint": 0,
+   "upperSpan": 60,
+   "lowerSpan": 60,
+   "upperX": 0,
+   "lowerX": 0,
+   "leftX": 0,
+   "rightX": 0,
+   "level": 0
+  },
+  "control": false,
+  "label": "LG30"
+ },
+ {
+  "id": "w3c039354d73beae5",
+  "design": {
+   "height": 0,
+   "gapReduction": 0,
+   "midpoint": 0,
+   "upperSpan": 60,
+   "lowerSpan": 60,
+   "upperX": 0,
+   "lowerX": 0,
+   "leftX": 0,
+   "rightX": 0,
+   "level": 0
+  },
+  "control": false,
+  "label": "LG0"
+ },
+ {
+  "id": "w73a0c190f2268cc3",
+  "design": {
+   "height": 0,
+   "gapReduction": 30,
+   "midpoint": -40,
+   "upperSpan": 60,
+   "lowerSpan": 60,
+   "upperX": 0,
+   "lowerX": 0,
+   "leftX": 0,
+   "rightX": 0,
+   "level": 0
+  },
+  "control": false,
+  "label": "LG30U"
+ },
+ {
+  "id": "wfa3b426eb8d647ca",
+  "design": {
+   "height": 0,
+   "gapReduction": 30,
+   "midpoint": -20,
+   "upperSpan": 60,
+   "lowerSpan": 60,
+   "upperX": 0,
+   "lowerX": 0,
+   "leftX": 0,
+   "rightX": 0,
+   "level": 0
+  },
+  "control": false,
+  "label": "LG30M"
+ },
+ {
+  "id": "w0138eeda15ad31aa",
+  "design": {
+   "height": 0,
+   "gapReduction": 0,
+   "midpoint": -40,
+   "upperSpan": 60,
+   "lowerSpan": 60,
+   "upperX": 0,
+   "lowerX": 0,
+   "leftX": 0,
+   "rightX": 0,
+   "level": 0
+  },
+  "control": false,
+  "label": "LG0U"
+ }
+]

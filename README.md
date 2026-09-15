@@ -49,7 +49,7 @@ The subset requests U+0020, U+3000–303F, U+3099–309C, U+30A0–30FF and U+31
 
 **ヰ from 井.** The printed ヰ of the same editions keeps the full 井 frame. Eiso Chan, *Proposal on two archaic Katakana letters*, [L2/25-151](https://www.unicode.org/L2/L2025/25151-katakana-ne-wi.pdf) (2025-05-23), page 1 and section 3, collects historical specimens of both letters. The proposed code points are not used here.
 
-The glyph is provisional: it is the leading form of a comparison that is still running, and a later release replaces it if another form wins. `docs/methods.md` describes how each form was chosen and `docs/votes/` holds the comparison records.
+The 0.2 outline keeps Klee's uprights and stroke ends and sets the bars 50 units closer, the upper 30 and the lower 60 units longer; it beat the 0.1 outline and the other finalists in blind comparison. `docs/methods.md` describes how each form was chosen and `docs/votes/` holds the comparison records.
 
 ## Building
 

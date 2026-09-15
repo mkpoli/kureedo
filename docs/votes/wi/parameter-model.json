@@ -1,0 +1,177 @@
+{
+  "rounds": [
+    6,
+    7,
+    8,
+    10
+  ],
+  "judgments": 106,
+  "validation": {
+    "0.3": {
+      "logLoss": 1.3312655972810334,
+      "decisiveCorrect": 44,
+      "decisive": 65,
+      "fourOutcome": 48,
+      "n": 106
+    },
+    "1.0": {
+      "logLoss": 1.2160326239469639,
+      "decisiveCorrect": 44,
+      "decisive": 65,
+      "fourOutcome": 50,
+      "n": 106
+    },
+    "3.0": {
+      "logLoss": 1.1677073884518814,
+      "decisiveCorrect": 44,
+      "decisive": 65,
+      "fourOutcome": 53,
+      "n": 106
+    }
+  },
+  "lambda_": 3.0,
+  "effects": {
+    "upperSpan": {
+      "linear": -0.04365105012323317,
+      "quadratic": -0.20018018609892826,
+      "accept": 0.32867003529017863
+    },
+    "lowerSpan": {
+      "linear": -0.27837324619674836,
+      "quadratic": -0.2554267239527305,
+      "accept": -0.14244911270005373
+    },
+    "gapReduction": {
+      "linear": -0.20557984420703598,
+      "quadratic": -0.6036270433051357,
+      "accept": 0.19793772339919866
+    },
+    "midpoint": {
+      "linear": -0.3696483054619181,
+      "quadratic": -0.21889520554095265,
+      "accept": -0.6724342412703845
+    },
+    "upperX": {
+      "linear": -0.2266042728885817,
+      "quadratic": -0.46218966673066486,
+      "accept": -0.13113917497902888
+    },
+    "lowerX": {
+      "linear": -0.18510046070365,
+      "quadratic": -0.11835380011928091,
+      "accept": -0.021986188482006855
+    },
+    "leftX": {
+      "linear": 0.34074333977848525,
+      "quadratic": -0.30790841652520085,
+      "accept": 0.0729643312127713
+    },
+    "rightX": {
+      "linear": -0.2225938732143983,
+      "quadratic": -0.23302524112600514,
+      "accept": 0.22321864221769314
+    }
+  },
+  "optimum": {
+    "upperSpan": 30,
+    "lowerSpan": 60,
+    "gapReduction": 50,
+    "midpoint": -40,
+    "upperX": 0,
+    "lowerX": 0,
+    "leftX": 0,
+    "rightX": 0
+  },
+  "top": [
+    {
+      "id": "w320f6ee96cf0caa1",
+      "design": {
+        "upperSpan": 60,
+        "lowerSpan": 60,
+        "gapReduction": 60,
+        "midpoint": -40,
+        "upperX": 0,
+        "lowerX": 0,
+        "leftX": 0,
+        "rightX": 0
+      },
+      "utility": -0.2608613534311094,
+      "accept": 2.155338611836784
+    },
+    {
+      "id": "w332b6770f2aed0cc",
+      "design": {
+        "upperSpan": 0,
+        "lowerSpan": 110,
+        "gapReduction": 60,
+        "midpoint": -40,
+        "upperX": 0,
+        "lowerX": 0,
+        "leftX": 0,
+        "rightX": 0
+      },
+      "utility": -0.425224163714344,
+      "accept": 1.7132295497461327
+    },
+    {
+      "id": "w2e3b2763a4bf693b",
+      "design": {
+        "upperSpan": 0,
+        "lowerSpan": 110,
+        "gapReduction": 60,
+        "midpoint": -40,
+        "upperX": 0,
+        "lowerX": 0,
+        "leftX": 0,
+        "rightX": 0
+      },
+      "utility": -0.425224163714344,
+      "accept": 1.7132295497461327
+    },
+    {
+      "id": "w85f1d6d394e63de7",
+      "design": {
+        "upperSpan": 60,
+        "lowerSpan": 60,
+        "gapReduction": 60,
+        "midpoint": -20,
+        "upperX": 0,
+        "lowerX": 0,
+        "leftX": 0,
+        "rightX": 0
+      },
+      "utility": -0.023063872680575137,
+      "accept": 0.7796589635999025
+    },
+    {
+      "id": "w73a0c190f2268cc3",
+      "design": {
+        "upperSpan": 60,
+        "lowerSpan": 60,
+        "gapReduction": 30,
+        "midpoint": -40,
+        "upperX": 0,
+        "lowerX": 0,
+        "leftX": 0,
+        "rightX": 0
+      },
+      "utility": -0.5212790000627404,
+      "accept": 1.4801438048935522
+    },
+    {
+      "id": "wfa3b426eb8d647ca",
+      "design": {
+        "upperSpan": 60,
+        "lowerSpan": 60,
+        "gapReduction": 30,
+        "midpoint": -20,
+        "upperX": 0,
+        "lowerX": 0,
+        "leftX": 0,
+        "rightX": 0
+      },
+      "utility": -0.28348151931220616,
+      "accept": 0.10446415665667075
+    }
+  ]
+}

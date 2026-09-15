@@ -36,7 +36,7 @@ KLEE_URL = f"https://raw.githubusercontent.com/fontworks-fonts/Klee/{KLEE_COMMIT
 KLEE_SHA256 = "74cb0a6523cc22b221ceaa7b78b56cea66512ec14b4145fd0102ffe27c30d084"
 KLEE_PATH = ROOT / "sources/klee/KleeOne-Regular.ttf"
 
-VERSION = (0, 1, 1)  # release tag v0.1.1; name ID 5 and head.fontRevision carry 0.101
+VERSION = (0, 2, 0)  # release tag v0.2.0; name ID 5 and head.fontRevision carry 0.200
 COPYRIGHT = ("Copyright 2020 The Klee Project Authors (https://github.com/fontworks-fonts/Klee); "
              "historical glyphs Copyright 2026 The Kureedo Project Authors (https://github.com/mkpoli/kureedo)")
 URL = "https://github.com/mkpoli/kureedo"

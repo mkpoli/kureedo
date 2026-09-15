@@ -1,0 +1,206 @@
+[
+ {
+  "id": "w69be534405efae24",
+  "design": {
+   "height": 0,
+   "gapReduction": 60,
+   "midpoint": 0,
+   "upperSpan": 0,
+   "lowerSpan": 110,
+   "upperX": 0,
+   "lowerX": 0,
+   "leftX": 0,
+   "rightX": 0,
+   "level": 0
+  },
+  "control": true,
+  "label": "C"
+ },
+ {
+  "id": "w6da9447b0dcf2779",
+  "design": {
+   "height": 0,
+   "gapReduction": 60,
+   "midpoint": 0,
+   "upperSpan": 60,
+   "lowerSpan": 60,
+   "upperX": 0,
+   "lowerX": 0,
+   "leftX": 0,
+   "rightX": 0,
+   "level": 0
+  },
+  "control": false,
+  "label": "L"
+ },
+ {
+  "id": "wa8024cce2303d43e",
+  "design": {
+   "height": 0,
+   "gapReduction": 60,
+   "midpoint": 0,
+   "upperSpan": 0,
+   "lowerSpan": 0,
+   "upperX": 0,
+   "lowerX": 0,
+   "leftX": 0,
+   "rightX": 0,
+   "level": 0
+  },
+  "control": false,
+  "label": "N"
+ },
+ {
+  "id": "w8b5444adfa9cef47",
+  "design": {
+   "height": 0,
+   "gapReduction": 60,
+   "midpoint": 0,
+   "upperSpan": 110,
+   "lowerSpan": 110,
+   "upperX": 0,
+   "lowerX": 0,
+   "leftX": 0,
+   "rightX": 0,
+   "level": 0
+  },
+  "control": false,
+  "label": "W"
+ },
+ {
+  "id": "w3c16e9a2123d903d",
+  "design": {
+   "height": 0,
+   "gapReduction": 60,
+   "midpoint": 0,
+   "upperSpan": -60,
+   "lowerSpan": 110,
+   "upperX": 0,
+   "lowerX": 0,
+   "leftX": 0,
+   "rightX": 0,
+   "level": 0
+  },
+  "control": false,
+  "label": "S"
+ },
+ {
+  "id": "w2e3b2763a4bf693b",
+  "design": {
+   "height": 0,
+   "gapReduction": 60,
+   "midpoint": -40,
+   "upperSpan": 0,
+   "lowerSpan": 110,
+   "upperX": 0,
+   "lowerX": 0,
+   "leftX": 0,
+   "rightX": 0,
+   "level": 0
+  },
+  "control": false,
+  "label": "U"
+ },
+ {
+  "id": "w320f6ee96cf0caa1",
+  "design": {
+   "height": 0,
+   "gapReduction": 60,
+   "midpoint": -40,
+   "upperSpan": 60,
+   "lowerSpan": 60,
+   "upperX": 0,
+   "lowerX": 0,
+   "leftX": 0,
+   "rightX": 0,
+   "level": 0
+  },
+  "control": false,
+  "label": "LU"
+ },
+ {
+  "id": "w85f1d6d394e63de7",
+  "design": {
+   "height": 0,
+   "gapReduction": 60,
+   "midpoint": -20,
+   "upperSpan": 60,
+   "lowerSpan": 60,
+   "upperX": 0,
+   "lowerX": 0,
+   "leftX": 0,
+   "rightX": 0,
+   "level": 0
+  },
+  "control": false,
+  "label": "LM"
+ },
+ {
+  "id": "wd8ab873c675a3434",
+  "design": {
+   "height": 0,
+   "gapReduction": 60,
+   "midpoint": 0,
+   "upperSpan": 115,
+   "lowerSpan": 5,
+   "upperX": 0,
+   "lowerX": 0,
+   "leftX": 0,
+   "rightX": 0,
+   "level": 0
+  },
+  "control": false,
+  "label": "E"
+ },
+ {
+  "id": "w23677bd12e04be46",
+  "design": {
+   "height": 0,
+   "gapReduction": 60,
+   "midpoint": 0,
+   "upperSpan": 5,
+   "lowerSpan": 115,
+   "upperX": 0,
+   "lowerX": 0,
+   "leftX": 0,
+   "rightX": 0,
+   "level": 0
+  },
+  "control": false,
+  "label": "D"
+ },
+ {
+  "id": "w23f318d50a6f9f7c",
+  "design": {
+   "height": 0,
+   "gapReduction": 30,
+   "midpoint": 0,
+   "upperSpan": 60,
+   "lowerSpan": 60,
+   "upperX": 0,
+   "lowerX": 0,
+   "leftX": 0,
+   "rightX": 0,
+   "level": 0
+  },
+  "control": false,
+  "label": "G30"
+ },
+ {
+  "id": "w8dab66cc1575bc80",
+  "design": {
+   "height": 0,
+   "gapReduction": 90,
+   "midpoint": 0,
+   "upperSpan": 60,
+   "lowerSpan": 60,
+   "upperX": 0,
+   "lowerX": 0,
+   "leftX": 0,
+   "rightX": 0,
+   "level": 0
+  },
+  "control": false,
+  "label": "G90"
+ }
+]
