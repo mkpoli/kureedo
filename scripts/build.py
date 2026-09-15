@@ -19,7 +19,12 @@ from pathlib import Path
 from urllib.request import urlopen
 from xml.etree import ElementTree
 
+import math
+
+import pathops
 from fontTools import subset
+from fontTools.pens.areaPen import AreaPen
+from fontTools.pens.perimeterPen import PerimeterPen
 from fontTools.otlLib.builder import buildLigatureSubstSubtable, buildLookup, buildSingleSubstSubtable
 from fontTools.pens.cu2quPen import Cu2QuPen
 from fontTools.pens.transformPen import TransformPen
@@ -52,8 +57,45 @@ KATA_UNICODES = [0x20, *range(0x3000, 0x3040), *range(0x3099, 0x309D), *range(0x
 # Ainu small kana: scale of the full-size letter, its offset in horizontal text, and the
 # top side bearing that places it in vertical text. Marks on a small base are scaled and
 # set with their centre at (base.xMax + cx, base.yMax + cy).
-SMALL = dict(scale=0.65, x=280, y=-45, vertTop=224, vertX=0, vertY=0)
-SMALL_MARK = dict(scale=1.0, cx=13, cy=188)
+SMALL = dict(scale=0.65, x=280, y=-45, vertTop=224, vertX=0, vertY=0, weight=None)
+SMALL_MARK = dict(scale=1.0, cx=13, cy=188, weight=None)
+# `weight` is the stroke thickness the scaled glyph should keep, as a fraction of the
+# full-size stroke; Klee's own small kana keep about 0.9. None leaves the scaled stroke as is.
+
+
+def stroke_thickness(glyph_set, name, scale=1.0):
+    """Mean stroke thickness of a glyph: twice its area over its perimeter."""
+    area, perimeter = AreaPen(glyph_set), PerimeterPen(glyph_set)
+    for pen in (area, perimeter):
+        glyph_set[name].draw(TransformPen(pen, (scale, 0, 0, scale, 0, 0)))
+    return abs(area.value) * 2 / perimeter.value
+
+
+def dilated(draw, radius, steps=12):
+    """Union of the outline with copies shifted around a circle: a dilation by `radius`."""
+    result = pathops.Path()
+    for i in range(steps):
+        angle = 2 * math.pi * i / steps
+        part = pathops.Path()
+        draw(TransformPen(part.getPen(), (1, 0, 0, 1, radius * math.cos(angle), radius * math.sin(angle))))
+        result = pathops.op(result, part, pathops.PathOp.UNION) if i else part
+    return pathops.simplify(result, fix_winding=True)
+
+
+def scaled_glyph(glyph_set, name, scale, dx, dy, weight):
+    """Scale a glyph and, when `weight` is set, thicken it back towards that stroke fraction."""
+    radius = 0.0
+    if weight:
+        radius = max(0.0, (weight * stroke_thickness(glyph_set, name) - stroke_thickness(glyph_set, name, scale)) / 2)
+    def draw(pen):
+        glyph_set[name].draw(TransformPen(pen, (scale, 0, 0, scale, dx, dy)))
+    tt = TTGlyphPen(None)
+    if radius:
+        path = dilated(draw, radius)
+        path.draw(Cu2QuPen(tt, max_err=0.2, reverse_direction=not path.clockwise))
+    else:
+        draw(tt)
+    return tt.glyph()
 
 
 def fetch_klee():
@@ -182,6 +224,11 @@ class Builder:
             mark = f"kanaMark{code:04X}"
             self.put(mark, svg_glyph(GLYPHS / f"mark-{code:04x}.svg"), advance=0, mark=True)
             self.encode(code, mark)
+            m = self.small_mark
+            small_mark = mark
+            if m["scale"] != 1 or m["weight"]:
+                small_mark = mark + ".small"
+                self.put(small_mark, scaled_glyph(self.font.getGlyphSet(), mark, m["scale"], 0, 0, m["weight"]), advance=0, mark=True)
             for base, base_name in self.cmap.items():
                 if not (0x30A1 <= base <= 0x30FA or 0x31F0 <= base <= 0x31FF):
                     continue
@@ -196,16 +243,16 @@ class Builder:
                     pen.addComponent(base_name, (1, 0, 0, 1, 0, 0))
                     if 0x31F0 <= base <= 0x31FF:
                         m = self.small_mark
-                        box = self.font["glyf"][mark]
+                        box = self.font["glyf"][small_mark]
                         mx, my = (box.xMin + box.xMax) / 2, (box.yMin + box.yMax) / 2
                         b = self.font["glyf"][base_name]
-                        tx, ty = b.xMax + m["cx"] - mx * m["scale"], b.yMax + m["cy"] - my * m["scale"]
-                        pen.addComponent(mark, (m["scale"], 0, 0, m["scale"], round(tx), round(ty)))
+                        tx, ty = b.xMax + m["cx"] - mx, b.yMax + m["cy"] - my
+                        pen.addComponent(small_mark, (1, 0, 0, 1, round(tx), round(ty)))
                         if base_name in self.vertical:
                             vpen = TTGlyphPen(self.font.getGlyphSet())
                             vpen.addComponent(self.vertical[base_name], (1, 0, 0, 1, 0, 0))
                             vb = self.font["glyf"][self.vertical[base_name]]
-                            vpen.addComponent(mark, (m["scale"], 0, 0, m["scale"], round(tx + vb.xMax - b.xMax), round(ty + vb.yMax - b.yMax)))
+                            vpen.addComponent(small_mark, (1, 0, 0, 1, round(tx + vb.xMax - b.xMax), round(ty + vb.yMax - b.yMax)))
                             self.put(composed + ".vert", vpen.glyph(), origin=vb.yMax + self.font["vmtx"][self.vertical[base_name]][1])
                             self.vertical[composed] = composed + ".vert"
                     else:
@@ -230,9 +277,7 @@ class Builder:
             for suffix, dx, dy in (("", 0, 0), (".vert", sm["vertX"], sm["vertY"])):
                 if suffix and not (dx or dy):
                     continue
-                pen = TTGlyphPen(glyphs)
-                glyphs[self.cmap[ord(base)]].draw(TransformPen(pen, (sm["scale"], 0, 0, sm["scale"], sm["x"] + dx, sm["y"] + dy)))
-                small = pen.glyph()
+                small = scaled_glyph(glyphs, self.cmap[ord(base)], sm["scale"], sm["x"] + dx, sm["y"] + dy, sm["weight"])
                 small.recalcBounds(self.font["glyf"])
                 self.font["glyf"][name + suffix] = small
                 self.font["hmtx"][name + suffix] = (1000, small.xMin)
