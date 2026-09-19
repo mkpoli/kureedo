@@ -41,18 +41,20 @@ KLEE_URL = f"https://raw.githubusercontent.com/fontworks-fonts/Klee/{KLEE_COMMIT
 KLEE_SHA256 = "74cb0a6523cc22b221ceaa7b78b56cea66512ec14b4145fd0102ffe27c30d084"
 KLEE_PATH = ROOT / "sources/klee/KleeOne-Regular.ttf"
 
-VERSION = (0, 2, 0)  # release tag v0.2.0; name ID 5 and head.fontRevision carry 0.200
+VERSION = (0, 3, 0)  # release tag v0.2.0; name ID 5 and head.fontRevision carry 0.200
 COPYRIGHT = ("Copyright 2020 The Klee Project Authors (https://github.com/fontworks-fonts/Klee); "
              "historical glyphs Copyright 2026 The Kureedo Project Authors (https://github.com/mkpoli/kureedo)")
 URL = "https://github.com/mkpoli/kureedo"
 BASELINE = 880  # y of the em top in the SVG sources (1000-unit em, y down)
 
-# Each historical form: code point, SVG source, character-variant feature and its UI label.
+# Each historical form: the modern letter it is an alternate of, its own code point in
+# Kana Extended-A (Unicode 18.0), the SVG source, and its character-variant feature.
 HISTORICAL = [
-    dict(code=0x30CD, svg="ne.svg", cv="cv01", label="Katakana ne, 子-shaped"),
-    dict(code=0x30F0, svg="wi.svg", cv="cv02", label="Katakana wi, 井-shaped"),
+    dict(code=0x30CD, historic=0x1B127, svg="ne.svg", cv="cv01", label="Katakana ne, 子-shaped"),
+    dict(code=0x30F0, historic=0x1B128, svg="wi.svg", cv="cv02", label="Katakana wi, 井-shaped"),
 ]
-KATA_UNICODES = [0x20, *range(0x3000, 0x3040), *range(0x3099, 0x309D), *range(0x30A0, 0x3100), *range(0x31F0, 0x3200)]
+KATA_UNICODES = [0x20, *range(0x3000, 0x3040), *range(0x3099, 0x309D), *range(0x30A0, 0x3100), *range(0x31F0, 0x3200),
+                 *(f["historic"] for f in [dict(historic=0x1B127), dict(historic=0x1B128)])]
 
 # Ainu small kana: scale of the full-size letter, its offset in horizontal text, and the
 # top side bearing that places it in vertical text. Marks on a small base are scaled and
@@ -138,7 +140,8 @@ class Builder:
 
     def encode(self, code, name):
         for table in self.font["cmap"].tables:
-            if table.isUnicode():
+            # Format 4 subtables hold the BMP only; supplementary code points go to format 12.
+            if table.isUnicode() and (code <= 0xFFFF or table.format == 12):
                 table.cmap[code] = name
 
     def add_name(self, text):
@@ -189,8 +192,12 @@ class Builder:
         all_forms = {}
         for form in HISTORICAL:
             base = self.cmap[form["code"]]
-            name = f"{base}.hist"
+            # The letter has its own code point in Kana Extended-A; the same glyph is
+            # also the modern letter's historical alternate.
+            name = f"uni{form['historic']:04X}"
             self.put(name, svg_glyph(GLYPHS / form["svg"]))
+            self.encode(form["historic"], name)
+            self.cmap[form["historic"]] = name
             # Klee's own horizontal/vertical alternates of the letter also yield
             # the historical form, whatever order the features apply in.
             mapping = {base: name}
@@ -210,7 +217,7 @@ class Builder:
             self.add_feature(form["cv"], buildLookup([buildSingleSubstSubtable(mapping)]), params)
         historical = buildLookup([buildSingleSubstSubtable(all_forms)])
         self.add_feature("hist", historical)
-        self.extend_aalt({self.cmap[form["code"]]: f'{self.cmap[form["code"]]}.hist' for form in HISTORICAL})
+        self.extend_aalt({self.cmap[form["code"]]: f'uni{form["historic"]:04X}' for form in HISTORICAL})
         params = otTables.FeatureParamsStylisticSet()
         params.Version = 0
         params.UINameID = self.add_name("Edo-period printed forms")

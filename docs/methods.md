@@ -1,5 +1,8 @@
 # How the forms were chosen
 
+Since Unicode 18.0 the two letters have their own code points, 𛄧 U+1B127 and 𛄨 U+1B128 in Kana Extended-A. The font covers them and keeps the same glyphs reachable from ネ and ヰ through `hist`; which encoding a text uses is the text's decision, not the font's.
+
+
 Each historical glyph is drawn from Klee One's own strokes so that it sits beside Klee's kana at reading size, then chosen among candidates by blind pairwise comparison. The comparisons say which candidate one reader prefers in running text; the historical sources named in the README say what the letter looked like. The two kinds of evidence are kept apart.
 
 ## Comparison protocol

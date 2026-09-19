@@ -35,24 +35,29 @@ def check(path: Path, family: str, full: bool):
     name = font["name"]
     assert name.getDebugName(1) == family, name.getDebugName(1)
     assert name.getDebugName(6) == family.replace(" ", "") + "-Regular"
-    assert name.getDebugName(5) == "Version 0.200" and abs(font["head"].fontRevision - 0.2) < 1e-4
+    assert name.getDebugName(5) == "Version 0.300" and abs(font["head"].fontRevision - 0.3) < 1e-4
     assert "Klee Project Authors" in name.getDebugName(0) and name.getDebugName(13).startswith("This Font Software")
-    assert all(c in cmap for c in [*range(0x30A1, 0x30FB), *range(0x31F0, 0x3200), 0x3099, 0x309A, 0x309B, 0x309C, 0x30F0, 0x30F1, 0x30F2, 0x30F4])
+    assert all(c in cmap for c in [*range(0x30A1, 0x30FB), *range(0x31F0, 0x3200), 0x3099, 0x309A, 0x309B, 0x309C, 0x30F0, 0x30F1, 0x30F2, 0x30F4, 0x1B127, 0x1B128])
     if not full:
         assert 0x5B50 not in cmap and 0x4E95 not in cmap
 
     # Default glyphs are Klee's; the historical forms sit behind the features.
     ne, wi = cmap[0x30CD], cmap[0x30F0]
+    hist_ne, hist_wi = cmap[0x1B127], cmap[0x1B128]
+    assert (hist_ne, hist_wi) == ("uni1B127", "uni1B128")
+    # The Kana Extended-A letters and the historical alternates are the same glyph.
+    assert shape("\U0001B127\U0001B128") == [(hist_ne, 1000, 0), (hist_wi, 1000, 0)]
+    assert shape("\U0001B127", "ttb")[0][2] == -1000
     assert font["glyf"][ne].compile(font["glyf"]) == KLEE["glyf"][ne].compile(KLEE["glyf"])
     assert font["glyf"][wi].compile(font["glyf"]) == KLEE["glyf"][wi].compile(KLEE["glyf"])
     assert shape("ネヰ") == [(ne, 1000, 0), (wi, 1000, 0)]
     for features in ({"hist": True}, {"ss01": True}, {"cv01": True, "cv02": True}):
-        assert [g for g, *_ in shape("ネヰ", features=features)] == [ne + ".hist", wi + ".hist"], features
-        assert [g for g, *_ in shape("ネヰ", "ttb", features=features)] == [ne + ".hist", wi + ".hist"], features
-        assert [g for g, *_ in shape("ネヰ", "ttb", features={**features, "vkna": True})] == [ne + ".hist", wi + ".hist"]
-    assert [g for g, *_ in shape("ネヰ", features={"cv01": True})] == [ne + ".hist", wi]
-    assert [g for g, *_ in shape("ネヰ", features={"cv02": True})] == [ne, wi + ".hist"]
-    for glyph in (ne + ".hist", wi + ".hist"):
+        assert [g for g, *_ in shape("ネヰ", features=features)] == [hist_ne, hist_wi], features
+        assert [g for g, *_ in shape("ネヰ", "ttb", features=features)] == [hist_ne, hist_wi], features
+        assert [g for g, *_ in shape("ネヰ", "ttb", features={**features, "vkna": True})] == [hist_ne, hist_wi]
+    assert [g for g, *_ in shape("ネヰ", features={"cv01": True})] == [hist_ne, wi]
+    assert [g for g, *_ in shape("ネヰ", features={"cv02": True})] == [ne, hist_wi]
+    for glyph in (hist_ne, hist_wi):
         assert font["hmtx"][glyph][0] == 1000
         assert font["glyf"][glyph].yMax + font["vmtx"][glyph][1] == 880, glyph
         assert font["glyf"][glyph].xMin >= 0 and font["glyf"][glyph].xMax <= 1000
@@ -80,7 +85,7 @@ def check(path: Path, family: str, full: bool):
             for i in r.Feature.LookupListIndex:
                 for st in font["GSUB"].table.LookupList.Lookup[i].SubTable:
                     if st.LookupType == 3:
-                        assert ne + ".hist" in st.alternates[ne] and wi + ".hist" in st.alternates[wi]
+                        assert hist_ne in st.alternates[ne] and hist_wi in st.alternates[wi]
     ja = {n.nameID: str(n) for n in name.names if n.langID == 0x411}
     assert ja[1] in ("クレード", "クレード カタ") and ja[4].endswith(" Regular"), ja
 
