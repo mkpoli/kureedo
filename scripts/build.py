@@ -128,15 +128,19 @@ def svg_glyph(path: Path):
 
 
 class Builder:
-    def __init__(self, font: TTFont, small=None, small_mark=None):
+    def __init__(self, font: TTFont, small=None, small_mark=None, sources=None):
         self.small = {**SMALL, **(small or {})}
         self.small_mark = {**SMALL_MARK, **(small_mark or {})}
+        self.sources = sources or {}  # SVG file name -> path replacing the one in sources/glyphs (candidate builds)
         self.vertical = {}  # glyph -> its vertical variant, registered under vert and vrt2
         self.font = font
         self.cmap = font.getBestCmap()
         self.order = list(font.getGlyphOrder())
         self.name_id = max(n.nameID for n in font["name"].names if n.nameID < 256) + 1
         self.name_id = max(self.name_id, 256)
+
+    def source(self, svg):
+        return svg_glyph(Path(self.sources.get(svg, GLYPHS / svg)))
 
     def put(self, name, glyph, advance=1000, origin=BASELINE, mark=False):
         glyph.recalcBounds(self.font["glyf"])
@@ -204,7 +208,7 @@ class Builder:
             # The letter has its own code point in Kana Extended-A; the same glyph is
             # also the modern letter's historical alternate.
             name = f"uni{form['historic']:04X}"
-            self.put(name, svg_glyph(GLYPHS / form["svg"]))
+            self.put(name, self.source(form["svg"]))
             self.encode(form["historic"], name)
             self.cmap[form["historic"]] = name
             # Klee's own horizontal/vertical alternates of the letter also yield
@@ -237,7 +241,7 @@ class Builder:
         ligatures = {}
         for form in LIGATURES:
             name = f"uni{form['code']:04X}"
-            self.put(name, svg_glyph(GLYPHS / form["svg"]))
+            self.put(name, self.source(form["svg"]))
             self.encode(form["code"], name)
             self.cmap[form["code"]] = name
             ligatures[tuple(self.cmap[ord(c)] for c in form["letters"])] = name
@@ -249,7 +253,7 @@ class Builder:
         substitutions = {}
         for code in (0x309A, 0x3099):
             mark = f"kanaMark{code:04X}"
-            self.put(mark, svg_glyph(GLYPHS / f"mark-{code:04x}.svg"), advance=0, mark=True)
+            self.put(mark, self.source(f"mark-{code:04x}.svg"), advance=0, mark=True)
             self.encode(code, mark)
             m = self.small_mark
             small_mark = mark
@@ -370,9 +374,9 @@ def set_names(font: TTFont, family: str):
     font["OS/2"].achVendID = "KRDO"
 
 
-def build(out_dir: Path = FONTS, small=None, small_mark=None, family_suffix=""):
+def build(out_dir: Path = FONTS, small=None, small_mark=None, family_suffix="", sources=None):
     font = fetch_klee()
-    builder = Builder(font, small, small_mark)
+    builder = Builder(font, small, small_mark, sources)
     builder.add_small_kana()
     builder.add_historical()
     builder.add_ligatures()
