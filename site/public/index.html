@@ -13,10 +13,18 @@
 <meta property="og:image:width" content="3200">
 <meta property="og:image:height" content="1800">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="color-scheme" content="light dark">
 <link rel="canonical" href="https://kureedo.mkpo.li/">
 <link rel="preload" href="/fonts/KureedoKata-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Klee+One&display=swap">
+<script>
+  (function () {
+    var t = null;
+    try { t = localStorage.getItem("theme"); } catch (e) {}
+    if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+  })();
+</script>
 <style>
   @font-face {
     font-family: "Kureedo Kata";
@@ -31,26 +39,39 @@
     unicode-range: U+5B50, U+4E95;
   }
   :root {
-    color-scheme: light dark;
+    color-scheme: light;
     --paper: #f4efe4;
     --ink: #16130f;
-    --muted: #6d655a;
+    --muted: #665d52;
     --rule: #d9d1c1;
     --accent: #9a4a25;
     --well: #ece5d6;
+    --button-ink: #f8f4ec;
   }
   @media (prefers-color-scheme: dark) {
-    :root {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
       --paper: #16130f;
       --ink: #ece5d6;
-      --muted: #a89d8c;
+      --muted: #ada291;
       --rule: #3b3530;
       --accent: #d4825a;
       --well: #211d18;
+      --button-ink: #16130f;
     }
   }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --paper: #16130f;
+    --ink: #ece5d6;
+    --muted: #ada291;
+    --rule: #3b3530;
+    --accent: #d4825a;
+    --well: #211d18;
+    --button-ink: #16130f;
+  }
   * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
   body {
     margin: 0;
     padding: 0 16px 5rem;
@@ -62,22 +83,84 @@
     overflow-x: hidden;
   }
   main { max-width: 56rem; margin: 0 auto; }
-  header { padding: 4rem 0 1rem; border-bottom: 1px solid var(--rule); }
+  header { padding: 2.5rem 0 1rem; border-bottom: 1px solid var(--rule); }
+  .masthead { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
   h1 { font-size: clamp(2rem, 6vw, 3rem); font-weight: 400; margin: 0; line-height: 1.2; letter-spacing: .02em; }
   h1 small { display: block; font-size: .5em; color: var(--muted); letter-spacing: .1em; margin-top: .25rem; }
-  h2 { font-size: .95rem; font-weight: 400; color: var(--accent); letter-spacing: .12em; margin: 3.5rem 0 1rem; }
+  h2 { font-size: .95rem; font-weight: 400; color: var(--accent); letter-spacing: .12em; margin: 3.5rem 0 1rem; scroll-margin-top: 1rem; }
   p { margin: .5rem 0 1rem; }
   a { color: var(--accent); text-underline-offset: .2em; }
   .lead { font-size: 1.15rem; margin: 1rem 0 0; }
   .lead code { font-size: .9em; }
   .en { color: var(--muted); font-size: .92rem; }
   code { font-family: ui-monospace, "SFMono-Regular", Menlo, monospace; font-size: .85em; background: var(--well); padding: .05em .35em; border-radius: .25em; }
-  pre { background: var(--well); border: 1px solid var(--rule); border-radius: .5rem; padding: 1rem 1.25rem; overflow-x: auto; font-size: .85rem; line-height: 1.6; }
+  pre { background: var(--well); border: 1px solid var(--rule); border-radius: .5rem; padding: 1rem 1.25rem; overflow-x: auto; font-size: .85rem; line-height: 1.6; margin: .5rem 0 1rem; }
   pre code { background: none; padding: 0; font-size: 1em; }
+
+  nav { display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; margin: 1.25rem 0 0; font-size: .9rem; letter-spacing: .05em; }
+  nav a { color: var(--muted); text-decoration: none; }
+  nav a:hover { color: var(--accent); text-decoration: underline; }
+
+  #theme {
+    flex: none; margin-top: .4rem; width: 2.75rem; height: 2.75rem; border-radius: 50%;
+    border: 1px solid var(--rule); background: var(--well); color: var(--ink);
+    font: inherit; font-size: 1.1rem; line-height: 1; cursor: pointer; display: grid; place-items: center;
+  }
+  #theme:hover { border-color: var(--accent); }
+  #theme .moon { display: none; }
+  :root[data-theme="dark"] #theme .sun { display: none; }
+  :root[data-theme="dark"] #theme .moon { display: inline; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) #theme .sun { display: none; }
+    :root:not([data-theme="light"]) #theme .moon { display: inline; }
+  }
+
+  .download { margin-top: 1.75rem; }
+  .buttons { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; margin: .75rem 0 .75rem; }
+  .button {
+    display: block; padding: .9rem 1.1rem; border-radius: .6rem; text-decoration: none;
+    background: var(--accent); color: var(--button-ink); line-height: 1.4;
+  }
+  .button:hover { filter: brightness(1.08); }
+  .button b { display: block; font-weight: 400; font-size: 1.15rem; overflow-wrap: anywhere; }
+  .button span { display: block; font-size: .85rem; opacity: .9; }
+  .button.web { background: var(--well); color: var(--ink); border: 1px solid var(--rule); }
+  .button.web:hover { border-color: var(--accent); filter: none; }
+  .small-links { display: flex; flex-wrap: wrap; gap: .25rem 1.5rem; padding: 0; margin: 0; list-style: none; font-size: .9rem; }
 
   .hero { display: flex; justify-content: center; gap: clamp(1rem, 8vw, 5rem); padding: 2rem 0 1rem; }
   .hero .glyph { font-size: clamp(7rem, 40vw, 12.5rem); line-height: 1.1; text-align: center; }
   .hero .glyph small { display: block; font-size: .8rem; color: var(--muted); letter-spacing: .1em; line-height: 1.6; font-family: ui-monospace, Menlo, monospace; }
+
+  .tester { border: 1px solid var(--rule); border-radius: .6rem; background: var(--well); }
+  .controls { display: flex; flex-wrap: wrap; gap: .75rem 1.5rem; align-items: center; padding: .75rem 1rem; border-bottom: 1px solid var(--rule); font-size: .9rem; }
+  .controls label { display: inline-flex; align-items: center; gap: .35rem; cursor: pointer; }
+  .controls input[type="range"] { width: 9rem; accent-color: var(--accent); }
+  .controls input[type="checkbox"] { accent-color: var(--accent); width: 1rem; height: 1rem; margin: 0; }
+  .controls output { font-family: ui-monospace, Menlo, monospace; font-size: .85rem; min-width: 3.5em; }
+  .controls .group { display: inline-flex; gap: .75rem; align-items: center; }
+  .controls .group > span { color: var(--muted); }
+  .seg { display: inline-flex; border: 1px solid var(--rule); border-radius: .4rem; overflow: hidden; }
+  .seg button, .insert button, .controls .reset {
+    font: inherit; font-size: .9rem; line-height: 1; padding: .45rem .7rem; cursor: pointer;
+    background: var(--paper); color: var(--ink); border: 1px solid var(--rule);
+  }
+  .seg button { border: 0; border-right: 1px solid var(--rule); }
+  .seg button:last-child { border-right: 0; }
+  .seg button[aria-pressed="true"] { background: var(--accent); color: var(--button-ink); }
+  .insert { display: inline-flex; gap: .4rem; }
+  .insert button { border-radius: .4rem; font-size: 1.15rem; padding: .3rem .6rem; }
+  .insert button:hover, .controls .reset:hover { border-color: var(--accent); }
+  .controls .reset { border-radius: .4rem; color: var(--muted); }
+  #sample {
+    display: block; margin: 0; padding: 1.25rem 1.25rem; min-height: 9rem; outline: none;
+    font-family: "Kureedo Kata", "Klee One", "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: 48px; line-height: 1.7; overflow-wrap: anywhere; white-space: pre-wrap; background: var(--paper);
+    border-radius: 0 0 .6rem .6rem;
+  }
+  #sample:focus { box-shadow: inset 0 0 0 2px var(--accent); }
+  #sample.vertical { writing-mode: vertical-rl; text-orientation: mixed; width: 100%; height: 30rem; min-height: 0; overflow-x: auto; }
+  .tester .en { padding: .5rem 1rem; margin: 0; border-top: 1px solid var(--rule); }
 
   .run span { display: inline-block; }
   .run { font-size: clamp(1.5rem, 5vw, 2.25rem); line-height: 1.9; margin: 0 0 1rem; overflow-wrap: anywhere; }
@@ -95,6 +178,21 @@
   .cv01 { font-feature-settings: "cv01"; }
   .cv02 { font-feature-settings: "cv02"; }
 
+  .glyphs { display: grid; grid-template-columns: repeat(auto-fill, minmax(3.5rem, 1fr)); gap: .35rem; margin: 0 0 1rem; }
+  .glyphs button {
+    position: relative; aspect-ratio: 1; padding: 0 0 .6rem; border: 1px solid var(--rule); border-radius: .4rem;
+    background: var(--well); color: var(--ink); cursor: default;
+    font-family: "Kureedo Kata", "Klee One", serif; font-size: 1.75rem; line-height: 1;
+  }
+  .glyphs button.new { border-color: var(--accent); color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, var(--well)); }
+  .glyphs button::after {
+    content: attr(data-cp); position: absolute; left: 0; right: 0; bottom: .3rem;
+    font-family: ui-monospace, Menlo, monospace; font-size: .6rem; line-height: 1; color: var(--muted); opacity: 0;
+  }
+  .glyphs button.new::after { color: var(--accent); }
+  .glyphs button:hover, .glyphs button:focus-visible { border-color: var(--accent); outline: none; }
+  .glyphs button:hover::after, .glyphs button:focus::after, .glyphs button.new::after { opacity: 1; }
+
   .compare { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
   .compare .row { border: 1px solid var(--rule); border-radius: .5rem; padding: 1rem .5rem; display: grid; grid-template-columns: repeat(3, 1fr); text-align: center; }
   .compare .cell { font-size: clamp(2.5rem, 9vw, 4rem); line-height: 1.2; }
@@ -106,27 +204,61 @@
   figure img { display: block; width: 100%; height: auto; border: 1px solid var(--rule); border-radius: .5rem; }
   figcaption { font-size: .85rem; color: var(--muted); margin-top: .5rem; }
 
-  .links { display: flex; flex-wrap: wrap; gap: .75rem 1.5rem; padding: 0; margin: 0 0 1rem; list-style: none; }
-  .links a { font-size: 1.05rem; }
+  .usage dl { margin: 0 0 1rem; }
+  .usage dt { color: var(--accent); margin-top: 1rem; }
+  .usage dd { margin: 0; }
+
   footer { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); font-size: .85rem; color: var(--muted); }
+  footer ul { display: flex; flex-wrap: wrap; gap: .25rem 1.5rem; padding: 0; margin: 0 0 .75rem; list-style: none; }
 
   @media (max-width: 540px) {
-    header { padding-top: 2.5rem; }
+    header { padding-top: 1.75rem; }
+    .buttons { grid-template-columns: 1fr; }
     .compare { grid-template-columns: 1fr; }
     .vert { height: 24rem; font-size: 1.4rem; }
     td.sample { font-size: 1.3rem; }
+    #sample { padding: 1rem; }
+    #sample.vertical { height: 22rem; }
+    .controls { padding: .75rem .75rem; gap: .6rem 1rem; }
+    .controls input[type="range"] { width: 7rem; }
+    .glyphs { grid-template-columns: repeat(auto-fill, minmax(3.1rem, 1fr)); }
   }
 </style>
 </head>
 <body>
 <main>
   <header>
-    <h1>Kureedo<small>クレード</small></h1>
+    <div class="masthead">
+      <h1>Kureedo<small>クレード</small></h1>
+      <button id="theme" type="button" aria-label="配色を切り替える　Toggle light and dark" title="明／暗"><span class="sun" aria-hidden="true">☀</span><span class="moon" aria-hidden="true">☾</span></button>
+    </div>
     <p class="lead">Klee Oneに、江戸・明治の版本に見られる片仮名の字形を加えた書体。Unicode 18.0で符号化された𛄧 U+1B127 KATAKANA LETTER ALTERNATE NEと𛄨 U+1B128 KATAKANA LETTER ALTERNATE WIを収録し、ネ・ヰからもOpenType機能<code>hist</code>・<code>cv01</code>・<code>cv02</code>で同じ字形に切り替わる。</p>
     <p class="en">Klee One with the katakana letterforms of Edo–Meiji print. Covers 𛄧 U+1B127 and 𛄨 U+1B128 (Unicode 18.0); the same glyphs are OpenType alternates of ネ and ヰ.</p>
+
+    <div class="download" id="download">
+      <div class="buttons">
+        <a class="button" href="https://github.com/mkpoli/kureedo/releases/download/v0.3.0/Kureedo-Regular.ttf"><b>Kureedo-Regular.ttf</b><span>デスクトップ · v0.3.0 · 8.7 MB</span></a>
+        <a class="button web" href="https://github.com/mkpoli/kureedo/releases/download/v0.3.0/KureedoKata-Regular.woff2"><b>KureedoKata-Regular.woff2</b><span>ウェブ（仮名・記号のみ） · v0.3.0 · 22 KB</span></a>
+      </div>
+      <ul class="small-links">
+        <li><a href="https://github.com/mkpoli/kureedo/releases">すべてのリリース　All releases</a></li>
+        <li><a href="https://github.com/mkpoli/kureedo/releases/download/v0.3.0/OFL.txt">OFL.txt</a></li>
+        <li><a href="https://github.com/mkpoli/kureedo/releases/download/v0.3.0/SHA256SUMS.txt">SHA256SUMS.txt</a></li>
+        <li><a href="https://x.com/mkpoli/status/2101202819110015016">発表ツイート　Announcement</a></li>
+      </ul>
+    </div>
+
+    <nav aria-label="目次">
+      <a href="#tester">試し書き</a>
+      <a href="#specimen">見本</a>
+      <a href="#features">OpenType機能</a>
+      <a href="#glyphs">収録文字</a>
+      <a href="#usage">使い方</a>
+      <a href="#licence">ライセンス</a>
+    </nav>
   </header>
 
-  <section aria-label="specimen">
+  <section aria-label="hero">
     <div class="hero">
       <div class="glyph">𛄧<small>U+1B127</small></div>
       <div class="glyph">𛄨<small>U+1B128</small></div>
@@ -134,7 +266,35 @@
   </section>
 
   <section>
-    <h2>横組　Horizontal</h2>
+    <h2 id="tester">試し書き　Type tester</h2>
+    <div class="tester">
+      <div class="controls">
+        <label>大きさ <input id="size" type="range" min="16" max="120" value="48" step="1"> <output id="size-out">48px</output></label>
+        <div class="seg" role="group" aria-label="組方向">
+          <button type="button" id="dir-h" aria-pressed="true">横組</button>
+          <button type="button" id="dir-v" aria-pressed="false">縦組</button>
+        </div>
+        <div class="group"><span>機能</span>
+          <label><input type="checkbox" class="feat" value="hist"> <code>hist</code></label>
+          <label><input type="checkbox" class="feat" value="cv01"> <code>cv01</code></label>
+          <label><input type="checkbox" class="feat" value="cv02"> <code>cv02</code></label>
+        </div>
+        <div class="group"><span>挿入</span>
+          <div class="insert">
+            <button type="button" data-insert="𛄧" title="U+1B127">𛄧</button>
+            <button type="button" data-insert="𛄨" title="U+1B128">𛄨</button>
+            <button type="button" data-insert="゚" title="U+309A 半濁点（結合文字）">◌゚</button>
+          </div>
+        </div>
+        <button type="button" class="reset" id="reset">戻す</button>
+      </div>
+      <div id="sample" contenteditable="true" spellcheck="false" role="textbox" aria-multiline="true" aria-label="試し書き">ア𛄧 シ𛄧 ト𛄧 イ𛄨ヱカラ。𛄧コ フ𛄧 カ𛄧 𛄨ド 𛄨ノシシ</div>
+      <p class="en">自由に書き換えられる。仮名と記号はKureedo Kata、漢字とラテン文字はKlee Oneで表示される。<code>hist</code>を入れると、ネ・ヰと打った文字も版本の字形になる。Type anything: kana are set in Kureedo Kata, kanji and Latin fall back to Klee One. With <code>hist</code> on, ordinary ネ and ヰ take the printed forms.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2 id="specimen">横組　Horizontal</h2>
     <p class="run"><span>ア𛄧　シ𛄧　ト𛄧　イ𛄨ヱカラ。</span><span>タ𛄧シ𛄧ニハテキヲカイ。</span></p>
     <p class="words">𛄧コ フ𛄧 カ𛄧 𛄨ド 𛄨ノシシ</p>
   </section>
@@ -156,7 +316,7 @@
   </section>
 
   <section>
-    <h2>OpenType機能　Features</h2>
+    <h2 id="features">OpenType機能　Features</h2>
     <p>Kana Extended-Aの文字で符号化された本文には機能は要らない。通常のネ・ヰで符号化された本文は、検索・整列・複写がそのまま働き、下の機能で同じ字形になる。</p>
     <table>
       <thead><tr><th>Feature</th><th>効果</th><th>ネヰ</th></tr></thead>
@@ -168,15 +328,168 @@
         <tr><td>—</td><td>既定（Klee Oneの字形）。Default.</td><td class="sample">ネ ヰ</td></tr>
       </tbody>
     </table>
-<pre><code>@font-face {
-  font-family: "Kureedo Kata";
-  src: url("KureedoKata-Regular.woff2") format("woff2");
-  unicode-range: U+3000-303F, U+3099-309C, U+30A0-30FF, U+31F0-31FF, U+1B127-1B128;
-}
-.edition {
-  font-family: "Kureedo Kata", "Klee One", serif;
-  font-feature-settings: "hist";
-}</code></pre>
+  </section>
+
+  <section>
+    <h2 id="glyphs">収録文字　Glyphs</h2>
+    <p class="en">Kureedo Kata（ウェブ用）が符号位置を持つ153文字。デスクトップ用のKureedo-Regular.ttfはこれに加えてKlee One Regular全体を収める。Every code point in the Kureedo Kata webfont, set live in the font; the desktop TTF adds the whole of Klee One Regular. Hover or tap a cell for its code point.</p>
+    <div class="glyphs">
+<!-- glyphs:start -->
+<button type="button" class="new" data-cp="U+1B127">𛄧</button>
+<button type="button" class="new" data-cp="U+1B128">𛄨</button>
+<button type="button" data-cp="U+0020" aria-label="U+0020 space"> </button>
+<button type="button" data-cp="U+3000">　</button>
+<button type="button" data-cp="U+3001">、</button>
+<button type="button" data-cp="U+3002">。</button>
+<button type="button" data-cp="U+3003">〃</button>
+<button type="button" data-cp="U+3004">〄</button>
+<button type="button" data-cp="U+3005">々</button>
+<button type="button" data-cp="U+3006">〆</button>
+<button type="button" data-cp="U+3007">〇</button>
+<button type="button" data-cp="U+3008">〈</button>
+<button type="button" data-cp="U+3009">〉</button>
+<button type="button" data-cp="U+300A">《</button>
+<button type="button" data-cp="U+300B">》</button>
+<button type="button" data-cp="U+300C">「</button>
+<button type="button" data-cp="U+300D">」</button>
+<button type="button" data-cp="U+300E">『</button>
+<button type="button" data-cp="U+300F">』</button>
+<button type="button" data-cp="U+3010">【</button>
+<button type="button" data-cp="U+3011">】</button>
+<button type="button" data-cp="U+3012">〒</button>
+<button type="button" data-cp="U+3013">〓</button>
+<button type="button" data-cp="U+3014">〔</button>
+<button type="button" data-cp="U+3015">〕</button>
+<button type="button" data-cp="U+3018">〘</button>
+<button type="button" data-cp="U+3019">〙</button>
+<button type="button" data-cp="U+301C">〜</button>
+<button type="button" data-cp="U+301D">〝</button>
+<button type="button" data-cp="U+301E">〞</button>
+<button type="button" data-cp="U+301F">〟</button>
+<button type="button" data-cp="U+3020">〠</button>
+<button type="button" data-cp="U+3030">〰</button>
+<button type="button" data-cp="U+3033">〳</button>
+<button type="button" data-cp="U+3034">〴</button>
+<button type="button" data-cp="U+3035">〵</button>
+<button type="button" data-cp="U+3036">〶</button>
+<button type="button" data-cp="U+303B">〻</button>
+<button type="button" data-cp="U+303D">〽</button>
+<button type="button" data-cp="U+3099">◌゙</button>
+<button type="button" data-cp="U+309A">◌゚</button>
+<button type="button" data-cp="U+309B">゛</button>
+<button type="button" data-cp="U+309C">゜</button>
+<button type="button" data-cp="U+30A1">ァ</button>
+<button type="button" data-cp="U+30A2">ア</button>
+<button type="button" data-cp="U+30A3">ィ</button>
+<button type="button" data-cp="U+30A4">イ</button>
+<button type="button" data-cp="U+30A5">ゥ</button>
+<button type="button" data-cp="U+30A6">ウ</button>
+<button type="button" data-cp="U+30A7">ェ</button>
+<button type="button" data-cp="U+30A8">エ</button>
+<button type="button" data-cp="U+30A9">ォ</button>
+<button type="button" data-cp="U+30AA">オ</button>
+<button type="button" data-cp="U+30AB">カ</button>
+<button type="button" data-cp="U+30AC">ガ</button>
+<button type="button" data-cp="U+30AD">キ</button>
+<button type="button" data-cp="U+30AE">ギ</button>
+<button type="button" data-cp="U+30AF">ク</button>
+<button type="button" data-cp="U+30B0">グ</button>
+<button type="button" data-cp="U+30B1">ケ</button>
+<button type="button" data-cp="U+30B2">ゲ</button>
+<button type="button" data-cp="U+30B3">コ</button>
+<button type="button" data-cp="U+30B4">ゴ</button>
+<button type="button" data-cp="U+30B5">サ</button>
+<button type="button" data-cp="U+30B6">ザ</button>
+<button type="button" data-cp="U+30B7">シ</button>
+<button type="button" data-cp="U+30B8">ジ</button>
+<button type="button" data-cp="U+30B9">ス</button>
+<button type="button" data-cp="U+30BA">ズ</button>
+<button type="button" data-cp="U+30BB">セ</button>
+<button type="button" data-cp="U+30BC">ゼ</button>
+<button type="button" data-cp="U+30BD">ソ</button>
+<button type="button" data-cp="U+30BE">ゾ</button>
+<button type="button" data-cp="U+30BF">タ</button>
+<button type="button" data-cp="U+30C0">ダ</button>
+<button type="button" data-cp="U+30C1">チ</button>
+<button type="button" data-cp="U+30C2">ヂ</button>
+<button type="button" data-cp="U+30C3">ッ</button>
+<button type="button" data-cp="U+30C4">ツ</button>
+<button type="button" data-cp="U+30C5">ヅ</button>
+<button type="button" data-cp="U+30C6">テ</button>
+<button type="button" data-cp="U+30C7">デ</button>
+<button type="button" data-cp="U+30C8">ト</button>
+<button type="button" data-cp="U+30C9">ド</button>
+<button type="button" data-cp="U+30CA">ナ</button>
+<button type="button" data-cp="U+30CB">ニ</button>
+<button type="button" data-cp="U+30CC">ヌ</button>
+<button type="button" data-cp="U+30CD">ネ</button>
+<button type="button" data-cp="U+30CE">ノ</button>
+<button type="button" data-cp="U+30CF">ハ</button>
+<button type="button" data-cp="U+30D0">バ</button>
+<button type="button" data-cp="U+30D1">パ</button>
+<button type="button" data-cp="U+30D2">ヒ</button>
+<button type="button" data-cp="U+30D3">ビ</button>
+<button type="button" data-cp="U+30D4">ピ</button>
+<button type="button" data-cp="U+30D5">フ</button>
+<button type="button" data-cp="U+30D6">ブ</button>
+<button type="button" data-cp="U+30D7">プ</button>
+<button type="button" data-cp="U+30D8">ヘ</button>
+<button type="button" data-cp="U+30D9">ベ</button>
+<button type="button" data-cp="U+30DA">ペ</button>
+<button type="button" data-cp="U+30DB">ホ</button>
+<button type="button" data-cp="U+30DC">ボ</button>
+<button type="button" data-cp="U+30DD">ポ</button>
+<button type="button" data-cp="U+30DE">マ</button>
+<button type="button" data-cp="U+30DF">ミ</button>
+<button type="button" data-cp="U+30E0">ム</button>
+<button type="button" data-cp="U+30E1">メ</button>
+<button type="button" data-cp="U+30E2">モ</button>
+<button type="button" data-cp="U+30E3">ャ</button>
+<button type="button" data-cp="U+30E4">ヤ</button>
+<button type="button" data-cp="U+30E5">ュ</button>
+<button type="button" data-cp="U+30E6">ユ</button>
+<button type="button" data-cp="U+30E7">ョ</button>
+<button type="button" data-cp="U+30E8">ヨ</button>
+<button type="button" data-cp="U+30E9">ラ</button>
+<button type="button" data-cp="U+30EA">リ</button>
+<button type="button" data-cp="U+30EB">ル</button>
+<button type="button" data-cp="U+30EC">レ</button>
+<button type="button" data-cp="U+30ED">ロ</button>
+<button type="button" data-cp="U+30EE">ヮ</button>
+<button type="button" data-cp="U+30EF">ワ</button>
+<button type="button" data-cp="U+30F0">ヰ</button>
+<button type="button" data-cp="U+30F1">ヱ</button>
+<button type="button" data-cp="U+30F2">ヲ</button>
+<button type="button" data-cp="U+30F3">ン</button>
+<button type="button" data-cp="U+30F4">ヴ</button>
+<button type="button" data-cp="U+30F5">ヵ</button>
+<button type="button" data-cp="U+30F6">ヶ</button>
+<button type="button" data-cp="U+30F7">ヷ</button>
+<button type="button" data-cp="U+30F8">ヸ</button>
+<button type="button" data-cp="U+30F9">ヹ</button>
+<button type="button" data-cp="U+30FA">ヺ</button>
+<button type="button" data-cp="U+30FB">・</button>
+<button type="button" data-cp="U+30FC">ー</button>
+<button type="button" data-cp="U+30FD">ヽ</button>
+<button type="button" data-cp="U+30FE">ヾ</button>
+<button type="button" data-cp="U+31F0">ㇰ</button>
+<button type="button" data-cp="U+31F1">ㇱ</button>
+<button type="button" data-cp="U+31F2">ㇲ</button>
+<button type="button" data-cp="U+31F3">ㇳ</button>
+<button type="button" data-cp="U+31F4">ㇴ</button>
+<button type="button" data-cp="U+31F5">ㇵ</button>
+<button type="button" data-cp="U+31F6">ㇶ</button>
+<button type="button" data-cp="U+31F7">ㇷ</button>
+<button type="button" data-cp="U+31F8">ㇸ</button>
+<button type="button" data-cp="U+31F9">ㇹ</button>
+<button type="button" data-cp="U+31FA">ㇺ</button>
+<button type="button" data-cp="U+31FB">ㇻ</button>
+<button type="button" data-cp="U+31FC">ㇼ</button>
+<button type="button" data-cp="U+31FD">ㇽ</button>
+<button type="button" data-cp="U+31FE">ㇾ</button>
+<button type="button" data-cp="U+31FF">ㇿ</button>
+<!-- glyphs:end -->
+    </div>
   </section>
 
   <section>
@@ -196,22 +509,134 @@
     <p class="en">版本のネは字源の子の骨格を、ヰは井の枠をそのまま保つ。The printed ネ keeps the skeleton of its source 子; the printed ヰ keeps the full 井 frame. They are separate letters from 子 and 井 and have no decomposition to ネ or ヰ.</p>
     <figure>
       <img src="/images/unicode18-card.png" width="3200" height="1800" alt="Unicode 18.0 Kana Extended-A: 𛄧 U+1B127 KATAKANA LETTER ALTERNATE NE and 𛄨 U+1B128 KATAKANA LETTER ALTERNATE WI, shown large beside ネ・子 and ヰ・井, with Japanese and Ainu specimen words">
-      <figcaption>Unicode 18.0 · Kana Extended-A U+1B100–1B12F</figcaption>
+      <figcaption>Unicode 18.0 · Kana Extended-A U+1B100–1B12F · <a href="https://x.com/mkpoli/status/2101202819110015016">発表ツイート　Announcement</a></figcaption>
     </figure>
   </section>
 
+  <section class="usage">
+    <h2 id="usage">使い方　Usage</h2>
+    <p>Kureedoはデスクトップ向けにKlee One Regular全体と歴史的字形を収めた書体、Kureedo Kataは仮名・仮名句読点・記号のみ約22KBのウェブ用書体。Kureedo carries the whole of Klee One Regular; Kureedo Kata is the web subset of kana and marks only.</p>
+    <dl>
+      <dt>ウェブ　Web</dt>
+      <dd>
+<pre><code>@font-face {
+  font-family: "Kureedo Kata";
+  src: url("KureedoKata-Regular.woff2") format("woff2");
+  unicode-range: U+3000-303F, U+3099-309C, U+30A0-30FF, U+31F0-31FF, U+1B127-1B128;
+}
+.edition {
+  font-family: "Kureedo Kata", "Klee One", serif;
+  font-feature-settings: "hist";
+}</code></pre>
+      </dd>
+      <dt>Word・LibreOffice</dt>
+      <dd>Kureedo-Regular.ttfをインストールして書体に選ぶ。歴史的字形は、OpenType機能の設定（Wordはフォントダイアログの「詳細設定」、LibreOfficeはフォント名に<code>:hist</code>を付ける）で出すか、𛄧 U+1B127・𛄨 U+1B128を直接入力する。Install the TTF and pick it as the font; the historical forms come from the OpenType feature panel (Word: Font dialog, Advanced; LibreOffice: append <code>:hist</code> to the font name) or by typing U+1B127 and U+1B128 directly.</dd>
+      <dt>アイヌ語の小書き仮名と半濁点　Ainu small kana and handakuten</dt>
+      <dd>ㇷ（U+31F7）を打ったあとに結合用の半濁点゚（U+309A）を打つとㇷ゚になる。セ゚・ツ゚・ト゚も同じ。Type ㇷ, then the combining handakuten U+309A, to get ㇷ゚; セ゚, ツ゚ and ト゚ work the same way.</dd>
+    </dl>
+  </section>
+
   <section>
-    <h2>入手　Download</h2>
-    <ul class="links">
-      <li><a href="https://github.com/mkpoli/kureedo/releases/latest">Releases（Kureedo-Regular.ttf・KureedoKata-Regular.woff2）</a></li>
-      <li><a href="https://github.com/mkpoli/kureedo">github.com/mkpoli/kureedo</a></li>
-    </ul>
-    <p class="en">Kureedoはデスクトップ向けにKlee One Regular全体と歴史的字形を収めた書体、Kureedo Kataは仮名・仮名句読点・記号のみ約22KBのウェブ用書体。Kureedo carries the whole of Klee One Regular; Kureedo Kata is the web subset of kana and marks only.</p>
+    <h2 id="licence">ライセンス　Licence</h2>
+    <p>SIL Open Font License 1.1。改変・再配布・埋め込み・商用利用ができ、書体そのものを単体で販売することはできない。Klee One © 2020 The Klee Project Authors。KleeはFontworks Inc.の商標。<a href="https://github.com/mkpoli/kureedo/blob/main/OFL.txt">OFL.txt</a></p>
+    <p class="en">SIL Open Font License 1.1: use, modify, embed and redistribute freely; the font may not be sold by itself.</p>
   </section>
 
   <footer>
-    <p>Licence: SIL Open Font License 1.1. Klee One © 2020 The Klee Project Authors; Klee is a trademark of Fontworks Inc. Kureedo is an independent derivative with no connection to Fontworks.</p>
+    <ul>
+      <li><a href="https://github.com/mkpoli/kureedo">github.com/mkpoli/kureedo</a></li>
+      <li><a href="https://github.com/mkpoli/kureedo/releases">Releases</a></li>
+      <li><a href="https://github.com/mkpoli/kureedo/blob/main/OFL.txt">SIL Open Font License 1.1</a></li>
+    </ul>
+    <p>Kureedo is an independent derivative of Klee One (Fontworks). Klee One © 2020 The Klee Project Authors; Klee is a trademark of Fontworks Inc. Kureedo has no connection to Fontworks.</p>
   </footer>
 </main>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var dark = window.matchMedia("(prefers-color-scheme: dark)");
+    function current() {
+      var t = root.getAttribute("data-theme");
+      return t === "dark" || t === "light" ? t : (dark.matches ? "dark" : "light");
+    }
+    document.getElementById("theme").addEventListener("click", function () {
+      var next = current() === "dark" ? "light" : "dark";
+      root.setAttribute("data-theme", next);
+      try { localStorage.setItem("theme", next); } catch (e) {}
+    });
+
+    var sample = document.getElementById("sample");
+    var initial = sample.textContent;
+    var size = document.getElementById("size");
+    var sizeOut = document.getElementById("size-out");
+    var dirH = document.getElementById("dir-h");
+    var dirV = document.getElementById("dir-v");
+    var feats = Array.prototype.slice.call(document.querySelectorAll(".feat"));
+
+    function applySize() {
+      sample.style.fontSize = size.value + "px";
+      sizeOut.textContent = size.value + "px";
+    }
+    size.addEventListener("input", applySize);
+
+    function setDir(vertical) {
+      sample.classList.toggle("vertical", vertical);
+      dirH.setAttribute("aria-pressed", String(!vertical));
+      dirV.setAttribute("aria-pressed", String(vertical));
+    }
+    dirH.addEventListener("click", function () { setDir(false); });
+    dirV.addEventListener("click", function () { setDir(true); });
+
+    function applyFeatures() {
+      var on = feats.filter(function (c) { return c.checked; }).map(function (c) { return '"' + c.value + '"'; });
+      sample.style.fontFeatureSettings = on.length ? on.join(", ") : "normal";
+    }
+    feats.forEach(function (c) { c.addEventListener("change", applyFeatures); });
+
+    var savedRange = null;
+    function rememberSelection() {
+      var sel = window.getSelection();
+      if (sel && sel.rangeCount && sample.contains(sel.anchorNode)) savedRange = sel.getRangeAt(0).cloneRange();
+    }
+    ["keyup", "mouseup", "touchend", "blur"].forEach(function (ev) { sample.addEventListener(ev, rememberSelection); });
+
+    function insertText(text) {
+      sample.focus();
+      var sel = window.getSelection();
+      var range = savedRange;
+      if (!range || !sample.contains(range.commonAncestorContainer)) {
+        range = document.createRange();
+        range.selectNodeContents(sample);
+        range.collapse(false);
+      }
+      range.deleteContents();
+      var node = document.createTextNode(text);
+      range.insertNode(node);
+      range.setStartAfter(node);
+      range.collapse(true);
+      sel.removeAllRanges();
+      sel.addRange(range);
+      savedRange = range.cloneRange();
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("[data-insert]"), function (b) {
+      b.addEventListener("mousedown", function (e) { e.preventDefault(); });
+      b.addEventListener("click", function () { insertText(b.getAttribute("data-insert")); });
+    });
+
+    sample.addEventListener("paste", function (e) {
+      e.preventDefault();
+      rememberSelection();
+      insertText((e.clipboardData || window.clipboardData).getData("text"));
+    });
+
+    document.getElementById("reset").addEventListener("click", function () {
+      sample.textContent = initial;
+      savedRange = null;
+      size.value = 48; applySize();
+      feats.forEach(function (c) { c.checked = false; }); applyFeatures();
+      setDir(false);
+    });
+  })();
+</script>
 </body>
 </html>
