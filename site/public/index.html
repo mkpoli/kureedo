@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kureedo（クレード）</title>
+<meta name="description" content="Klee Oneに江戸・明治の版本に見られる片仮名字形を加えた書体。Unicode 18.0の𛄧 U+1B127と𛄨 U+1B128を収録し、ネ・ヰからもOpenType機能で同じ字形に切り替わる。">
+<meta property="og:title" content="Kureedo（クレード）">
+<meta property="og:description" content="Klee Oneに江戸・明治の版本の片仮名字形を加えた書体。𛄧 U+1B127・𛄨 U+1B128収録。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://kureedo.mkpo.li/">
+<meta property="og:image" content="https://kureedo.mkpo.li/images/unicode18-card.png">
+<meta property="og:image:width" content="3200">
+<meta property="og:image:height" content="1800">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://kureedo.mkpo.li/">
+<link rel="preload" href="/fonts/KureedoKata-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Klee+One&display=swap">
+<style>
+  @font-face {
+    font-family: "Kureedo Kata";
+    src: url("/fonts/KureedoKata-Regular.woff2") format("woff2");
+    font-display: block;
+    unicode-range: U+3000-303F, U+3099-309C, U+30A0-30FF, U+31F0-31FF, U+1B127-1B128;
+  }
+  @font-face {
+    font-family: "Kureedo Kanji";
+    src: url("/fonts/KureedoKanji-Subset.woff2") format("woff2");
+    font-display: block;
+    unicode-range: U+5B50, U+4E95;
+  }
+  :root {
+    color-scheme: light dark;
+    --paper: #f4efe4;
+    --ink: #16130f;
+    --muted: #6d655a;
+    --rule: #d9d1c1;
+    --accent: #9a4a25;
+    --well: #ece5d6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #16130f;
+      --ink: #ece5d6;
+      --muted: #a89d8c;
+      --rule: #3b3530;
+      --accent: #d4825a;
+      --well: #211d18;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    padding: 0 16px 5rem;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Kureedo Kata", "Klee One", "Hiragino Mincho ProN", "Yu Mincho", serif;
+    line-height: 1.8;
+    font-size: 1.0625rem;
+    overflow-x: hidden;
+  }
+  main { max-width: 56rem; margin: 0 auto; }
+  header { padding: 4rem 0 1rem; border-bottom: 1px solid var(--rule); }
+  h1 { font-size: clamp(2rem, 6vw, 3rem); font-weight: 400; margin: 0; line-height: 1.2; letter-spacing: .02em; }
+  h1 small { display: block; font-size: .5em; color: var(--muted); letter-spacing: .1em; margin-top: .25rem; }
+  h2 { font-size: .95rem; font-weight: 400; color: var(--accent); letter-spacing: .12em; margin: 3.5rem 0 1rem; }
+  p { margin: .5rem 0 1rem; }
+  a { color: var(--accent); text-underline-offset: .2em; }
+  .lead { font-size: 1.15rem; margin: 1rem 0 0; }
+  .lead code { font-size: .9em; }
+  .en { color: var(--muted); font-size: .92rem; }
+  code { font-family: ui-monospace, "SFMono-Regular", Menlo, monospace; font-size: .85em; background: var(--well); padding: .05em .35em; border-radius: .25em; }
+  pre { background: var(--well); border: 1px solid var(--rule); border-radius: .5rem; padding: 1rem 1.25rem; overflow-x: auto; font-size: .85rem; line-height: 1.6; }
+  pre code { background: none; padding: 0; font-size: 1em; }
+
+  .hero { display: flex; justify-content: center; gap: clamp(1rem, 8vw, 5rem); padding: 2rem 0 1rem; }
+  .hero .glyph { font-size: clamp(7rem, 40vw, 12.5rem); line-height: 1.1; text-align: center; }
+  .hero .glyph small { display: block; font-size: .8rem; color: var(--muted); letter-spacing: .1em; line-height: 1.6; font-family: ui-monospace, Menlo, monospace; }
+
+  .run span { display: inline-block; }
+  .run { font-size: clamp(1.5rem, 5vw, 2.25rem); line-height: 1.9; margin: 0 0 1rem; overflow-wrap: anywhere; }
+  .words { font-size: clamp(1.4rem, 4.5vw, 2rem); line-height: 1.9; margin: 0; word-spacing: .6em; }
+  .vgrid { display: flex; justify-content: flex-start; gap: 1.5rem; flex-wrap: wrap; align-items: flex-start; }
+  .vert { writing-mode: vertical-rl; text-orientation: mixed; height: 28rem; font-size: 1.6rem; line-height: 2; margin: 0; }
+  .marks { font-size: clamp(1.5rem, 5vw, 2.25rem); letter-spacing: .2em; line-height: 1.9; margin: 0 0 .5rem; overflow-wrap: anywhere; }
+
+  table { border-collapse: collapse; width: 100%; font-size: .95rem; margin: 0 0 1rem; }
+  th, td { text-align: left; padding: .5rem .75rem .5rem 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  th { font-weight: 400; color: var(--muted); font-size: .85rem; letter-spacing: .05em; }
+  td.sample { font-size: 1.6rem; line-height: 1.2; white-space: nowrap; }
+  .hist { font-feature-settings: "hist"; }
+  .ss01 { font-feature-settings: "ss01"; }
+  .cv01 { font-feature-settings: "cv01"; }
+  .cv02 { font-feature-settings: "cv02"; }
+
+  .compare { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+  .compare .row { border: 1px solid var(--rule); border-radius: .5rem; padding: 1rem .5rem; display: grid; grid-template-columns: repeat(3, 1fr); text-align: center; }
+  .compare .cell { font-size: clamp(2.5rem, 9vw, 4rem); line-height: 1.2; }
+  .compare .cell.kanji { font-family: "Kureedo Kanji", "Klee One", serif; }
+  .compare .cell small { display: block; font-family: ui-monospace, Menlo, monospace; font-size: .7rem; color: var(--muted); letter-spacing: .05em; line-height: 1.6; }
+  .compare .cell.now { color: var(--accent); }
+
+  figure { margin: 1.5rem 0; }
+  figure img { display: block; width: 100%; height: auto; border: 1px solid var(--rule); border-radius: .5rem; }
+  figcaption { font-size: .85rem; color: var(--muted); margin-top: .5rem; }
+
+  .links { display: flex; flex-wrap: wrap; gap: .75rem 1.5rem; padding: 0; margin: 0 0 1rem; list-style: none; }
+  .links a { font-size: 1.05rem; }
+  footer { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); font-size: .85rem; color: var(--muted); }
+
+  @media (max-width: 540px) {
+    header { padding-top: 2.5rem; }
+    .compare { grid-template-columns: 1fr; }
+    .vert { height: 24rem; font-size: 1.4rem; }
+    td.sample { font-size: 1.3rem; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Kureedo<small>クレード</small></h1>
+    <p class="lead">Klee Oneに、江戸・明治の版本に見られる片仮名の字形を加えた書体。Unicode 18.0で符号化された𛄧 U+1B127 KATAKANA LETTER ALTERNATE NEと𛄨 U+1B128 KATAKANA LETTER ALTERNATE WIを収録し、ネ・ヰからもOpenType機能<code>hist</code>・<code>cv01</code>・<code>cv02</code>で同じ字形に切り替わる。</p>
+    <p class="en">Klee One with the katakana letterforms of Edo–Meiji print. Covers 𛄧 U+1B127 and 𛄨 U+1B128 (Unicode 18.0); the same glyphs are OpenType alternates of ネ and ヰ.</p>
+  </header>
+
+  <section aria-label="specimen">
+    <div class="hero">
+      <div class="glyph">𛄧<small>U+1B127</small></div>
+      <div class="glyph">𛄨<small>U+1B128</small></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>横組　Horizontal</h2>
+    <p class="run"><span>ア𛄧　シ𛄧　ト𛄧　イ𛄨ヱカラ。</span><span>タ𛄧シ𛄧ニハテキヲカイ。</span></p>
+    <p class="words">𛄧コ フ𛄧 カ𛄧 𛄨ド 𛄨ノシシ</p>
+  </section>
+
+  <section>
+    <h2>縦組　Vertical</h2>
+    <div class="vgrid">
+      <p class="vert">ア𛄧　シ𛄧　ト𛄧　イ𛄨ヱカラ。</p>
+      <p class="vert">タ𛄧シ𛄧ニハテキヲカイ。</p>
+      <p class="vert">𛄧コ　フ𛄧　カ𛄧　𛄨ド　𛄨ノシシ</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>アイヌ語の仮名　Ainu kana and marks</h2>
+    <p class="marks">セ゚ ツ゚ ト゚ ㇷ゚ カ゚</p>
+    <p class="marks">ㇰㇱㇲㇳㇴㇵㇶㇷㇸㇹㇺㇻㇼㇽㇾㇿ</p>
+    <p class="en">小書き片仮名ㇰ–ㇿ（U+31F0–31FF）と、半濁点を一つの升目に組む<code>ccmp</code>合字。Small kana U+31F0–31FF and <code>ccmp</code> ligatures that set the handakuten in one cell.</p>
+  </section>
+
+  <section>
+    <h2>OpenType機能　Features</h2>
+    <p>Kana Extended-Aの文字で符号化された本文には機能は要らない。通常のネ・ヰで符号化された本文は、検索・整列・複写がそのまま働き、下の機能で同じ字形になる。</p>
+    <table>
+      <thead><tr><th>Feature</th><th>効果</th><th>ネヰ</th></tr></thead>
+      <tbody>
+        <tr><td><code>hist</code></td><td>歴史的字形すべて。All historical forms.</td><td class="sample hist">ネ ヰ</td></tr>
+        <tr><td><code>ss01</code></td><td>江戸期版本の字形。この版では<code>hist</code>と同じ集合。</td><td class="sample ss01">ネ ヰ</td></tr>
+        <tr><td><code>cv01</code></td><td>ネのみ。</td><td class="sample cv01">ネ ヰ</td></tr>
+        <tr><td><code>cv02</code></td><td>ヰのみ。</td><td class="sample cv02">ネ ヰ</td></tr>
+        <tr><td>—</td><td>既定（Klee Oneの字形）。Default.</td><td class="sample">ネ ヰ</td></tr>
+      </tbody>
+    </table>
+<pre><code>@font-face {
+  font-family: "Kureedo Kata";
+  src: url("KureedoKata-Regular.woff2") format("woff2");
+  unicode-range: U+3000-303F, U+3099-309C, U+30A0-30FF, U+31F0-31FF, U+1B127-1B128;
+}
+.edition {
+  font-family: "Kureedo Kata", "Klee One", serif;
+  font-feature-settings: "hist";
+}</code></pre>
+  </section>
+
+  <section>
+    <h2>字源　Sources of the forms</h2>
+    <div class="compare">
+      <div class="row">
+        <div class="cell">ネ<small>U+30CD</small></div>
+        <div class="cell now">𛄧<small>U+1B127</small></div>
+        <div class="cell kanji">子<small>U+5B50</small></div>
+      </div>
+      <div class="row">
+        <div class="cell">ヰ<small>U+30F0</small></div>
+        <div class="cell now">𛄨<small>U+1B128</small></div>
+        <div class="cell kanji">井<small>U+4E95</small></div>
+      </div>
+    </div>
+    <p class="en">版本のネは字源の子の骨格を、ヰは井の枠をそのまま保つ。The printed ネ keeps the skeleton of its source 子; the printed ヰ keeps the full 井 frame. They are separate letters from 子 and 井 and have no decomposition to ネ or ヰ.</p>
+    <figure>
+      <img src="/images/unicode18-card.png" width="3200" height="1800" alt="Unicode 18.0 Kana Extended-A: 𛄧 U+1B127 KATAKANA LETTER ALTERNATE NE and 𛄨 U+1B128 KATAKANA LETTER ALTERNATE WI, shown large beside ネ・子 and ヰ・井, with Japanese and Ainu specimen words">
+      <figcaption>Unicode 18.0 Kana Extended-A · Historic Katakana</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <h2>入手　Download</h2>
+    <ul class="links">
+      <li><a href="https://github.com/mkpoli/kureedo/releases/latest">Releases（Kureedo-Regular.ttf・KureedoKata-Regular.woff2）</a></li>
+      <li><a href="https://github.com/mkpoli/kureedo">github.com/mkpoli/kureedo</a></li>
+    </ul>
+    <p class="en">Kureedoはデスクトップ向けにKlee One Regular全体と歴史的字形を収めた書体、Kureedo Kataは仮名・仮名句読点・記号のみ約22KBのウェブ用書体。Kureedo carries the whole of Klee One Regular; Kureedo Kata is the web subset of kana and marks only.</p>
+  </section>
+
+  <footer>
+    <p>Licence: SIL Open Font License 1.1. Klee One © 2020 The Klee Project Authors; Klee is a trademark of Fontworks Inc. Kureedo is an independent derivative with no connection to Fontworks.</p>
+  </footer>
+</main>
+</body>
+</html>
