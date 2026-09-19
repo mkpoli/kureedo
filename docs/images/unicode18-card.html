@@ -1,76 +1,80 @@
 <!doctype html>
 <meta charset="utf-8">
 <style>
-  @font-face { font-family: K; src: url("../../fonts/KureedoKata-Regular.woff2") format("woff2"); }
   @font-face { font-family: KF; src: url("../../fonts/Kureedo-Regular.ttf") format("truetype"); }
-  :root { --ink: #16130f; --paper: #f4efe4; --card: #fbf7ef; --rule: #ccc0a8; --accent: #9a4a25; --muted: #7b7263; }
+  :root { --ink: #17140f; --paper: #ece5d6; --card: #fbf8f1; --rule: #c9bda3; --rule2: #e4dccb; --accent: #a43f1f; --muted: #857a66; }
   * { box-sizing: border-box; }
-  body { margin: 0; width: 1600px; height: 900px; background: var(--paper); color: var(--ink);
-         font-family: "KF", K, "Klee One", serif; display: flex; align-items: center; justify-content: center; }
-  .frame { width: 1504px; height: 804px; background: var(--card); border: 3px solid var(--ink); position: relative;
-           box-shadow: 14px 14px 0 rgba(22,19,15,.88); display: grid; grid-template-rows: auto 1fr auto; }
-  .frame::after { content: ""; position: absolute; inset: 11px; border: 1px solid var(--rule); pointer-events: none; }
-  header { display: flex; align-items: baseline; justify-content: space-between; padding: 30px 46px 14px; }
-  .tag { font: 600 21px/1 ui-monospace, "SFMono-Regular", monospace; letter-spacing: .18em; color: var(--accent); text-transform: uppercase; }
-  .blk { font: 500 19px/1 ui-monospace, monospace; color: var(--muted); letter-spacing: .06em; }
-  h1 { margin: 0; padding: 0 46px; font-size: 40px; font-weight: 500; letter-spacing: .01em; }
-  .sub { padding: 6px 46px 0; color: var(--muted); font-size: 21px; }
-  main { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; padding: 18px 46px 6px; }
-  .cell { border: 1px solid var(--rule); background: #fffdf8; padding: 20px 26px 22px; display: grid; grid-template-columns: 250px 1fr; gap: 20px; align-items: center; }
-  .glyph { font-family: K, KF, serif; font-size: 178px; line-height: .95; text-align: center; }
-  .cp { font: 600 30px/1.3 ui-monospace, monospace; letter-spacing: .04em; }
-  .nm { font: 500 17px/1.45 ui-monospace, monospace; color: var(--muted); letter-spacing: .03em; margin-top: 8px; text-transform: uppercase; }
-  .cmp { margin-top: 14px; font-size: 20px; color: var(--muted); }
-  .cmp b { font-family: K, serif; font-size: 30px; color: var(--ink); font-weight: 400; }
-  .lower { display: grid; grid-template-columns: 1fr 190px; gap: 30px; padding: 14px 46px 0; align-items: start; }
-  .vert { writing-mode: vertical-rl; font-family: K, serif; font-size: 28px; line-height: 2; height: 258px;
-          border-left: 1px solid var(--rule); padding-left: 26px; letter-spacing: .06em; }
-  .sample { padding: 0; }
-  .sample p { font-family: K, serif; margin: 0; }
-  .s1 { font-size: 40px; letter-spacing: .04em; }
-  .s2 { font-family: K, serif; font-size: 23px; color: var(--muted); margin-top: 10px !important; letter-spacing: .03em; line-height: 1.6; }
-  .cite { font: 400 18px/1.5 ui-monospace, monospace; color: var(--muted); margin-top: 14px !important; }
-  footer { display: flex; justify-content: space-between; align-items: center; padding: 14px 46px 26px; font-size: 19px; color: var(--muted); }
-  footer .l { font: 500 19px ui-monospace, monospace; }
+  body { margin: 0; width: 1600px; height: 900px; background: var(--paper); display: flex; align-items: center; justify-content: center; color: var(--ink); font-family: KF, serif;
+         background-image: radial-gradient(var(--rule) .9px, transparent 1px); background-size: 18px 18px; }
+  .frame { width: 1520px; height: 820px; background: var(--card); border: 3px solid var(--ink); position: relative; box-shadow: 16px 16px 0 var(--ink); display: grid; grid-template-rows: 64px 1fr 68px; }
+  .frame::before { content: ""; position: absolute; inset: 9px; border: 1px solid var(--rule); pointer-events: none; }
+  .corner { position: absolute; width: 26px; height: 26px; border: 3px solid var(--accent); pointer-events: none; }
+  .c1 { top: -3px; left: -3px; border-right: 0; border-bottom: 0; } .c2 { top: -3px; right: -3px; border-left: 0; border-bottom: 0; }
+  .c3 { bottom: -3px; left: -3px; border-right: 0; border-top: 0; } .c4 { bottom: -3px; right: -3px; border-left: 0; border-top: 0; }
+  .bar { display: flex; align-items: center; justify-content: space-between; padding: 0 44px; font: 600 19px/1 ui-monospace, monospace; letter-spacing: .22em; }
+  .top { border-bottom: 2px solid var(--ink); color: var(--accent); }
+  .top .mid { color: var(--muted); font-weight: 500; letter-spacing: .12em; }
+  .top .ticks { flex: 1; height: 10px; margin: 0 28px; background: repeating-linear-gradient(90deg, var(--rule) 0 1px, transparent 1px 12px); align-self: end; margin-bottom: 0; }
+  .bot { border-top: 2px solid var(--ink); }
+  .body { display: grid; grid-template-columns: 1fr 1fr 330px; }
+  .char { display: grid; grid-template-rows: 1fr auto auto; padding: 16px 28px 14px; position: relative; }
+  .char + .char { border-left: 1px solid var(--rule); }
+  .g { font-size: 250px; line-height: 1; display: flex; align-items: center; justify-content: center; position: relative; }
+  .g::before { content: ""; position: absolute; width: 270px; height: 270px; border: 1px dashed var(--rule); }
+  .g::after { content: ""; position: absolute; width: 270px; height: 1px; background: var(--rule2); }
+  .meta { text-align: center; padding-bottom: 12px; }
+  .cp { font: 700 32px/1 ui-monospace, monospace; letter-spacing: .05em; }
+  .nm { font: 500 15px/1.4 ui-monospace, monospace; color: var(--muted); letter-spacing: .12em; margin-top: 8px; }
+  .cmp { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--rule); padding-top: 10px; text-align: center; }
+  .cmp div { position: relative; }
+  .cmp div + div::before { content: ""; position: absolute; left: 0; top: 14px; bottom: 14px; border-left: 1px solid var(--rule2); }
+  .cmp .k { font-size: 84px; line-height: 1.1; }
+  .cmp .k.kj { color: var(--muted); }
+  .cmp .l { font: 500 13px/1.3 ui-monospace, monospace, KF; color: var(--muted); letter-spacing: .08em; }
+  .cmp .l i { font: 400 15px KF, serif; }
+  .cmp .l b { color: var(--ink); font-weight: 700; }
+  .side { border-left: 2px solid var(--ink); display: grid; grid-template-rows: auto 1fr; }
+  .side h3 { margin: 0; padding: 12px 0 10px; text-align: center; font: 600 14px/1 ui-monospace, monospace; letter-spacing: .2em; color: var(--muted); border-bottom: 1px solid var(--rule); }
+  .cols { display: flex; justify-content: center; gap: 22px; padding: 22px 0 0; }
+  .col { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .col .tag { font: 600 12px/1 ui-monospace, monospace; letter-spacing: .18em; color: var(--accent); writing-mode: vertical-rl; }
+  .col p { writing-mode: vertical-rl; font-size: 31px; line-height: 1.7; margin: 0; letter-spacing: .1em; height: 540px; }
+  .bot .s { font: 400 28px KF, serif; letter-spacing: .1em; }
+  .bot .s small { font: 600 12px/1 ui-monospace, monospace; letter-spacing: .2em; color: var(--accent); margin-right: 14px; vertical-align: 6px; }
+  .bot .brand { font: 600 16px/1 ui-monospace, monospace; letter-spacing: .3em; color: var(--muted); }
 </style>
 <div class="frame">
-  <header>
-    <span class="tag">Unicode 18.0 · new characters</span>
-    <span class="blk">Kana Extended-A · U+1B100–1B12F</span>
-  </header>
-  <div>
-    <h1>歴史的片仮名 2字が符号化された</h1>
-    <p class="sub">Historic katakana: the older forms of ネ and ヰ now have their own code points.</p>
-    <main>
-      <div class="cell">
-        <div class="glyph">&#x1B127;</div>
-        <div>
-          <div class="cp">U+1B127</div>
-          <div class="nm">Katakana letter<br>alternate ne</div>
-          <div class="cmp">modern <b>ネ</b> ne ／ 字源 子</div>
-        </div>
+  <span class="corner c1"></span><span class="corner c2"></span><span class="corner c3"></span><span class="corner c4"></span>
+  <div class="bar top"><span>UNICODE 18.0</span><span class="ticks"></span><span class="mid">KANA EXTENDED-A · HISTORIC KATAKANA</span></div>
+  <div class="body">
+    <div class="char">
+      <div class="g">&#x1B127;</div>
+      <div class="meta"><div class="cp">U+1B127</div><div class="nm">KATAKANA LETTER ALTERNATE NE</div></div>
+      <div class="cmp">
+        <div><div class="k">&#x1B127;</div><div class="l"><b>U+1B127</b> <i>&#x1B127;</i></div></div>
+        <div><div class="k">ネ</div><div class="l">U+30CD <i>ネ</i></div></div>
+        <div><div class="k kj">子</div><div class="l">U+5B50 <i>子</i></div></div>
       </div>
-      <div class="cell">
-        <div class="glyph">&#x1B128;</div>
-        <div>
-          <div class="cp">U+1B128</div>
-          <div class="nm">Katakana letter<br>alternate wi</div>
-          <div class="cmp">modern <b>ヰ</b> wi ／ 字源 井</div>
-        </div>
+    </div>
+    <div class="char">
+      <div class="g">&#x1B128;</div>
+      <div class="meta"><div class="cp">U+1B128</div><div class="nm">KATAKANA LETTER ALTERNATE WI</div></div>
+      <div class="cmp">
+        <div><div class="k">&#x1B128;</div><div class="l"><b>U+1B128</b> <i>&#x1B128;</i></div></div>
+        <div><div class="k">ヰ</div><div class="l">U+30F0 <i>ヰ</i></div></div>
+        <div><div class="k kj">井</div><div class="l">U+4E95 <i>井</i></div></div>
       </div>
-    </main>
-    <div class="lower">
-      <div class="sample">
-        <p class="s1">&#x1B128;ナウ　ア&#x1B127;　シ&#x1B127;　ト&#x1B127;　イ&#x1B128;ヱカラ。</p>
-        <p class="s2">明治期の活字に多く、江戸期の版本にも見られる字形。<br>
-          𛄧 は 子 (U+5B50)、𛄨 は 井 (U+4E95) と紛らわしいが、それぞれ別の文字。</p>
-        <p class="cite">L2/25-151 → UTC #184 → Unicode 18.0, released 2026-09-16</p>
+    </div>
+    <div class="side">
+      <h3>SPECIMEN</h3>
+      <div class="cols">
+        <div class="col"><span class="tag">日本語</span><p>&#x1B127;コ　フ&#x1B127;　カ&#x1B127;<br>&#x1B128;ド　&#x1B128;ノシシ</p></div>
+        <div class="col"><span class="tag">AYNU</span><p>ア&#x1B127;　シ&#x1B127;　ト&#x1B127;<br>イ&#x1B128;ヱカラ　&#x1B128;ナウ</p></div>
       </div>
-      <p class="vert">ア&#x1B127;イ&#x1B128;ヱカラ。</p>
     </div>
   </div>
-  <footer>
-    <span>Specimen set in Kureedo — Klee One with historic Japanese letterforms</span>
-    <span class="l">github.com/mkpoli/kureedo</span>
-  </footer>
+  <div class="bar bot">
+    <span class="s"><small>JA</small>&#x1B127;コ　フ&#x1B127;　カ&#x1B127;　&#x1B128;ド　&#x1B128;ノシシ<small style="margin-left:34px">AYNU</small>ア&#x1B127;　イ&#x1B128;ヱカラ</span>
+    <span class="brand">KUREEDO</span>
+  </div>
 </div>
