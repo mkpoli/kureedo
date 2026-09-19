@@ -1,0 +1,11 @@
+/v0.3.0/*
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=31536000, immutable
+
+/fonts/*
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=86400
+
+/kureedo.css
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=86400
