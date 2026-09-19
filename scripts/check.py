@@ -43,7 +43,7 @@ def check(path: Path, family: str, full: bool):
     assert name.getDebugName(6) == family.replace(" ", "") + "-Regular"
     assert name.getDebugName(5) == "Version 0.400" and abs(font["head"].fontRevision - 0.4) < 1e-4
     assert "Klee Project Authors" in name.getDebugName(0) and name.getDebugName(13).startswith("This Font Software")
-    assert all(c in cmap for c in [*range(0x30A1, 0x30FB), *range(0x31F0, 0x3200), 0x3099, 0x309A, 0x309B, 0x309C, 0x30F0, 0x30F1, 0x30F2, 0x30F4, 0x1B127, 0x1B128])
+    assert all(c in cmap for c in [*range(0x30A1, 0x30FB), *range(0x31F0, 0x3200), 0x3099, 0x309A, 0x309B, 0x309C, 0x30F0, 0x30F1, 0x30F2, 0x30F4, 0x1B127, 0x1B128, 0x2A708])
     if not full:
         assert 0x5B50 not in cmap and 0x4E95 not in cmap
 
@@ -67,6 +67,16 @@ def check(path: Path, family: str, full: bool):
         assert font["hmtx"][glyph][0] == 1000
         assert font["glyf"][glyph].yMax + font["vmtx"][glyph][1] == 880, glyph
         assert font["glyf"][glyph].xMin >= 0 and font["glyf"][glyph].xMax <= 1000
+
+    # The tomo ligature has its own code point; `hlig` forms it from トモ and nothing else does.
+    tomo = cmap[0x2A708]
+    assert tomo == "uni2A708" and font["hmtx"][tomo][0] == 1000
+    assert font["glyf"][tomo].yMax + font["vmtx"][tomo][1] == 880
+    assert shape("\U0002A708") == [(tomo, 1000, 0)] and shape("\U0002A708", "ttb")[0][2] == -1000
+    assert [g for g, *_ in shape("トモ")] == [cmap[0x30C8], cmap[0x30E2]]
+    assert [g for g, *_ in shape("トモ", features={"hist": True})] == [cmap[0x30C8], cmap[0x30E2]]
+    for direction in ("ltr", "ttb"):
+        assert [g for g, *_ in shape("レトモ", direction, features={"hlig": True})] == [cmap[0x30EC], tomo], direction
 
     # Marked kana shape into one cell in both directions; precomposed and decomposed agree.
     for text in ["ツ゚", "ト゚", "セ゚", "ㇷ゚", "カ゚", "キ゚", "ク゚", "ケ゚", "コ゚", "パ", "ガ", "ヅ"]:
@@ -120,4 +130,4 @@ kata = check(ROOT / "fonts/KureedoKata-Regular.ttf", "Kureedo Kata", full=False)
 woff = check(ROOT / "fonts/KureedoKata-Regular.woff2", "Kureedo Kata", full=False)
 assert kata.getGlyphOrder() == woff.getGlyphOrder()
 assert 0x3042 not in woff.getBestCmap()
-print("Checks passed: names, coverage, hist/ss01/cv01/cv02 in both directions, marks, small kana, Klee glyphs intact.")
+print("Checks passed: names, coverage, hist/ss01/cv01/cv02 and hlig in both directions, marks, small kana, Klee glyphs intact.")

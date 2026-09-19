@@ -6,6 +6,8 @@ Klee One with the letterforms of Edo-period Japanese print. It covers two kataka
 
 ![ネ and ヰ: default, hist, cv01, cv02](docs/images/forms.png)
 
+The same editions set トモ as one letter, 𪜈 U+2A708. The font covers that code point, and the `hlig` feature forms the ligature from トモ.
+
 Two fonts come out of one build:
 
 | Font | File | Use |
@@ -34,6 +36,7 @@ Text encoded with the Kana Extended-A letters needs no feature. For text encoded
 | `ss01` | Edo-period printed forms. In this release the same set as `hist`. |
 | `cv01` | ネ only. |
 | `cv02` | ヰ only. |
+| `hlig` | トモ → 𪜈. Off by default, since not every トモ in a text is the ligature. |
 
 ![Running text with and without hist](docs/images/running.png)
 
@@ -43,7 +46,7 @@ Klee One's own `hkna`/`vkna` alternates of ネ and ヰ also become the historica
 
 ## Coverage of Kureedo Kata
 
-The subset requests U+0020, U+3000–303F, U+3099–309C, U+30A0–30FF and U+31F0–31FF; code points Klee One does not cover (for example U+3031–3032, U+30A0, U+30FF) stay absent. `fonttools ttx -t cmap` lists the exact set. The two historical glyphs are unencoded alternates. Glyphs Klee One does not have and this font adds: the Ainu small kana ㇰ–ㇿ (U+31F0–31FF), set the way Klee sets its own small kana (78% of the full-size letter, centred on the baseline, stroke weight restored, shifted up and right in vertical text through `vert`); combining ゛ and ゜ with zero advance; and `ccmp` ligatures that set セ゚ ツ゚ ト゚ ㇷ゚ カ゚ キ゚ ク゚ ケ゚ コ゚ in one cell, horizontally and vertically. The handakuten of ㇷ゚ is scaled with the letter and sits where プ puts its own, at プ's clearance from the stroke; the placement was settled by comparison rounds (`docs/methods.md`).
+The subset requests U+0020, U+3000–303F, U+3099–309C, U+30A0–30FF, U+31F0–31FF, U+1B127–1B128 and U+2A708; code points Klee One does not cover (for example U+3031–3032, U+30A0, U+30FF) stay absent. `fonttools ttx -t cmap` lists the exact set. The two historical glyphs are unencoded alternates. Glyphs Klee One does not have and this font adds: the Ainu small kana ㇰ–ㇿ (U+31F0–31FF), set the way Klee sets its own small kana (78% of the full-size letter, centred on the baseline, stroke weight restored, shifted up and right in vertical text through `vert`); combining ゛ and ゜ with zero advance; and `ccmp` ligatures that set セ゚ ツ゚ ト゚ ㇷ゚ カ゚ キ゚ ク゚ ケ゚ コ゚ in one cell, horizontally and vertically. The handakuten of ㇷ゚ is scaled with the letter and sits where プ puts its own, at プ's clearance from the stroke; the placement was settled by comparison rounds (`docs/methods.md`).
 
 ![Ainu small kana and composed marks](docs/images/ainu.png)
 
@@ -52,6 +55,8 @@ The subset requests U+0020, U+3000–303F, U+3099–309C, U+30A0–30FF and U+31
 **ネ from 子.** The Edo-period printed katakana ネ keeps the shape of its source character 子: an angular upper turn, a sloping crossbar, an upright stem and a short curved hook. Reference specimen: 上原熊次郎『蝦夷方言藻汐草』(1792), volume 2, [image 81](https://dglb01.ninjal.ac.jp/iiif/ezomosio/002/tiff/ezmg002-081.tiff/full/1495,/0/default.jpg) (国立国語研究所, CC BY 4.0), with the [292 ネ samples](https://codh.rois.ac.jp/char-shape/unicode/U%2B30CD/) in CODH's kuzushiji index (日本古典籍くずし字データセット, 国文研ほか所蔵／CODH加工, doi:10.20676/00000340, CC BY-SA 4.0) as the wider comparison.
 
 **ヰ from 井.** The printed ヰ of the same editions keeps the full 井 frame. Eiso Chan, *Proposal on two archaic Katakana letters*, [L2/25-151](https://www.unicode.org/L2/L2025/25151-katakana-ne-wi.pdf) (2025-05-23), page 1 and section 3, collects historical specimens of both letters; the UTC accepted it at meeting 184 and Unicode 18.0 encodes the two letters in [Kana Extended-A](https://www.unicode.org/charts/PDF/Unicode-18.0/U180-1B100.pdf) under the heading Historic Katakana. They are separate letters from 子 U+5B50 and 井 U+4E95, and have no decomposition to ネ or ヰ.
+
+**𪜈 from ト and モ.** The ligature keeps ト's upright at the left and モ beside it, the モ narrowed by shortening the left ends of its bars; nothing is redrawn. The proportions follow the Unicode code chart glyph for [U+2A708](https://www.unicode.org/charts/PDF/U2A700.pdf) (source JK-65004) and the printed instances in 池田霧渓『種痘弁義』(1858), [image 6](https://dl.ndl.go.jp/api/iiif/2539156/R0000006/full/full/0/default.jpg) (国立国会図書館, [doi:10.11501/2539156](https://doi.org/10.11501/2539156), public domain), located through the みんなで翻刻 transcription ([honkoku-data v3](https://github.com/yuta1984/honkoku-data), CC BY-SA 4.0). The print sets the upright no taller than the モ and joins the bars to it; the code chart leaves them apart. The font keeps a small gap.
 
 The 0.2 outline keeps Klee's uprights and stroke ends and sets the bars 50 units closer, the upper 30 and the lower 60 units longer; it beat the 0.1 outline and the other finalists in blind comparison. `docs/methods.md` describes how each form was chosen and `docs/votes/` holds the comparison records.
 

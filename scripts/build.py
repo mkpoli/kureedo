@@ -10,6 +10,8 @@ Two targets come out of one source tree:
 
 Historical forms are alternates. Default ネ and ヰ stay Klee's; `hist`, `ss01`
 and the per-letter `cv01`/`cv02` switch to the 子-shaped ネ and 井-shaped ヰ.
+Historical ligatures have their own code points and are also reachable from
+the letters they join through `hlig`.
 """
 import argparse
 import hashlib
@@ -53,8 +55,12 @@ HISTORICAL = [
     dict(code=0x30CD, historic=0x1B127, svg="ne.svg", cv="cv01", label="Katakana ne, 子-shaped"),
     dict(code=0x30F0, historic=0x1B128, svg="wi.svg", cv="cv02", label="Katakana wi, 井-shaped"),
 ]
+# Ligatures of Edo-period print: the code point, the SVG source and the letters it joins.
+LIGATURES = [
+    dict(code=0x2A708, svg="tomo.svg", letters="トモ", label="Katakana tomo ligature"),
+]
 KATA_UNICODES = [0x20, *range(0x3000, 0x3040), *range(0x3099, 0x309D), *range(0x30A0, 0x3100), *range(0x31F0, 0x3200),
-                 *(f["historic"] for f in [dict(historic=0x1B127), dict(historic=0x1B128)])]
+                 *(f["historic"] for f in HISTORICAL), *(l["code"] for l in LIGATURES)]
 
 # Ainu small kana follow Klee's own small-kana convention (ッ against ツ): 78% of the full-size
 # letter, centred in the cell on the baseline, and shifted up and to the right in vertical text.
@@ -226,6 +232,17 @@ class Builder:
         params.UINameID = self.add_name("Edo-period printed forms")
         self.add_feature("ss01", historical, params)
 
+    def add_ligatures(self):
+        """Add the encoded ligatures and the `hlig` feature that forms them from their letters."""
+        ligatures = {}
+        for form in LIGATURES:
+            name = f"uni{form['code']:04X}"
+            self.put(name, svg_glyph(GLYPHS / form["svg"]))
+            self.encode(form["code"], name)
+            self.cmap[form["code"]] = name
+            ligatures[tuple(self.cmap[ord(c)] for c in form["letters"])] = name
+        self.add_feature("hlig", buildLookup([buildLigatureSubstSubtable(ligatures)]))
+
     def add_marks(self):
         """Compose kana with combining dakuten and handakuten into one cell."""
         positions = json.loads((GLYPHS / "mark-positions.json").read_text())
@@ -358,6 +375,7 @@ def build(out_dir: Path = FONTS, small=None, small_mark=None, family_suffix=""):
     builder = Builder(font, small, small_mark)
     builder.add_small_kana()
     builder.add_historical()
+    builder.add_ligatures()
     builder.add_marks()
     builder.finish()
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -372,7 +390,7 @@ def build(out_dir: Path = FONTS, small=None, small_mark=None, family_suffix=""):
     options.name_IDs = "*"
     options.name_legacy = True
     options.name_languages = "*"
-    options.layout_features += ["hist", "ss01", "cv01", "cv02"]
+    options.layout_features += ["hist", "hlig", "ss01", "cv01", "cv02"]
     options.notdef_outline = True
     options.glyph_names = True
     kata = TTFont(full, recalcTimestamp=False)

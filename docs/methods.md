@@ -51,3 +51,7 @@ The rounds are in `votes/pu/` (`roundN-designs.json` maps each candidate id to i
 17. Six forms around that winner (`round17-ladder.json`): clearance 19 beat 14 and 24; the mark at 1.0× beat 1.15× twice; a 40° direction tied with プ's.
 
 The 0.4 setting is candidate `p7efd533ab1941192` of round 17: small kana at 78%, centred, stroke weight 0.9, vertical top at 329 units with a 130-unit shift right; the handakuten at 78% with its centre 71 units right and 39 above the small letter's top-right corner.
+
+## 𪜈
+
+Assembled, not compared: the ligature is Klee's ト upright (tick removed, shortened 40 units at the top and 43 at the bottom, moved 150 units left) beside Klee's モ, whose top bar loses 60 units and second bar 130 units at their left ends, each end moved along the bar's own slope so the seam is straight. The vertical, the hook and the right ends of the bars are Klee's untouched. Four assemblies were rendered in running text at 28 px next to the 『種痘弁義』 instances; the shipped one keeps the upright clear of the bars, as the code chart does, while the print joins them. `sources/glyphs/tomo.svg` is the outline.
