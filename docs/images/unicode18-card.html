@@ -1,0 +1,76 @@
+<!doctype html>
+<meta charset="utf-8">
+<style>
+  @font-face { font-family: K; src: url("../../fonts/KureedoKata-Regular.woff2") format("woff2"); }
+  @font-face { font-family: KF; src: url("../../fonts/Kureedo-Regular.ttf") format("truetype"); }
+  :root { --ink: #16130f; --paper: #f4efe4; --card: #fbf7ef; --rule: #ccc0a8; --accent: #9a4a25; --muted: #7b7263; }
+  * { box-sizing: border-box; }
+  body { margin: 0; width: 1600px; height: 900px; background: var(--paper); color: var(--ink);
+         font-family: "KF", K, "Klee One", serif; display: flex; align-items: center; justify-content: center; }
+  .frame { width: 1504px; height: 804px; background: var(--card); border: 3px solid var(--ink); position: relative;
+           box-shadow: 14px 14px 0 rgba(22,19,15,.88); display: grid; grid-template-rows: auto 1fr auto; }
+  .frame::after { content: ""; position: absolute; inset: 11px; border: 1px solid var(--rule); pointer-events: none; }
+  header { display: flex; align-items: baseline; justify-content: space-between; padding: 30px 46px 14px; }
+  .tag { font: 600 21px/1 ui-monospace, "SFMono-Regular", monospace; letter-spacing: .18em; color: var(--accent); text-transform: uppercase; }
+  .blk { font: 500 19px/1 ui-monospace, monospace; color: var(--muted); letter-spacing: .06em; }
+  h1 { margin: 0; padding: 0 46px; font-size: 40px; font-weight: 500; letter-spacing: .01em; }
+  .sub { padding: 6px 46px 0; color: var(--muted); font-size: 21px; }
+  main { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; padding: 18px 46px 6px; }
+  .cell { border: 1px solid var(--rule); background: #fffdf8; padding: 20px 26px 22px; display: grid; grid-template-columns: 250px 1fr; gap: 20px; align-items: center; }
+  .glyph { font-family: K, KF, serif; font-size: 178px; line-height: .95; text-align: center; }
+  .cp { font: 600 30px/1.3 ui-monospace, monospace; letter-spacing: .04em; }
+  .nm { font: 500 17px/1.45 ui-monospace, monospace; color: var(--muted); letter-spacing: .03em; margin-top: 8px; text-transform: uppercase; }
+  .cmp { margin-top: 14px; font-size: 20px; color: var(--muted); }
+  .cmp b { font-family: K, serif; font-size: 30px; color: var(--ink); font-weight: 400; }
+  .lower { display: grid; grid-template-columns: 1fr 190px; gap: 30px; padding: 14px 46px 0; align-items: start; }
+  .vert { writing-mode: vertical-rl; font-family: K, serif; font-size: 28px; line-height: 2; height: 258px;
+          border-left: 1px solid var(--rule); padding-left: 26px; letter-spacing: .06em; }
+  .sample { padding: 0; }
+  .sample p { font-family: K, serif; margin: 0; }
+  .s1 { font-size: 40px; letter-spacing: .04em; }
+  .s2 { font-family: K, serif; font-size: 23px; color: var(--muted); margin-top: 10px !important; letter-spacing: .03em; line-height: 1.6; }
+  .cite { font: 400 18px/1.5 ui-monospace, monospace; color: var(--muted); margin-top: 14px !important; }
+  footer { display: flex; justify-content: space-between; align-items: center; padding: 14px 46px 26px; font-size: 19px; color: var(--muted); }
+  footer .l { font: 500 19px ui-monospace, monospace; }
+</style>
+<div class="frame">
+  <header>
+    <span class="tag">Unicode 18.0 · new characters</span>
+    <span class="blk">Kana Extended-A · U+1B100–1B12F</span>
+  </header>
+  <div>
+    <h1>歴史的片仮名 2字が符号化された</h1>
+    <p class="sub">Historic katakana: the older forms of ネ and ヰ now have their own code points.</p>
+    <main>
+      <div class="cell">
+        <div class="glyph">&#x1B127;</div>
+        <div>
+          <div class="cp">U+1B127</div>
+          <div class="nm">Katakana letter<br>alternate ne</div>
+          <div class="cmp">modern <b>ネ</b> ne ／ 字源 子</div>
+        </div>
+      </div>
+      <div class="cell">
+        <div class="glyph">&#x1B128;</div>
+        <div>
+          <div class="cp">U+1B128</div>
+          <div class="nm">Katakana letter<br>alternate wi</div>
+          <div class="cmp">modern <b>ヰ</b> wi ／ 字源 井</div>
+        </div>
+      </div>
+    </main>
+    <div class="lower">
+      <div class="sample">
+        <p class="s1">&#x1B128;ナウ　ア&#x1B127;　シ&#x1B127;　ト&#x1B127;　イ&#x1B128;ヱカラ。</p>
+        <p class="s2">明治期の活字に多く、江戸期の版本にも見られる字形。<br>
+          𛄧 は 子 (U+5B50)、𛄨 は 井 (U+4E95) と紛らわしいが、それぞれ別の文字。</p>
+        <p class="cite">L2/25-151 → UTC #184 → Unicode 18.0, released 2026-09-16</p>
+      </div>
+      <p class="vert">ア&#x1B127;イ&#x1B128;ヱカラ。</p>
+    </div>
+  </div>
+  <footer>
+    <span>Specimen set in Kureedo — Klee One with historic Japanese letterforms</span>
+    <span class="l">github.com/mkpoli/kureedo</span>
+  </footer>
+</div>
