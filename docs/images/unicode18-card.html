@@ -12,17 +12,19 @@
   .c1 { top: -3px; left: -3px; border-right: 0; border-bottom: 0; } .c2 { top: -3px; right: -3px; border-left: 0; border-bottom: 0; }
   .c3 { bottom: -3px; left: -3px; border-right: 0; border-top: 0; } .c4 { bottom: -3px; right: -3px; border-left: 0; border-top: 0; }
   .mono { font-family: ui-monospace, "SFMono-Regular", Menlo, monospace; }
-  .top { display: flex; align-items: center; padding: 0 44px; border-bottom: 3px solid var(--ink); gap: 26px; }
-  .top .ver { font: 600 20px/1.15 ui-monospace, monospace; letter-spacing: .22em; color: var(--accent); }
-  .top .ver small, .top .blk small { display: block; font-size: 10.5px; letter-spacing: .12em; color: var(--muted); font-weight: 500; margin-top: 5px; }
-  .top .ticks { flex: 1; height: 10px; background: repeating-linear-gradient(90deg, var(--rule) 0 1px, transparent 1px 12px); align-self: end; }
+  .top { display: grid; grid-template-columns: auto 1fr auto; align-items: center; padding: 0 44px; border-bottom: 2px solid var(--ink); gap: 30px; }
+  .top .ver { font: 600 20px/1 ui-monospace, monospace; letter-spacing: .22em; color: var(--accent); }
+  .top .ver small, .top .blk small { display: block; font-size: 11px; line-height: 1; letter-spacing: .14em; color: var(--muted); font-weight: 500; margin-top: 8px; }
+  .top .mid { display: grid; grid-template-rows: auto auto; align-items: end; gap: 6px; height: 100%; padding-top: 14px; }
+  .top .ticks { height: 10px; background: repeating-linear-gradient(90deg, var(--rule) 0 1px, transparent 1px 12px); align-self: end; }
+  .top .prov { font: 500 11px/1 ui-monospace, monospace; letter-spacing: .14em; color: var(--muted); text-align: center; }
   .badge { font: 600 11px/1 ui-monospace, monospace; letter-spacing: .2em; color: var(--accent); border: 1px solid var(--accent); padding: 6px 9px 5px; border-radius: 2px; position: relative; }
   .badge::after { content: "+2"; position: absolute; top: -9px; right: -10px; background: var(--accent); color: var(--card); font-size: 10px; padding: 2px 5px; border-radius: 9px; letter-spacing: 0; }
-  .top .blk { font: 500 19px/1.15 ui-monospace, monospace; letter-spacing: .12em; color: var(--muted); text-align: right; }
+  .top .blk { font: 600 20px/1 ui-monospace, monospace; letter-spacing: .14em; color: var(--muted); text-align: right; }
   .body { display: grid; grid-template-columns: 1fr 1fr 350px; min-height: 0; }
   .char, .side { min-height: 0; overflow: hidden; }
   .char { display: grid; grid-template-rows: 1fr auto auto; padding: 6px 28px 14px; }
-  .char + .char { border-left: 3px solid var(--ink); }
+  .char + .char { border-left: 2px solid var(--ink); }
   .g { font-size: 280px; line-height: 1; display: flex; align-items: center; justify-content: center; min-height: 0; }
   .meta { text-align: center; padding: 0 0 18px; }
   .cp { font: 700 38px/1 ui-monospace, monospace; letter-spacing: .06em; }
@@ -30,12 +32,12 @@
   .eq { margin-top: 14px; font: 500 18px ui-monospace, monospace; letter-spacing: .1em; color: var(--muted); }
   .eq b { font: 400 30px KF, serif; color: var(--ink); vertical-align: -3px; margin-right: 10px; }
   .cmp { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--rule); padding-top: 12px; text-align: center; }
-  .cmp div { position: relative; }
-  .cmp div + div::before { content: ""; position: absolute; left: 0; top: 16px; bottom: 16px; border-left: 1px solid var(--rule2); }
+  .cmp > div { position: relative; }
+  .cmp > div + div::before { content: ""; position: absolute; left: 0; top: 6px; bottom: 2px; border-left: 1px solid var(--rule); }
   .cmp .k { font-size: 84px; line-height: 1.05; margin-bottom: 8px; }
   .cmp .l { font: 500 14px/1.3 ui-monospace, monospace; color: var(--muted); letter-spacing: .12em; }
   .cmp .l.new { color: var(--accent); font-weight: 700; }
-  .side { border-left: 3px solid var(--ink); display: grid; grid-template-rows: auto 1fr auto; }
+  .side { border-left: 2px solid var(--ink); display: grid; grid-template-rows: auto 1fr auto; }
   .cols { align-items: stretch; }
   .side h3 { margin: 0; padding: 14px 0 12px; text-align: center; font: 600 14px/1 ui-monospace, monospace; letter-spacing: .28em; color: var(--muted); border-bottom: 1px solid var(--rule); }
   .cols { display: flex; justify-content: center; gap: 30px; padding: 16px 12px 8px; min-height: 0; }
@@ -43,15 +45,16 @@
   .col .tag { font-size: 14px; letter-spacing: .3em; color: var(--accent); }
   .col p { writing-mode: vertical-rl; font-size: 30px; line-height: 1.32; margin: 0; letter-spacing: .05em; flex: 1; min-height: 0; }
   .src { font: 500 11px/1.6 ui-monospace, monospace; color: var(--muted); letter-spacing: .06em; text-align: center; padding: 0 12px 12px; border-top: 1px solid var(--rule2); padding-top: 8px; }
-  .bot { display: grid; grid-template-columns: 1fr 240px; align-items: center; padding: 0 44px; border-top: 3px solid var(--ink); overflow: hidden; }
-  .bot .s { font-size: 26px; letter-spacing: .07em; white-space: nowrap; }
-  .bot .s small { font: 600 12px/1 ui-monospace, monospace; letter-spacing: .25em; color: var(--accent); margin-right: 16px; vertical-align: 7px; }
+  .bot { display: grid; grid-template-columns: 1fr 240px; align-items: center; padding: 0 44px; border-top: 2px solid var(--ink); overflow: hidden; }
+  .bot .s { font-size: 26px; letter-spacing: .07em; white-space: nowrap; display: flex; align-items: baseline; gap: 14px; }
+  .bot .s small { font: 600 12px/1 ui-monospace, monospace; letter-spacing: .25em; color: var(--accent); }
+  .bot .s small + span { margin-right: 22px; }
   .bot .note { font: 500 13px/1.5 ui-monospace, monospace; letter-spacing: .1em; color: var(--muted); text-align: right; }
   .bot .note b { display: block; font-size: 15px; letter-spacing: .3em; color: var(--muted); margin-bottom: 3px; }
 </style>
 <div class="frame">
   <span class="corner c1"></span><span class="corner c2"></span><span class="corner c3"></span><span class="corner c4"></span>
-  <div class="top"><span class="ver">UNICODE 18.0<small>L2/25-151 · UTC #184 · 2026-09-16</small></span><span class="ticks"></span><span class="badge">NEW CHARACTERS</span><span class="blk">KANA EXTENDED-A<small>U+1B100–1B12F</small></span></div>
+  <div class="top"><span class="ver">UNICODE 18.0<small>2026-09-16</small></span><span class="mid"><span class="prov">L2/25-151 · UTC #184</span><span class="ticks"></span></span><span class="blk">KANA EXTENDED-A<small>U+1B100–1B12F</small></span></div>
   <div class="body">
     <div class="char">
       <div class="g">&#x1B127;</div>
@@ -81,7 +84,7 @@
     </div>
   </div>
   <div class="bot">
-    <span class="s"><small>JA</small>&#x1B127;コ　フ&#x1B127;　カ&#x1B127;　&#x1B128;ド　&#x1B128;ノシシ<small style="margin-left:34px">AIN</small>ア&#x1B127;　シ&#x1B127;　ト&#x1B127;　&#x1B128;ナウ　イ&#x1B128;ヱ</span>
+    <span class="s"><small>JA</small><span>&#x1B127;コ　フ&#x1B127;　カ&#x1B127;　&#x1B128;ド　&#x1B128;ノシシ</span><small>AIN</small><span>ア&#x1B127;　シ&#x1B127;　ト&#x1B127;　&#x1B128;ナウ　イ&#x1B128;ヱ</span></span>
     <span class="note"><b>KUREEDO</b>kureedo.mkpo.li</span>
   </div>
 </div>
