@@ -54,8 +54,16 @@ The 0.4 setting is candidate `p7efd533ab1941192` of round 17: small kana at 78%,
 
 ### Stroke weight (0.4.1)
 
-Measured against Klee's own pairs, the small kana keep 0.89–0.95 of the full-size stroke (ッ/ツ 0.89, ァ/ア 0.92, ェ/エ 0.93, ヶ/ケ 0.95; median 0.92), while the 0.4.0 build's nominal 0.9 came out at 0.88–0.90 because a dilation by r adds a little less than 2r to the measured stroke once the corners round. 0.4.1 targets 0.92 and solves the dilation radius on the measured result, so every small kana and the scaled handakuten sit at 0.92 ± 0.01. A morphological opening to retract the tapered terminals (which Klee draws shorter and plumper on ッ and ァ) was tried at radii up to 10 units: below the thinnest stroke's half-width it changes little, above it it eats ㇰ, so the terminals stay as scaled; shortening them by hand remains open.
+Measured against Klee's own pairs, the small kana keep 0.89–0.95 of the full-size stroke (ッ/ツ 0.89, ァ/ア 0.92, ェ/エ 0.93, ヶ/ケ 0.95; median 0.92), while the 0.4.0 build's nominal 0.9 came out at 0.88–0.90 because a dilation by r adds a little less than 2r to the measured stroke once the corners round. 0.4.1 targets 0.92 and solves the dilation radius on the measured result, so every small kana and the scaled handakuten sit at 0.92 ± 0.01. ![Klee's small kana against Kureedo's at three weight targets](images/proof-weight.png)
+
+A morphological opening to retract the tapered terminals (which Klee draws shorter and plumper on ッ and ァ) was tried at radii up to 10 units: below the thinnest stroke's half-width it changes little, above it it eats ㇰ, so the terminals stay as scaled; shortening them by hand remains open.
 
 ### Handakuten on the full-size bases (0.4.2)
 
 セ゚ ツ゚ ト゚ カ゚ キ゚ ク゚ ケ゚ コ゚ had their marks placed by hand offsets from the mark glyph's default position; ク゚'s ring sat inside the letter's height and ト゚'s hung far to the right. `scripts/mark_positions.py` now derives them from Klee One: the ring starts where Klee places the dakuten on the same base (ガ ギ グ ゲ ゴ ゼ ヅ ド), moves by the mean offset between Klee's own handakuten and dakuten on ハ–ホ (−11, +12), and is pushed straight away from the letter until it has プ's 24 units of clearance. `check.py` asserts that clearance.
+
+![Klee's voiced kana above Kureedo's marked kana, before and after](images/proof-marks.png)
+
+![ㇷ゚ and the marked kana at 16–48 px and in vertical text](images/proof-sizes.png)
+
+A second review of these proofs (2026-09-20) found the ㇷ゚ ring right at 16–32 px and the vertical placement sound, and left the terminals as the next piece of work: shorten the taper of ㇱ (20–25%), ㇷ (20–25%), ㇰ (15–20%), and provisionally ㇲ and ㇾ, finishing each with a compact rounded cap, while keeping the 0.92 measure.
