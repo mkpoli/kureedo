@@ -377,7 +377,7 @@
       <button id="theme" class="tag" type="button" aria-label="配色を切り替える　Toggle light and dark" title="明／暗"><span class="sun" aria-hidden="true">☀</span><span class="moon" aria-hidden="true">☾</span> <span>明／暗</span></button>
     </div>
     <div class="ticks" aria-hidden="true"></div>
-    <div class="mast-meta"><span class="label accent">Unicode 18.0 · Kana Extended-A</span><span class="label">v0.3.0 · OFL 1.1</span></div>
+    <div class="mast-meta"><span class="label accent">Unicode 18.0 · Kana Extended-A</span><span class="label">v0.4.0 · OFL 1.1</span></div>
 
     <div class="prose">
       <p class="lead">Klee Oneに、江戸・明治の版本に見られる片仮名の字形を加えた書体。Unicode 18.0で符号化された𛄧 U+1B127 KATAKANA LETTER ALTERNATE NEと𛄨 U+1B128 KATAKANA LETTER ALTERNATE WIを収録し、ネ・ヰからもOpenType機能<code>hist</code>・<code>cv01</code>・<code>cv02</code>で同じ字形に切り替えられる。</p>
@@ -387,13 +387,13 @@
     <div class="download" id="download">
       <span class="label">入手　Download</span>
       <div class="buttons">
-        <a class="button" href="https://github.com/mkpoli/kureedo/releases/download/v0.3.0/Kureedo-Regular.ttf"><b>Kureedo-Regular.ttf</b><span class="mono">デスクトップ · v0.3.0 · 8.7 MB</span></a>
-        <a class="button web" href="https://github.com/mkpoli/kureedo/releases/download/v0.3.0/KureedoKata-Regular.woff2"><b>KureedoKata-Regular.woff2</b><span class="mono">ウェブ（仮名・記号のみ） · v0.3.0 · 22 KB</span></a>
+        <a class="button" href="https://github.com/mkpoli/kureedo/releases/download/v0.4.0/Kureedo-Regular.ttf"><b>Kureedo-Regular.ttf</b><span class="mono">デスクトップ · v0.4.0 · 8.7 MB</span></a>
+        <a class="button web" href="https://github.com/mkpoli/kureedo/releases/download/v0.4.0/KureedoKata-Regular.woff2"><b>KureedoKata-Regular.woff2</b><span class="mono">ウェブ（仮名・記号のみ） · v0.4.0 · 24 KB</span></a>
       </div>
       <ul class="small-links">
         <li><a href="https://github.com/mkpoli/kureedo/releases">すべてのリリース　All releases</a></li>
-        <li><a href="https://github.com/mkpoli/kureedo/releases/download/v0.3.0/OFL.txt">OFL.txt</a></li>
-        <li><a href="https://github.com/mkpoli/kureedo/releases/download/v0.3.0/SHA256SUMS.txt">SHA256SUMS.txt</a></li>
+        <li><a href="https://github.com/mkpoli/kureedo/releases/download/v0.4.0/OFL.txt">OFL.txt</a></li>
+        <li><a href="https://github.com/mkpoli/kureedo/releases/download/v0.4.0/SHA256SUMS.txt">SHA256SUMS.txt</a></li>
         <li><a href="https://x.com/mkpoli/status/2101202819110015016">発表ツイート　Announcement</a></li>
       </ul>
     </div>
@@ -494,7 +494,7 @@
     <h2><span class="ja">アイヌ語の仮名</span><span>Ainu kana and marks</span><span class="line"></span><span class="num">05</span></h2>
     <p class="marks">セ゚ ツ゚ ト゚ ㇷ゚ カ゚</p>
     <p class="marks">ㇰㇱㇲㇳㇴㇵㇶㇷㇸㇹㇺㇻㇼㇽㇾㇿ</p>
-    <p class="en prose">小書き片仮名ㇰ–ㇿ（U+31F0–31FF）と、半濁点を一つの升目に組む<code>ccmp</code>合字。Small kana U+31F0–31FF and <code>ccmp</code> ligatures that set the handakuten in one cell.</p>
+    <p class="en prose">小書き片仮名ㇰ–ㇿ（U+31F0–31FF）はKlee Oneのッ・ァと同じ比率で組み、半濁点は<code>ccmp</code>合字でプと同じ位置に一つの升目に収める。Small kana U+31F0–31FF at the proportions of Klee One's own ッ and ァ; <code>ccmp</code> ligatures set the handakuten in one cell where プ carries it.</p>
   </section>
 
   <section>
@@ -720,7 +720,7 @@
 
   <section class="usage prose">
     <h2 id="cdn"><span class="ja">ウェブフォント配信</span><span>Webfont CDN</span><span class="line"></span><span class="num">10</span></h2>
-    <p>kureedo.mkpo.liから直接読み込める。<code>/kureedo.css</code>は最新版を指し、<code>/v0.3.0/</code>以下は版を固定した不変のファイル（CORS許可、キャッシュ期間1年）。The stylesheet at <code>/kureedo.css</code> follows the latest release; files under <code>/v0.3.0/</code> are pinned and immutable, served with CORS and a one-year cache.</p>
+    <p>kureedo.mkpo.liから直接読み込める。<code>/kureedo.css</code>は最新版を指し、<code>/v0.4.0/</code>以下は版を固定した不変のファイル（CORS許可、キャッシュ期間1年）。The stylesheet at <code>/kureedo.css</code> follows the latest release; files under <code>/v0.4.0/</code> are pinned and immutable, served with CORS and a one-year cache.</p>
     <dl>
       <dt>最新版　Latest</dt>
       <dd>
@@ -735,18 +735,18 @@
       </dd>
       <dt>版を固定　Pinned</dt>
       <dd>
-<div class="snippet"><pre><code>&lt;link rel="stylesheet" href="https://kureedo.mkpo.li/v0.3.0/kureedo.css"&gt;</code></pre><button type="button" class="tag copy" data-copy="&lt;link rel=&quot;stylesheet&quot; href=&quot;https://kureedo.mkpo.li/v0.3.0/kureedo.css&quot;&gt;">Copy</button></div>
+<div class="snippet"><pre><code>&lt;link rel="stylesheet" href="https://kureedo.mkpo.li/v0.4.0/kureedo.css"&gt;</code></pre><button type="button" class="tag copy" data-copy="&lt;link rel=&quot;stylesheet&quot; href=&quot;https://kureedo.mkpo.li/v0.4.0/kureedo.css&quot;&gt;">Copy</button></div>
       </dd>
       <dt>jsDelivr（GitHubのタグから）</dt>
       <dd>
 <div class="snippet"><pre><code>@font-face {
   font-family: "Kureedo Kata";
-  src: url("https://cdn.jsdelivr.net/gh/mkpoli/kureedo@v0.3.0/fonts/KureedoKata-Regular.woff2") format("woff2");
+  src: url("https://cdn.jsdelivr.net/gh/mkpoli/kureedo@v0.4.0/fonts/KureedoKata-Regular.woff2") format("woff2");
   font-display: swap;
   unicode-range: U+3000-303F, U+3099-309C, U+30A0-30FF, U+31F0-31FF, U+1B127-1B128;
 }</code></pre><button type="button" class="tag copy" data-copy='@font-face {
   font-family: "Kureedo Kata";
-  src: url("https://cdn.jsdelivr.net/gh/mkpoli/kureedo@v0.3.0/fonts/KureedoKata-Regular.woff2") format("woff2");
+  src: url("https://cdn.jsdelivr.net/gh/mkpoli/kureedo@v0.4.0/fonts/KureedoKata-Regular.woff2") format("woff2");
   font-display: swap;
   unicode-range: U+3000-303F, U+3099-309C, U+30A0-30FF, U+31F0-31FF, U+1B127-1B128;
 }'>Copy</button></div>

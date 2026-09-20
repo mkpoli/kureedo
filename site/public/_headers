@@ -1,3 +1,7 @@
+/v0.4.0/*
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=31536000, immutable
+
 /v0.3.0/*
   Access-Control-Allow-Origin: *
   Cache-Control: public, max-age=31536000, immutable
