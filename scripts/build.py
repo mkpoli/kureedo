@@ -43,7 +43,7 @@ KLEE_PATH = ROOT / "sources/klee/KleeOne-Regular.ttf"
 
 VERSION = (0, 4, 2)  # release tag v0.4.2; name ID 5 and head.fontRevision carry 0.402
 COPYRIGHT = ("Copyright 2020 The Klee Project Authors (https://github.com/fontworks-fonts/Klee); "
-             "historical glyphs Copyright 2026 The Kureedo Project Authors (https://github.com/mkpoli/kureedo)")
+             "historical glyphs Copyright 2026 mkpoli (https://mkpo.li, https://github.com/mkpoli/kureedo)")
 URL = "https://github.com/mkpoli/kureedo"
 BASELINE = 880  # y of the em top in the SVG sources (1000-unit em, y down)
 
@@ -364,7 +364,7 @@ def set_names(font: TTFont, family: str):
     version = f"{VERSION[0]}.{VERSION[1]}{VERSION[2]:02d}"
     names = {0: COPYRIGHT, 1: family, 2: "Regular", 3: f"{version};KRDO;{ps}", 4: f"{family} Regular",
              5: f"Version {version}", 6: ps, 7: f"{family} is an independent derivative of Klee One; Klee is a trademark of Fontworks Inc.",
-             8: "The Kureedo Project Authors", 9: "Fontworks Inc.; The Kureedo Project Authors", 11: URL, 12: URL}
+             8: "mkpoli", 9: "Fontworks Inc.; mkpoli", 11: "https://mkpo.li", 12: "https://mkpo.li"}
     table = font["name"]
     table.names = [n for n in table.names if n.nameID not in names or (n.platformID, n.platEncID) == (3, 1)]
     for record in table.names:

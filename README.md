@@ -69,3 +69,7 @@ The build downloads Klee One Regular from the pinned commit of [fontworks-fonts/
 ## Licence
 
 The fonts are licensed under the SIL Open Font License 1.1 (`OFL.txt`). Klee One is Copyright 2020 The Klee Project Authors; Klee is a trademark of Fontworks Inc., and Kureedo is an independent derivative with no connection to Fontworks. The historical outlines and the scripts in this repository are Copyright 2026 The Kureedo Project Authors; the scripts are released under the MIT License (`LICENSE-scripts.txt`).
+
+## Author
+
+まくぽり / mkpoli — https://mkpo.li
