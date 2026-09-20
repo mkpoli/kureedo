@@ -106,7 +106,12 @@
   p { margin: .5rem 0 1rem; }
   a { color: var(--accent); text-underline-offset: .2em; }
   .lead { font-size: 1.2rem; margin: 1.5rem 0 0; }
-  .lead a.glyph, .en a.glyph { color: inherit; text-decoration: underline dotted var(--accent); text-underline-offset: .2em; cursor: help; }
+  /* Referenced characters: 「」 in Japanese, a small frame in English, always in the accent colour. */
+  .ch { font-weight: 400; color: var(--accent); }
+  .ch::before { content: "「"; color: var(--ink); } .ch::after { content: "」"; color: var(--ink); }
+  .ch.en::before, .ch.en::after { content: none; }
+  .ch.en { padding: 0 .3em; border: 1px solid var(--hair); border-radius: 3px; background: var(--well); }
+  a.ch { text-decoration: none; cursor: help; } a.ch:hover { text-decoration: underline dotted; text-underline-offset: .2em; }
   .lead code { font-size: .9em; }
   .en { color: var(--muted); font-size: .92rem; }
   code { font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; font-size: .85em; background: var(--well); padding: .05em .35em; border-radius: .2em; }
@@ -382,8 +387,8 @@
     <div class="mast-meta"><span class="label accent">Unicode 18.0 · Kana Extended-A</span><span class="label">アイヌ語仮名 ㇰ–ㇿ · ㇷ゚</span><span class="label">v0.4.0 · OFL 1.1</span></div>
 
     <div class="prose">
-      <p class="lead">Klee Oneに、江戸・明治の版本に見られる片仮名の字形を加えた書体。Unicode 18.0で符号化された<a class="glyph" href="#hero" title="U+1B127 KATAKANA LETTER ALTERNATE NE">𛄧</a>と<a class="glyph" href="#hero" title="U+1B128 KATAKANA LETTER ALTERNATE WI">𛄨</a>を収録し、ネ・ヰからもOpenType機能<code>hist</code>で同じ字形に切り替えられる。アイヌ語の小書き片仮名ㇰ–ㇿと、半濁点付きのセ゚・ツ゚・ト゚・ㇷ゚も収める。</p>
-      <p class="en">Klee One with the katakana of Edo–Meiji print: <a class="glyph" href="#hero" title="U+1B127 KATAKANA LETTER ALTERNATE NE">𛄧</a> and <a class="glyph" href="#hero" title="U+1B128 KATAKANA LETTER ALTERNATE WI">𛄨</a> (Unicode 18.0), also reachable from ネ and ヰ through <code>hist</code>; plus the Ainu small kana ㇰ–ㇿ and the marked セ゚ ツ゚ ト゚ ㇷ゚.</p>
+      <p class="lead">Klee Oneに、江戸・明治の版本に見られる片仮名の字形を加えた書体。Unicode 18.0で符号化された<a class="ch" href="#hero" title="U+1B127 KATAKANA LETTER ALTERNATE NE">𛄧</a>と<a class="ch" href="#hero" title="U+1B128 KATAKANA LETTER ALTERNATE WI">𛄨</a>を収録し、<b class="ch">ネ・ヰ</b>からもOpenType機能<code>hist</code>で同じ字形に切り替えられる。アイヌ語の小書き片仮名<b class="ch">ㇰ–ㇿ</b>と、半濁点付きの<b class="ch">セ゚・ツ゚・ト゚・ㇷ゚</b>も収める。</p>
+      <p class="en">Klee One with the katakana of Edo–Meiji print: <a class="ch en" href="#hero" title="U+1B127 KATAKANA LETTER ALTERNATE NE">𛄧</a> and <a class="ch en" href="#hero" title="U+1B128 KATAKANA LETTER ALTERNATE WI">𛄨</a> (Unicode 18.0), also reachable from <b class="ch en">ネ</b> and <b class="ch en">ヰ</b> through <code>hist</code>; plus the Ainu small kana <b class="ch en">ㇰ–ㇿ</b> and the marked <b class="ch en">セ゚</b> <b class="ch en">ツ゚</b> <b class="ch en">ト゚</b> <b class="ch en">ㇷ゚</b>.</p>
     </div>
 
     <div class="download" id="download">
@@ -462,7 +467,7 @@
         <button type="button" class="tag reset" id="reset">戻す</button>
       </div>
       <div id="sample" contenteditable="true" spellcheck="false" role="textbox" aria-multiline="true" aria-label="試し書き">ア𛄧 シ𛄧 ト𛄧 イ𛄨ヱカラ。𛄧コ フ𛄧 カ𛄧 𛄨ド 𛄨ノシシ<br>ポロ イチャ サラニㇷ゚ アセ ワ アㇷ゚カサン コㇿ シㇰ ノ。</div>
-      <p class="en">テキストは自由に書き換えられる。仮名と記号はKureedo Kata、漢字とラテン文字はKlee Oneで表示される。<code>hist</code>を有効にすると、ネ・ヰと入力した文字も版本の字形になる。Type anything: kana are set in Kureedo Kata, kanji and Latin fall back to Klee One. With <code>hist</code> on, ordinary ネ and ヰ take the printed forms.</p>
+      <p class="en">テキストは自由に書き換えられる。仮名と記号はKureedo Kata、漢字とラテン文字はKlee Oneで表示される。<code>hist</code>を有効にすると、<b class="ch">ネ・ヰ</b>と入力した文字も版本の字形になる。Type anything: kana are set in Kureedo Kata, kanji and Latin fall back to Klee One. With <code>hist</code> on, ordinary <b class="ch en">ネ</b> and <b class="ch en">ヰ</b> take the printed forms.</p>
     </div>
   </section>
 
@@ -476,7 +481,7 @@
       <div class="divider" aria-hidden="true"></div>
       <input type="range" id="slider-pos" min="0" max="100" value="50" step="0.1" aria-label="既定とhistの境界を動かす　Drag the divider between default and hist">
     </div>
-    <p class="en prose">同じ本文（ネ・ヰで符号化）。左は既定、右は<code>hist</code>適用。境界を左右に動かして比較できる。The same text encoded with ordinary ネ and ヰ: default on the left, <code>hist</code> on the right. Drag the divider.</p>
+    <p class="en prose">同じ本文（<b class="ch">ネ・ヰ</b>で符号化）。左は既定、右は<code>hist</code>適用。境界を左右に動かして比較できる。The same text encoded with ordinary <b class="ch en">ネ</b> and <b class="ch en">ヰ</b>: default on the left, <code>hist</code> on the right. Drag the divider.</p>
   </section>
 
   <section>
@@ -503,19 +508,19 @@
     <p class="marks">セ゚ ツ゚ ト゚ ㇷ゚ カ゚</p>
     <p class="marks">ㇰㇱㇲㇳㇴㇵㇶㇷㇸㇹㇺㇻㇼㇽㇾㇿ</p>
     <p class="run"><span>エペッチウ サㇰ ノ ピㇼカ アㇷ゚カㇱ チキ ワ ホシッパアㇱ ペ ネ ア コㇿカ。</span><span>ペッ ペㇱ アコㇿ チㇷ゚ アキル アクㇱ オラノ カイペ クㇽカ エチャラセ ペコㇿ。</span></p>
-    <p class="en prose">小書き片仮名ㇰ–ㇿ（U+31F0–31FF）はKlee Oneのッ・ァと同じ比率で組み、半濁点は<code>ccmp</code>合字によってプと同じ位置で一つの升目に収める。Small kana U+31F0–31FF at the proportions of Klee One's own ッ and ァ; <code>ccmp</code> ligatures set the handakuten in one cell where プ carries it. 用例は川上まつ子のウウェペケㇾ（AA研アイヌ語資料）より引用。Sample sentences from 川上まつ子's uwepeker (<a href="https://ainugo.aa-ken.jp/">AA研アイヌ語資料</a>).</p>
+    <p class="en prose">小書き片仮名<b class="ch">ㇰ–ㇿ</b>（U+31F0–31FF）はKlee Oneの<b class="ch">ッ・ァ</b>と同じ比率で組み、半濁点は<code>ccmp</code>合字によって<b class="ch">プ</b>と同じ位置で一つの升目に収める。Small kana U+31F0–31FF at the proportions of Klee One's own <b class="ch en">ッ</b> and <b class="ch en">ァ</b>; <code>ccmp</code> ligatures set the handakuten in one cell where <b class="ch en">プ</b> carries it. 用例は川上まつ子のウウェペケㇾ（AA研アイヌ語資料）より引用。Sample sentences from 川上まつ子's uwepeker (<a href="https://ainugo.aa-ken.jp/">AA研アイヌ語資料</a>).</p>
   </section>
 
   <section>
     <h2 id="features"><span class="ja">OpenType機能</span><span>Features</span><span class="line"></span><span class="num">06</span></h2>
-    <p class="prose">Kana Extended-Aの文字で符号化された本文には機能の指定は不要。通常のネ・ヰで符号化された本文は、検索・整列・複写がそのまま機能し、下の機能で同じ字形になる。</p>
+    <p class="prose">Kana Extended-Aの文字で符号化された本文には機能の指定は不要。通常の<b class="ch">ネ・ヰ</b>で符号化された本文は、検索・整列・複写がそのまま機能し、下の機能で同じ字形になる。</p>
     <table>
       <thead><tr><th>Feature</th><th>効果</th><th>ネヰ</th></tr></thead>
       <tbody>
         <tr><td><code>hist</code></td><td>歴史的字形すべて。All historical forms.</td><td class="sample hist">ネ ヰ</td></tr>
         <tr><td><code>ss01</code></td><td>江戸期版本の字形。この版では<code>hist</code>と同じ集合。</td><td class="sample ss01">ネ ヰ</td></tr>
-        <tr><td><code>cv01</code></td><td>ネのみ。</td><td class="sample cv01">ネ ヰ</td></tr>
-        <tr><td><code>cv02</code></td><td>ヰのみ。</td><td class="sample cv02">ネ ヰ</td></tr>
+        <tr><td><code>cv01</code></td><td><b class="ch">ネ</b>のみ。</td><td class="sample cv01">ネ ヰ</td></tr>
+        <tr><td><code>cv02</code></td><td><b class="ch">ヰ</b>のみ。</td><td class="sample cv02">ネ ヰ</td></tr>
         <tr><td>—</td><td>既定（Klee Oneの字形）。Default.</td><td class="sample">ネ ヰ</td></tr>
         <tr><td><code>ccmp</code></td><td>仮名と結合用半濁点を一つの升目に収めて組む（既定で有効）。Base + U+309A in one cell, on by default.</td><td class="sample">ㇷ゚ ト゚</td></tr>
         <tr><td><code>vert</code></td><td>縦組では小書き仮名が右上に寄る。Small kana shift up-right in vertical text.</td><td class="sample" style="writing-mode: vertical-rl">アㇷ゚</td></tr>
@@ -699,7 +704,7 @@
         <div class="cell kanji">井<small>U+4E95</small></div>
       </div>
     </div>
-    <p class="en prose">版本のネは字源である「子」の骨格を、ヰは「井」の枠をそのまま保つ。The printed ネ keeps the skeleton of its source 子; the printed ヰ keeps the full 井 frame. They are separate letters from 子 and 井 and have no decomposition to ネ or ヰ.</p>
+    <p class="en prose">版本の<b class="ch">ネ</b>は字源である<b class="ch">子</b>の骨格を、<b class="ch">ヰ</b>は<b class="ch">井</b>の枠をそのまま保つ。The printed <b class="ch en">ネ</b> keeps the skeleton of its source <b class="ch en">子</b>; the printed <b class="ch en">ヰ</b> keeps the full <b class="ch en">井</b> frame. They are separate letters from <b class="ch en">子</b> and <b class="ch en">井</b> and have no decomposition to <b class="ch en">ネ</b> or <b class="ch en">ヰ</b>.</p>
     <figure>
       <img src="/images/unicode18-card.png" width="3200" height="1800" alt="Unicode 18.0 Kana Extended-A: 𛄧 U+1B127 KATAKANA LETTER ALTERNATE NE and 𛄨 U+1B128 KATAKANA LETTER ALTERNATE WI, shown large beside ネ・子 and ヰ・井, with Japanese and Ainu specimen words">
       <figcaption>Unicode 18.0 · Kana Extended-A U+1B100–1B12F · <a href="https://x.com/mkpoli/status/2101202819110015016">発表ツイート　Announcement</a></figcaption>
@@ -725,7 +730,7 @@
       <dt>Word・LibreOffice</dt>
       <dd>Kureedo-Regular.ttfをインストールして書体として選択する。歴史的字形は、OpenType機能の設定（Wordはフォントダイアログの「詳細設定」、LibreOfficeはフォント名に<code>:hist</code>を指定）で表示させるか、𛄧 U+1B127・𛄨 U+1B128を直接入力する。Install the TTF and pick it as the font; the historical forms come from the OpenType feature panel (Word: Font dialog, Advanced; LibreOffice: append <code>:hist</code> to the font name) or by typing U+1B127 and U+1B128 directly.</dd>
       <dt>アイヌ語の小書き仮名と半濁点　Ainu small kana and handakuten</dt>
-      <dd>ㇷ（U+31F7）に続けて結合用半濁点゚（U+309A）を入力するとㇷ゚になる。セ゚・ツ゚・ト゚も同様。Type ㇷ, then the combining handakuten U+309A, to get ㇷ゚; セ゚, ツ゚ and ト゚ work the same way.</dd>
+      <dd><b class="ch">ㇷ</b>（U+31F7）に続けて結合用半濁点<b class="ch">゚</b>（U+309A）を入力すると<b class="ch">ㇷ゚</b>になる。<b class="ch">セ゚・ツ゚・ト゚</b>も同様。Type <b class="ch en">ㇷ</b>, then the combining handakuten U+309A, to get <b class="ch en">ㇷ゚</b>; <b class="ch en">セ゚</b>, <b class="ch en">ツ゚</b> and <b class="ch en">ト゚</b> work the same way.</dd>
     </dl>
   </section>
 
@@ -763,7 +768,7 @@
 }'>Copy</button></div>
       </dd>
     </dl>
-    <p class="en">SIL Open Font License 1.1はこの形式での配信・埋め込みを認めている。歴史的字形は<code>hist</code>、または𛄧 U+1B127・𛄨 U+1B128の符号位置で表示できる。The OFL 1.1 permits serving and embedding the font this way. The historical forms need <code>hist</code>, or the code points U+1B127 and U+1B128.</p>
+    <p class="en">SIL Open Font License 1.1はこの形式での配信・埋め込みを認めている。歴史的字形は<code>hist</code>、または<b class="ch">𛄧・𛄨</b>（U+1B127・U+1B128）の符号位置で表示できる。The OFL 1.1 permits serving and embedding the font this way. The historical forms need <code>hist</code>, or the code points U+1B127 and U+1B128.</p>
   </section>
 
   <section class="prose">
