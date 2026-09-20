@@ -102,6 +102,7 @@
   main { max-width: 72rem; margin: 0 auto; padding: 0 clamp(16px, 3vw, 2.5rem) 3rem; background: var(--paper); border-left: 1px solid var(--rule); border-right: 1px solid var(--rule); }
   @media (max-width: 72rem) { main { border-left: 0; border-right: 0; } }
   .prose:not(section) { max-width: 44rem; }
+  .prose.wide { max-width: 60rem; }
   /* Reference sections: a side note on the left, the material on the right, both under the full-width heading. */
   .doc { display: grid; grid-template-columns: minmax(15rem, 20rem) minmax(0, 1fr); gap: 1.5rem 4rem; align-items: start; }
   .doc .note { position: sticky; top: 5rem; }
@@ -806,8 +807,7 @@
 
   <section>
     <h2 id="licence"><span class="ja">ライセンス</span><span>Licence</span><span class="line"></span><span class="num">11</span></h2>
-    <div class="doc"><div class="note"><p>SIL Open Font License 1.1。改変・再配布・埋め込み・商用利用が可能だが、書体そのものを単体で販売することはできない。Klee One © 2020 The Klee Project Authors。KleeはFontworks Inc.の商標。<a href="https://github.com/mkpoli/kureedo/blob/main/OFL.txt">OFL.txt</a></p></div><div class="body"><p class="en">SIL Open Font License 1.1: use, modify, embed and redistribute freely; the font may not be sold by itself.</p></div>
-    </div>
+    <div class="prose wide"><p>SIL Open Font License 1.1。改変・再配布・埋め込み・商用利用が可能だが、書体そのものを単体で販売することはできない。Klee One © 2020 The Klee Project Authors。KleeはFontworks Inc.の商標。<a href="https://github.com/mkpoli/kureedo/blob/main/OFL.txt">OFL.txt</a></p><p class="en">SIL Open Font License 1.1: use, modify, embed and redistribute freely; the font may not be sold by itself.</p></div>
   </section>
 
   <footer>
