@@ -68,15 +68,21 @@ def check(path: Path, family: str, full: bool):
         assert font["glyf"][glyph].yMax + font["vmtx"][glyph][1] == 880, glyph
         assert font["glyf"][glyph].xMin >= 0 and font["glyf"][glyph].xMax <= 1000
 
-    # The tomo ligature has its own code point; `hlig` forms it from トモ and nothing else does.
-    tomo = cmap[0x2A708]
-    assert tomo == "uni2A708" and font["hmtx"][tomo][0] == 1000
-    assert font["glyf"][tomo].yMax + font["vmtx"][tomo][1] == 880
-    assert shape("\U0002A708") == [(tomo, 1000, 0)] and shape("\U0002A708", "ttb")[0][2] == -1000
-    assert [g for g, *_ in shape("トモ")] == [cmap[0x30C8], cmap[0x30E2]]
-    assert [g for g, *_ in shape("トモ", features={"hist": True})] == [cmap[0x30C8], cmap[0x30E2]]
-    for direction in ("ltr", "ttb"):
-        assert [g for g, *_ in shape("レトモ", direction, features={"hlig": True})] == [cmap[0x30EC], tomo], direction
+    # The missing letters have their own code points, one cell each way; `hlig` forms each
+    # digraph from its letters and nothing else does.
+    DIGRAPHS = {0x2A708: "トモ"}
+    for code in DIGRAPHS:
+        glyph = cmap[code]
+        assert glyph == f"uni{code:04X}" and font["hmtx"][glyph][0] == 1000, glyph
+        assert font["glyf"][glyph].yMax + font["vmtx"][glyph][1] == 880, glyph
+        assert font["glyf"][glyph].xMin >= 0 and font["glyf"][glyph].xMax <= 1000, glyph
+        assert shape(chr(code)) == [(glyph, 1000, 0)] and shape(chr(code), "ttb")[0][2] == -1000, glyph
+    for code, letters in DIGRAPHS.items():
+        plain = [cmap[ord(c)] for c in letters]
+        assert [g for g, *_ in shape(letters)] == plain
+        assert [g for g, *_ in shape(letters, features={"hist": True})] == plain
+        for direction in ("ltr", "ttb"):
+            assert [g for g, *_ in shape("レ" + letters, direction, features={"hlig": True})] == [cmap[0x30EC], cmap[code]], (letters, direction)
 
     # Marked kana shape into one cell in both directions; precomposed and decomposed agree.
     for text in ["ツ゚", "ト゚", "セ゚", "ㇷ゚", "カ゚", "キ゚", "ク゚", "ケ゚", "コ゚", "パ", "ガ", "ヅ"]:

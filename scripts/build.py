@@ -10,8 +10,8 @@ Two targets come out of one source tree:
 
 Historical forms are alternates. Default ネ and ヰ stay Klee's; `hist`, `ss01`
 and the per-letter `cv01`/`cv02` switch to the 子-shaped ネ and 井-shaped ヰ.
-Historical ligatures have their own code points and are also reachable from
-the letters they join through `hlig`.
+Letters Klee One lacks are added at their code points; a digraph is also reachable
+from its letters through `hlig`.
 """
 import argparse
 import hashlib
@@ -55,12 +55,13 @@ HISTORICAL = [
     dict(code=0x30CD, historic=0x1B127, svg="ne.svg", cv="cv01", label="Katakana ne, 子-shaped"),
     dict(code=0x30F0, historic=0x1B128, svg="wi.svg", cv="cv02", label="Katakana wi, 井-shaped"),
 ]
-# Ligatures of Edo-period print: the code point, the SVG source and the letters it joins.
-LIGATURES = [
+# Letters Klee One lacks, each with its code point and SVG source; a digraph also names the
+# letters it joins, and `hlig` forms it from them.
+LETTERS = [
     dict(code=0x2A708, svg="tomo.svg", letters="トモ", label="Katakana tomo ligature"),
 ]
 KATA_UNICODES = [0x20, *range(0x3000, 0x3040), *range(0x3099, 0x309D), *range(0x30A0, 0x3100), *range(0x31F0, 0x3200),
-                 *(f["historic"] for f in HISTORICAL), *(l["code"] for l in LIGATURES)]
+                 *(f["historic"] for f in HISTORICAL), *(l["code"] for l in LETTERS)]
 
 # Ainu small kana follow Klee's own small-kana convention (ッ against ツ): 78% of the full-size
 # letter, centred in the cell on the baseline, and shifted up and to the right in vertical text.
@@ -236,15 +237,16 @@ class Builder:
         params.UINameID = self.add_name("Edo-period printed forms")
         self.add_feature("ss01", historical, params)
 
-    def add_ligatures(self):
-        """Add the encoded ligatures and the `hlig` feature that forms them from their letters."""
+    def add_letters(self):
+        """Add the missing letters at their code points, and `hlig` forming each digraph from its letters."""
         ligatures = {}
-        for form in LIGATURES:
+        for form in LETTERS:
             name = f"uni{form['code']:04X}"
             self.put(name, self.source(form["svg"]))
             self.encode(form["code"], name)
             self.cmap[form["code"]] = name
-            ligatures[tuple(self.cmap[ord(c)] for c in form["letters"])] = name
+            if form["letters"]:
+                ligatures[tuple(self.cmap[ord(c)] for c in form["letters"])] = name
         self.add_feature("hlig", buildLookup([buildLigatureSubstSubtable(ligatures)]))
 
     def add_marks(self):
@@ -379,7 +381,7 @@ def build(out_dir: Path = FONTS, small=None, small_mark=None, family_suffix="", 
     builder = Builder(font, small, small_mark, sources)
     builder.add_small_kana()
     builder.add_historical()
-    builder.add_ligatures()
+    builder.add_letters()
     builder.add_marks()
     builder.finish()
     out_dir.mkdir(parents=True, exist_ok=True)
