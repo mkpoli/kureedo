@@ -41,7 +41,7 @@ def check(path: Path, family: str, full: bool):
     name = font["name"]
     assert name.getDebugName(1) == family, name.getDebugName(1)
     assert name.getDebugName(6) == family.replace(" ", "") + "-Regular"
-    assert name.getDebugName(5) == "Version 0.400" and abs(font["head"].fontRevision - 0.4) < 1e-4
+    assert name.getDebugName(5) == "Version 0.401" and abs(font["head"].fontRevision - 0.401) < 1e-4
     assert "Klee Project Authors" in name.getDebugName(0) and name.getDebugName(13).startswith("This Font Software")
     assert all(c in cmap for c in [*range(0x30A1, 0x30FB), *range(0x31F0, 0x3200), 0x3099, 0x309A, 0x309B, 0x309C, 0x30F0, 0x30F1, 0x30F2, 0x30F4, 0x1B127, 0x1B128])
     if not full:
@@ -79,6 +79,12 @@ def check(path: Path, family: str, full: bool):
     assert shape("ㇷ", "ttb")[0] != shape("ㇷ゚", "ttb")[0]
     # Small kana take a vertical variant that sits higher and to the right than the horizontal
     # glyph; the composite with a mark shares that variant's vertical origin.
+    # Each small kana keeps the target fraction of its full-size letter's stroke.
+    from build import stroke_thickness
+    glyph_set = font.getGlyphSet()
+    for small_ch, full_ch in zip("ㇰㇱㇲㇳㇴㇵㇶㇷㇸㇹㇺㇻㇼㇽㇾㇿ", "クシストヌハヒフヘホムラリルレロ"):
+        ratio = stroke_thickness(glyph_set, cmap[ord(small_ch)]) / stroke_thickness(glyph_set, cmap[ord(full_ch)])
+        assert abs(ratio - SMALL["weight"]) < 0.01, (small_ch, ratio)
     small, small_vert = cmap[0x31F7], shape("ㇷ", "ttb")[0][0]
     assert small_vert != small and font["vmtx"][small_vert][1] == SMALL_VERT_TOP
     assert font["glyf"][small_vert].xMin - font["glyf"][small].xMin == SMALL_VERT_X

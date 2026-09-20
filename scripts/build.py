@@ -41,7 +41,7 @@ KLEE_URL = f"https://raw.githubusercontent.com/fontworks-fonts/Klee/{KLEE_COMMIT
 KLEE_SHA256 = "74cb0a6523cc22b221ceaa7b78b56cea66512ec14b4145fd0102ffe27c30d084"
 KLEE_PATH = ROOT / "sources/klee/KleeOne-Regular.ttf"
 
-VERSION = (0, 4, 0)  # release tag v0.4.0; name ID 5 and head.fontRevision carry 0.400
+VERSION = (0, 4, 1)  # release tag v0.4.1; name ID 5 and head.fontRevision carry 0.401
 COPYRIGHT = ("Copyright 2020 The Klee Project Authors (https://github.com/fontworks-fonts/Klee); "
              "historical glyphs Copyright 2026 The Kureedo Project Authors (https://github.com/mkpoli/kureedo)")
 URL = "https://github.com/mkpoli/kureedo"
@@ -59,13 +59,13 @@ KATA_UNICODES = [0x20, *range(0x3000, 0x3040), *range(0x3099, 0x309D), *range(0x
 # Ainu small kana follow Klee's own small-kana convention (ッ against ツ): 78% of the full-size
 # letter, centred in the cell on the baseline, and shifted up and to the right in vertical text.
 # `weight` is the stroke thickness the scaled glyph keeps, as a fraction of the full-size
-# stroke; Klee's own small kana keep about 0.9, plain scaling would leave 0.78.
+# stroke; Klee's own small kana keep 0.89–0.95 (median 0.92), plain scaling would leave 0.78.
 # The values were settled by blind comparison rounds (docs/methods.md).
-SMALL = dict(scale=0.78, x=114, y=-25, vertTop=329, vertX=130, vertY=0, weight=0.9)
+SMALL = dict(scale=0.78, x=114, y=-25, vertTop=329, vertX=130, vertY=0, weight=0.92)
 # Marks on a small base are scaled with the letter and set with their centre at
 # (base.xMax + cx, base.yMax + cy): the direction Klee's プ uses for its handakuten, at
 # プ's clearance from the stroke scaled to the small letter (19 units).
-SMALL_MARK = dict(scale=0.78, cx=71, cy=39, weight=0.9)
+SMALL_MARK = dict(scale=0.78, cx=71, cy=39, weight=0.92)
 
 
 def stroke_thickness(glyph_set, name, scale=1.0):
@@ -77,26 +77,52 @@ def stroke_thickness(glyph_set, name, scale=1.0):
 
 
 def dilated(draw, radius, steps=12):
-    """Union of the outline with copies shifted around a circle: a dilation by `radius`."""
-    result = pathops.Path()
-    for i in range(steps):
-        angle = 2 * math.pi * i / steps
-        part = pathops.Path()
-        draw(TransformPen(part.getPen(), (1, 0, 0, 1, radius * math.cos(angle), radius * math.sin(angle))))
-        result = pathops.op(result, part, pathops.PathOp.UNION) if i else part
-    return pathops.simplify(result, fix_winding=True)
+    """Union of the outline with copies shifted around a circle: a dilation by `radius`.
+    At isolated radii the union degenerates (a counter merges into the outer contour and
+    slivers appear); the result is checked against the source's contour count and the
+    radius nudged until it is sound."""
+    source = pathops.Path()
+    draw(source.getPen())
+    contours = len(list(pathops.simplify(source, fix_winding=True).contours))
+    for attempt in range(8):
+        r = radius * (1 + 0.004 * attempt)
+        result = pathops.Path()
+        for i in range(steps):
+            angle = 2 * math.pi * i / steps
+            part = pathops.Path()
+            draw(TransformPen(part.getPen(), (1, 0, 0, 1, r * math.cos(angle), r * math.sin(angle))))
+            result = pathops.op(result, part, pathops.PathOp.UNION) if i else part
+        result = pathops.simplify(result, fix_winding=True)
+        if len(list(result.contours)) <= contours:
+            return result
+    raise ValueError("dilation did not converge")
+
+
+def path_thickness(path):
+    """Mean stroke thickness of a pathops path, as stroke_thickness measures a glyph."""
+    area, perimeter = AreaPen(), PerimeterPen()
+    path.draw(area)
+    path.draw(perimeter)
+    return abs(area.value) * 2 / perimeter.value
 
 
 def scaled_glyph(glyph_set, name, scale, dx, dy, weight):
-    """Scale a glyph and, when `weight` is set, thicken it back towards that stroke fraction."""
-    radius = 0.0
-    if weight:
-        radius = max(0.0, (weight * stroke_thickness(glyph_set, name) - stroke_thickness(glyph_set, name, scale)) / 2)
+    """Scale a glyph and, when `weight` is set, thicken it back to that fraction of the
+    full-size stroke. The dilation radius is solved on the measured result, since rounding
+    of the corners makes a dilation by r add a little less than 2r to the measured stroke."""
     def draw(pen):
         glyph_set[name].draw(TransformPen(pen, (scale, 0, 0, scale, dx, dy)))
     tt = TTGlyphPen(None)
-    if radius:
-        path = dilated(draw, radius)
+    target = weight * stroke_thickness(glyph_set, name) if weight else 0
+    if target > stroke_thickness(glyph_set, name, scale):
+        lo, hi = 0.0, 16.0
+        for _ in range(7):
+            mid = (lo + hi) / 2
+            if path_thickness(dilated(draw, mid)) < target:
+                lo = mid
+            else:
+                hi = mid
+        path = dilated(draw, (lo + hi) / 2)
         path.draw(Cu2QuPen(tt, max_err=0.2, reverse_direction=not path.clockwise))
     else:
         draw(tt)
