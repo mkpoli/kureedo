@@ -298,7 +298,8 @@
   .cv02 { font-feature-settings: "cv02"; }
 
   /* glyph case */
-  .glyphs { display: grid; grid-template-columns: repeat(auto-fill, minmax(4rem, 1fr)); gap: 1px; background: var(--hair); border: 1px solid var(--rule); margin: 0 0 1rem; }
+  .glyphs { display: flex; flex-wrap: wrap; gap: 1px; padding: 1px; width: fit-content; max-width: 100%; margin: 0 0 1rem; }
+  .glyphs button { flex: none; width: 4.4rem; box-shadow: 0 0 0 1px var(--rule); }
   .glyphs button {
     position: relative; aspect-ratio: 1; padding: 0 0 .8rem; border: 0; background: var(--panel); color: var(--ink); cursor: default;
     font-family: "Kureedo Kata", "Klee One", serif; font-size: 1.9rem; line-height: 1;
@@ -308,9 +309,12 @@
     content: attr(data-cp); position: absolute; left: 0; right: 0; bottom: .4rem;
     font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .6rem; letter-spacing: .06em; line-height: 1; color: var(--accent); opacity: 0;
   }
-  .glyphs button.new { color: var(--accent); box-shadow: inset 0 0 0 2px var(--accent); }
+  .glyphs button.added { color: var(--accent); box-shadow: 0 0 0 1px var(--rule), inset 0 0 0 2px var(--accent); }
+  .glyph-group { display: flex; flex-wrap: wrap; align-items: baseline; gap: .4rem 1rem; margin: 1.75rem 0 .5rem; font-weight: 400; }
+  .glyph-group .ja { font-family: "Kureedo Kata", "Klee One", serif; font-size: 1.05rem; letter-spacing: .08em; }
+  .glyph-group + .glyphs { margin-top: 0; }
   .glyphs button:hover, .glyphs button:focus-visible { outline: none; z-index: 2; transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--shadow), 0 0 0 1px var(--ink); }
-  .glyphs button:hover::after, .glyphs button:focus::after, .glyphs button.new::after { opacity: 1; }
+  .glyphs button:hover::after, .glyphs button:focus::after { opacity: 1; }
   @media (prefers-reduced-motion: reduce) { .glyphs button, .button { transition: none; } }
 
   /* sources */
@@ -352,7 +356,7 @@
     #sample.vertical { height: 22rem; }
     .controls { padding: .75rem .75rem; gap: .6rem 1rem; }
     .controls input[type="range"] { width: 7rem; }
-    .glyphs { grid-template-columns: repeat(auto-fill, minmax(3.4rem, 1fr)); }
+    .glyphs button { width: 3.4rem; }
     .compare-slider .layer { padding: 2.5rem 1rem 1.5rem; }
     section { margin-top: 3.5rem; }
     .hero-head { padding: 1rem 1rem 0; display: block; }
@@ -527,164 +531,180 @@
 
   <section>
     <h2 id="glyphs"><span class="ja">収録文字</span><span>Glyphs</span><span class="line"></span><span class="num">07</span></h2>
-    <p class="en prose">Kureedo Kata（ウェブ用）が符号位置を持つ153文字。デスクトップ用のKureedo-Regular.ttfはこれに加えてKlee One Regular全体を収録する。Every code point in the Kureedo Kata webfont, set live in the font; the desktop TTF adds the whole of Klee One Regular. Hover or tap a cell for its code point.</p>
-    <div class="glyphs">
+    <p class="en prose">ウェブ用のKureedo Kataに入っている文字をブロックごとに示す。枠の付いた字はKlee Oneにはなく、Kureedoが加えたもの。デスクトップ用のKureedo-Regular.ttfはこれに加えてKlee One Regular全体を収録する。The Kureedo Kata webfont, block by block, set live in the font. Framed cells are letters Klee One does not have; the desktop TTF adds the whole of Klee One Regular. Hover a cell for its code point.</p>
 <!-- glyphs:start -->
-<button type="button" class="new" data-cp="U+1B127">𛄧</button>
-<button type="button" class="new" data-cp="U+1B128">𛄨</button>
-<button type="button" data-cp="U+0020" aria-label="U+0020 space"> </button>
-<button type="button" data-cp="U+3000">　</button>
-<button type="button" data-cp="U+3001">、</button>
-<button type="button" data-cp="U+3002">。</button>
-<button type="button" data-cp="U+3003">〃</button>
-<button type="button" data-cp="U+3004">〄</button>
-<button type="button" data-cp="U+3005">々</button>
-<button type="button" data-cp="U+3006">〆</button>
-<button type="button" data-cp="U+3007">〇</button>
-<button type="button" data-cp="U+3008">〈</button>
-<button type="button" data-cp="U+3009">〉</button>
-<button type="button" data-cp="U+300A">《</button>
-<button type="button" data-cp="U+300B">》</button>
-<button type="button" data-cp="U+300C">「</button>
-<button type="button" data-cp="U+300D">」</button>
-<button type="button" data-cp="U+300E">『</button>
-<button type="button" data-cp="U+300F">』</button>
-<button type="button" data-cp="U+3010">【</button>
-<button type="button" data-cp="U+3011">】</button>
-<button type="button" data-cp="U+3012">〒</button>
-<button type="button" data-cp="U+3013">〓</button>
-<button type="button" data-cp="U+3014">〔</button>
-<button type="button" data-cp="U+3015">〕</button>
-<button type="button" data-cp="U+3018">〘</button>
-<button type="button" data-cp="U+3019">〙</button>
-<button type="button" data-cp="U+301C">〜</button>
-<button type="button" data-cp="U+301D">〝</button>
-<button type="button" data-cp="U+301E">〞</button>
-<button type="button" data-cp="U+301F">〟</button>
-<button type="button" data-cp="U+3020">〠</button>
-<button type="button" data-cp="U+3030">〰</button>
-<button type="button" data-cp="U+3033">〳</button>
-<button type="button" data-cp="U+3034">〴</button>
-<button type="button" data-cp="U+3035">〵</button>
-<button type="button" data-cp="U+3036">〶</button>
-<button type="button" data-cp="U+303B">〻</button>
-<button type="button" data-cp="U+303D">〽</button>
-<button type="button" data-cp="U+3099">◌゙</button>
-<button type="button" data-cp="U+309A">◌゚</button>
-<button type="button" data-cp="U+309B">゛</button>
-<button type="button" data-cp="U+309C">゜</button>
-<button type="button" data-cp="U+30A1">ァ</button>
-<button type="button" data-cp="U+30A2">ア</button>
-<button type="button" data-cp="U+30A3">ィ</button>
-<button type="button" data-cp="U+30A4">イ</button>
-<button type="button" data-cp="U+30A5">ゥ</button>
-<button type="button" data-cp="U+30A6">ウ</button>
-<button type="button" data-cp="U+30A7">ェ</button>
-<button type="button" data-cp="U+30A8">エ</button>
-<button type="button" data-cp="U+30A9">ォ</button>
-<button type="button" data-cp="U+30AA">オ</button>
-<button type="button" data-cp="U+30AB">カ</button>
-<button type="button" data-cp="U+30AC">ガ</button>
-<button type="button" data-cp="U+30AD">キ</button>
-<button type="button" data-cp="U+30AE">ギ</button>
-<button type="button" data-cp="U+30AF">ク</button>
-<button type="button" data-cp="U+30B0">グ</button>
-<button type="button" data-cp="U+30B1">ケ</button>
-<button type="button" data-cp="U+30B2">ゲ</button>
-<button type="button" data-cp="U+30B3">コ</button>
-<button type="button" data-cp="U+30B4">ゴ</button>
-<button type="button" data-cp="U+30B5">サ</button>
-<button type="button" data-cp="U+30B6">ザ</button>
-<button type="button" data-cp="U+30B7">シ</button>
-<button type="button" data-cp="U+30B8">ジ</button>
-<button type="button" data-cp="U+30B9">ス</button>
-<button type="button" data-cp="U+30BA">ズ</button>
-<button type="button" data-cp="U+30BB">セ</button>
-<button type="button" data-cp="U+30BC">ゼ</button>
-<button type="button" data-cp="U+30BD">ソ</button>
-<button type="button" data-cp="U+30BE">ゾ</button>
-<button type="button" data-cp="U+30BF">タ</button>
-<button type="button" data-cp="U+30C0">ダ</button>
-<button type="button" data-cp="U+30C1">チ</button>
-<button type="button" data-cp="U+30C2">ヂ</button>
-<button type="button" data-cp="U+30C3">ッ</button>
-<button type="button" data-cp="U+30C4">ツ</button>
-<button type="button" data-cp="U+30C5">ヅ</button>
-<button type="button" data-cp="U+30C6">テ</button>
-<button type="button" data-cp="U+30C7">デ</button>
-<button type="button" data-cp="U+30C8">ト</button>
-<button type="button" data-cp="U+30C9">ド</button>
-<button type="button" data-cp="U+30CA">ナ</button>
-<button type="button" data-cp="U+30CB">ニ</button>
-<button type="button" data-cp="U+30CC">ヌ</button>
-<button type="button" data-cp="U+30CD">ネ</button>
-<button type="button" data-cp="U+30CE">ノ</button>
-<button type="button" data-cp="U+30CF">ハ</button>
-<button type="button" data-cp="U+30D0">バ</button>
-<button type="button" data-cp="U+30D1">パ</button>
-<button type="button" data-cp="U+30D2">ヒ</button>
-<button type="button" data-cp="U+30D3">ビ</button>
-<button type="button" data-cp="U+30D4">ピ</button>
-<button type="button" data-cp="U+30D5">フ</button>
-<button type="button" data-cp="U+30D6">ブ</button>
-<button type="button" data-cp="U+30D7">プ</button>
-<button type="button" data-cp="U+30D8">ヘ</button>
-<button type="button" data-cp="U+30D9">ベ</button>
-<button type="button" data-cp="U+30DA">ペ</button>
-<button type="button" data-cp="U+30DB">ホ</button>
-<button type="button" data-cp="U+30DC">ボ</button>
-<button type="button" data-cp="U+30DD">ポ</button>
-<button type="button" data-cp="U+30DE">マ</button>
-<button type="button" data-cp="U+30DF">ミ</button>
-<button type="button" data-cp="U+30E0">ム</button>
-<button type="button" data-cp="U+30E1">メ</button>
-<button type="button" data-cp="U+30E2">モ</button>
-<button type="button" data-cp="U+30E3">ャ</button>
-<button type="button" data-cp="U+30E4">ヤ</button>
-<button type="button" data-cp="U+30E5">ュ</button>
-<button type="button" data-cp="U+30E6">ユ</button>
-<button type="button" data-cp="U+30E7">ョ</button>
-<button type="button" data-cp="U+30E8">ヨ</button>
-<button type="button" data-cp="U+30E9">ラ</button>
-<button type="button" data-cp="U+30EA">リ</button>
-<button type="button" data-cp="U+30EB">ル</button>
-<button type="button" data-cp="U+30EC">レ</button>
-<button type="button" data-cp="U+30ED">ロ</button>
-<button type="button" data-cp="U+30EE">ヮ</button>
-<button type="button" data-cp="U+30EF">ワ</button>
-<button type="button" data-cp="U+30F0">ヰ</button>
-<button type="button" data-cp="U+30F1">ヱ</button>
-<button type="button" data-cp="U+30F2">ヲ</button>
-<button type="button" data-cp="U+30F3">ン</button>
-<button type="button" data-cp="U+30F4">ヴ</button>
-<button type="button" data-cp="U+30F5">ヵ</button>
-<button type="button" data-cp="U+30F6">ヶ</button>
-<button type="button" data-cp="U+30F7">ヷ</button>
-<button type="button" data-cp="U+30F8">ヸ</button>
-<button type="button" data-cp="U+30F9">ヹ</button>
-<button type="button" data-cp="U+30FA">ヺ</button>
-<button type="button" data-cp="U+30FB">・</button>
-<button type="button" data-cp="U+30FC">ー</button>
-<button type="button" data-cp="U+30FD">ヽ</button>
-<button type="button" data-cp="U+30FE">ヾ</button>
-<button type="button" data-cp="U+31F0">ㇰ</button>
-<button type="button" data-cp="U+31F1">ㇱ</button>
-<button type="button" data-cp="U+31F2">ㇲ</button>
-<button type="button" data-cp="U+31F3">ㇳ</button>
-<button type="button" data-cp="U+31F4">ㇴ</button>
-<button type="button" data-cp="U+31F5">ㇵ</button>
-<button type="button" data-cp="U+31F6">ㇶ</button>
-<button type="button" data-cp="U+31F7">ㇷ</button>
-<button type="button" data-cp="U+31F8">ㇸ</button>
-<button type="button" data-cp="U+31F9">ㇹ</button>
-<button type="button" data-cp="U+31FA">ㇺ</button>
-<button type="button" data-cp="U+31FB">ㇻ</button>
-<button type="button" data-cp="U+31FC">ㇼ</button>
-<button type="button" data-cp="U+31FD">ㇽ</button>
-<button type="button" data-cp="U+31FE">ㇾ</button>
-<button type="button" data-cp="U+31FF">ㇿ</button>
+<h3 class="glyph-group"><span class="ja">新しい文字</span><span class="label">Kana Extended-A · U+1B127–1B128 · Unicode 18.0 · 2字　·　2字はKlee Oneにない</span></h3>
+<div class="glyphs">
+<button type="button" class="added" data-cp="U+1B127" title="U+1B127　Kureedoが追加　added by Kureedo">𛄧</button>
+<button type="button" class="added" data-cp="U+1B128" title="U+1B128　Kureedoが追加　added by Kureedo">𛄨</button>
+</div>
+<h3 class="glyph-group"><span class="ja">片仮名</span><span class="label">Katakana · U+30A0–30FF · 94字</span></h3>
+<div class="glyphs">
+<button type="button" data-cp="U+30A1" title="U+30A1">ァ</button>
+<button type="button" data-cp="U+30A2" title="U+30A2">ア</button>
+<button type="button" data-cp="U+30A3" title="U+30A3">ィ</button>
+<button type="button" data-cp="U+30A4" title="U+30A4">イ</button>
+<button type="button" data-cp="U+30A5" title="U+30A5">ゥ</button>
+<button type="button" data-cp="U+30A6" title="U+30A6">ウ</button>
+<button type="button" data-cp="U+30A7" title="U+30A7">ェ</button>
+<button type="button" data-cp="U+30A8" title="U+30A8">エ</button>
+<button type="button" data-cp="U+30A9" title="U+30A9">ォ</button>
+<button type="button" data-cp="U+30AA" title="U+30AA">オ</button>
+<button type="button" data-cp="U+30AB" title="U+30AB">カ</button>
+<button type="button" data-cp="U+30AC" title="U+30AC">ガ</button>
+<button type="button" data-cp="U+30AD" title="U+30AD">キ</button>
+<button type="button" data-cp="U+30AE" title="U+30AE">ギ</button>
+<button type="button" data-cp="U+30AF" title="U+30AF">ク</button>
+<button type="button" data-cp="U+30B0" title="U+30B0">グ</button>
+<button type="button" data-cp="U+30B1" title="U+30B1">ケ</button>
+<button type="button" data-cp="U+30B2" title="U+30B2">ゲ</button>
+<button type="button" data-cp="U+30B3" title="U+30B3">コ</button>
+<button type="button" data-cp="U+30B4" title="U+30B4">ゴ</button>
+<button type="button" data-cp="U+30B5" title="U+30B5">サ</button>
+<button type="button" data-cp="U+30B6" title="U+30B6">ザ</button>
+<button type="button" data-cp="U+30B7" title="U+30B7">シ</button>
+<button type="button" data-cp="U+30B8" title="U+30B8">ジ</button>
+<button type="button" data-cp="U+30B9" title="U+30B9">ス</button>
+<button type="button" data-cp="U+30BA" title="U+30BA">ズ</button>
+<button type="button" data-cp="U+30BB" title="U+30BB">セ</button>
+<button type="button" data-cp="U+30BC" title="U+30BC">ゼ</button>
+<button type="button" data-cp="U+30BD" title="U+30BD">ソ</button>
+<button type="button" data-cp="U+30BE" title="U+30BE">ゾ</button>
+<button type="button" data-cp="U+30BF" title="U+30BF">タ</button>
+<button type="button" data-cp="U+30C0" title="U+30C0">ダ</button>
+<button type="button" data-cp="U+30C1" title="U+30C1">チ</button>
+<button type="button" data-cp="U+30C2" title="U+30C2">ヂ</button>
+<button type="button" data-cp="U+30C3" title="U+30C3">ッ</button>
+<button type="button" data-cp="U+30C4" title="U+30C4">ツ</button>
+<button type="button" data-cp="U+30C5" title="U+30C5">ヅ</button>
+<button type="button" data-cp="U+30C6" title="U+30C6">テ</button>
+<button type="button" data-cp="U+30C7" title="U+30C7">デ</button>
+<button type="button" data-cp="U+30C8" title="U+30C8">ト</button>
+<button type="button" data-cp="U+30C9" title="U+30C9">ド</button>
+<button type="button" data-cp="U+30CA" title="U+30CA">ナ</button>
+<button type="button" data-cp="U+30CB" title="U+30CB">ニ</button>
+<button type="button" data-cp="U+30CC" title="U+30CC">ヌ</button>
+<button type="button" data-cp="U+30CD" title="U+30CD">ネ</button>
+<button type="button" data-cp="U+30CE" title="U+30CE">ノ</button>
+<button type="button" data-cp="U+30CF" title="U+30CF">ハ</button>
+<button type="button" data-cp="U+30D0" title="U+30D0">バ</button>
+<button type="button" data-cp="U+30D1" title="U+30D1">パ</button>
+<button type="button" data-cp="U+30D2" title="U+30D2">ヒ</button>
+<button type="button" data-cp="U+30D3" title="U+30D3">ビ</button>
+<button type="button" data-cp="U+30D4" title="U+30D4">ピ</button>
+<button type="button" data-cp="U+30D5" title="U+30D5">フ</button>
+<button type="button" data-cp="U+30D6" title="U+30D6">ブ</button>
+<button type="button" data-cp="U+30D7" title="U+30D7">プ</button>
+<button type="button" data-cp="U+30D8" title="U+30D8">ヘ</button>
+<button type="button" data-cp="U+30D9" title="U+30D9">ベ</button>
+<button type="button" data-cp="U+30DA" title="U+30DA">ペ</button>
+<button type="button" data-cp="U+30DB" title="U+30DB">ホ</button>
+<button type="button" data-cp="U+30DC" title="U+30DC">ボ</button>
+<button type="button" data-cp="U+30DD" title="U+30DD">ポ</button>
+<button type="button" data-cp="U+30DE" title="U+30DE">マ</button>
+<button type="button" data-cp="U+30DF" title="U+30DF">ミ</button>
+<button type="button" data-cp="U+30E0" title="U+30E0">ム</button>
+<button type="button" data-cp="U+30E1" title="U+30E1">メ</button>
+<button type="button" data-cp="U+30E2" title="U+30E2">モ</button>
+<button type="button" data-cp="U+30E3" title="U+30E3">ャ</button>
+<button type="button" data-cp="U+30E4" title="U+30E4">ヤ</button>
+<button type="button" data-cp="U+30E5" title="U+30E5">ュ</button>
+<button type="button" data-cp="U+30E6" title="U+30E6">ユ</button>
+<button type="button" data-cp="U+30E7" title="U+30E7">ョ</button>
+<button type="button" data-cp="U+30E8" title="U+30E8">ヨ</button>
+<button type="button" data-cp="U+30E9" title="U+30E9">ラ</button>
+<button type="button" data-cp="U+30EA" title="U+30EA">リ</button>
+<button type="button" data-cp="U+30EB" title="U+30EB">ル</button>
+<button type="button" data-cp="U+30EC" title="U+30EC">レ</button>
+<button type="button" data-cp="U+30ED" title="U+30ED">ロ</button>
+<button type="button" data-cp="U+30EE" title="U+30EE">ヮ</button>
+<button type="button" data-cp="U+30EF" title="U+30EF">ワ</button>
+<button type="button" data-cp="U+30F0" title="U+30F0">ヰ</button>
+<button type="button" data-cp="U+30F1" title="U+30F1">ヱ</button>
+<button type="button" data-cp="U+30F2" title="U+30F2">ヲ</button>
+<button type="button" data-cp="U+30F3" title="U+30F3">ン</button>
+<button type="button" data-cp="U+30F4" title="U+30F4">ヴ</button>
+<button type="button" data-cp="U+30F5" title="U+30F5">ヵ</button>
+<button type="button" data-cp="U+30F6" title="U+30F6">ヶ</button>
+<button type="button" data-cp="U+30F7" title="U+30F7">ヷ</button>
+<button type="button" data-cp="U+30F8" title="U+30F8">ヸ</button>
+<button type="button" data-cp="U+30F9" title="U+30F9">ヹ</button>
+<button type="button" data-cp="U+30FA" title="U+30FA">ヺ</button>
+<button type="button" data-cp="U+30FB" title="U+30FB">・</button>
+<button type="button" data-cp="U+30FC" title="U+30FC">ー</button>
+<button type="button" data-cp="U+30FD" title="U+30FD">ヽ</button>
+<button type="button" data-cp="U+30FE" title="U+30FE">ヾ</button>
+</div>
+<h3 class="glyph-group"><span class="ja">小書き片仮名（アイヌ語）</span><span class="label">Katakana Phonetic Extensions · U+31F0–31FF · 16字　·　16字はKlee Oneにない</span></h3>
+<div class="glyphs">
+<button type="button" class="added" data-cp="U+31F0" title="U+31F0　Kureedoが追加　added by Kureedo">ㇰ</button>
+<button type="button" class="added" data-cp="U+31F1" title="U+31F1　Kureedoが追加　added by Kureedo">ㇱ</button>
+<button type="button" class="added" data-cp="U+31F2" title="U+31F2　Kureedoが追加　added by Kureedo">ㇲ</button>
+<button type="button" class="added" data-cp="U+31F3" title="U+31F3　Kureedoが追加　added by Kureedo">ㇳ</button>
+<button type="button" class="added" data-cp="U+31F4" title="U+31F4　Kureedoが追加　added by Kureedo">ㇴ</button>
+<button type="button" class="added" data-cp="U+31F5" title="U+31F5　Kureedoが追加　added by Kureedo">ㇵ</button>
+<button type="button" class="added" data-cp="U+31F6" title="U+31F6　Kureedoが追加　added by Kureedo">ㇶ</button>
+<button type="button" class="added" data-cp="U+31F7" title="U+31F7　Kureedoが追加　added by Kureedo">ㇷ</button>
+<button type="button" class="added" data-cp="U+31F8" title="U+31F8　Kureedoが追加　added by Kureedo">ㇸ</button>
+<button type="button" class="added" data-cp="U+31F9" title="U+31F9　Kureedoが追加　added by Kureedo">ㇹ</button>
+<button type="button" class="added" data-cp="U+31FA" title="U+31FA　Kureedoが追加　added by Kureedo">ㇺ</button>
+<button type="button" class="added" data-cp="U+31FB" title="U+31FB　Kureedoが追加　added by Kureedo">ㇻ</button>
+<button type="button" class="added" data-cp="U+31FC" title="U+31FC　Kureedoが追加　added by Kureedo">ㇼ</button>
+<button type="button" class="added" data-cp="U+31FD" title="U+31FD　Kureedoが追加　added by Kureedo">ㇽ</button>
+<button type="button" class="added" data-cp="U+31FE" title="U+31FE　Kureedoが追加　added by Kureedo">ㇾ</button>
+<button type="button" class="added" data-cp="U+31FF" title="U+31FF　Kureedoが追加　added by Kureedo">ㇿ</button>
+</div>
+<h3 class="glyph-group"><span class="ja">濁点・半濁点</span><span class="label">Voicing marks · U+3099–309C · combining and spacing · 4字　·　2字はKlee Oneにない</span></h3>
+<div class="glyphs">
+<button type="button" class="added" data-cp="U+3099" title="U+3099　Kureedoが追加　added by Kureedo">◌゙</button>
+<button type="button" class="added" data-cp="U+309A" title="U+309A　Kureedoが追加　added by Kureedo">◌゚</button>
+<button type="button" data-cp="U+309B" title="U+309B">゛</button>
+<button type="button" data-cp="U+309C" title="U+309C">゜</button>
+</div>
+<h3 class="glyph-group"><span class="ja">記号・句読点</span><span class="label">CJK Symbols and Punctuation · U+3000–303F · 36字</span></h3>
+<div class="glyphs">
+<button type="button" data-cp="U+3000" title="U+3000">　</button>
+<button type="button" data-cp="U+3001" title="U+3001">、</button>
+<button type="button" data-cp="U+3002" title="U+3002">。</button>
+<button type="button" data-cp="U+3003" title="U+3003">〃</button>
+<button type="button" data-cp="U+3004" title="U+3004">〄</button>
+<button type="button" data-cp="U+3005" title="U+3005">々</button>
+<button type="button" data-cp="U+3006" title="U+3006">〆</button>
+<button type="button" data-cp="U+3007" title="U+3007">〇</button>
+<button type="button" data-cp="U+3008" title="U+3008">〈</button>
+<button type="button" data-cp="U+3009" title="U+3009">〉</button>
+<button type="button" data-cp="U+300A" title="U+300A">《</button>
+<button type="button" data-cp="U+300B" title="U+300B">》</button>
+<button type="button" data-cp="U+300C" title="U+300C">「</button>
+<button type="button" data-cp="U+300D" title="U+300D">」</button>
+<button type="button" data-cp="U+300E" title="U+300E">『</button>
+<button type="button" data-cp="U+300F" title="U+300F">』</button>
+<button type="button" data-cp="U+3010" title="U+3010">【</button>
+<button type="button" data-cp="U+3011" title="U+3011">】</button>
+<button type="button" data-cp="U+3012" title="U+3012">〒</button>
+<button type="button" data-cp="U+3013" title="U+3013">〓</button>
+<button type="button" data-cp="U+3014" title="U+3014">〔</button>
+<button type="button" data-cp="U+3015" title="U+3015">〕</button>
+<button type="button" data-cp="U+3018" title="U+3018">〘</button>
+<button type="button" data-cp="U+3019" title="U+3019">〙</button>
+<button type="button" data-cp="U+301C" title="U+301C">〜</button>
+<button type="button" data-cp="U+301D" title="U+301D">〝</button>
+<button type="button" data-cp="U+301E" title="U+301E">〞</button>
+<button type="button" data-cp="U+301F" title="U+301F">〟</button>
+<button type="button" data-cp="U+3020" title="U+3020">〠</button>
+<button type="button" data-cp="U+3030" title="U+3030">〰</button>
+<button type="button" data-cp="U+3033" title="U+3033">〳</button>
+<button type="button" data-cp="U+3034" title="U+3034">〴</button>
+<button type="button" data-cp="U+3035" title="U+3035">〵</button>
+<button type="button" data-cp="U+3036" title="U+3036">〶</button>
+<button type="button" data-cp="U+303B" title="U+303B">〻</button>
+<button type="button" data-cp="U+303D" title="U+303D">〽</button>
+</div>
+<h3 class="glyph-group"><span class="ja">空白</span><span class="label">Space · U+0020 · 1字</span></h3>
+<div class="glyphs">
+<button type="button" data-cp="U+0020" title="U+0020" aria-label="U+0020 space"> </button>
+</div>
 <!-- glyphs:end -->
-    </div>
   </section>
 
   <section>
