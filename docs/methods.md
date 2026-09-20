@@ -51,3 +51,7 @@ The rounds are in `votes/pu/` (`roundN-designs.json` maps each candidate id to i
 17. Six forms around that winner (`round17-ladder.json`): clearance 19 beat 14 and 24; the mark at 1.0× beat 1.15× twice; a 40° direction tied with プ's.
 
 The 0.4 setting is candidate `p7efd533ab1941192` of round 17: small kana at 78%, centred, stroke weight 0.9, vertical top at 329 units with a 130-unit shift right; the handakuten at 78% with its centre 71 units right and 39 above the small letter's top-right corner.
+
+### Stroke weight (0.4.1)
+
+Measured against Klee's own pairs, the small kana keep 0.89–0.95 of the full-size stroke (ッ/ツ 0.89, ァ/ア 0.92, ェ/エ 0.93, ヶ/ケ 0.95; median 0.92), while the 0.4.0 build's nominal 0.9 came out at 0.88–0.90 because a dilation by r adds a little less than 2r to the measured stroke once the corners round. 0.4.1 targets 0.92 and solves the dilation radius on the measured result, so every small kana and the scaled handakuten sit at 0.92 ± 0.01. A morphological opening to retract the tapered terminals (which Klee draws shorter and plumper on ッ and ァ) was tried at radii up to 10 units: below the thinnest stroke's half-width it changes little, above it it eats ㇰ, so the terminals stay as scaled; shortening them by hand remains open.
