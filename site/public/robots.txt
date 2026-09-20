@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kureedo.mkpo.li/sitemap.xml

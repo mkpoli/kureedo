@@ -6,3 +6,7 @@ After a release: update the version, sizes and asset URLs in the download block 
 Old `public/vX.Y.Z/` folders stay: their URLs are immutable.
 
 `public/_headers` sets CORS and cache headers: one year, immutable, for `/v*/`; one day for `/fonts/*` and `/kureedo.css`.
+
+Search metadata lives in `public/index.html`. Its canonical URL, Open Graph URL and `WebSite` structured data use `https://kureedo.mkpo.li/`. `public/sitemap.xml` lists this single page; section anchors and font assets are not separate pages. `public/robots.txt` advertises the sitemap. Cloudflare may prepend its managed robots.txt content in production. The favicon uses the historical ネ outline from `sources/glyphs/ne.svg`.
+
+After deployment, check that `/robots.txt` includes the sitemap line, `/sitemap.xml` returns XML with status 200, and a missing URL returns status 404. Submit `https://kureedo.mkpo.li/sitemap.xml` in Google Search Console and request indexing of the home page through URL Inspection.
