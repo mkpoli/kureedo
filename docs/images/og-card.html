@@ -1,0 +1,55 @@
+<!doctype html>
+<meta charset="utf-8">
+<style>
+  @font-face { font-family: KF; src: url("../../fonts/Kureedo-Regular.ttf") format("truetype"); }
+  :root { --ink: #17140f; --paper: #ece5d6; --card: #fbf8f1; --rule: #c9bda3; --rule2: #e6dfd0; --accent: #a43f1f; --muted: #857a66; }
+  * { box-sizing: border-box; }
+  body { margin: 0; width: 1200px; height: 630px; background: var(--paper); display: flex; align-items: center; justify-content: center; color: var(--ink); font-family: KF, serif;
+         background-image: radial-gradient(var(--rule) .9px, transparent 1px); background-size: 18px 18px; }
+  .frame { width: 1136px; height: 566px; background: var(--card); border: 3px solid var(--ink); position: relative; box-shadow: 14px 14px 0 var(--ink); display: grid; grid-template-rows: 96px 1fr 62px; }
+  .frame::before { content: ""; position: absolute; inset: 8px; border: 1px solid var(--rule); pointer-events: none; }
+  .corner { position: absolute; width: 26px; height: 26px; border: 3px solid var(--accent); pointer-events: none; z-index: 2; }
+  .c1 { top: -3px; left: -3px; border-right: 0; border-bottom: 0; } .c2 { top: -3px; right: -3px; border-left: 0; border-bottom: 0; }
+  .c3 { bottom: -3px; left: -3px; border-right: 0; border-top: 0; } .c4 { bottom: -3px; right: -3px; border-left: 0; border-top: 0; }
+  .mono { font-family: ui-monospace, "SFMono-Regular", Menlo, monospace; }
+  .top { display: grid; grid-template-columns: auto 1fr auto; align-items: end; padding: 14px 36px 12px; border-bottom: 2px solid var(--ink); gap: 24px; }
+  .wm { font-size: 54px; line-height: 1; letter-spacing: .02em; }
+  .wm small { font-size: 22px; letter-spacing: .12em; margin-left: 14px; color: var(--muted); }
+  .ticks { height: 10px; background: repeating-linear-gradient(90deg, var(--rule) 0 1px, transparent 1px 12px); margin-bottom: 6px; }
+  .meta { font: 600 13px/1.5 ui-monospace, monospace; letter-spacing: .2em; color: var(--accent); text-align: right; }
+  .meta small { display: block; font-size: 11px; letter-spacing: .14em; color: var(--muted); font-weight: 500; }
+  .body { display: grid; grid-template-columns: 300px 1fr; min-height: 0; }
+  .hero { border-right: 2px solid #b9ac93; display: grid; grid-template-rows: 1fr auto; align-items: center; justify-items: center; padding: 6px 10px 12px; }
+  .hero .g { font-size: 150px; line-height: 1; letter-spacing: .02em; }
+  .hero .l { font: 600 12px/1.6 ui-monospace, monospace; letter-spacing: .18em; color: var(--muted); text-align: center; }
+  .hero .l b { color: var(--accent); }
+  .rows { display: grid; grid-template-rows: repeat(3, 1fr); min-height: 0; }
+  .row { display: grid; grid-template-columns: 96px 1fr; align-items: center; padding: 0 28px 0 22px; }
+  .row + .row { border-top: 1px solid var(--rule); }
+  .row .tag { font: 700 11px/1.5 ui-monospace, monospace; letter-spacing: .22em; color: var(--accent); }
+  .row .tag small { display: block; font-size: 10px; color: var(--muted); font-weight: 500; letter-spacing: .12em; }
+  .row .tag small.k { font: 400 13px KF, serif; letter-spacing: .1em; }
+  .row .t { font-size: 44px; line-height: 1.1; white-space: nowrap; letter-spacing: .06em; }
+  .row .t.s { font-size: 40px; letter-spacing: .1em; }
+  .bot { display: grid; grid-template-columns: 1fr auto; align-items: center; padding: 0 36px; border-top: 2px solid var(--ink); }
+  .bot .s { font-size: 22px; line-height: 1; letter-spacing: .06em; white-space: nowrap; display: flex; align-items: center; gap: 12px; }
+  .bot .s small { font: 600 11px/1 ui-monospace, monospace; letter-spacing: .25em; color: var(--accent); }
+  .bot .s small + span { margin-right: 18px; }
+  .bot .note { font: 500 12px/1 ui-monospace, monospace; letter-spacing: .12em; color: var(--muted); }
+</style>
+<div class="frame">
+  <span class="corner c1"></span><span class="corner c2"></span><span class="corner c3"></span><span class="corner c4"></span>
+  <div class="top"><span class="wm">Kureedo<small>クレード</small></span><span class="ticks"></span><span class="meta">KLEE ONE · HISTORICAL KATAKANA · EXTENDED KANA<small>UNICODE 18.0 · U+1B127–1B128 · U+31F0–31FF · OFL 1.1</small></span></div>
+  <div class="body">
+    <div class="hero"><div class="g">&#x1B127;&#x1B128;</div><div class="l">U+1B127 · U+1B128<br><b>ALTERNATE NE · WI</b></div></div>
+    <div class="rows">
+      <div class="row"><span class="tag">HIST<small class="k">ネヰ→&#x1B127;&#x1B128;</small></span><span class="t">ア&#x1B127;　シ&#x1B127;　ト&#x1B127;　イ&#x1B128;ヱカラ。</span></div>
+      <div class="row"><span class="tag">SMALL<small>U+31F0–31FF</small></span><span class="t s">ㇰㇱㇲㇳㇴㇵㇶㇷㇸㇹㇺㇻㇼㇽㇾㇿ</span></div>
+      <div class="row"><span class="tag">MARKS<small>CCMP · U+309A</small></span><span class="t s">セ゚ツ゚ト゚ㇷ゚　カ゚キ゚ク゚ケ゚コ゚</span></div>
+    </div>
+  </div>
+  <div class="bot">
+    <span class="s"><small>JA</small><span>&#x1B127;コ　フ&#x1B127;　&#x1B128;ノシシ</span><small>AIN</small><span>サラニㇷ゚　アㇷ゚カㇱ　ユカㇻ</span></span>
+    <span class="note">kureedo.mkpo.li</span>
+  </div>
+</div>
