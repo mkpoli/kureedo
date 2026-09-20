@@ -66,4 +66,4 @@ A morphological opening to retract the tapered terminals (which Klee draws short
 
 ![ㇷ゚ and the marked kana at 16–48 px and in vertical text](images/proof-sizes.png)
 
-A second review of these proofs (2026-09-20) found the ㇷ゚ ring right at 16–32 px and the vertical placement sound, and left the terminals as the next piece of work: shorten the taper of ㇱ (20–25%), ㇷ (20–25%), ㇰ (15–20%), and provisionally ㇲ and ㇾ, finishing each with a compact rounded cap, while keeping the 0.92 measure.
+A second review of these proofs (2026-09-20) found the ㇷ゚ ring right at 16–32 px and the vertical placement sound, and noted the terminals: Klee's own small kana end shorter and blunter than the scaled letters, most visibly on ㇱ ㇷ ㇰ. An automatic retraction was tried and rejected (it cannot tell a stroke's entry from its end), and a side-by-side at 360 px was judged not worth a hand pass for a text face; the terminals stay as scaled.
