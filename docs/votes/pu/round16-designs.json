@@ -1,0 +1,385 @@
+{
+  "base": {
+    "scale": 0.78,
+    "align": 0.0,
+    "lift": 0,
+    "vertTop": 329,
+    "vertX": 130,
+    "markRel": 1.0,
+    "markDy": 0,
+    "markDx": 0,
+    "weight": 0.9,
+    "gap": 19,
+    "angle": 28.6
+  },
+  "axes": [
+    {
+      "name": "gap",
+      "ladder": [
+        "p82de58ce89e416ca",
+        "p6881394cd9f64ad7",
+        "p8c85b2e7a9e5b168",
+        "p091ba616263c74df",
+        "pedfddbfa64de9bd8"
+      ],
+      "start": 1,
+      "steps": [
+        10,
+        19,
+        24,
+        32,
+        42
+      ]
+    },
+    {
+      "name": "markRel",
+      "ladder": [
+        "p9d4403ade031ce7d",
+        "p6881394cd9f64ad7",
+        "pc95e462b3fa22e62"
+      ],
+      "start": 1,
+      "steps": [
+        0.85,
+        1.0,
+        1.15
+      ]
+    },
+    {
+      "name": "angle",
+      "ladder": [
+        "p348db7266d0ccf67",
+        "p6881394cd9f64ad7",
+        "p6718dde2270863d6"
+      ],
+      "start": 1,
+      "steps": [
+        0,
+        28.6,
+        60
+      ]
+    },
+    {
+      "name": "pu-proportions",
+      "ladder": [
+        "p40f0d4ef3dad824d"
+      ],
+      "start": 0,
+      "steps": [
+        "scaled プ offset"
+      ]
+    }
+  ],
+  "fonts": [
+    {
+      "id": "p82de58ce89e416ca",
+      "design": {
+        "scale": 0.78,
+        "align": 0.0,
+        "lift": 0,
+        "vertTop": 329,
+        "vertX": 130,
+        "markRel": 1.0,
+        "markDy": 0,
+        "markDx": 0,
+        "weight": 0.9,
+        "gap": 10,
+        "angle": 28.6
+      },
+      "small": {
+        "scale": 0.78,
+        "x": 114,
+        "y": -25,
+        "vertTop": 329,
+        "vertX": 130,
+        "vertY": 0,
+        "weight": 0.9
+      },
+      "mark": {
+        "scale": 0.78,
+        "cx": 63,
+        "cy": 34,
+        "weight": 0.9
+      }
+    },
+    {
+      "id": "p6881394cd9f64ad7",
+      "design": {
+        "scale": 0.78,
+        "align": 0.0,
+        "lift": 0,
+        "vertTop": 329,
+        "vertX": 130,
+        "markRel": 1.0,
+        "markDy": 0,
+        "markDx": 0,
+        "weight": 0.9,
+        "gap": 19,
+        "angle": 28.6
+      },
+      "small": {
+        "scale": 0.78,
+        "x": 114,
+        "y": -25,
+        "vertTop": 329,
+        "vertX": 130,
+        "vertY": 0,
+        "weight": 0.9
+      },
+      "mark": {
+        "scale": 0.78,
+        "cx": 71,
+        "cy": 39,
+        "weight": 0.9
+      }
+    },
+    {
+      "id": "p8c85b2e7a9e5b168",
+      "design": {
+        "scale": 0.78,
+        "align": 0.0,
+        "lift": 0,
+        "vertTop": 329,
+        "vertX": 130,
+        "markRel": 1.0,
+        "markDy": 0,
+        "markDx": 0,
+        "weight": 0.9,
+        "gap": 24,
+        "angle": 28.6
+      },
+      "small": {
+        "scale": 0.78,
+        "x": 114,
+        "y": -25,
+        "vertTop": 329,
+        "vertX": 130,
+        "vertY": 0,
+        "weight": 0.9
+      },
+      "mark": {
+        "scale": 0.78,
+        "cx": 75,
+        "cy": 41,
+        "weight": 0.9
+      }
+    },
+    {
+      "id": "p091ba616263c74df",
+      "design": {
+        "scale": 0.78,
+        "align": 0.0,
+        "lift": 0,
+        "vertTop": 329,
+        "vertX": 130,
+        "markRel": 1.0,
+        "markDy": 0,
+        "markDx": 0,
+        "weight": 0.9,
+        "gap": 32,
+        "angle": 28.6
+      },
+      "small": {
+        "scale": 0.78,
+        "x": 114,
+        "y": -25,
+        "vertTop": 329,
+        "vertX": 130,
+        "vertY": 0,
+        "weight": 0.9
+      },
+      "mark": {
+        "scale": 0.78,
+        "cx": 82,
+        "cy": 45,
+        "weight": 0.9
+      }
+    },
+    {
+      "id": "pedfddbfa64de9bd8",
+      "design": {
+        "scale": 0.78,
+        "align": 0.0,
+        "lift": 0,
+        "vertTop": 329,
+        "vertX": 130,
+        "markRel": 1.0,
+        "markDy": 0,
+        "markDx": 0,
+        "weight": 0.9,
+        "gap": 42,
+        "angle": 28.6
+      },
+      "small": {
+        "scale": 0.78,
+        "x": 114,
+        "y": -25,
+        "vertTop": 329,
+        "vertX": 130,
+        "vertY": 0,
+        "weight": 0.9
+      },
+      "mark": {
+        "scale": 0.78,
+        "cx": 91,
+        "cy": 50,
+        "weight": 0.9
+      }
+    },
+    {
+      "id": "p9d4403ade031ce7d",
+      "design": {
+        "scale": 0.78,
+        "align": 0.0,
+        "lift": 0,
+        "vertTop": 329,
+        "vertX": 130,
+        "markRel": 0.85,
+        "markDy": 0,
+        "markDx": 0,
+        "weight": 0.9,
+        "gap": 19,
+        "angle": 28.6
+      },
+      "small": {
+        "scale": 0.78,
+        "x": 114,
+        "y": -25,
+        "vertTop": 329,
+        "vertX": 130,
+        "vertY": 0,
+        "weight": 0.9
+      },
+      "mark": {
+        "scale": 0.663,
+        "cx": 63,
+        "cy": 34,
+        "weight": 0.9
+      }
+    },
+    {
+      "id": "pc95e462b3fa22e62",
+      "design": {
+        "scale": 0.78,
+        "align": 0.0,
+        "lift": 0,
+        "vertTop": 329,
+        "vertX": 130,
+        "markRel": 1.15,
+        "markDy": 0,
+        "markDx": 0,
+        "weight": 0.9,
+        "gap": 19,
+        "angle": 28.6
+      },
+      "small": {
+        "scale": 0.78,
+        "x": 114,
+        "y": -25,
+        "vertTop": 329,
+        "vertX": 130,
+        "vertY": 0,
+        "weight": 0.9
+      },
+      "mark": {
+        "scale": 0.897,
+        "cx": 79,
+        "cy": 43,
+        "weight": 0.9
+      }
+    },
+    {
+      "id": "p348db7266d0ccf67",
+      "design": {
+        "scale": 0.78,
+        "align": 0.0,
+        "lift": 0,
+        "vertTop": 329,
+        "vertX": 130,
+        "markRel": 1.0,
+        "markDy": 0,
+        "markDx": 0,
+        "weight": 0.9,
+        "gap": 19,
+        "angle": 0
+      },
+      "small": {
+        "scale": 0.78,
+        "x": 114,
+        "y": -25,
+        "vertTop": 329,
+        "vertX": 130,
+        "vertY": 0,
+        "weight": 0.9
+      },
+      "mark": {
+        "scale": 0.78,
+        "cx": 90,
+        "cy": 0,
+        "weight": 0.9
+      }
+    },
+    {
+      "id": "p6718dde2270863d6",
+      "design": {
+        "scale": 0.78,
+        "align": 0.0,
+        "lift": 0,
+        "vertTop": 329,
+        "vertX": 130,
+        "markRel": 1.0,
+        "markDy": 0,
+        "markDx": 0,
+        "weight": 0.9,
+        "gap": 19,
+        "angle": 60
+      },
+      "small": {
+        "scale": 0.78,
+        "x": 114,
+        "y": -25,
+        "vertTop": 329,
+        "vertX": 130,
+        "vertY": 0,
+        "weight": 0.9
+      },
+      "mark": {
+        "scale": 0.78,
+        "cx": 40,
+        "cy": 69,
+        "weight": 0.9
+      }
+    },
+    {
+      "id": "p40f0d4ef3dad824d",
+      "design": {
+        "scale": 0.78,
+        "align": 0.0,
+        "lift": 0,
+        "vertTop": 329,
+        "vertX": 130,
+        "markRel": 1.0,
+        "markDy": 0,
+        "markDx": 0,
+        "weight": 0.9,
+        "gap": "プ-proportions",
+        "angle": 28.6
+      },
+      "small": {
+        "scale": 0.78,
+        "x": 114,
+        "y": -25,
+        "vertTop": 329,
+        "vertX": 130,
+        "vertY": 0,
+        "weight": 0.9
+      },
+      "mark": {
+        "scale": 0.78,
+        "cx": 70,
+        "cy": 38,
+        "weight": 0.9
+      }
+    }
+  ]
+}

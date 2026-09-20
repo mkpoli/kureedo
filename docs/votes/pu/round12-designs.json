@@ -1,0 +1,674 @@
+[
+  {
+    "id": "p555d7daf584f3503",
+    "design": {
+      "scale": 0.65,
+      "align": 1,
+      "lift": -17,
+      "vertTop": 224,
+      "vertX": 0,
+      "markScale": 1.0,
+      "cx": 13,
+      "cy": 188
+    },
+    "small": {
+      "scale": 0.65,
+      "x": 280,
+      "y": -45,
+      "vertTop": 224,
+      "vertX": 0,
+      "vertY": 0
+    },
+    "mark": {
+      "scale": 1.0,
+      "cx": 13,
+      "cy": 188
+    },
+    "control": true,
+    "anchor": null
+  },
+  {
+    "id": "p80ca9bceac09dcb9",
+    "design": {
+      "scale": 0.78,
+      "align": 0,
+      "lift": 0,
+      "vertTop": 329,
+      "vertX": 130,
+      "markScale": 0.78,
+      "cx": 10,
+      "cy": 120
+    },
+    "small": {
+      "scale": 0.78,
+      "x": 114,
+      "y": -25,
+      "vertTop": 329,
+      "vertX": 130,
+      "vertY": 0
+    },
+    "mark": {
+      "scale": 0.78,
+      "cx": 10,
+      "cy": 120
+    },
+    "control": false,
+    "anchor": "klee"
+  },
+  {
+    "id": "pfc7b4deafd41b7e3",
+    "design": {
+      "scale": 0.64,
+      "align": 0.2,
+      "lift": -1.55,
+      "vertTop": 219.8,
+      "vertX": 131.43,
+      "markScale": 0.9,
+      "cx": 12.28,
+      "cy": 145.22
+    },
+    "small": {
+      "scale": 0.64,
+      "x": 204,
+      "y": -29,
+      "vertTop": 220,
+      "vertX": 131,
+      "vertY": 0
+    },
+    "mark": {
+      "scale": 0.9,
+      "cx": 12,
+      "cy": 145
+    },
+    "control": false,
+    "anchor": null
+  },
+  {
+    "id": "p829b7caa0db7f571",
+    "design": {
+      "scale": 0.79,
+      "align": 0.15,
+      "lift": 13.33,
+      "vertTop": 324.7,
+      "vertX": 2.59,
+      "markScale": 0.94,
+      "cx": -14.25,
+      "cy": 197.34
+    },
+    "small": {
+      "scale": 0.79,
+      "x": 118,
+      "y": -12,
+      "vertTop": 325,
+      "vertX": 3,
+      "vertY": 0
+    },
+    "mark": {
+      "scale": 0.94,
+      "cx": -14,
+      "cy": 197
+    },
+    "control": false,
+    "anchor": null
+  },
+  {
+    "id": "pea639e783c21cb43",
+    "design": {
+      "scale": 0.68,
+      "align": 0.94,
+      "lift": -18.34,
+      "vertTop": 334.47,
+      "vertX": 153.33,
+      "markScale": 0.84,
+      "cx": -19.27,
+      "cy": 57.37
+    },
+    "small": {
+      "scale": 0.68,
+      "x": 251,
+      "y": -45,
+      "vertTop": 334,
+      "vertX": 153,
+      "vertY": 0
+    },
+    "mark": {
+      "scale": 0.84,
+      "cx": -19,
+      "cy": 57
+    },
+    "control": false,
+    "anchor": null
+  },
+  {
+    "id": "p86e8cd522193c291",
+    "design": {
+      "scale": 0.8,
+      "align": 0.99,
+      "lift": -11.96,
+      "vertTop": 379.83,
+      "vertX": 104.24,
+      "markScale": 0.67,
+      "cx": 26.06,
+      "cy": 72.11
+    },
+    "small": {
+      "scale": 0.8,
+      "x": 161,
+      "y": -37,
+      "vertTop": 380,
+      "vertX": 104,
+      "vertY": 0
+    },
+    "mark": {
+      "scale": 0.67,
+      "cx": 26,
+      "cy": 72
+    },
+    "control": false,
+    "anchor": null
+  },
+  {
+    "id": "p27dba9182ef03758",
+    "design": {
+      "scale": 0.63,
+      "align": 0.51,
+      "lift": 28.86,
+      "vertTop": 253.67,
+      "vertX": 41.36,
+      "markScale": 0.66,
+      "cx": 23.28,
+      "cy": 152.85
+    },
+    "small": {
+      "scale": 0.63,
+      "x": 243,
+      "y": 1,
+      "vertTop": 254,
+      "vertX": 41,
+      "vertY": 0
+    },
+    "mark": {
+      "scale": 0.66,
+      "cx": 23,
+      "cy": 153
+    },
+    "control": false,
+    "anchor": null
+  },
+  {
+    "id": "pe0bac7479421b9a5",
+    "design": {
+      "scale": 0.8,
+      "align": 0.65,
+      "lift": 34.0,
+      "vertTop": 311.48,
+      "vertX": 143.42,
+      "markScale": 0.81,
+      "cx": 0.87,
+      "cy": 183.38
+    },
+    "small": {
+      "scale": 0.8,
+      "x": 141,
+      "y": 9,
+      "vertTop": 311,
+      "vertX": 143,
+      "vertY": 0
+    },
+    "mark": {
+      "scale": 0.81,
+      "cx": 1,
+      "cy": 183
+    },
+    "control": false,
+    "anchor": null
+  },
+  {
+    "id": "p750bdcb38aabce5c",
+    "design": {
+      "scale": 0.75,
+      "align": 0.88,
+      "lift": 24.13,
+      "vertTop": 207.53,
+      "vertX": 67.71,
+      "markScale": 0.93,
+      "cx": -9.79,
+      "cy": 187.48
+    },
+    "small": {
+      "scale": 0.75,
+      "x": 192,
+      "y": -2,
+      "vertTop": 208,
+      "vertX": 68,
+      "vertY": 0
+    },
+    "mark": {
+      "scale": 0.93,
+      "cx": -10,
+      "cy": 187
+    },
+    "control": false,
+    "anchor": null
+  },
+  {
+    "id": "p09344fc8717841e4",
+    "design": {
+      "scale": 0.82,
+      "align": 0.02,
+      "lift": 36.71,
+      "vertTop": 306.05,
+      "vertX": 8.58,
+      "markScale": 0.7,
+      "cx": 28.31,
+      "cy": 177.64
+    },
+    "small": {
+      "scale": 0.82,
+      "x": 96,
+      "y": 12,
+      "vertTop": 306,
+      "vertX": 9,
+      "vertY": 0
+    },
+    "mark": {
+      "scale": 0.7,
+      "cx": 28,
+      "cy": 178
+    },
+    "control": false,
+    "anchor": null
+  },
+  {
+    "id": "p9ab8b6a19406f5ee",
+    "design": {
+      "scale": 0.65,
+      "align": 0.4,
+      "lift": 5.91,
+      "vertTop": 345.31,
+      "vertX": 55.84,
+      "markScale": 0.96,
+      "cx": 18.13,
+      "cy": 130.85
+    },
+    "small": {
+      "scale": 0.65,
+      "x": 219,
+      "y": -22,
+      "vertTop": 345,
+      "vertX": 56,
+      "vertY": 0
+    },
+    "mark": {
+      "scale": 0.96,
+      "cx": 18,
+      "cy": 131
+    },
+    "control": false,
+    "anchor": null
+  },
+  {
+    "id": "pfbc113def80b3445",
+    "design": {
+      "scale": 0.71,
+      "align": 0.3,
+      "lift": 7.95,
+      "vertTop": 227.96,
+      "vertX": 62.82,
+      "markScale": 0.92,
+      "cx": -3.87,
+      "cy": 53.49
+    },
+    "small": {
+      "scale": 0.71,
+      "x": 174,
+      "y": -19,
+      "vertTop": 228,
+      "vertX": 63,
+      "vertY": 0
+    },
+    "mark": {
+      "scale": 0.92,
+      "cx": -4,
+      "cy": 53
+    },
+    "control": false,
+    "anchor": null
+  },
+  {
+    "id": "p72fa9ab77890d8b2",
+    "design": {
+      "scale": 0.75,
+      "align": 0.68,
+      "lift": -0.59,
+      "vertTop": 262.09,
+      "vertX": 75.9,
+      "markScale": 0.88,
+      "cx": 31.19,
+      "cy": 139.57
+    },
+    "small": {
+      "scale": 0.75,
+      "x": 178,
+      "y": -26,
+      "vertTop": 262,
+      "vertX": 76,
+      "vertY": 0
+    },
+    "mark": {
+      "scale": 0.88,
+      "cx": 31,
+      "cy": 140
+    },
+    "control": false,
+    "anchor": null
+  },
+  {
+    "id": "p80226d8ef5a0c366",
+    "design": {
+      "scale": 0.72,
+      "align": 0.86,
+      "lift": -8.11,
+      "vertTop": 289.19,
+      "vertX": 110.37,
+      "markScale": 0.68,
+      "cx": 36.89,
+      "cy": 163.32
+    },
+    "small": {
+      "scale": 0.72,
+      "x": 213,
+      "y": -34,
+      "vertTop": 289,
+      "vertX": 110,
+      "vertY": 0
+    },
+    "mark": {
+      "scale": 0.68,
+      "cx": 37,
+      "cy": 163
+    },
+    "control": false,
+    "anchor": null
+  },
+  {
+    "id": "p0a33705a9efe7df9",
+    "design": {
+      "scale": 0.78,
+      "align": 0.34,
+      "lift": 30.58,
+      "vertTop": 370.09,
+      "vertX": 146.98,
+      "markScale": 0.74,
+      "cx": 5.39,
+      "cy": 103.15
+    },
+    "small": {
+      "scale": 0.78,
+      "x": 136,
+      "y": 5,
+      "vertTop": 370,
+      "vertX": 147,
+      "vertY": 0
+    },
+    "mark": {
+      "scale": 0.74,
+      "cx": 5,
+      "cy": 103
+    },
+    "control": false,
+    "anchor": null
+  },
+  {
+    "id": "p88c5dc4d6d654322",
+    "design": {
+      "scale": 0.69,
+      "align": 0.43,
+      "lift": -11.4,
+      "vertTop": 352.02,
+      "vertX": 33.62,
+      "markScale": 1.0,
+      "cx": 20.56,
+      "cy": 94.01
+    },
+    "small": {
+      "scale": 0.69,
+      "x": 197,
+      "y": -38,
+      "vertTop": 352,
+      "vertX": 34,
+      "vertY": 0
+    },
+    "mark": {
+      "scale": 1.0,
+      "cx": 21,
+      "cy": 94
+    },
+    "control": false,
+    "anchor": null
+  },
+  {
+    "id": "pc274227e37d5dca5",
+    "design": {
+      "scale": 0.67,
+      "align": 0.46,
+      "lift": -3.83,
+      "vertTop": 235.57,
+      "vertX": 119.89,
+      "markScale": 0.97,
+      "cx": -1.59,
+      "cy": 115.68
+    },
+    "small": {
+      "scale": 0.67,
+      "x": 213,
+      "y": -31,
+      "vertTop": 236,
+      "vertX": 120,
+      "vertY": 0
+    },
+    "mark": {
+      "scale": 0.97,
+      "cx": -2,
+      "cy": 116
+    },
+    "control": false,
+    "anchor": null
+  },
+  {
+    "id": "p7a5f297d259198f0",
+    "design": {
+      "scale": 0.62,
+      "align": 0.61,
+      "lift": 20.59,
+      "vertTop": 211.2,
+      "vertX": 80.41,
+      "markScale": 0.72,
+      "cx": 15.07,
+      "cy": 124.42
+    },
+    "small": {
+      "scale": 0.62,
+      "x": 261,
+      "y": -8,
+      "vertTop": 211,
+      "vertX": 80,
+      "vertY": 0
+    },
+    "mark": {
+      "scale": 0.72,
+      "cx": 15,
+      "cy": 124
+    },
+    "control": false,
+    "anchor": null
+  },
+  {
+    "id": "p6ba0a841e1249bc2",
+    "design": {
+      "scale": 0.74,
+      "align": 0.56,
+      "lift": 39.1,
+      "vertTop": 279.66,
+      "vertX": 26.14,
+      "markScale": 0.77,
+      "cx": -15.76,
+      "cy": 67.3
+    },
+    "small": {
+      "scale": 0.74,
+      "x": 176,
+      "y": 13,
+      "vertTop": 280,
+      "vertX": 26,
+      "vertY": 0
+    },
+    "mark": {
+      "scale": 0.77,
+      "cx": -16,
+      "cy": 67
+    },
+    "control": false,
+    "anchor": null
+  },
+  {
+    "id": "p9cdbd6cd96235da3",
+    "design": {
+      "scale": 0.67,
+      "align": 0.13,
+      "lift": 10.76,
+      "vertTop": 360.06,
+      "vertX": 90.6,
+      "markScale": 0.8,
+      "cx": 1.93,
+      "cy": 46.1
+    },
+    "small": {
+      "scale": 0.67,
+      "x": 181,
+      "y": -17,
+      "vertTop": 360,
+      "vertX": 91,
+      "vertY": 0
+    },
+    "mark": {
+      "scale": 0.8,
+      "cx": 2,
+      "cy": 46
+    },
+    "control": false,
+    "anchor": null
+  },
+  {
+    "id": "pec6b1885e9183839",
+    "design": {
+      "scale": 0.72,
+      "align": 0.73,
+      "lift": 21.23,
+      "vertTop": 241.05,
+      "vertX": 50.07,
+      "markScale": 0.86,
+      "cx": 39.48,
+      "cy": 164.58
+    },
+    "small": {
+      "scale": 0.72,
+      "x": 203,
+      "y": -5,
+      "vertTop": 241,
+      "vertX": 50,
+      "vertY": 0
+    },
+    "mark": {
+      "scale": 0.86,
+      "cx": 39,
+      "cy": 165
+    },
+    "control": false,
+    "anchor": null
+  },
+  {
+    "id": "pac1a5e93dcb9f47f",
+    "design": {
+      "scale": 0.77,
+      "align": 0.25,
+      "lift": 3.96,
+      "vertTop": 320.36,
+      "vertX": 124.34,
+      "markScale": 0.76,
+      "cx": -8.56,
+      "cy": 105.91
+    },
+    "small": {
+      "scale": 0.77,
+      "x": 136,
+      "y": -21,
+      "vertTop": 320,
+      "vertX": 124,
+      "vertY": 0
+    },
+    "mark": {
+      "scale": 0.76,
+      "cx": -9,
+      "cy": 106
+    },
+    "control": false,
+    "anchor": null
+  },
+  {
+    "id": "p4d9c95b83f218150",
+    "design": {
+      "scale": 0.7,
+      "align": 0.78,
+      "lift": 16.82,
+      "vertTop": 272.85,
+      "vertX": 96.18,
+      "markScale": 0.78,
+      "cx": 7.81,
+      "cy": 77.15
+    },
+    "small": {
+      "scale": 0.7,
+      "x": 222,
+      "y": -10,
+      "vertTop": 273,
+      "vertX": 96,
+      "vertY": 0
+    },
+    "mark": {
+      "scale": 0.78,
+      "cx": 8,
+      "cy": 77
+    },
+    "control": false,
+    "anchor": null
+  },
+  {
+    "id": "p8a26973bc4439c78",
+    "design": {
+      "scale": 0.77,
+      "align": 0.08,
+      "lift": -15.94,
+      "vertTop": 296.53,
+      "vertX": 21.56,
+      "markScale": 0.84,
+      "cx": 34.02,
+      "cy": 84.25
+    },
+    "small": {
+      "scale": 0.77,
+      "x": 125,
+      "y": -41,
+      "vertTop": 297,
+      "vertX": 22,
+      "vertY": 0
+    },
+    "mark": {
+      "scale": 0.84,
+      "cx": 34,
+      "cy": 84
+    },
+    "control": false,
+    "anchor": null
+  }
+]

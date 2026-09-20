@@ -36,3 +36,18 @@ Eleven rounds. The first four built and screened the frame (records below); the 
 11. Confirmation (`round11-*`): the model's optimum with its bars raised lost to 0.1, while the same form unraised beat 0.1 and tied or beat the round-7 winner.
 
 The 0.2 glyph is that unraised form (`w62de2d979979dc14`): upper bar 30 units longer and lower bar 60 units longer than Klee's, bars 50 units closer, uprights and stroke ends unchanged. Each round's ballots, design parameters and candidate outlines are in `votes/wi/`; every candidate id resolves to its outline in the matching `-candidates.svg`.
+
+## ㇷ゚ and the small kana
+
+Kureedo 0.2 and 0.3 set the sixteen small kana ㇰ–ㇿ at 65% of the full-size letter, pushed to the lower right of the cell, and composed ㇷ゚ with the full-size handakuten at its full-size position, so the circle floated above a small フ. Klee One's own small kana (ッ, ァ) are about 78% of full size, horizontally centred on the baseline, and move up and to the right in vertical text; they also keep about 0.9 of the full-size stroke, which plain scaling does not.
+
+The rounds are in `votes/pu/` (`roundN-designs.json` maps each candidate id to its build parameters; `pu-space.png` plots the round 12–13 variants).
+
+12. Latin-hypercube sample of 22 forms over scale, alignment, lift, vertical placement and the mark's scale and position, plus the 0.2 form and Klee's ッ convention (`round12-sample-54.json`). 29 of 54 judgments "neither": every form was too thin beside Klee's ッ. Measured, Klee's small kana keep 0.9 of the full stroke while scaling to 0.77 left 0.77–0.84. The build now thickens each scaled glyph back to 0.9 (a dilation of the outline).
+13. The same design with weight restored and narrowed ranges (`round13-partial-19.json`), stopped at 19 judgments: all sampled mark positions sat 45–200 units above the small letter's top, and none was acceptable.
+14. Directional ladder on the mark's height from a プ-analogue (プ scaled as ツ→ッ), two "neither" votes (`round14-markDy-2.json`). The analogue's mark position had been taken from the mark glyph's default placement, drawn for ト゚, which put the circle 87 units below フ's top edge.
+15. Eight-axis ladder batch of 39 forms, judged by a cull instead of pairs: 38 rejected on sight, one kept, with the note that the circle overlapped the stroke (`round15-cull-38of39.json`).
+16. Measured on Klee's プ, the handakuten centre sits 90 units right of フ's right edge and 49 above its top with 24 units of clear space; the mark is now placed by clearance along that direction, measured on the weight-restored outlines. Ten forms, cull then ladder (`round16-ladder.json`): clearance 19 (プ's 24 scaled to the small letter) beat 32 and tied with 10; a mark at 1.15× the letter's scale beat 1.0× twice and lost the swapped confirmation; プ's direction beat 0° and 60°.
+17. Six forms around that winner (`round17-ladder.json`): clearance 19 beat 14 and 24; the mark at 1.0× beat 1.15× twice; a 40° direction tied with プ's.
+
+The 0.4 setting is candidate `p7efd533ab1941192` of round 17: small kana at 78%, centred, stroke weight 0.9, vertical top at 329 units with a 130-unit shift right; the handakuten at 78% with its centre 71 units right and 39 above the small letter's top-right corner.

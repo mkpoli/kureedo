@@ -1,0 +1,245 @@
+{
+  "base": {
+    "scale": 0.78,
+    "align": 0.0,
+    "lift": 0,
+    "vertTop": 329,
+    "vertX": 130,
+    "markRel": 1.15,
+    "markDy": 0,
+    "markDx": 0,
+    "weight": 0.9,
+    "gap": 19,
+    "angle": 28.6
+  },
+  "axes": [
+    {
+      "name": "gap",
+      "ladder": [
+        "p75b73806efa62dd3",
+        "pae5dcf57fee3b655",
+        "pb9d2b3890575e2b8"
+      ],
+      "start": 1,
+      "steps": [
+        14,
+        19,
+        24
+      ]
+    },
+    {
+      "name": "markRel",
+      "ladder": [
+        "p7efd533ab1941192",
+        "pae5dcf57fee3b655",
+        "p4aa1a4dafe360caa"
+      ],
+      "start": 1,
+      "steps": [
+        1.0,
+        1.15,
+        1.3
+      ]
+    },
+    {
+      "name": "angle",
+      "ladder": [
+        "pae5dcf57fee3b655",
+        "p3cd94ee433dc6ea0"
+      ],
+      "start": 0,
+      "steps": [
+        28.6,
+        40
+      ]
+    }
+  ],
+  "fonts": [
+    {
+      "id": "p75b73806efa62dd3",
+      "design": {
+        "scale": 0.78,
+        "align": 0.0,
+        "lift": 0,
+        "vertTop": 329,
+        "vertX": 130,
+        "markRel": 1.15,
+        "markDy": 0,
+        "markDx": 0,
+        "weight": 0.9,
+        "gap": 14,
+        "angle": 28.6
+      },
+      "small": {
+        "scale": 0.78,
+        "x": 114,
+        "y": -25,
+        "vertTop": 329,
+        "vertX": 130,
+        "vertY": 0,
+        "weight": 0.9
+      },
+      "mark": {
+        "scale": 0.897,
+        "cx": 74,
+        "cy": 40,
+        "weight": 0.9
+      }
+    },
+    {
+      "id": "pae5dcf57fee3b655",
+      "design": {
+        "scale": 0.78,
+        "align": 0.0,
+        "lift": 0,
+        "vertTop": 329,
+        "vertX": 130,
+        "markRel": 1.15,
+        "markDy": 0,
+        "markDx": 0,
+        "weight": 0.9,
+        "gap": 19,
+        "angle": 28.6
+      },
+      "small": {
+        "scale": 0.78,
+        "x": 114,
+        "y": -25,
+        "vertTop": 329,
+        "vertX": 130,
+        "vertY": 0,
+        "weight": 0.9
+      },
+      "mark": {
+        "scale": 0.897,
+        "cx": 79,
+        "cy": 43,
+        "weight": 0.9
+      }
+    },
+    {
+      "id": "pb9d2b3890575e2b8",
+      "design": {
+        "scale": 0.78,
+        "align": 0.0,
+        "lift": 0,
+        "vertTop": 329,
+        "vertX": 130,
+        "markRel": 1.15,
+        "markDy": 0,
+        "markDx": 0,
+        "weight": 0.9,
+        "gap": 24,
+        "angle": 28.6
+      },
+      "small": {
+        "scale": 0.78,
+        "x": 114,
+        "y": -25,
+        "vertTop": 329,
+        "vertX": 130,
+        "vertY": 0,
+        "weight": 0.9
+      },
+      "mark": {
+        "scale": 0.897,
+        "cx": 83,
+        "cy": 45,
+        "weight": 0.9
+      }
+    },
+    {
+      "id": "p7efd533ab1941192",
+      "design": {
+        "scale": 0.78,
+        "align": 0.0,
+        "lift": 0,
+        "vertTop": 329,
+        "vertX": 130,
+        "markRel": 1.0,
+        "markDy": 0,
+        "markDx": 0,
+        "weight": 0.9,
+        "gap": 19,
+        "angle": 28.6
+      },
+      "small": {
+        "scale": 0.78,
+        "x": 114,
+        "y": -25,
+        "vertTop": 329,
+        "vertX": 130,
+        "vertY": 0,
+        "weight": 0.9
+      },
+      "mark": {
+        "scale": 0.78,
+        "cx": 71,
+        "cy": 39,
+        "weight": 0.9
+      }
+    },
+    {
+      "id": "p4aa1a4dafe360caa",
+      "design": {
+        "scale": 0.78,
+        "align": 0.0,
+        "lift": 0,
+        "vertTop": 329,
+        "vertX": 130,
+        "markRel": 1.3,
+        "markDy": 0,
+        "markDx": 0,
+        "weight": 0.9,
+        "gap": 19,
+        "angle": 28.6
+      },
+      "small": {
+        "scale": 0.78,
+        "x": 114,
+        "y": -25,
+        "vertTop": 329,
+        "vertX": 130,
+        "vertY": 0,
+        "weight": 0.9
+      },
+      "mark": {
+        "scale": 1.014,
+        "cx": 88,
+        "cy": 48,
+        "weight": 0.9
+      }
+    },
+    {
+      "id": "p3cd94ee433dc6ea0",
+      "design": {
+        "scale": 0.78,
+        "align": 0.0,
+        "lift": 0,
+        "vertTop": 329,
+        "vertX": 130,
+        "markRel": 1.15,
+        "markDy": 0,
+        "markDx": 0,
+        "weight": 0.9,
+        "gap": 19,
+        "angle": 40
+      },
+      "small": {
+        "scale": 0.78,
+        "x": 114,
+        "y": -25,
+        "vertTop": 329,
+        "vertX": 130,
+        "vertY": 0,
+        "weight": 0.9
+      },
+      "mark": {
+        "scale": 0.897,
+        "cx": 67,
+        "cy": 56,
+        "weight": 0.9
+      }
+    }
+  ]
+}
