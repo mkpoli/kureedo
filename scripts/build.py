@@ -41,7 +41,7 @@ KLEE_URL = f"https://raw.githubusercontent.com/fontworks-fonts/Klee/{KLEE_COMMIT
 KLEE_SHA256 = "74cb0a6523cc22b221ceaa7b78b56cea66512ec14b4145fd0102ffe27c30d084"
 KLEE_PATH = ROOT / "sources/klee/KleeOne-Regular.ttf"
 
-VERSION = (0, 3, 0)  # release tag v0.2.0; name ID 5 and head.fontRevision carry 0.200
+VERSION = (0, 4, 0)  # release tag v0.4.0; name ID 5 and head.fontRevision carry 0.400
 COPYRIGHT = ("Copyright 2020 The Klee Project Authors (https://github.com/fontworks-fonts/Klee); "
              "historical glyphs Copyright 2026 The Kureedo Project Authors (https://github.com/mkpoli/kureedo)")
 URL = "https://github.com/mkpoli/kureedo"
@@ -56,13 +56,16 @@ HISTORICAL = [
 KATA_UNICODES = [0x20, *range(0x3000, 0x3040), *range(0x3099, 0x309D), *range(0x30A0, 0x3100), *range(0x31F0, 0x3200),
                  *(f["historic"] for f in [dict(historic=0x1B127), dict(historic=0x1B128)])]
 
-# Ainu small kana: scale of the full-size letter, its offset in horizontal text, and the
-# top side bearing that places it in vertical text. Marks on a small base are scaled and
-# set with their centre at (base.xMax + cx, base.yMax + cy).
-SMALL = dict(scale=0.65, x=280, y=-45, vertTop=224, vertX=0, vertY=0, weight=None)
-SMALL_MARK = dict(scale=1.0, cx=13, cy=188, weight=None)
-# `weight` is the stroke thickness the scaled glyph should keep, as a fraction of the
-# full-size stroke; Klee's own small kana keep about 0.9. None leaves the scaled stroke as is.
+# Ainu small kana follow Klee's own small-kana convention (ッ against ツ): 78% of the full-size
+# letter, centred in the cell on the baseline, and shifted up and to the right in vertical text.
+# `weight` is the stroke thickness the scaled glyph keeps, as a fraction of the full-size
+# stroke; Klee's own small kana keep about 0.9, plain scaling would leave 0.78.
+# The values were settled by blind comparison rounds (docs/methods.md).
+SMALL = dict(scale=0.78, x=114, y=-25, vertTop=329, vertX=130, vertY=0, weight=0.9)
+# Marks on a small base are scaled with the letter and set with their centre at
+# (base.xMax + cx, base.yMax + cy): the direction Klee's プ uses for its handakuten, at
+# プ's clearance from the stroke scaled to the small letter (19 units).
+SMALL_MARK = dict(scale=0.78, cx=71, cy=39, weight=0.9)
 
 
 def stroke_thickness(glyph_set, name, scale=1.0):

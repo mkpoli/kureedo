@@ -1,10 +1,16 @@
 #!/usr/bin/env python3
 """Check the built fonts: names, coverage, feature switches, mark composition, vertical metrics."""
+import sys
 from io import BytesIO
 from pathlib import Path
 
 import uharfbuzz as hb
 from fontTools.ttLib import TTFont
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from build import SMALL  # noqa: E402
+
+SMALL_VERT_TOP, SMALL_VERT_X = SMALL["vertTop"], SMALL["vertX"]
 
 ROOT = Path(__file__).resolve().parent.parent
 KLEE = TTFont(ROOT / "sources/klee/KleeOne-Regular.ttf")
@@ -35,7 +41,7 @@ def check(path: Path, family: str, full: bool):
     name = font["name"]
     assert name.getDebugName(1) == family, name.getDebugName(1)
     assert name.getDebugName(6) == family.replace(" ", "") + "-Regular"
-    assert name.getDebugName(5) == "Version 0.300" and abs(font["head"].fontRevision - 0.3) < 1e-4
+    assert name.getDebugName(5) == "Version 0.400" and abs(font["head"].fontRevision - 0.4) < 1e-4
     assert "Klee Project Authors" in name.getDebugName(0) and name.getDebugName(13).startswith("This Font Software")
     assert all(c in cmap for c in [*range(0x30A1, 0x30FB), *range(0x31F0, 0x3200), 0x3099, 0x309A, 0x309B, 0x309C, 0x30F0, 0x30F1, 0x30F2, 0x30F4, 0x1B127, 0x1B128])
     if not full:
@@ -71,7 +77,12 @@ def check(path: Path, family: str, full: bool):
     for plain, decomposed in [("\u30D1", "\u30CF\u309A"), ("\u30AC", "\u30AB\u3099"), ("\u30C5", "\u30C4\u3099")]:
         assert shape(plain) == shape(decomposed) and shape(plain, "ttb") == shape(decomposed, "ttb")
     assert shape("ㇷ", "ttb")[0] != shape("ㇷ゚", "ttb")[0]
-    assert font["vmtx"][cmap[0x31F7]] == font["vmtx"][cmap[0x30D5]]
+    # Small kana take a vertical variant that sits higher and to the right than the horizontal
+    # glyph; the composite with a mark shares that variant's vertical origin.
+    small, small_vert = cmap[0x31F7], shape("ㇷ", "ttb")[0][0]
+    assert small_vert != small and font["vmtx"][small_vert][1] == SMALL_VERT_TOP
+    assert font["glyf"][small_vert].xMin - font["glyf"][small].xMin == SMALL_VERT_X
+    assert font["glyf"][shape("ㇷ゚", "ttb")[0][0]].yMax + font["vmtx"][shape("ㇷ゚", "ttb")[0][0]][1] == font["glyf"][small_vert].yMax + font["vmtx"][small_vert][1]
     # An unsupported base + mark sequence still takes one cell vertically: the mark has no vertical advance.
     for mark in (cmap[0x3099], cmap[0x309A]):
         assert font["vmtx"][mark][0] == 0 and font["hmtx"][mark][0] == 0
