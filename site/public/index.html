@@ -202,6 +202,7 @@
   .intro .lead { margin-top: 0; }
   .download { margin: 2rem 0 0; }
   .buttons { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem 1.5rem; margin: .75rem 8px 0 0; }
+  .buttons .button { width: 100%; }
   .intro > .small-links { flex-direction: column; gap: .5rem; padding-top: .35rem; }
   @media (max-width: 64rem) { .intro { grid-template-columns: 1fr; } .intro > .small-links { flex-direction: row; gap: .25rem 1.5rem; } .buttons { margin-bottom: .5rem; } }
   .button {
@@ -426,10 +427,16 @@
     <div class="mast-meta"><span class="label accent">Unicode 18.0 · Kana Extended-A</span><span class="label">アイヌ語仮名 ㇰ–ㇿ · ㇷ゚</span><span class="label">v0.4.0 · OFL 1.1</span></div>
 
     <div class="intro">
-    <div class="intro-main">
     <div class="prose">
       <p class="lead">Klee Oneに、江戸・明治の版本に見られる片仮名の字形を加えた書体。Unicode 18.0で符号化された<a class="ch" href="#hero" title="U+1B127 KATAKANA LETTER ALTERNATE NE">𛄧</a>と<a class="ch" href="#hero" title="U+1B128 KATAKANA LETTER ALTERNATE WI">𛄨</a>を収録し、<b class="ch">ネ</b><b class="ch">ヰ</b>からもOpenType機能<code>hist</code>で同じ字形に切り替えられる。アイヌ語の小書き片仮名<b class="ch">ㇰ–ㇿ</b>と、半濁点付きの<b class="ch">セ゚</b><b class="ch">ツ゚</b><b class="ch">ト゚</b><b class="ch">ㇷ゚</b>も収める。</p>
       <p class="en">Klee One with the katakana of Edo–Meiji print: <a class="ch en" href="#hero" title="U+1B127 KATAKANA LETTER ALTERNATE NE">𛄧</a> and <a class="ch en" href="#hero" title="U+1B128 KATAKANA LETTER ALTERNATE WI">𛄨</a> (Unicode 18.0), also reachable from <b class="ch en">ネ</b> and <b class="ch en">ヰ</b> through <code>hist</code>; plus the Ainu small kana <b class="ch en">ㇰ–ㇿ</b> and the marked <b class="ch en">セ゚</b> <b class="ch en">ツ゚</b> <b class="ch en">ト゚</b> <b class="ch en">ㇷ゚</b>.</p>
+    </div>
+      <ul class="small-links">
+        <li><a href="https://github.com/mkpoli/kureedo/releases">すべてのリリース　All releases</a></li>
+        <li><a href="https://github.com/mkpoli/kureedo/releases/download/v0.4.0/OFL.txt">OFL.txt</a></li>
+        <li><a href="https://github.com/mkpoli/kureedo/releases/download/v0.4.0/SHA256SUMS.txt">SHA256SUMS.txt</a></li>
+        <li><a href="https://x.com/mkpoli/status/2101202819110015016">発表ツイート　Announcement</a></li>
+      </ul>
     </div>
 
     <div class="download" id="download">
@@ -438,14 +445,6 @@
         <a class="button" href="https://github.com/mkpoli/kureedo/releases/download/v0.4.0/Kureedo-Regular.ttf"><b>Kureedo-Regular.ttf</b><span class="mono">デスクトップ · v0.4.0 · 8.7 MB</span></a>
         <a class="button web" href="https://github.com/mkpoli/kureedo/releases/download/v0.4.0/KureedoKata-Regular.woff2"><b>KureedoKata-Regular.woff2</b><span class="mono">ウェブ（仮名・記号のみ） · v0.4.0 · 24 KB</span></a>
       </div>
-    </div>
-    </div>
-      <ul class="small-links">
-        <li><a href="https://github.com/mkpoli/kureedo/releases">すべてのリリース　All releases</a></li>
-        <li><a href="https://github.com/mkpoli/kureedo/releases/download/v0.4.0/OFL.txt">OFL.txt</a></li>
-        <li><a href="https://github.com/mkpoli/kureedo/releases/download/v0.4.0/SHA256SUMS.txt">SHA256SUMS.txt</a></li>
-        <li><a href="https://x.com/mkpoli/status/2101202819110015016">発表ツイート　Announcement</a></li>
-      </ul>
     </div>
 
     <nav class="sections" aria-label="目次">
