@@ -41,7 +41,7 @@ def check(path: Path, family: str, full: bool):
     name = font["name"]
     assert name.getDebugName(1) == family, name.getDebugName(1)
     assert name.getDebugName(6) == family.replace(" ", "") + "-Regular"
-    assert name.getDebugName(5) == "Version 0.401" and abs(font["head"].fontRevision - 0.401) < 1e-4
+    assert name.getDebugName(5) == "Version 0.402" and abs(font["head"].fontRevision - 0.402) < 1e-4
     assert "Klee Project Authors" in name.getDebugName(0) and name.getDebugName(13).startswith("This Font Software")
     assert all(c in cmap for c in [*range(0x30A1, 0x30FB), *range(0x31F0, 0x3200), 0x3099, 0x309A, 0x309B, 0x309C, 0x30F0, 0x30F1, 0x30F2, 0x30F4, 0x1B127, 0x1B128])
     if not full:
@@ -76,6 +76,18 @@ def check(path: Path, family: str, full: bool):
             assert glyphs[0][1:] == ((1000, 0) if direction == "ltr" else (0, -1000)), (text, direction, glyphs)
     for plain, decomposed in [("\u30D1", "\u30CF\u309A"), ("\u30AC", "\u30AB\u3099"), ("\u30C5", "\u30C4\u3099")]:
         assert shape(plain) == shape(decomposed) and shape(plain, "ttb") == shape(decomposed, "ttb")
+    # Every full-size handakuten composite keeps at least プ's clearance from its letter.
+    from mark_positions import flatten, CLEARANCE
+    from fontTools.pens.recordingPen import RecordingPen
+    import math
+    mark_pen = RecordingPen(); font["glyf"]["kanaMark309A"].draw(mark_pen, font["glyf"]); ring0 = flatten(mark_pen.value)
+    for base in "カキクケコセツト":
+        comp = font["glyf"][f"kanaComposite{ord(base):04X}_309A"]
+        c = next(c for c in comp.components if c.glyphName == "kanaMark309A")
+        lp = RecordingPen(); font["glyf"][cmap[ord(base)]].draw(lp, font["glyf"]); letter = flatten(lp.value)
+        ring = [(x + c.x, y + c.y) for x, y in ring0]
+        gap = min(math.hypot(p[0] - q[0], p[1] - q[1]) for p in ring for q in letter)
+        assert gap >= CLEARANCE - 1, (base, gap)
     assert shape("ㇷ", "ttb")[0] != shape("ㇷ゚", "ttb")[0]
     # Small kana take a vertical variant that sits higher and to the right than the horizontal
     # glyph; the composite with a mark shares that variant's vertical origin.
