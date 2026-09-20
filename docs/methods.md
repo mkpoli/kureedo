@@ -55,3 +55,9 @@ The 0.4 setting is candidate `p7efd533ab1941192` of round 17: small kana at 78%,
 ## 𪜈
 
 Assembled, not compared: the ligature is Klee's ト upright (tick removed, shortened 40 units at the top and 43 at the bottom, moved 150 units left) beside Klee's モ, whose top bar loses 60 units and second bar 130 units at their left ends, each end moved along the bar's own slope so the seam is straight. The vertical, the hook and the right ends of the bars are Klee's untouched. Four assemblies were rendered in running text at 28 px next to the 『種痘弁義』 instances; the shipped one keeps the upright clear of the bars, as the code chart does, while the print joins them. `sources/glyphs/tomo.svg` is the outline.
+
+## Other letters
+
+Assembled the same way, not yet compared:
+
+- 𛄤: ト's upright (as in 𪜈) beside キ compressed horizontally to 0.72 about its centre and moved 70 units right.
