@@ -60,6 +60,7 @@ HISTORICAL = [
 LETTERS = [
     dict(code=0x2A708, svg="tomo.svg", letters="トモ", label="Katakana tomo ligature"),
     dict(code=0x1B124, svg="toki.svg", letters='トキ', label="Katakana digraph toki"),
+    dict(code=0x1B125, svg="tote.svg", letters='トテ', label="Katakana digraph tote"),
 ]
 KATA_UNICODES = [0x20, *range(0x3000, 0x3040), *range(0x3099, 0x309D), *range(0x30A0, 0x3100), *range(0x31F0, 0x3200),
                  *(f["historic"] for f in HISTORICAL), *(l["code"] for l in LETTERS)]

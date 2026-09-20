@@ -61,3 +61,4 @@ Assembled, not compared: the ligature is Klee's ト upright (tick removed, short
 Assembled the same way, not yet compared:
 
 - 𛄤: ト's upright (as in 𪜈) beside キ compressed horizontally to 0.72 about its centre and moved 70 units right.
+- 𛄥: the same upright beside テ compressed horizontally to 0.72 about its centre and moved 70 units right.
