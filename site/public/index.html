@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kureedo（クレード）</title>
-<meta name="description" content="Klee Oneに江戸・明治の版本に見られる片仮名字形を加えた書体。Unicode 18.0の𛄧 U+1B127と𛄨 U+1B128を収録し、ネ・ヰからもOpenType機能で同じ字形に切り替えられる。">
+<meta name="description" content="Klee Oneに、江戸・明治の版本に見られる片仮名字形と、アイヌ語表記用の小書き片仮名・半濁点付き仮名を加えた書体。Unicode 18.0の𛄧 U+1B127と𛄨 U+1B128を収録し、ネ・ヰからもOpenType機能で同じ字形に切り替えられる。">
 <meta property="og:title" content="Kureedo（クレード）">
-<meta property="og:description" content="Klee Oneに江戸・明治の版本の片仮名字形を加えた書体。𛄧 U+1B127・𛄨 U+1B128収録。">
+<meta property="og:description" content="Klee Oneに、江戸・明治の版本の片仮名字形と、アイヌ語の小書き片仮名・半濁点付き仮名を加えた書体。𛄧 U+1B127・𛄨 U+1B128を収録。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://kureedo.mkpo.li/">
 <meta property="og:image" content="https://kureedo.mkpo.li/images/unicode18-card.png">
@@ -101,7 +101,8 @@
   }
   main { max-width: 72rem; margin: 0 auto; padding: 0 clamp(16px, 3vw, 2.5rem) 3rem; background: var(--paper); border-left: 1px solid var(--rule); border-right: 1px solid var(--rule); }
   @media (max-width: 72rem) { main { border-left: 0; border-right: 0; } }
-  .prose { max-width: 44rem; }
+  .prose:not(section) { max-width: 44rem; }
+  section.prose > :not(h2) { max-width: 44rem; }
   p { margin: .5rem 0 1rem; }
   a { color: var(--accent); text-underline-offset: .2em; }
   .lead { font-size: 1.2rem; margin: 1.5rem 0 0; }
@@ -277,7 +278,7 @@
   .run { font-size: clamp(1.5rem, 5vw, 2.5rem); line-height: 1.9; margin: 0 0 1rem; overflow-wrap: anywhere; }
   .words { font-size: clamp(1.4rem, 4.5vw, 2.25rem); line-height: 1.9; margin: 0; word-spacing: .6em; }
   .vgrid { display: flex; justify-content: flex-start; gap: 2rem; flex-wrap: wrap; align-items: flex-start; }
-  .vert { writing-mode: vertical-rl; text-orientation: mixed; height: 26rem; font-size: 1.7rem; line-height: 1.3; margin: 0; padding: 0 .3rem; border-right: 1px solid var(--hair); }
+  .vert { writing-mode: vertical-rl; text-orientation: mixed; height: 30rem; font-size: 1.7rem; line-height: 1.3; margin: 0; padding: 0 .3rem; border-right: 1px solid var(--hair); }
   .marks { font-size: clamp(1.5rem, 5vw, 2.5rem); letter-spacing: .2em; line-height: 1.9; margin: 0 0 .5rem; overflow-wrap: anywhere; }
 
   table { border-collapse: collapse; width: 100%; max-width: 44rem; font-size: .95rem; margin: 0 0 1rem; }
@@ -338,7 +339,7 @@
     header.masthead { padding-top: 1.5rem; }
     .buttons { grid-template-columns: 1fr; }
     .compare { grid-template-columns: 1fr; }
-    .vert { height: 22rem; font-size: 1.5rem; }
+    .vert { height: 25rem; font-size: 1.5rem; }
     td.sample { font-size: 1.3rem; }
     #sample { padding: 1rem; }
     #sample.vertical { height: 22rem; }
@@ -377,11 +378,11 @@
       <button id="theme" class="tag" type="button" aria-label="配色を切り替える　Toggle light and dark" title="明／暗"><span class="sun" aria-hidden="true">☀</span><span class="moon" aria-hidden="true">☾</span> <span>明／暗</span></button>
     </div>
     <div class="ticks" aria-hidden="true"></div>
-    <div class="mast-meta"><span class="label accent">Unicode 18.0 · Kana Extended-A</span><span class="label">v0.4.0 · OFL 1.1</span></div>
+    <div class="mast-meta"><span class="label accent">Unicode 18.0 · Kana Extended-A</span><span class="label">アイヌ語仮名 ㇰ–ㇿ · ㇷ゚</span><span class="label">v0.4.0 · OFL 1.1</span></div>
 
     <div class="prose">
-      <p class="lead">Klee Oneに、江戸・明治の版本に見られる片仮名の字形を加えた書体。Unicode 18.0で符号化された𛄧 U+1B127 KATAKANA LETTER ALTERNATE NEと𛄨 U+1B128 KATAKANA LETTER ALTERNATE WIを収録し、ネ・ヰからもOpenType機能<code>hist</code>・<code>cv01</code>・<code>cv02</code>で同じ字形に切り替えられる。</p>
-      <p class="en">Klee One with the katakana letterforms of Edo–Meiji print. Covers 𛄧 U+1B127 and 𛄨 U+1B128 (Unicode 18.0); the same glyphs are OpenType alternates of ネ and ヰ.</p>
+      <p class="lead">Klee Oneに、江戸・明治の版本に見られる片仮名の字形を加えた書体。Unicode 18.0で符号化された𛄧 U+1B127 KATAKANA LETTER ALTERNATE NEと𛄨 U+1B128 KATAKANA LETTER ALTERNATE WIを収録し、ネ・ヰからもOpenType機能<code>hist</code>・<code>cv01</code>・<code>cv02</code>で同じ字形に切り替えられる。アイヌ語の表記に用いる小書き片仮名ㇰ–ㇿ（U+31F0–31FF）に加え、半濁点付きのセ゚・ツ゚・ト゚・ㇷ゚も収録。いずれもKlee Oneにはない文字である。</p>
+      <p class="en">Klee One with the katakana letterforms of Edo–Meiji print. Covers 𛄧 U+1B127 and 𛄨 U+1B128 (Unicode 18.0); the same glyphs are OpenType alternates of ネ and ヰ. Also the Ainu small kana ㇰ–ㇿ (U+31F0–31FF) and the marked セ゚ ツ゚ ト゚ ㇷ゚, which Klee One does not have.</p>
     </div>
 
     <div class="download" id="download">
@@ -432,7 +433,7 @@
     </div>
     <div class="hero-foot">
       <span><span class="label accent">JA</span> 𛄧コ　フ𛄧　カ𛄧　𛄨ド　𛄨ノシシ</span>
-      <span><span class="label accent">AIN</span> ア𛄧　シ𛄧　ト𛄧　𛄨ナウ　イ𛄨ヱ</span>
+      <span><span class="label accent">AIN</span> ア𛄧　シ𛄧　ト𛄧　𛄨ナウ　サラニㇷ゚　アㇷ゚カㇱ</span>
     </div>
   </section>
 
@@ -454,11 +455,13 @@
           <button type="button" class="tag" data-insert="𛄧" title="U+1B127">𛄧</button>
           <button type="button" class="tag" data-insert="𛄨" title="U+1B128">𛄨</button>
           <button type="button" class="tag" data-insert="゚" title="U+309A 半濁点（結合文字）">◌゚</button>
+          <button type="button" class="tag" data-insert="ㇷ゚" title="U+31F7 U+309A">ㇷ゚</button>
+          <button type="button" class="tag" data-insert="ㇰㇱㇲㇳㇴㇵㇶㇷㇸㇹㇺㇻㇼㇽㇾㇿ" title="U+31F0–31FF">ㇰ–ㇿ</button>
         </div>
         <button type="button" class="tag reset" id="reset">戻す</button>
       </div>
-      <div id="sample" contenteditable="true" spellcheck="false" role="textbox" aria-multiline="true" aria-label="試し書き">ア𛄧 シ𛄧 ト𛄧 イ𛄨ヱカラ。𛄧コ フ𛄧 カ𛄧 𛄨ド 𛄨ノシシ</div>
-      <p class="en">自由に書き換えられる。仮名と記号はKureedo Kataで、漢字とラテン文字はKlee Oneで表示される。<code>hist</code>を有効にすると、ネ・ヰと入力した文字も版本の字形になる。Type anything: kana are set in Kureedo Kata, kanji and Latin fall back to Klee One. With <code>hist</code> on, ordinary ネ and ヰ take the printed forms.</p>
+      <div id="sample" contenteditable="true" spellcheck="false" role="textbox" aria-multiline="true" aria-label="試し書き">ア𛄧 シ𛄧 ト𛄧 イ𛄨ヱカラ。𛄧コ フ𛄧 カ𛄧 𛄨ド 𛄨ノシシ<br>ポロ イチャ サラニㇷ゚ アセ ワ アㇷ゚カサン コㇿ シㇰ ノ。</div>
+      <p class="en">テキストは自由に書き換えられる。仮名と記号はKureedo Kata、漢字とラテン文字はKlee Oneで表示される。<code>hist</code>を有効にすると、ネ・ヰと入力した文字も版本の字形になる。Type anything: kana are set in Kureedo Kata, kanji and Latin fall back to Klee One. With <code>hist</code> on, ordinary ネ and ヰ take the printed forms.</p>
     </div>
   </section>
 
@@ -479,6 +482,8 @@
     <h2 id="specimen"><span class="ja">横組</span><span>Horizontal</span><span class="line"></span><span class="num">03</span></h2>
     <p class="run"><span>ア𛄧　シ𛄧　ト𛄧　イ𛄨ヱカラ。</span><span>タ𛄧シ𛄧ニハテキヲカイ。</span></p>
     <p class="words">𛄧コ フ𛄧 カ𛄧 𛄨ド 𛄨ノシシ</p>
+    <p class="run"><span>イウォㇿ オㇿ ペカ カ アㇷ゚カサン コㇿ。</span><span>アコㇿ チㇷ゚ チャラセ ワ サン アイネ ネア。</span></p>
+    <p class="words">サラニㇷ゚ アㇷ゚カㇱ トㇷ゚ ラㇷ゚ セㇷ゚ カㇷ゚ ユカㇻ</p>
   </section>
 
   <section>
@@ -487,6 +492,8 @@
       <p class="vert">ア𛄧　シ𛄧　ト𛄧　イ𛄨ヱカラ。</p>
       <p class="vert">タ𛄧シ𛄧ニハテキヲカイ。</p>
       <p class="vert">𛄧コ　フ𛄧　カ𛄧　𛄨ド　𛄨ノシシ</p>
+      <p class="vert">サラニㇷ゚　アㇷ゚カㇱ　トㇷ゚　ラㇷ゚</p>
+      <p class="vert">アコㇿ　チㇷ゚　チャラセ　ワ　サン。</p>
     </div>
   </section>
 
@@ -494,7 +501,8 @@
     <h2><span class="ja">アイヌ語の仮名</span><span>Ainu kana and marks</span><span class="line"></span><span class="num">05</span></h2>
     <p class="marks">セ゚ ツ゚ ト゚ ㇷ゚ カ゚</p>
     <p class="marks">ㇰㇱㇲㇳㇴㇵㇶㇷㇸㇹㇺㇻㇼㇽㇾㇿ</p>
-    <p class="en prose">小書き片仮名ㇰ–ㇿ（U+31F0–31FF）はKlee Oneのッ・ァと同じ比率で組み、半濁点は<code>ccmp</code>合字でプと同じ位置に一つの升目に収める。Small kana U+31F0–31FF at the proportions of Klee One's own ッ and ァ; <code>ccmp</code> ligatures set the handakuten in one cell where プ carries it.</p>
+    <p class="run"><span>エペッチウ サㇰ ノ ピㇼカ アㇷ゚カㇱ チキ ワ ホシッパアㇱ ペ ネ ア コㇿカ。</span><span>ペッ ペㇱ アコㇿ チㇷ゚ アキル アクㇱ オラノ カイペ クㇽカ エチャラセ ペコㇿ。</span></p>
+    <p class="en prose">小書き片仮名ㇰ–ㇿ（U+31F0–31FF）はKlee Oneのッ・ァと同じ比率で組み、半濁点は<code>ccmp</code>合字によってプと同じ位置で一つの升目に収める。Small kana U+31F0–31FF at the proportions of Klee One's own ッ and ァ; <code>ccmp</code> ligatures set the handakuten in one cell where プ carries it. 用例は川上まつ子のウウェペケㇾ（AA研アイヌ語資料）より引用。Sample sentences from 川上まつ子's uwepeker (<a href="https://ainugo.aa-ken.jp/">AA研アイヌ語資料</a>).</p>
   </section>
 
   <section>
@@ -508,6 +516,8 @@
         <tr><td><code>cv01</code></td><td>ネのみ。</td><td class="sample cv01">ネ ヰ</td></tr>
         <tr><td><code>cv02</code></td><td>ヰのみ。</td><td class="sample cv02">ネ ヰ</td></tr>
         <tr><td>—</td><td>既定（Klee Oneの字形）。Default.</td><td class="sample">ネ ヰ</td></tr>
+        <tr><td><code>ccmp</code></td><td>仮名と結合用半濁点を一つの升目に収めて組む（既定で有効）。Base + U+309A in one cell, on by default.</td><td class="sample">ㇷ゚ ト゚</td></tr>
+        <tr><td><code>vert</code></td><td>縦組では小書き仮名が右上に寄る。Small kana shift up-right in vertical text.</td><td class="sample" style="writing-mode: vertical-rl">アㇷ゚</td></tr>
       </tbody>
     </table>
   </section>
@@ -697,7 +707,7 @@
 
   <section class="usage prose">
     <h2 id="usage"><span class="ja">使い方</span><span>Usage</span><span class="line"></span><span class="num">09</span></h2>
-    <p>Kureedoはデスクトップ向けにKlee One Regular全体と歴史的字形を収録した書体で、Kureedo Kataは仮名・仮名句読点・記号のみを収めた約22KBのウェブ用書体。Kureedo carries the whole of Klee One Regular; Kureedo Kata is the web subset of kana and marks only.</p>
+    <p>Kureedoはデスクトップ向けにKlee One Regular全体と歴史的字形を収録した書体で、Kureedo Kataは仮名・仮名句読点・記号のみを収めた約24KBのウェブ用書体。Kureedo carries the whole of Klee One Regular; Kureedo Kata is the web subset of kana and marks only.</p>
     <dl>
       <dt>ウェブ　Web</dt>
       <dd>
@@ -714,7 +724,7 @@
       <dt>Word・LibreOffice</dt>
       <dd>Kureedo-Regular.ttfをインストールして書体として選択する。歴史的字形は、OpenType機能の設定（Wordはフォントダイアログの「詳細設定」、LibreOfficeはフォント名に<code>:hist</code>を指定）で表示させるか、𛄧 U+1B127・𛄨 U+1B128を直接入力する。Install the TTF and pick it as the font; the historical forms come from the OpenType feature panel (Word: Font dialog, Advanced; LibreOffice: append <code>:hist</code> to the font name) or by typing U+1B127 and U+1B128 directly.</dd>
       <dt>アイヌ語の小書き仮名と半濁点　Ainu small kana and handakuten</dt>
-      <dd>ㇷ（U+31F7）を入力したあとに結合用の半濁点゚（U+309A）を入力するとㇷ゚になる。セ゚・ツ゚・ト゚も同様。Type ㇷ, then the combining handakuten U+309A, to get ㇷ゚; セ゚, ツ゚ and ト゚ work the same way.</dd>
+      <dd>ㇷ（U+31F7）に続けて結合用半濁点゚（U+309A）を入力するとㇷ゚になる。セ゚・ツ゚・ト゚も同様。Type ㇷ, then the combining handakuten U+309A, to get ㇷ゚; セ゚, ツ゚ and ト゚ work the same way.</dd>
     </dl>
   </section>
 
@@ -798,7 +808,7 @@
     sliderPos.addEventListener("input", function () { slider.style.setProperty("--pos", sliderPos.value + "%"); });
 
     var sample = document.getElementById("sample");
-    var initial = sample.textContent;
+    var initial = sample.innerHTML;
     var size = document.getElementById("size");
     var sizeOut = document.getElementById("size-out");
     var dirH = document.getElementById("dir-h");
@@ -873,7 +883,7 @@
     });
 
     document.getElementById("reset").addEventListener("click", function () {
-      sample.textContent = initial;
+      sample.innerHTML = initial;
       savedRange = null;
       size.value = 48; applySize();
       feats.forEach(function (c) { c.checked = false; }); applyFeatures();
