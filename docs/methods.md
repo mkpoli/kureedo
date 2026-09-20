@@ -62,3 +62,4 @@ Assembled the same way, not yet compared:
 
 - 𛄤: ト's upright (as in 𪜈) beside キ compressed horizontally to 0.72 about its centre and moved 70 units right.
 - 𛄥: the same upright beside テ compressed horizontally to 0.72 about its centre and moved 70 units right.
+- ヿ: コ cut below y=170 (its bottom bar removed); the hook of Klee's 于 (y<101), sheared by 0.14 to コ's slant, moved (175, 70) to the foot of the upright.
