@@ -106,6 +106,7 @@
   p { margin: .5rem 0 1rem; }
   a { color: var(--accent); text-underline-offset: .2em; }
   .lead { font-size: 1.2rem; margin: 1.5rem 0 0; }
+  .lead a.glyph, .en a.glyph { color: inherit; text-decoration: underline dotted var(--accent); text-underline-offset: .2em; cursor: help; }
   .lead code { font-size: .9em; }
   .en { color: var(--muted); font-size: .92rem; }
   code { font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; font-size: .85em; background: var(--well); padding: .05em .35em; border-radius: .2em; }
@@ -381,8 +382,8 @@
     <div class="mast-meta"><span class="label accent">Unicode 18.0 · Kana Extended-A</span><span class="label">アイヌ語仮名 ㇰ–ㇿ · ㇷ゚</span><span class="label">v0.4.0 · OFL 1.1</span></div>
 
     <div class="prose">
-      <p class="lead">Klee Oneに、江戸・明治の版本に見られる片仮名の字形を加えた書体。Unicode 18.0で符号化された𛄧 U+1B127 KATAKANA LETTER ALTERNATE NEと𛄨 U+1B128 KATAKANA LETTER ALTERNATE WIを収録し、ネ・ヰからもOpenType機能<code>hist</code>・<code>cv01</code>・<code>cv02</code>で同じ字形に切り替えられる。アイヌ語の表記に用いる小書き片仮名ㇰ–ㇿ（U+31F0–31FF）に加え、半濁点付きのセ゚・ツ゚・ト゚・ㇷ゚も収録。いずれもKlee Oneにはない文字である。</p>
-      <p class="en">Klee One with the katakana letterforms of Edo–Meiji print. Covers 𛄧 U+1B127 and 𛄨 U+1B128 (Unicode 18.0); the same glyphs are OpenType alternates of ネ and ヰ. Also the Ainu small kana ㇰ–ㇿ (U+31F0–31FF) and the marked セ゚ ツ゚ ト゚ ㇷ゚, which Klee One does not have.</p>
+      <p class="lead">Klee Oneに、江戸・明治の版本に見られる片仮名の字形を加えた書体。Unicode 18.0で符号化された<a class="glyph" href="#hero" title="U+1B127 KATAKANA LETTER ALTERNATE NE">𛄧</a>と<a class="glyph" href="#hero" title="U+1B128 KATAKANA LETTER ALTERNATE WI">𛄨</a>を収録し、ネ・ヰからもOpenType機能<code>hist</code>で同じ字形に切り替えられる。アイヌ語の小書き片仮名ㇰ–ㇿと、半濁点付きのセ゚・ツ゚・ト゚・ㇷ゚も収める。</p>
+      <p class="en">Klee One with the katakana of Edo–Meiji print: <a class="glyph" href="#hero" title="U+1B127 KATAKANA LETTER ALTERNATE NE">𛄧</a> and <a class="glyph" href="#hero" title="U+1B128 KATAKANA LETTER ALTERNATE WI">𛄨</a> (Unicode 18.0), also reachable from ネ and ヰ through <code>hist</code>; plus the Ainu small kana ㇰ–ㇿ and the marked セ゚ ツ゚ ト゚ ㇷ゚.</p>
     </div>
 
     <div class="download" id="download">
