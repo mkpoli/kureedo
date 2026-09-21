@@ -1,0 +1,36 @@
+{
+  "arena": "2b56c9d4add9d065eb0d696d4ee8486c",
+  "protocol": "cull-v1",
+  "kept": [
+    "t0087daa3f0eca4dc",
+    "t0186d7041441ecb9",
+    "t127ab6f9e36a9b63",
+    "t208235ccec8bf6bb",
+    "t270c40749ff6deb4",
+    "t2db24ee183db8d4f",
+    "t35e55d4d6a91a426",
+    "t3cbaf0b62aef5edb",
+    "t562b7399e55e4d14",
+    "t6aceecc0a744626c",
+    "t6b1c70f80bc6dec4",
+    "tac87572a760b6364",
+    "tae55add456155172",
+    "tb3d0387f73fd6bee",
+    "td4240656d6eba2c8",
+    "td8c0bdea4454336a",
+    "tda6e41deab3a1f15",
+    "tdaac5a5eb41c9fad",
+    "te61823e0b823ab10",
+    "teb69161684d0b4bc",
+    "tef361edad2dc43ea",
+    "tfeae572b9c301201"
+  ],
+  "rejected": [
+    "t333d3ca62c559c65",
+    "t544e164a4aa8675a",
+    "tf861f5ae4a0d34b8"
+  ],
+  "size": 24,
+  "passage": 0,
+  "notes": ""
+}

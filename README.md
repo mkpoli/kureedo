@@ -37,6 +37,7 @@ Text encoded with the Kana Extended-A letters needs no feature. For text encoded
 | `cv01` | ネ only. |
 | `cv02` | ヰ only. |
 | `hlig` | トモ → 𪜈. Off by default, since not every トモ in a text is the ligature. |
+| `ss02` | Straight left stroke for 𪜈; the default curves like 丿. Works with the encoded letter and with `hlig`. |
 
 ![Running text with and without hist](docs/images/running.png)
 
@@ -46,7 +47,7 @@ Klee One's own `hkna`/`vkna` alternates of ネ and ヰ also become the historica
 
 ## Coverage of Kureedo Kata
 
-The subset requests U+0020, U+3000–303F, U+3099–309C, U+30A0–30FF, U+31F0–31FF, U+1B127–1B128 and U+2A708; code points Klee One does not cover (for example U+3031–3032, U+30A0, U+30FF) stay absent. `fonttools ttx -t cmap` lists the exact set. The two historical glyphs are unencoded alternates. Glyphs Klee One does not have and this font adds: the Ainu small kana ㇰ–ㇿ (U+31F0–31FF), set the way Klee sets its own small kana (78% of the full-size letter, centred on the baseline, stroke weight restored, shifted up and right in vertical text through `vert`); combining ゛ and ゜ with zero advance; and `ccmp` ligatures that set セ゚ ツ゚ ト゚ ㇷ゚ カ゚ キ゚ ク゚ ケ゚ コ゚ in one cell, horizontally and vertically. The handakuten of ㇷ゚ is scaled with the letter and sits where プ puts its own, at プ's clearance from the stroke; the placement was settled by comparison rounds (`docs/methods.md`).
+The subset requests U+0020, U+3000–303F, U+3099–309C, U+30A0–30FF, U+31F0–31FF, U+1B127–1B128 and U+2A708; code points Klee One does not cover (for example U+3031–3032, U+30A0, U+30FF) stay absent. `fonttools ttx -t cmap` lists the exact set. The two historical glyphs are unencoded alternates. Glyphs Klee One does not have and this font adds: the Ainu small kana ㇰ–ㇿ (U+31F0–31FF), set the way Klee sets its own small kana (78% of the full-size letter, centred on the baseline, stroke weight restored, shifted up and right in vertical text through `vert`); combining ゛ and ゜ with zero advance; and `ccmp` ligatures that set セ゚ ツ゚ ト゚ ㇷ゚ カ゚ キ゚ ク゚ ケ゚ コ゚ in one cell, horizontally and vertically. The handakuten of ㇷ゚ is scaled with the letter and sits where プ puts its own, at プ's clearance from the stroke; on the full-size bases it starts where Klee places the dakuten on the same letter and keeps that clearance (`scripts/mark_positions.py`, `docs/methods.md`).
 
 ![Ainu small kana and composed marks](docs/images/ainu.png)
 
@@ -56,7 +57,7 @@ The subset requests U+0020, U+3000–303F, U+3099–309C, U+30A0–30FF, U+31F0�
 
 **ヰ from 井.** The printed ヰ of the same editions keeps the full 井 frame. Eiso Chan, *Proposal on two archaic Katakana letters*, [L2/25-151](https://www.unicode.org/L2/L2025/25151-katakana-ne-wi.pdf) (2025-05-23), page 1 and section 3, collects historical specimens of both letters; the UTC accepted it at meeting 184 and Unicode 18.0 encodes the two letters in [Kana Extended-A](https://www.unicode.org/charts/PDF/Unicode-18.0/U180-1B100.pdf) under the heading Historic Katakana. They are separate letters from 子 U+5B50 and 井 U+4E95, and have no decomposition to ネ or ヰ.
 
-**𪜈 from ト and モ.** The ligature keeps ト's upright at the left and モ beside it, the モ narrowed by shortening the left ends of its bars; nothing is redrawn. The proportions follow the Unicode code chart glyph for [U+2A708](https://www.unicode.org/charts/PDF/U2A700.pdf) (source JK-65004) and the printed instances in 池田霧渓『種痘弁義』(1858), [image 6](https://dl.ndl.go.jp/api/iiif/2539156/R0000006/full/full/0/default.jpg) (国立国会図書館, [doi:10.11501/2539156](https://doi.org/10.11501/2539156), public domain), located through the みんなで翻刻 transcription ([honkoku-data v3](https://github.com/yuta1984/honkoku-data), CC BY-SA 4.0). The print sets the upright no taller than the モ and joins the bars to it; the code chart leaves them apart. The font keeps a small gap.
+**𪜈 from ト and モ.** The default has a curved 丿-like left stroke joined to モ. Its upper and middle bars rise 9° and 8° respectively; their contours retain Klee One’s pen terminals. `ss02` uses a straight left stroke with the same モ. The proportions follow the Unicode code chart glyph for [U+2A708](https://www.unicode.org/charts/PDF/U2A700.pdf) (source JK-65004) and the printed instances in 池田霧渓『種痘弁義』(1858), [image 6](https://dl.ndl.go.jp/api/iiif/2539156/R0000006/full/full/0/default.jpg) (国立国会図書館, [doi:10.11501/2539156](https://doi.org/10.11501/2539156), public domain), located through the みんなで翻刻 transcription ([honkoku-data v3](https://github.com/yuta1984/honkoku-data), CC BY-SA 4.0). The print sets the left stroke no taller than the モ and joins the bars to it; the code chart leaves them apart. The selected font outline joins the middle bar to the left stroke.
 
 The 0.2 outline keeps Klee's uprights and stroke ends and sets the bars 50 units closer, the upper 30 and the lower 60 units longer; it beat the 0.1 outline and the other finalists in blind comparison. `docs/methods.md` describes how each form was chosen and `docs/votes/` holds the comparison records.
 
@@ -74,3 +75,7 @@ The build downloads Klee One Regular from the pinned commit of [fontworks-fonts/
 ## Licence
 
 The fonts are licensed under the SIL Open Font License 1.1 (`OFL.txt`). Klee One is Copyright 2020 The Klee Project Authors; Klee is a trademark of Fontworks Inc., and Kureedo is an independent derivative with no connection to Fontworks. The historical outlines and the scripts in this repository are Copyright 2026 The Kureedo Project Authors; the scripts are released under the MIT License (`LICENSE-scripts.txt`).
+
+## Author
+
+まくぽり / mkpoli — https://mkpo.li

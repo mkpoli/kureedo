@@ -1,13 +1,13 @@
 /*
- * Kureedo Kata v0.4.3 — katakana webfont subset of Kureedo.
+ * Kureedo Kata v0.4.1 — katakana webfont subset of Kureedo.
  * Licence: SIL Open Font License 1.1 (https://github.com/mkpoli/kureedo/blob/main/OFL.txt)
  * Repository: https://github.com/mkpoli/kureedo
- * This file points at the latest release; pin a version with /v0.4.3/kureedo.css.
+ * Pinned to v0.4.1; /kureedo.css follows the latest release.
  * Historical forms of ネ and ヰ: font-feature-settings: "hist", or the code points U+1B127 and U+1B128.
  */
 @font-face {
   font-family: "Kureedo Kata";
-  src: url("https://kureedo.mkpo.li/v0.4.3/KureedoKata-Regular.woff2") format("woff2");
+  src: url("https://kureedo.mkpo.li/v0.4.1/KureedoKata-Regular.woff2") format("woff2");
   font-display: swap;
   unicode-range: U+3000-303F, U+3099-309C, U+30A0-30FF, U+31F0-31FF, U+1B127-1B128;
 }

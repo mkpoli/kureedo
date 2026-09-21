@@ -1,0 +1,92 @@
+<!doctype html>
+<meta charset="utf-8">
+<style>
+  @font-face { font-family: KF; src: url("../../fonts/Kureedo-Regular.ttf") format("truetype"); }
+  :root { --ink: #17140f; --paper: #ece5d6; --card: #fbf8f1; --rule: #c9bda3; --rule2: #e6dfd0; --accent: #a43f1f; --muted: #857a66; }
+  * { box-sizing: border-box; }
+  body { margin: 0; width: 1600px; height: 900px; background: var(--paper); display: flex; align-items: center; justify-content: center; color: var(--ink); font-family: KF, serif;
+         background-image: radial-gradient(var(--rule) .9px, transparent 1px); background-size: 18px 18px; }
+  .frame { width: 1520px; height: 820px; background: var(--card); border: 3px solid var(--ink); position: relative; box-shadow: 16px 16px 0 var(--ink); display: grid; grid-template-rows: 78px 662px 80px; }
+  .frame::before { content: ""; position: absolute; inset: 9px; border: 1px solid var(--rule); pointer-events: none; }
+  .corner { position: absolute; width: 30px; height: 30px; border: 3px solid var(--accent); pointer-events: none; z-index: 2; }
+  .c1 { top: -3px; left: -3px; border-right: 0; border-bottom: 0; } .c2 { top: -3px; right: -3px; border-left: 0; border-bottom: 0; }
+  .c3 { bottom: -3px; left: -3px; border-right: 0; border-top: 0; } .c4 { bottom: -3px; right: -3px; border-left: 0; border-top: 0; }
+  .mono { font-family: ui-monospace, "SFMono-Regular", Menlo, monospace; }
+  .top { display: grid; grid-template-columns: auto 1fr auto; align-items: center; padding: 10px 44px 0; border-bottom: 2px solid var(--ink); gap: 30px; }
+  .top .ver { font: 600 20px/1 ui-monospace, monospace; letter-spacing: .22em; color: var(--accent); }
+  .top .ver small, .top .blk small { display: block; font-size: 11px; line-height: 1; letter-spacing: .14em; color: var(--muted); font-weight: 500; margin-top: 8px; }
+  .top .mid { display: grid; grid-template-rows: 1fr auto; align-items: center; height: 100%; padding-top: 2px; }
+  .top .ticks { height: 10px; background: repeating-linear-gradient(90deg, var(--rule) 0 1px, transparent 1px 12px); align-self: end; }
+  .top .prov { font: 500 11px/1 ui-monospace, monospace; letter-spacing: .14em; color: var(--muted); text-align: center; position: relative; top: 10px; }
+  .badge { font: 600 11px/1 ui-monospace, monospace; letter-spacing: .2em; color: var(--accent); border: 1px solid var(--accent); padding: 6px 9px 5px; border-radius: 2px; position: relative; }
+  .badge::after { content: "+16"; position: absolute; top: -9px; right: -10px; background: var(--accent); color: var(--card); font-size: 10px; padding: 2px 5px; border-radius: 9px; letter-spacing: 0; }
+  .top .blk { font: 600 20px/1 ui-monospace, monospace; letter-spacing: .14em; color: var(--muted); text-align: right; }
+  .body { display: grid; grid-template-columns: 1fr 1fr 350px; min-height: 0; }
+  .char, .side { min-height: 0; overflow: hidden; }
+  .char { display: grid; grid-template-rows: 1fr auto auto; padding: 6px 28px 14px; }
+  .char + .char { border-left: 2px solid #b9ac93; }
+  .g { font-size: 280px; line-height: 1; display: flex; align-items: center; justify-content: center; min-height: 0; }
+  .meta { text-align: center; padding: 0 0 18px; }
+  .cp { font: 700 38px/1 ui-monospace, monospace; letter-spacing: .06em; }
+  .nm { font: 500 21px/1.2 'Roboto Condensed', 'Nimbus Sans Narrow', sans-serif; color: var(--muted); letter-spacing: .14em; margin-top: 14px; }
+  .eq { margin-top: 14px; font: 500 18px ui-monospace, monospace; letter-spacing: .1em; color: var(--muted); }
+  .eq b { font: 400 30px KF, serif; color: var(--ink); vertical-align: -3px; margin-right: 10px; }
+  .cmp { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--rule); padding-top: 12px; text-align: center; }
+  .cmp > div { position: relative; }
+  .cmp > div + div::before { content: ""; position: absolute; left: 0; top: 6px; bottom: 2px; border-left: 1px solid var(--rule); }
+  .cmp .k { font-size: 84px; line-height: 1.05; margin-bottom: 8px; }
+  .cmp .l { font: 500 14px/1.3 ui-monospace, monospace; color: var(--muted); letter-spacing: .12em; }
+  .cmp .l.new { color: var(--accent); font-weight: 700; }
+  .side { border-left: 2px solid #b9ac93; display: grid; grid-template-rows: auto 1fr auto; }
+  .cols { align-items: stretch; }
+  .side h3 { margin: 0; padding: 14px 0 12px; text-align: center; font: 600 14px/1 ui-monospace, monospace; letter-spacing: .28em; color: var(--muted); border-bottom: 1px solid var(--rule); }
+  .cols { display: flex; justify-content: center; gap: 44px; padding: 34px 12px 8px; min-height: 0; }
+  .col { display: flex; flex-direction: column; align-items: center; gap: 12px; min-height: 0; }
+  .col .tag { font: 700 14px 'Noto Sans CJK JP', sans-serif; letter-spacing: .3em; color: var(--accent); }
+  .col p { writing-mode: vertical-rl; font-size: 30px; line-height: 1.4; margin: 0; letter-spacing: .05em; flex: 1; min-height: 0; }
+  .src { font: 500 11px/1 ui-monospace, monospace; color: var(--muted); letter-spacing: .06em; text-align: center; padding: 9px 12px 8px; border-top: 1px solid var(--rule2); }
+  .bot { display: grid; grid-template-columns: 1fr 240px; align-items: center; padding: 0 44px; border-top: 2px solid var(--ink); overflow: hidden; }
+  .bot .s { font-size: 26px; line-height: 1; letter-spacing: .07em; white-space: nowrap; display: flex; align-items: center; gap: 14px; }
+  .bot .s > span { position: relative; top: -5px; }
+  .bot .s small { font: 600 12px/1 ui-monospace, monospace; letter-spacing: .25em; color: var(--accent); position: relative; top: -2px; }
+  .bot .s small + span { margin-right: 22px; }
+  .bot .note { font: 500 13px/1 ui-monospace, monospace; letter-spacing: .1em; color: var(--muted); text-align: right; display: grid; gap: 9px; position: relative; top: -2.5px; }
+  .bot .note b { font-size: 15px; line-height: 1; letter-spacing: .3em; color: var(--muted); }
+  .grid16 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0 10px; align-content: center; justify-items: center; padding: 6px 40px 0; }
+  .grid16 span { font-size: 78px; line-height: 1.12; }
+  .marks { display: flex; justify-content: center; gap: 30px; font-size: 80px; line-height: 1.1; padding: 6px 0 12px; border-top: 1px solid var(--rule); }
+  .marks small { display: block; font: 500 13px/1 ui-monospace, monospace; letter-spacing: .12em; color: var(--muted); text-align: center; margin-top: 4px; }
+  .cmp .k.s { font-size: 84px; }
+</style>
+<div class="frame">
+  <span class="corner c1"></span><span class="corner c2"></span><span class="corner c3"></span><span class="corner c4"></span>
+  <div class="top"><span class="ver">EXTENDED KANA<small>KUREEDO 0.4</small></span><span class="mid"><span class="prov">AINU SMALL KATAKANA · SEMI-VOICED セ ツ ト ㇷ · NASAL カ–コ</span><span class="ticks"></span></span><span class="blk">PHONETIC EXTENSIONS<small>U+31F0–31FF · U+309A · CCMP · VERT</small></span></div>
+  <div class="body">
+    <div class="char">
+      <div class="g">ㇷ゚</div>
+      <div class="meta"><div class="cp">U+31F7 + U+309A</div><div class="nm">SMALL FU + SEMI-VOICED SOUND MARK</div><div class="eq"><b>プ</b>p</div></div>
+      <div class="cmp">
+        <div><div class="k">プ</div><div class="l">U+30D7</div></div>
+        <div><div class="k">ㇷ゚</div><div class="l new">ccmp</div></div>
+        <div><div class="k">ㇷ</div><div class="l">U+31F7</div></div>
+      </div>
+    </div>
+    <div class="char">
+      <div class="grid16"><span>ㇰ</span><span>ㇱ</span><span>ㇲ</span><span>ㇳ</span><span>ㇴ</span><span>ㇵ</span><span>ㇶ</span><span>ㇷ</span><span>ㇸ</span><span>ㇹ</span><span>ㇺ</span><span>ㇻ</span><span>ㇼ</span><span>ㇽ</span><span>ㇾ</span><span>ㇿ</span></div>
+      <div class="meta"><div class="cp">U+31F0–31FF</div><div class="nm">KATAKANA LETTER SMALL KU – SMALL RO</div><div class="eq"><b>ッ</b>78% · weight 0.92</div></div>
+      <div class="marks"><span>セ゚<small>ce</small></span><span>ツ゚<small>tu</small></span><span>ト゚<small>tu</small></span><span>カ゚<small>ŋa</small></span><span>コ゚<small>ŋo</small></span></div>
+    </div>
+    <div class="side">
+      <h3>SPECIMEN</h3>
+      <div class="cols">
+        <div class="col"><span class="tag">アイヌ語</span><p>ポロ イチャ サラニㇷ゚ アセ ワ<br>アㇷ゚カサン コㇿ シㇰ ノ。</p></div>
+        <div class="col"><span class="tag">沙流方言</span><p>ネ ヌプリ ポㇰ アチㇷ゚クㇱテ<br>ワ ウイマㇺ クス ピㇱ タ サナン。</p></div>
+      </div>
+      <div class="src">川上まつ子 uwepeker · AA研アイヌ語資料</div>
+    </div>
+  </div>
+  <div class="bot">
+    <span class="s"><small>AIN</small><span>サラニㇷ゚　アㇷ゚カㇱ　トㇷ゚　セㇷ゚　ユカㇻ　ピㇼカ</span><small>JA</small><span>カ゚キ゚ク゚ケ゚コ゚</span></span>
+    <span class="note"><b>KUREEDO</b>kureedo.mkpo.li</span>
+  </div>
+</div>

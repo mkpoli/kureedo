@@ -3,21 +3,40 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kureedo（クレード）</title>
-<meta name="description" content="Klee Oneに、江戸・明治の版本に見られる片仮名字形と、アイヌ語表記用の小書き片仮名・半濁点付き仮名を加えた書体。Unicode 18.0の𛄧 U+1B127と𛄨 U+1B128を収録し、ネ・ヰからもOpenType機能で同じ字形に切り替えられる。">
-<meta property="og:title" content="Kureedo（クレード）">
-<meta property="og:description" content="Klee Oneに、江戸・明治の版本の片仮名字形と、アイヌ語の小書き片仮名・半濁点付き仮名を加えた書体。𛄧 U+1B127・𛄨 U+1B128を収録。">
+<title>Kureedo（クレード）｜歴史的片仮名・アイヌ語のフリーフォント</title>
+<meta name="author" content="まくぽり (mkpoli)">
+<link rel="author" href="https://mkpo.li">
+<meta name="description" content="Klee Oneをもとに、江戸・明治の片仮名字形とアイヌ語用の小書き仮名・半濁点を収めたフリーフォント。Unicode 18.0の𛄧・𛄨に対応。TTF・WOFF2の無料ダウンロード、試し書き、ウェブフォントの使い方を掲載。">
+<meta name="robots" content="max-image-preview:large">
+<meta property="og:title" content="Kureedo（クレード）｜歴史的片仮名・アイヌ語のフリーフォント">
+<meta property="og:description" content="Klee Oneをもとに、江戸・明治の片仮名字形とアイヌ語用の小書き仮名・半濁点を収めたフリーフォント。Unicode 18.0の𛄧・𛄨に対応。TTF・WOFF2の無料ダウンロード、試し書き、ウェブフォントの使い方を掲載。">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="Kureedo">
+<meta property="og:locale" content="ja_JP">
 <meta property="og:url" content="https://kureedo.mkpo.li/">
-<meta property="og:image" content="https://kureedo.mkpo.li/images/unicode18-card.png">
-<meta property="og:image:width" content="3200">
-<meta property="og:image:height" content="1800">
+<meta property="og:image" content="https://kureedo.mkpo.li/images/og-card.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="2400">
+<meta property="og:image:height" content="1260">
+<meta property="og:image:alt" content="Kureedo：歴史的片仮名𛄧・𛄨、アイヌ語の小書き片仮名ㇰ–ㇿ、半濁点付きのセ゚ツ゚ト゚ㇷ゚と鼻濁音のカ゚–コ゚の組見本。">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image:alt" content="Kureedo：歴史的片仮名𛄧・𛄨、アイヌ語の小書き片仮名ㇰ–ㇿ、半濁点付きのセ゚ツ゚ト゚ㇷ゚と鼻濁音のカ゚–コ゚の組見本。">
 <meta name="color-scheme" content="light dark">
 <link rel="canonical" href="https://kureedo.mkpo.li/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
 <link rel="preload" href="/fonts/KureedoKata-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Klee+One&display=swap">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Kureedo",
+  "alternateName": "クレード",
+  "url": "https://kureedo.mkpo.li/",
+  "inLanguage": ["ja", "en"]
+}
+</script>
 <script>
   (function () {
     var t = null;
@@ -102,7 +121,18 @@
   main { max-width: 72rem; margin: 0 auto; padding: 0 clamp(16px, 3vw, 2.5rem) 3rem; background: var(--paper); border-left: 1px solid var(--rule); border-right: 1px solid var(--rule); }
   @media (max-width: 72rem) { main { border-left: 0; border-right: 0; } }
   .prose:not(section) { max-width: 44rem; }
-  section.prose > :not(h2) { max-width: 44rem; }
+  .prose.wide { max-width: 60rem; }
+  /* Reference sections: a side note on the left, the material on the right, both under the full-width heading. */
+  .doc { display: grid; grid-template-columns: minmax(15rem, 20rem) minmax(0, 1fr); gap: 1.5rem 4rem; align-items: start; }
+  .doc .note { position: sticky; top: 5rem; }
+  .doc .note p { margin: 0 0 1rem; }
+  .doc .body { min-width: 0; }
+  .doc .body > :first-child { margin-top: 0; }
+  .doc .body table { width: 100%; max-width: none; }
+  .doc .body pre { max-width: 100%; overflow-x: auto; }
+  .doc .body dl { margin-top: 0; }
+  .doc .body dt:first-child { margin-top: 0; }
+  @media (max-width: 64rem) { .doc { grid-template-columns: 1fr; gap: 1rem; } .doc .note { position: static; } }
   p { margin: .5rem 0 1rem; }
   a { color: var(--accent); text-underline-offset: .2em; }
   .lead { font-size: 1.2rem; margin: 1.5rem 0 0; }
@@ -114,6 +144,8 @@
   a.ch { text-decoration: none; cursor: help; } a.ch:hover { text-decoration: underline dotted; text-underline-offset: .2em; }
   .lead code { font-size: .9em; }
   .en { color: var(--muted); font-size: .92rem; }
+  p + p.en, dd + dd.en { margin-top: -.5rem; }
+  dd.en { margin-bottom: .5rem; }
   code { font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; font-size: .85em; background: var(--well); padding: .05em .35em; border-radius: .2em; }
   pre { background: var(--panel); border: 1px solid var(--rule); padding: 1rem 1.25rem; overflow-x: auto; font-size: .85rem; line-height: 1.6; margin: .5rem 0 1rem; }
   pre code { background: none; padding: 0; font-size: 1em; }
@@ -183,8 +215,15 @@
   @media (prefers-reduced-motion: reduce) { .topnav { transition: none; } }
 
   /* download */
+  /* Lead text on the left, the downloads and links on the right. */
+  .intro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(12rem, 16rem); gap: 1.5rem 4rem; align-items: start; margin-top: 1.5rem; }
+  .intro .prose { max-width: 44rem; }
+  .intro .lead { margin-top: 0; }
   .download { margin: 2rem 0 0; }
-  .buttons { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem 1.5rem; margin: .75rem 8px 1rem 0; }
+  .buttons { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem 1.5rem; margin: .75rem 8px 0 0; }
+  .buttons .button { width: 100%; }
+  .intro > .small-links { flex-direction: column; gap: .5rem; padding-top: .35rem; }
+  @media (max-width: 64rem) { .intro { grid-template-columns: 1fr; } .intro > .small-links { flex-direction: row; gap: .25rem 1.5rem; } .buttons { margin-bottom: .5rem; } }
   .button {
     display: block; padding: 1rem 1.25rem; text-decoration: none; border: 1px solid var(--ink);
     background: var(--ink); color: var(--button-ink); line-height: 1.4; box-shadow: 6px 6px 0 var(--accent);
@@ -257,7 +296,8 @@
   }
   #sample:focus { box-shadow: inset 0 0 0 2px var(--accent); }
   #sample.vertical { writing-mode: vertical-rl; text-orientation: mixed; width: 100%; height: 30rem; min-height: 0; overflow-x: auto; }
-  .tester .en { padding: .6rem 1.25rem; margin: 0; border-top: 1px solid var(--rule); }
+  .tester > p { padding: .6rem 1.25rem; margin: 0; border-top: 1px solid var(--rule); }
+  .tester > p + p.en { border-top: 0; padding-top: 0; }
 
   /* before / after slider */
   .compare-slider { position: relative; overflow: hidden; user-select: none; --pos: 50%; }
@@ -333,6 +373,20 @@
   .snippet { position: relative; margin: .5rem 0 1rem; }
   .snippet pre { margin: 0; padding-right: 4.5rem; }
   .snippet .copy { position: absolute; top: .5rem; right: .5rem; padding: .25em .6em; }
+  .snippet-head { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin: 0 0 .4rem; }
+  .snippet-head + .snippet { margin-top: 0; }
+  .switch { position: relative; display: inline-flex; align-items: center; gap: .55em; cursor: pointer; user-select: none; }
+  .switch input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .switch .track { position: relative; width: 2.4em; height: 1.3em; border: 1px solid var(--ink); border-radius: 1em; background: var(--panel); transition: background .15s ease, border-color .15s ease; }
+  .switch .track::after { content: ""; position: absolute; top: .15em; left: .15em; width: .9em; height: .9em; border-radius: 50%; background: var(--ink); transition: transform .15s ease, background .15s ease; }
+  .switch input:checked + .track { background: var(--accent); border-color: var(--accent); }
+  .switch input:checked + .track::after { transform: translateX(1.1em); background: var(--paper); }
+  .switch:has(input:focus-visible) .track { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .switch-text { font-size: .9rem; }
+  .switch-text code { font-size: .85em; }
+  .hist-demo { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin: 0 0 1rem; }
+  .hist-demo .demo { font-family: "Kureedo Kata", "Klee One", serif; font-size: 1.6rem; line-height: 1.4; }
+  .hist-demo .demo.hist { font-feature-settings: "hist"; }
   .snippet .copy.done { color: var(--accent); border-color: var(--accent); }
   .usage dl { margin: 0 0 1rem; }
   .usage dt { color: var(--accent); margin-top: 1.25rem; }
@@ -389,33 +443,38 @@
       <button id="theme" class="tag" type="button" aria-label="配色を切り替える　Toggle light and dark" title="明／暗"><span class="sun" aria-hidden="true">☀</span><span class="moon" aria-hidden="true">☾</span> <span>明／暗</span></button>
     </div>
     <div class="ticks" aria-hidden="true"></div>
-    <div class="mast-meta"><span class="label accent">Unicode 18.0 · Kana Extended-A</span><span class="label">アイヌ語仮名 ㇰ–ㇿ · ㇷ゚</span><span class="label">v0.4.0 · OFL 1.1</span></div>
+    <div class="mast-meta"><span class="label accent">Unicode 18.0 · Kana Extended-A</span><span class="label">拡張仮名 ㇰ–ㇿ · ㇷ゚ · カ゚</span><span class="label"><a href="https://mkpo.li" rel="author">まくぽり mkpoli</a> · v0.4.3 · OFL 1.1</span></div>
 
+    <div class="intro">
     <div class="prose">
-      <p class="lead">Klee Oneに、江戸・明治の版本に見られる片仮名の字形を加えた書体。Unicode 18.0で符号化された<a class="ch" href="#hero" title="U+1B127 KATAKANA LETTER ALTERNATE NE">𛄧</a>と<a class="ch" href="#hero" title="U+1B128 KATAKANA LETTER ALTERNATE WI">𛄨</a>を収録し、<b class="ch">ネ</b><b class="ch">ヰ</b>からもOpenType機能<code>hist</code>で同じ字形に切り替えられる。アイヌ語の小書き片仮名<b class="ch">ㇰ–ㇿ</b>と、半濁点付きの<b class="ch">セ゚</b><b class="ch">ツ゚</b><b class="ch">ト゚</b><b class="ch">ㇷ゚</b>も収める。</p>
-      <p class="en">Klee One with the katakana of Edo–Meiji print: <a class="ch en" href="#hero" title="U+1B127 KATAKANA LETTER ALTERNATE NE">𛄧</a> and <a class="ch en" href="#hero" title="U+1B128 KATAKANA LETTER ALTERNATE WI">𛄨</a> (Unicode 18.0), also reachable from <b class="ch en">ネ</b> and <b class="ch en">ヰ</b> through <code>hist</code>; plus the Ainu small kana <b class="ch en">ㇰ–ㇿ</b> and the marked <b class="ch en">セ゚</b> <b class="ch en">ツ゚</b> <b class="ch en">ト゚</b> <b class="ch en">ㇷ゚</b>.</p>
+      <p class="lead">Klee Oneに、江戸・明治の版本に見られる片仮名の字形を加えたフリーフォント。Unicode 18.0で符号化された<a class="ch" href="#hero" title="U+1B127 KATAKANA LETTER ALTERNATE NE">𛄧</a>と<a class="ch" href="#hero" title="U+1B128 KATAKANA LETTER ALTERNATE WI">𛄨</a>を収録し、<b class="ch">ネ</b><b class="ch">ヰ</b>からもOpenType機能<code>hist</code>で同じ字形に切り替えられる。アイヌ語の小書き片仮名<b class="ch">ㇰ–ㇿ</b>、半濁点付きの<b class="ch">セ゚</b><b class="ch">ツ゚</b><b class="ch">ト゚</b><b class="ch">ㇷ゚</b>、鼻濁音の<b class="ch">カ゚</b>–<b class="ch">コ゚</b>も収める。</p>
+      <p class="en" lang="en">A free font based on Klee One for historical Japanese katakana and Ainu. It includes the Edo–Meiji printed forms <a class="ch en" href="#hero" title="U+1B127 KATAKANA LETTER ALTERNATE NE">𛄧</a> and <a class="ch en" href="#hero" title="U+1B128 KATAKANA LETTER ALTERNATE WI">𛄨</a> (Unicode 18.0), also available from <b class="ch en">ネ</b> and <b class="ch en">ヰ</b> through <code>hist</code>. Extended kana: the Ainu small kana <b class="ch en">ㇰ–ㇿ</b>, the semi-voiced <b class="ch en">セ゚</b> <b class="ch en">ツ゚</b> <b class="ch en">ト゚</b> <b class="ch en">ㇷ゚</b>, and the nasal <b class="ch en">カ゚</b>–<b class="ch en">コ゚</b>.</p>
+    </div>
+      <ul class="small-links">
+        <li><a href="https://github.com/mkpoli/kureedo/releases">すべてのリリース　All releases</a></li>
+        <li><a href="https://github.com/mkpoli/kureedo/releases/download/v0.4.3/OFL.txt">OFL.txt</a></li>
+        <li><a href="https://github.com/mkpoli/kureedo/releases/download/v0.4.3/SHA256SUMS.txt">SHA256SUMS.txt</a></li>
+        <li><a href="https://x.com/mkpoli/status/2101202819110015016">発表ツイート（𛄧𛄨）</a></li>
+        <li><a href="https://x.com/mkpoli/status/2101640648965382274">発表ツイート（拡張仮名）</a></li>
+      </ul>
     </div>
 
     <div class="download" id="download">
-      <span class="label">入手　Download</span>
+      <span class="label">無料ダウンロード　<span lang="en">Free font download</span></span>
       <div class="buttons">
-        <a class="button" href="https://github.com/mkpoli/kureedo/releases/download/v0.4.0/Kureedo-Regular.ttf"><b>Kureedo-Regular.ttf</b><span class="mono">デスクトップ · v0.4.0 · 8.7 MB</span></a>
-        <a class="button web" href="https://github.com/mkpoli/kureedo/releases/download/v0.4.0/KureedoKata-Regular.woff2"><b>KureedoKata-Regular.woff2</b><span class="mono">ウェブ（仮名・記号のみ） · v0.4.0 · 24 KB</span></a>
+        <a class="button" href="https://github.com/mkpoli/kureedo/releases/download/v0.4.3/Kureedo-Regular.ttf"><b>Kureedo-Regular.ttf</b><span class="mono">デスクトップ · v0.4.3 · 8.7 MB</span></a>
+        <a class="button web" href="https://github.com/mkpoli/kureedo/releases/download/v0.4.3/KureedoKata-Regular.woff2"><b>KureedoKata-Regular.woff2</b><span class="mono">ウェブ（仮名・記号のみ） · v0.4.3 · 24 KB</span></a>
       </div>
-      <ul class="small-links">
-        <li><a href="https://github.com/mkpoli/kureedo/releases">すべてのリリース　All releases</a></li>
-        <li><a href="https://github.com/mkpoli/kureedo/releases/download/v0.4.0/OFL.txt">OFL.txt</a></li>
-        <li><a href="https://github.com/mkpoli/kureedo/releases/download/v0.4.0/SHA256SUMS.txt">SHA256SUMS.txt</a></li>
-        <li><a href="https://x.com/mkpoli/status/2101202819110015016">発表ツイート　Announcement</a></li>
-      </ul>
     </div>
 
     <nav class="sections" aria-label="目次">
       <a href="#tester"><b>01</b>試し書き</a>
       <a href="#before-after"><b>02</b>比較</a>
       <a href="#specimen"><b>03</b>見本</a>
+      <a href="#ainu"><b>05</b>拡張仮名</a>
       <a href="#features"><b>06</b>OpenType機能</a>
       <a href="#glyphs"><b>07</b>収録文字</a>
+      <a href="#sources"><b>08</b>字源</a>
       <a href="#usage"><b>09</b>使い方</a>
       <a href="#cdn"><b>10</b>ウェブフォント配信</a>
       <a href="#licence"><b>11</b>ライセンス</a>
@@ -468,7 +527,8 @@
         <button type="button" class="tag reset" id="reset">戻す</button>
       </div>
       <div id="sample" contenteditable="true" spellcheck="false" role="textbox" aria-multiline="true" aria-label="試し書き">ア𛄧 シ𛄧 ト𛄧 イ𛄨ヱカラ。𛄧コ フ𛄧 カ𛄧 𛄨ド 𛄨ノシシ<br>ポロ イチャ サラニㇷ゚ アセ ワ アㇷ゚カサン コㇿ シㇰ ノ。</div>
-      <p class="en">テキストは自由に書き換えられる。仮名と記号はKureedo Kata、漢字とラテン文字はKlee Oneで表示される。<code>hist</code>を有効にすると、<b class="ch">ネ</b><b class="ch">ヰ</b>と入力した文字も版本の字形になる。Type anything: kana are set in Kureedo Kata, kanji and Latin fall back to Klee One. With <code>hist</code> on, ordinary <b class="ch en">ネ</b> and <b class="ch en">ヰ</b> take the printed forms.</p>
+      <p>テキストは自由に書き換えられる。仮名と記号はKureedo Kata、漢字とラテン文字はKlee Oneで表示される。<code>hist</code>を有効にすると、<b class="ch">ネ</b><b class="ch">ヰ</b>と入力した文字も版本の字形になる。</p>
+    <p class="en" lang="en">Type anything: kana are set in Kureedo Kata, kanji and Latin fall back to Klee One. With <code>hist</code> on, ordinary <b class="ch en">ネ</b> and <b class="ch en">ヰ</b> take the printed forms.</p>
     </div>
   </section>
 
@@ -482,7 +542,8 @@
       <div class="divider" aria-hidden="true"></div>
       <input type="range" id="slider-pos" min="0" max="100" value="50" step="0.1" aria-label="既定とhistの境界を動かす　Drag the divider between default and hist">
     </div>
-    <p class="en prose">同じ本文（<b class="ch">ネ</b><b class="ch">ヰ</b>で符号化）。左は既定、右は<code>hist</code>適用。境界を左右に動かして比較できる。The same text encoded with ordinary <b class="ch en">ネ</b> and <b class="ch en">ヰ</b>: default on the left, <code>hist</code> on the right. Drag the divider.</p>
+    <p class="prose">同じ本文（<b class="ch">ネ</b><b class="ch">ヰ</b>で符号化）。左は既定、右は<code>hist</code>適用。境界を左右に動かして比較できる。</p>
+    <p class="en prose" lang="en">The same text encoded with ordinary <b class="ch en">ネ</b> and <b class="ch en">ヰ</b>: default on the left, <code>hist</code> on the right. Drag the divider.</p>
   </section>
 
   <section>
@@ -505,33 +566,37 @@
   </section>
 
   <section>
-    <h2><span class="ja">アイヌ語の仮名</span><span>Ainu kana and marks</span><span class="line"></span><span class="num">05</span></h2>
-    <p class="marks">セ゚ ツ゚ ト゚ ㇷ゚ カ゚</p>
+    <h2 id="ainu"><span class="ja">拡張仮名</span><span lang="en">Extended kana</span><span class="line"></span><span class="num">05</span></h2>
+    <p class="marks">セ゚ ツ゚ ト゚ ㇷ゚　カ゚ キ゚ ク゚ ケ゚ コ゚</p>
     <p class="marks">ㇰㇱㇲㇳㇴㇵㇶㇷㇸㇹㇺㇻㇼㇽㇾㇿ</p>
     <p class="run"><span>エペッチウ サㇰ ノ ピㇼカ アㇷ゚カㇱ チキ ワ ホシッパアㇱ ペ ネ ア コㇿカ。</span><span>ペッ ペㇱ アコㇿ チㇷ゚ アキル アクㇱ オラノ カイペ クㇽカ エチャラセ ペコㇿ。</span></p>
-    <p class="en prose">小書き片仮名<b class="ch">ㇰ–ㇿ</b>（U+31F0–31FF）はKlee Oneの<b class="ch">ッ</b><b class="ch">ァ</b>と同じ比率で組み、半濁点は<code>ccmp</code>合字によって<b class="ch">プ</b>と同じ位置で一つの升目に収める。Small kana U+31F0–31FF at the proportions of Klee One's own <b class="ch en">ッ</b> and <b class="ch en">ァ</b>; <code>ccmp</code> ligatures set the handakuten in one cell where <b class="ch en">プ</b> carries it. 用例は川上まつ子のウウェペケㇾ（AA研アイヌ語資料）より引用。Sample sentences from 川上まつ子's uwepeker (<a href="https://ainugo.aa-ken.jp/">AA研アイヌ語資料</a>).</p>
+    <p class="prose">小書き片仮名<b class="ch">ㇰ–ㇿ</b>（U+31F0–31FF）はKlee Oneの<b class="ch">ッ</b><b class="ch">ァ</b>と同じ比率で組み、半濁点は<code>ccmp</code>合字によって一つの升目に収め、<b class="ch">ㇷ゚</b>では<b class="ch">プ</b>と同じ位置に、<b class="ch">セ゚</b><b class="ch">ツ゚</b><b class="ch">ト゚</b>と鼻濁音の<b class="ch">カ゚</b>–<b class="ch">コ゚</b>ではKlee Oneが濁点を置く位置に置く。用例は川上まつ子のウウェペケㇾ（AA研アイヌ語資料）より引用。</p>
+    <p class="en prose" lang="en">Small kana U+31F0–31FF at the proportions of Klee One's own <b class="ch en">ッ</b> and <b class="ch en">ァ</b>; <code>ccmp</code> ligatures set the handakuten in one cell: on <b class="ch en">ㇷ゚</b> where <b class="ch en">プ</b> carries it, on <b class="ch en">セ゚</b> <b class="ch en">ツ゚</b> <b class="ch en">ト゚</b> and the nasal <b class="ch en">カ゚</b>–<b class="ch en">コ゚</b> where Klee One places its dakuten. Sample sentences from 川上まつ子's uwepeker (<a href="https://ainugo.aa-ken.jp/">AA研アイヌ語資料</a>).</p>
   </section>
 
   <section>
     <h2 id="features"><span class="ja">OpenType機能</span><span>Features</span><span class="line"></span><span class="num">06</span></h2>
-    <p class="prose">Kana Extended-Aの文字で符号化された本文には機能の指定は不要。通常の<b class="ch">ネ</b><b class="ch">ヰ</b>で符号化された本文は、検索・整列・複写がそのまま機能し、下の機能で同じ字形になる。</p>
+    <div class="doc"><div class="note"><p class="prose">Kana Extended-Aの文字で符号化された本文には機能の指定は不要。通常の<b class="ch">ネ</b><b class="ch">ヰ</b>で符号化された本文は、検索・整列・複写がそのまま機能し、下の機能で同じ字形になる。</p><p class="en" lang="en">Text encoded with the Kana Extended-A letters needs no feature. Text encoded with ordinary <b class="ch en">ネ</b> and <b class="ch en">ヰ</b> keeps search, sorting and copying intact and takes the same forms through the features below.</p></div><div class="body">
     <table>
       <thead><tr><th>Feature</th><th>効果</th><th>ネヰ</th></tr></thead>
       <tbody>
         <tr><td><code>hist</code></td><td>歴史的字形すべて。All historical forms.</td><td class="sample hist">ネ ヰ</td></tr>
-        <tr><td><code>ss01</code></td><td>江戸期版本の字形。この版では<code>hist</code>と同じ集合。</td><td class="sample ss01">ネ ヰ</td></tr>
-        <tr><td><code>cv01</code></td><td><b class="ch">ネ</b>のみ。</td><td class="sample cv01">ネ ヰ</td></tr>
-        <tr><td><code>cv02</code></td><td><b class="ch">ヰ</b>のみ。</td><td class="sample cv02">ネ ヰ</td></tr>
+        <tr><td><code>ss01</code></td><td>江戸期版本の字形。この版では<code>hist</code>と同じ集合。Edo-period printed forms; the same set as <code>hist</code> in this release.</td><td class="sample ss01">ネ ヰ</td></tr>
+        <tr><td><code>cv01</code></td><td><b class="ch">ネ</b>のみ。<b class="ch en">ネ</b> only.</td><td class="sample cv01">ネ ヰ</td></tr>
+        <tr><td><code>cv02</code></td><td><b class="ch">ヰ</b>のみ。<b class="ch en">ヰ</b> only.</td><td class="sample cv02">ネ ヰ</td></tr>
         <tr><td>—</td><td>既定（Klee Oneの字形）。Default.</td><td class="sample">ネ ヰ</td></tr>
         <tr><td><code>ccmp</code></td><td>仮名と結合用半濁点を一つの升目に収めて組む（既定で有効）。Base + U+309A in one cell, on by default.</td><td class="sample">ㇷ゚ ト゚</td></tr>
         <tr><td><code>vert</code></td><td>縦組では小書き仮名が右上に寄る。Small kana shift up-right in vertical text.</td><td class="sample" style="writing-mode: vertical-rl">アㇷ゚</td></tr>
       </tbody>
     </table>
+    </div>
+    </div>
   </section>
 
   <section>
     <h2 id="glyphs"><span class="ja">収録文字</span><span>Glyphs</span><span class="line"></span><span class="num">07</span></h2>
-    <p class="en prose">ウェブ用のKureedo Kataに入っている文字をブロックごとに示す。枠の付いた字はKlee Oneにはなく、Kureedoが加えたもの。デスクトップ用のKureedo-Regular.ttfはこれに加えてKlee One Regular全体を収録する。The Kureedo Kata webfont, block by block, set live in the font. Framed cells are letters Klee One does not have; the desktop TTF adds the whole of Klee One Regular. Hover a cell for its code point.</p>
+    <p class="prose">ウェブ用のKureedo Kataに入っている文字をブロックごとに示す。枠の付いた字はKlee Oneにはなく、Kureedoが加えたもの。デスクトップ用のKureedo-Regular.ttfはこれに加えてKlee One Regular全体を収録する。</p>
+    <p class="en prose" lang="en">The Kureedo Kata webfont, block by block, set live in the font. Framed cells are letters Klee One does not have; the desktop TTF adds the whole of Klee One Regular. Hover a cell for its code point.</p>
 <!-- glyphs:start -->
 <h3 class="glyph-group"><span class="ja">新しい文字</span><span class="label">Kana Extended-A · U+1B127–1B128 · Unicode 18.0 · 2字　·　2字はKlee Oneにない</span></h3>
 <div class="glyphs">
@@ -708,7 +773,7 @@
   </section>
 
   <section>
-    <h2><span class="ja">字源</span><span>Sources of the forms</span><span class="line"></span><span class="num">08</span></h2>
+    <h2 id="sources"><span class="ja">字源</span><span lang="en">Sources of the forms</span><span class="line"></span><span class="num">08</span></h2>
     <div class="compare">
       <div class="row frame">
         <div class="cell">ネ<small>U+30CD</small></div>
@@ -721,20 +786,23 @@
         <div class="cell kanji">井<small>U+4E95</small></div>
       </div>
     </div>
-    <p class="en prose">版本の<b class="ch">ネ</b>は字源である<b class="ch">子</b>の骨格を、<b class="ch">ヰ</b>は<b class="ch">井</b>の枠をそのまま保つ。The printed <b class="ch en">ネ</b> keeps the skeleton of its source <b class="ch en">子</b>; the printed <b class="ch en">ヰ</b> keeps the full <b class="ch en">井</b> frame. They are separate letters from <b class="ch en">子</b> and <b class="ch en">井</b> and have no decomposition to <b class="ch en">ネ</b> or <b class="ch en">ヰ</b>.</p>
+    <p class="prose">版本の<b class="ch">ネ</b>は字源である<b class="ch">子</b>の骨格を、<b class="ch">ヰ</b>は<b class="ch">井</b>の枠をそのまま保つ。</p>
+    <p class="en prose" lang="en">The printed <b class="ch en">ネ</b> keeps the skeleton of its source <b class="ch en">子</b>; the printed <b class="ch en">ヰ</b> keeps the full <b class="ch en">井</b> frame. They are separate letters from <b class="ch en">子</b> and <b class="ch en">井</b> and have no decomposition to <b class="ch en">ネ</b> or <b class="ch en">ヰ</b>.</p>
     <figure>
-      <img src="/images/unicode18-card.png" width="3200" height="1800" alt="Unicode 18.0 Kana Extended-A: 𛄧 U+1B127 KATAKANA LETTER ALTERNATE NE and 𛄨 U+1B128 KATAKANA LETTER ALTERNATE WI, shown large beside ネ・子 and ヰ・井, with Japanese and Ainu specimen words">
+      <img src="/images/unicode18-card.png" width="3200" height="1800" loading="lazy" decoding="async" alt="Unicode 18.0 Kana Extended-A: 𛄧 U+1B127 KATAKANA LETTER ALTERNATE NE and 𛄨 U+1B128 KATAKANA LETTER ALTERNATE WI, shown large beside ネ・子 and ヰ・井, with Japanese and Ainu specimen words">
       <figcaption>Unicode 18.0 · Kana Extended-A U+1B100–1B12F · <a href="https://x.com/mkpoli/status/2101202819110015016">発表ツイート　Announcement</a></figcaption>
     </figure>
   </section>
 
-  <section class="usage prose">
+  <section class="usage">
     <h2 id="usage"><span class="ja">使い方</span><span>Usage</span><span class="line"></span><span class="num">09</span></h2>
-    <p>Kureedoはデスクトップ向けにKlee One Regular全体と歴史的字形を収録した書体で、Kureedo Kataは仮名・仮名句読点・記号のみを収めた約24KBのウェブ用書体。Kureedo carries the whole of Klee One Regular; Kureedo Kata is the web subset of kana and marks only.</p>
+    <div class="doc"><div class="note"><p>Kureedoはデスクトップ向けにKlee One Regular全体と歴史的字形を収録した書体で、Kureedo Kataは仮名・仮名句読点・記号のみを収めた約24KBのウェブ用書体。</p>
+    <p class="en" lang="en">Kureedo carries the whole of Klee One Regular; Kureedo Kata is the web subset of kana and marks only.</p></div><div class="body">
     <dl>
       <dt>ウェブ　Web</dt>
       <dd>
-<pre><code>@font-face {
+<div class="snippet-head"><span class="label">CSS</span><label class="switch"><input type="checkbox" id="web-hist" checked><span class="track" aria-hidden="true"></span><span class="switch-text"><code>hist</code></span></label></div>
+<div class="snippet"><pre><code id="web-css">@font-face {
   font-family: "Kureedo Kata";
   src: url("KureedoKata-Regular.woff2") format("woff2");
   unicode-range: U+3000-303F, U+3099-309C, U+30A0-30FF, U+31F0-31FF, U+1B127-1B128;
@@ -742,18 +810,26 @@
 .edition {
   font-family: "Kureedo Kata", "Klee One", serif;
   font-feature-settings: "hist";
-}</code></pre>
+}</code></pre><button type="button" class="tag copy" id="web-copy" data-copy="">Copy</button></div>
+<div class="hist-demo"><span class="label">.edition</span><span class="demo" id="web-demo">アネ　シネ　トネ　イヰヱカラ。</span></div>
       </dd>
+      <dd>普通の<b class="ch">ネ</b>や<b class="ch">ヰ</b>を版本の字形で表示するかどうかは、<code>hist</code>の有無で切り替わる。上の見本と<code>.edition</code>の中身が連動する。</dd>
+      <dd class="en" lang="en">Whether ordinary <b class="ch en">ネ</b> and <b class="ch en">ヰ</b> take the printed forms depends on <code>hist</code>; the sample and the <code>.edition</code> rule above follow the toggle.</dd>
       <dt>Word・LibreOffice</dt>
-      <dd>Kureedo-Regular.ttfをインストールして書体として選択する。歴史的字形は、OpenType機能の設定（Wordはフォントダイアログの「詳細設定」、LibreOfficeはフォント名に<code>:hist</code>を指定）で表示させるか、𛄧 U+1B127・𛄨 U+1B128を直接入力する。Install the TTF and pick it as the font; the historical forms come from the OpenType feature panel (Word: Font dialog, Advanced; LibreOffice: append <code>:hist</code> to the font name) or by typing U+1B127 and U+1B128 directly.</dd>
+      <dd>Kureedo-Regular.ttfをインストールして書体として選択する。歴史的字形は、OpenType機能の設定（Wordはフォントダイアログの「詳細設定」、LibreOfficeはフォント名に<code>:hist</code>を指定）で表示させるか、𛄧 U+1B127・𛄨 U+1B128を直接入力する。</dd>
+      <dd class="en" lang="en">Install the TTF and pick it as the font; the historical forms come from the OpenType feature panel (Word: Font dialog, Advanced; LibreOffice: append <code>:hist</code> to the font name) or by typing U+1B127 and U+1B128 directly.</dd>
       <dt>アイヌ語の小書き仮名と半濁点　Ainu small kana and handakuten</dt>
-      <dd><b class="ch">ㇷ</b>（U+31F7）に続けて結合用半濁点<b class="ch">゚</b>（U+309A）を入力すると<b class="ch">ㇷ゚</b>になる。<b class="ch">セ゚</b><b class="ch">ツ゚</b><b class="ch">ト゚</b>も同様。Type <b class="ch en">ㇷ</b>, then the combining handakuten U+309A, to get <b class="ch en">ㇷ゚</b>; <b class="ch en">セ゚</b>, <b class="ch en">ツ゚</b> and <b class="ch en">ト゚</b> work the same way.</dd>
+      <dd><b class="ch">ㇷ</b>（U+31F7）に続けて結合用半濁点<b class="ch">゚</b>（U+309A）を入力すると<b class="ch">ㇷ゚</b>になる。<b class="ch">セ゚</b><b class="ch">ツ゚</b><b class="ch">ト゚</b>も同様。</dd>
+      <dd class="en" lang="en">Type <b class="ch en">ㇷ</b>, then the combining handakuten U+309A, to get <b class="ch en">ㇷ゚</b>; <b class="ch en">セ゚</b>, <b class="ch en">ツ゚</b> and <b class="ch en">ト゚</b> work the same way.</dd>
     </dl>
+    </div>
+    </div>
   </section>
 
-  <section class="usage prose">
+  <section class="usage">
     <h2 id="cdn"><span class="ja">ウェブフォント配信</span><span>Webfont CDN</span><span class="line"></span><span class="num">10</span></h2>
-    <p>kureedo.mkpo.liから直接読み込める。<code>/kureedo.css</code>は最新版を指し、<code>/v0.4.0/</code>以下は版を固定した不変のファイル（CORS許可、キャッシュ期間1年）。The stylesheet at <code>/kureedo.css</code> follows the latest release; files under <code>/v0.4.0/</code> are pinned and immutable, served with CORS and a one-year cache.</p>
+    <div class="doc"><div class="note"><p>kureedo.mkpo.liから直接読み込める。<code>/kureedo.css</code>は最新版を指し、<code>/v0.4.3/</code>以下は版を固定した不変のファイル（CORS許可、キャッシュ期間1年）。</p>
+    <p class="en" lang="en">The stylesheet at <code>/kureedo.css</code> follows the latest release; files under <code>/v0.4.3/</code> are pinned and immutable, served with CORS and a one-year cache.</p></div><div class="body">
     <dl>
       <dt>最新版　Latest</dt>
       <dd>
@@ -768,30 +844,32 @@
       </dd>
       <dt>版を固定　Pinned</dt>
       <dd>
-<div class="snippet"><pre><code>&lt;link rel="stylesheet" href="https://kureedo.mkpo.li/v0.4.0/kureedo.css"&gt;</code></pre><button type="button" class="tag copy" data-copy="&lt;link rel=&quot;stylesheet&quot; href=&quot;https://kureedo.mkpo.li/v0.4.0/kureedo.css&quot;&gt;">Copy</button></div>
+<div class="snippet"><pre><code>&lt;link rel="stylesheet" href="https://kureedo.mkpo.li/v0.4.3/kureedo.css"&gt;</code></pre><button type="button" class="tag copy" data-copy="&lt;link rel=&quot;stylesheet&quot; href=&quot;https://kureedo.mkpo.li/v0.4.3/kureedo.css&quot;&gt;">Copy</button></div>
       </dd>
       <dt>jsDelivr（GitHubのタグから）</dt>
       <dd>
 <div class="snippet"><pre><code>@font-face {
   font-family: "Kureedo Kata";
-  src: url("https://cdn.jsdelivr.net/gh/mkpoli/kureedo@v0.4.0/fonts/KureedoKata-Regular.woff2") format("woff2");
+  src: url("https://cdn.jsdelivr.net/gh/mkpoli/kureedo@v0.4.3/fonts/KureedoKata-Regular.woff2") format("woff2");
   font-display: swap;
   unicode-range: U+3000-303F, U+3099-309C, U+30A0-30FF, U+31F0-31FF, U+1B127-1B128;
 }</code></pre><button type="button" class="tag copy" data-copy='@font-face {
   font-family: "Kureedo Kata";
-  src: url("https://cdn.jsdelivr.net/gh/mkpoli/kureedo@v0.4.0/fonts/KureedoKata-Regular.woff2") format("woff2");
+  src: url("https://cdn.jsdelivr.net/gh/mkpoli/kureedo@v0.4.3/fonts/KureedoKata-Regular.woff2") format("woff2");
   font-display: swap;
   unicode-range: U+3000-303F, U+3099-309C, U+30A0-30FF, U+31F0-31FF, U+1B127-1B128;
 }'>Copy</button></div>
       </dd>
     </dl>
-    <p class="en">SIL Open Font License 1.1はこの形式での配信・埋め込みを認めている。歴史的字形は<code>hist</code>、または<b class="ch">𛄧</b><b class="ch">𛄨</b>（U+1B127・U+1B128）の符号位置で表示できる。The OFL 1.1 permits serving and embedding the font this way. The historical forms need <code>hist</code>, or the code points U+1B127 and U+1B128.</p>
+    <p>SIL Open Font License 1.1はこの形式での配信・埋め込みを認めている。歴史的字形は<code>hist</code>、または<b class="ch">𛄧</b><b class="ch">𛄨</b>（U+1B127・U+1B128）の符号位置で表示できる。</p>
+    <p class="en" lang="en">The OFL 1.1 permits serving and embedding the font this way. The historical forms need <code>hist</code>, or the code points U+1B127 and U+1B128.</p>
+    </div>
+    </div>
   </section>
 
-  <section class="prose">
+  <section>
     <h2 id="licence"><span class="ja">ライセンス</span><span>Licence</span><span class="line"></span><span class="num">11</span></h2>
-    <p>SIL Open Font License 1.1。改変・再配布・埋め込み・商用利用が可能だが、書体そのものを単体で販売することはできない。Klee One © 2020 The Klee Project Authors。KleeはFontworks Inc.の商標。<a href="https://github.com/mkpoli/kureedo/blob/main/OFL.txt">OFL.txt</a></p>
-    <p class="en">SIL Open Font License 1.1: use, modify, embed and redistribute freely; the font may not be sold by itself.</p>
+    <div class="prose wide"><p>SIL Open Font License 1.1。改変・再配布・埋め込み・商用利用が可能だが、書体そのものを単体で販売することはできない。Klee One © 2020 The Klee Project Authors。KleeはFontworks Inc.の商標。<a href="https://github.com/mkpoli/kureedo/blob/main/OFL.txt">OFL.txt</a></p><p class="en" lang="en">SIL Open Font License 1.1: use, modify, embed and redistribute freely; the font may not be sold by itself.</p></div>
   </section>
 
   <footer>
@@ -800,6 +878,7 @@
       <li><a href="https://github.com/mkpoli/kureedo/releases">Releases</a></li>
       <li><a href="https://github.com/mkpoli/kureedo/blob/main/OFL.txt">SIL Open Font License 1.1</a></li>
     </ul>
+    <p>制作：<a href="https://mkpo.li" rel="author">まくぽり（mkpoli）</a>　Made by <a href="https://mkpo.li" rel="author">mkpoli</a>.</p>
     <p>Kureedo is an independent derivative of Klee One (Fontworks). Klee One © 2020 The Klee Project Authors; Klee is a trademark of Fontworks Inc. Kureedo has no connection to Fontworks.</p>
   </footer>
 </main>
@@ -894,6 +973,18 @@
       rememberSelection();
       insertText((e.clipboardData || window.clipboardData).getData("text"));
     });
+
+    (function () {
+      var box = document.getElementById("web-hist"), code = document.getElementById("web-css"), demo = document.getElementById("web-demo"), copy = document.getElementById("web-copy");
+      var lines = code.textContent.split("\n"), histLine = '  font-feature-settings: "hist";';
+      function sync() {
+        var on = box.checked;
+        var text = lines.filter(function (l) { return on || l !== histLine; }).join("\n");
+        code.textContent = text; copy.setAttribute("data-copy", text);
+        demo.classList.toggle("hist", on);
+      }
+      box.addEventListener("change", sync); sync();
+    })();
 
     Array.prototype.forEach.call(document.querySelectorAll(".copy"), function (b) {
       b.addEventListener("click", function () {
