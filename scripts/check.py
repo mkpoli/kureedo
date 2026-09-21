@@ -73,7 +73,7 @@ def check(path: Path, family: str, full: bool):
     # The missing letters have their own code points, one cell each way; `hlig` forms each
     # digraph from its letters and nothing else does.
     DIGRAPHS = {0x2A708: "トモ"}
-    for code in DIGRAPHS:
+    for code in (*DIGRAPHS, 0x30A0):
         glyph = cmap[code]
         assert glyph == f"uni{code:04X}" and font["hmtx"][glyph][0] == 1000, glyph
         assert font["glyf"][glyph].yMax + font["vmtx"][glyph][1] == 880, glyph
@@ -108,6 +108,15 @@ def check(path: Path, family: str, full: bool):
     params = next(r.Feature.FeatureParams for r in font["GSUB"].table.FeatureList.FeatureRecord if r.FeatureTag == "ss02")
     assert name.getDebugName(params.UINameID) == "Tomo: straight left stroke"
     assert str(name.getName(params.UINameID, 3, 1, 0x411)) == "トモ合字の左画を直線に"
+
+    # ゠ has independently selected horizontal and strictly upright vertical forms.
+    assert shape("゠") == [("uni30A0", 1000, 0)]
+    for features in ({}, {"vert": True, "vrt2": False}, {"vert": False, "vrt2": True}):
+        assert shape("゠", "ttb", features) == [("uni30A0.vert", 0, -1000)]
+    vert = font["glyf"]["uni30A0.vert"]
+    assert vert.numberOfContours == 2 and vert.yMax - vert.yMin == 560
+    assert vert.yMax + font["vmtx"]["uni30A0.vert"][1] == 880
+    assert font["hmtx"]["uni30A0.vert"][0] == 1000
 
     # Marked kana shape into one cell in both directions; precomposed and decomposed agree.
     for text in ["ツ゚", "ト゚", "セ゚", "ㇷ゚", "カ゚", "キ゚", "ク゚", "ケ゚", "コ゚", "パ", "ガ", "ヅ"]:

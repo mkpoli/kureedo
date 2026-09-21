@@ -59,6 +59,7 @@ HISTORICAL = [
 # Letters Klee One lacks, each with its code point and SVG source; a digraph also names the
 # letters it joins, and `hlig` forms it from them.
 LETTERS = [
+    dict(code=0x30A0, svg="double-hyphen.svg", vertical="double-hyphen-vert.svg", letters=None, label="Katakana-hiragana double hyphen"),
     dict(code=0x2A708, svg="tomo.svg", letters="トモ", label="Katakana tomo ligature"),
 ]
 KATA_UNICODES = [0x20, *range(0x3000, 0x3040), *range(0x3099, 0x309D), *range(0x30A0, 0x3100), *range(0x31F0, 0x3200),
@@ -176,9 +177,9 @@ class Builder:
         self.name_id = max(self.name_id, 256)
 
     def source(self, svg):
-        # Match the accepted tomo font's conversion, including quadratic rounding.
+        # Match the accepted study fonts' conversion, including quadratic rounding.
         return svg_glyph(Path(self.sources.get(svg, GLYPHS / svg)),
-                         normalize=svg in ("tomo.svg", "tomo-straight.svg"))
+                         normalize=svg in ("tomo.svg", "tomo-straight.svg", "double-hyphen.svg", "double-hyphen-vert.svg"))
 
     def put(self, name, glyph, advance=1000, origin=BASELINE, mark=False):
         glyph.recalcBounds(self.font["glyf"])
@@ -282,6 +283,9 @@ class Builder:
             self.put(name, self.source(form["svg"]))
             self.encode(form["code"], name)
             self.cmap[form["code"]] = name
+            if form.get("vertical"):
+                self.put(name + ".vert", self.source(form["vertical"]))
+                self.vertical[name] = name + ".vert"
             if form["letters"]:
                 variants = []
                 for char in form["letters"]:

@@ -1,0 +1,27 @@
+{
+  "arena": "1643f1d0033c87fd852bd11355677522",
+  "protocol": "cull-v1",
+  "kept": [
+    "d2f0dc28db585a725",
+    "d0d6c16b5c92b3383",
+    "d0ad4a0ec37d222fc",
+    "d700fdf50a743f9d6"
+  ],
+  "rejected": [
+    "d1cb3698abbb4c4c8",
+    "d30232f02663d0c08",
+    "dc2d504b8fcf7cd24",
+    "d7eb8fd36f82fa619",
+    "deb503ee31c2fae65",
+    "d10212cc28bfcc22a",
+    "d489504c0fe115d01",
+    "d69fae5166bcffd1f",
+    "da40569d88dd5ab9e",
+    "dc231caa8349ba4ba",
+    "d027674abe743ec1c",
+    "d245ea2edcc6e3b51"
+  ],
+  "size": 24,
+  "passage": 0,
+  "notes": "We should have different variants in vert and hori. vert strictly straight, but hori can be slanted. also i would like to see same char in other fonts as ref"
+}
