@@ -11,6 +11,7 @@ The same editions use letters Klee One lacks. The font adds them at their code p
 | Letter | Code point | Name | `hlig` |
 |---|---|---|---|
 | 𪜈 | U+2A708 | CJK unified ideograph, the トモ ligature | トモ |
+| ゠ | U+30A0 | KATAKANA-HIRAGANA DOUBLE HYPHEN | — |
 
 Two fonts come out of one build:
 
@@ -73,6 +74,8 @@ The subset requests U+0020, U+3000–303F, U+3099–309C, U+30A0–30FF, U+31F0�
 **𛄡 from ヽ and エ.** Klee's ヽ at 0.6 over エ at 0.88, both thickened back; the code chart draws the letter as エ with a short slanting stroke at the upper left.
 
 **𛄦 from ヨ and リ.** ヨ compressed to 0.7 on the left; リ's long stroke on the right.
+
+**゠ from ＝.** Klee's fullwidth equals sign scaled to 0.6 about its centre.
 
 The 0.2 outline keeps Klee's uprights and stroke ends and sets the bars 50 units closer, the upper 30 and the lower 60 units longer; it beat the 0.1 outline and the other finalists in blind comparison. `docs/methods.md` describes how each form was chosen and `docs/votes/` holds the comparison records.
 
