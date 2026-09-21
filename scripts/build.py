@@ -59,6 +59,7 @@ HISTORICAL = [
 # Letters Klee One lacks, each with its code point and SVG source; a digraph also names the
 # letters it joins, and `hlig` forms it from them.
 LETTERS = [
+    dict(code=0x1B000, svg="archaic-e.svg", letters=None, label="Katakana letter archaic e"),
     dict(code=0x30A0, svg="double-hyphen.svg", vertical="double-hyphen-vert.svg", letters=None, label="Katakana-hiragana double hyphen"),
     dict(code=0x2A708, svg="tomo.svg", letters="トモ", label="Katakana tomo ligature"),
 ]

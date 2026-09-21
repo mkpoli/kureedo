@@ -81,3 +81,7 @@ Two rounds compared paired horizontal and vertical forms in synthetic Japanese p
 Candidate `dda98e623ad2d77af` won seven of eight primary finalist comparisons, against six of eight for the runner-up. It won both direct comparisons against the runner-up, and all three finalist repeats agreed. Repeats are excluded from ranking. The complete 45-judgment ballot, all round-2 designs and the decision are in `votes/double-hyphen/`. These judgments record one reader’s combined preference for the two writing directions.
 
 The horizontal strokes rise 3°, with nominal length 560 units and stroke-center separation 160 units. The vertical strokes are 560 units long and 51 units wide, with centers 160 units apart. Native stroke ends are retained. `double-hyphen.svg` and `double-hyphen-vert.svg` are the selected outlines; `vert` and `vrt2` select the vertical form. Both forms occupy one 1000-unit cell with vertical origin 880.
+
+## 𛀀
+
+The initial outline shortens the top stroke of Klee’s ラ to 75% of its width. It is a control for the first archaic-e arena, pending selection.

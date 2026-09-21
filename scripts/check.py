@@ -73,7 +73,7 @@ def check(path: Path, family: str, full: bool):
     # The missing letters have their own code points, one cell each way; `hlig` forms each
     # digraph from its letters and nothing else does.
     DIGRAPHS = {0x2A708: "トモ"}
-    for code in (*DIGRAPHS, 0x30A0):
+    for code in (*DIGRAPHS, 0x30A0, 0x1B000):
         glyph = cmap[code]
         assert glyph == f"uni{code:04X}" and font["hmtx"][glyph][0] == 1000, glyph
         assert font["glyf"][glyph].yMax + font["vmtx"][glyph][1] == 880, glyph
