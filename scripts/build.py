@@ -56,7 +56,8 @@ HISTORICAL = [
     dict(code=0x30F0, historic=0x1B128, svg="wi.svg", cv="cv02", label="Katakana wi, 井-shaped"),
 ]
 # Letters Klee One lacks, each with its code point and SVG source; a digraph also names the
-# letters it joins, and `hlig` forms it from them.
+# letters it joins, and `hlig` forms it from them. `kata=False` keeps a letter out of the
+# kana-only web font.
 LETTERS = [
     dict(code=0x2A708, svg="tomo.svg", letters="トモ", label="Katakana tomo ligature"),
     dict(code=0x1B124, svg="toki.svg", letters='トキ', label="Katakana digraph toki"),
@@ -72,7 +73,7 @@ SMALL_KANA = {**dict(zip(range(0x31F0, 0x3200), "クシストヌハヒフヘホ�
               0x1B155: "コ", 0x1B164: "ヰ", 0x1B165: "ヱ", 0x1B166: "ヲ", 0x1B167: "ン", 0x1B168: "\U0001B121",
               0x1B132: "こ", 0x1B150: "ゐ", 0x1B151: "ゑ", 0x1B152: "を"}
 KATA_UNICODES = [0x20, *range(0x3000, 0x3040), *range(0x3099, 0x309D), *range(0x30A0, 0x3100), *range(0x31F0, 0x3200),
-                 *(f["historic"] for f in HISTORICAL), *(l["code"] for l in LETTERS), 0x1B155, *range(0x1B164, 0x1B169)]
+                 *(f["historic"] for f in HISTORICAL), *(l["code"] for l in LETTERS if l.get("kata", True)), 0x1B155, *range(0x1B164, 0x1B169)]
 
 # Ainu small kana follow Klee's own small-kana convention (ッ against ツ): 78% of the full-size
 # letter, centred in the cell on the baseline, and shifted up and to the right in vertical text.
