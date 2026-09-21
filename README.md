@@ -14,6 +14,7 @@ The same editions use letters Klee One lacks. The font adds them at their code p
 | ゠ | U+30A0 | KATAKANA-HIRAGANA DOUBLE HYPHEN | — |
 | 𛀀 | U+1B000 | KATAKANA LETTER ARCHAIC E | — |
 | 𛄠 | U+1B120 | KATAKANA LETTER ARCHAIC YI | — |
+| 𛀁 | U+1B001 | HIRAGANA LETTER ARCHAIC YE | — |
 
 Two fonts come out of one build:
 
@@ -82,6 +83,8 @@ The subset requests U+0020, U+3000–303F, U+3099–309C, U+30A0–30FF, U+31F0�
 **𛀀 from ラ.** The code chart draws the letter as ラ with a short top stroke; Klee's ラ with its top stroke scaled to 0.75.
 
 **𛄠 from ト and ノ.** An upright with a sweep to the lower right from its middle and a short stroke to the lower left, as the code chart draws it: ト's upright, ノ mirrored at 0.6 for the sweep, ノ at 0.3 for the tick, both grown to Klee's weight.
+
+**𛀁 from え.** A first assembly, full font only: Klee's え without its top stroke; the code chart's cursive 江 is not yet matched and the form is provisional.
 
 The 0.2 outline keeps Klee's uprights and stroke ends and sets the bars 50 units closer, the upper 30 and the lower 60 units longer; it beat the 0.1 outline and the other finalists in blind comparison. `docs/methods.md` describes how each form was chosen and `docs/votes/` holds the comparison records.
 

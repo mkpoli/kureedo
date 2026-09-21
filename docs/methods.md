@@ -70,3 +70,4 @@ Assembled the same way, not yet compared:
 - ゠: Klee's ＝ scaled to 0.6 about its centre, stroke grown back.
 - 𛀀: Klee's ラ, top stroke scaled horizontally to 0.75 about its centre.
 - 𛄠: ト's upright shortened 60/60; ノ mirrored and scaled to 0.6 leaving the upright 0.55 of the way up; ノ at 0.3 leaving it 0.3 of the way up; strokes grown to Klee's weight.
+- 𛀁: Klee's え cut below y=560 (its top stroke removed). Provisional.
