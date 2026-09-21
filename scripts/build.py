@@ -17,6 +17,7 @@ import argparse
 import hashlib
 import json
 import unicodedata
+from itertools import product
 from pathlib import Path
 from urllib.request import urlopen
 from xml.etree import ElementTree
@@ -272,7 +273,12 @@ class Builder:
             self.encode(form["code"], name)
             self.cmap[form["code"]] = name
             if form["letters"]:
-                ligatures[tuple(self.cmap[ord(c)] for c in form["letters"])] = name
+                variants = []
+                for char in form["letters"]:
+                    base = self.cmap[ord(char)]
+                    variants.append([base + suffix for suffix in ("", ".hori", ".vert")
+                                     if base + suffix in self.order])
+                ligatures.update({letters: name for letters in product(*variants)})
         self.add_feature("hlig", buildLookup([buildLigatureSubstSubtable(ligatures)]))
 
         # The accepted tomo has a curved default and a paired straight-left form.

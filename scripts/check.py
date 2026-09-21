@@ -95,6 +95,9 @@ def check(path: Path, family: str, full: bool):
         assert shape("𪜈", direction, {"ss02": True}) == [(straight, *advance)]
         assert shape("トモ", direction, {"hlig": True}) == [(tomo, *advance)]
         assert shape("トモ", direction, {"hlig": True, "ss02": True}) == [(straight, *advance)]
+        for kana_feature in ("hkna", "vkna"):
+            assert shape("トモ", direction, {"hlig": True, kana_feature: True}) == [(tomo, *advance)]
+            assert shape("トモ", direction, {"hlig": True, "ss02": True, kana_feature: True}) == [(straight, *advance)]
         for text in ("トモ", "ネヰヒモト", "𛄧𛄨"):
             assert shape(text, direction, {"ss02": True}) == shape(text, direction)
     params = next(r.Feature.FeatureParams for r in font["GSUB"].table.FeatureList.FeatureRecord if r.FeatureTag == "ss02")
