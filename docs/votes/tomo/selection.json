@@ -1,0 +1,38 @@
+{
+  "status": "accepted",
+  "arena": "2b56c9d4add9d065eb0d696d4ee8486c",
+  "candidate": "teb69161684d0b4bc",
+  "design": {
+    "construction": "tomo-18",
+    "id": "B7",
+    "style": "curved",
+    "axis": 530,
+    "top_width": 395,
+    "top_y": 590,
+    "mid_y": 367,
+    "tail_cut": 55,
+    "curve_width": 145,
+    "top_angle": 9.0,
+    "mid_angle": 8.0
+  },
+  "features": {
+    "ss02": 0
+  },
+  "source": "round19-finalists-65.json",
+  "score": {
+    "id": "teb69161684d0b4bc",
+    "wins": 4,
+    "losses": 1,
+    "ties": 1,
+    "neither": 0,
+    "points": 4.5,
+    "n": 6
+  },
+  "svg": "sources/glyphs/tomo.svg",
+  "font": "fonts/KureedoKata-Regular.woff2",
+  "straightSvg": "sources/glyphs/tomo-straight.svg",
+  "glyphSha256": {
+    "uni2A708": "0eb9dede5207759bdcfa34ccd09bc17277e5092384487d10b199febb8d75e710",
+    "uni2A708.straight": "8394b85c09a4d753507593da4c472bfee87bee24b014f11ef52887870aa4d3ad"
+  }
+}

@@ -10,11 +10,14 @@ Two targets come out of one source tree:
 
 Historical forms are alternates. Default ネ and ヰ stay Klee's; `hist`, `ss01`
 and the per-letter `cv01`/`cv02` switch to the 子-shaped ネ and 井-shaped ヰ.
+Letters Klee One lacks are added at their code points; a digraph is also reachable
+from its letters through `hlig`.
 """
 import argparse
 import hashlib
 import json
 import unicodedata
+from itertools import product
 from pathlib import Path
 from urllib.request import urlopen
 from xml.etree import ElementTree
@@ -53,8 +56,13 @@ HISTORICAL = [
     dict(code=0x30CD, historic=0x1B127, svg="ne.svg", cv="cv01", label="Katakana ne, 子-shaped"),
     dict(code=0x30F0, historic=0x1B128, svg="wi.svg", cv="cv02", label="Katakana wi, 井-shaped"),
 ]
+# Letters Klee One lacks, each with its code point and SVG source; a digraph also names the
+# letters it joins, and `hlig` forms it from them.
+LETTERS = [
+    dict(code=0x2A708, svg="tomo.svg", letters="トモ", label="Katakana tomo ligature"),
+]
 KATA_UNICODES = [0x20, *range(0x3000, 0x3040), *range(0x3099, 0x309D), *range(0x30A0, 0x3100), *range(0x31F0, 0x3200),
-                 *(f["historic"] for f in [dict(historic=0x1B127), dict(historic=0x1B128)])]
+                 *(f["historic"] for f in HISTORICAL), *(l["code"] for l in LETTERS)]
 
 # Ainu small kana follow Klee's own small-kana convention (ッ against ツ): 78% of the full-size
 # letter, centred in the cell on the baseline, and shifted up and to the right in vertical text.
@@ -139,8 +147,16 @@ def fetch_klee():
     return TTFont(KLEE_PATH, recalcTimestamp=False)
 
 
-def svg_glyph(path: Path):
+def svg_glyph(path: Path, *, normalize=False):
+    """Convert an SVG outline, optionally using the study's normalized path winding."""
     pen = TTGlyphPen(None)
+    if normalize:
+        outline = pathops.Path()
+        target = TransformPen(outline.getPen(), (1, 0, 0, -1, 0, BASELINE))
+        for element in ElementTree.parse(path).getroot().iter("{http://www.w3.org/2000/svg}path"):
+            parse_path(element.attrib["d"], target)
+        outline.draw(Cu2QuPen(pen, max_err=0.2, reverse_direction=not outline.clockwise))
+        return pen.glyph()
     curves = Cu2QuPen(TransformPen(pen, (1, 0, 0, -1, 0, BASELINE)), max_err=0.2, reverse_direction=True)
     for element in ElementTree.parse(path).getroot().iter("{http://www.w3.org/2000/svg}path"):
         parse_path(element.attrib["d"], curves)
@@ -148,15 +164,21 @@ def svg_glyph(path: Path):
 
 
 class Builder:
-    def __init__(self, font: TTFont, small=None, small_mark=None):
+    def __init__(self, font: TTFont, small=None, small_mark=None, sources=None):
         self.small = {**SMALL, **(small or {})}
         self.small_mark = {**SMALL_MARK, **(small_mark or {})}
+        self.sources = sources or {}  # SVG file name -> path replacing the one in sources/glyphs (candidate builds)
         self.vertical = {}  # glyph -> its vertical variant, registered under vert and vrt2
         self.font = font
         self.cmap = font.getBestCmap()
         self.order = list(font.getGlyphOrder())
         self.name_id = max(n.nameID for n in font["name"].names if n.nameID < 256) + 1
         self.name_id = max(self.name_id, 256)
+
+    def source(self, svg):
+        # Match the accepted tomo font's conversion, including quadratic rounding.
+        return svg_glyph(Path(self.sources.get(svg, GLYPHS / svg)),
+                         normalize=svg in ("tomo.svg", "tomo-straight.svg"))
 
     def put(self, name, glyph, advance=1000, origin=BASELINE, mark=False):
         glyph.recalcBounds(self.font["glyf"])
@@ -224,7 +246,7 @@ class Builder:
             # The letter has its own code point in Kana Extended-A; the same glyph is
             # also the modern letter's historical alternate.
             name = f"uni{form['historic']:04X}"
-            self.put(name, svg_glyph(GLYPHS / form["svg"]))
+            self.put(name, self.source(form["svg"]))
             self.encode(form["historic"], name)
             self.cmap[form["historic"]] = name
             # Klee's own horizontal/vertical alternates of the letter also yield
@@ -252,13 +274,40 @@ class Builder:
         params.UINameID = self.add_name("Edo-period printed forms")
         self.add_feature("ss01", historical, params)
 
+    def add_letters(self):
+        """Add the missing letters at their code points, and `hlig` forming each digraph from its letters."""
+        ligatures = {}
+        for form in LETTERS:
+            name = f"uni{form['code']:04X}"
+            self.put(name, self.source(form["svg"]))
+            self.encode(form["code"], name)
+            self.cmap[form["code"]] = name
+            if form["letters"]:
+                variants = []
+                for char in form["letters"]:
+                    base = self.cmap[ord(char)]
+                    variants.append([base + suffix for suffix in ("", ".hori", ".vert")
+                                     if base + suffix in self.order])
+                ligatures.update({letters: name for letters in product(*variants)})
+        self.add_feature("hlig", buildLookup([buildLigatureSubstSubtable(ligatures)]))
+
+        # The accepted tomo has a curved default and a paired straight-left form.
+        tomo = self.cmap[0x2A708]
+        straight = tomo + ".straight"
+        self.put(straight, self.source("tomo-straight.svg"))
+        params = otTables.FeatureParamsStylisticSet()
+        params.Version = 0
+        params.UINameID = self.add_name("Tomo: straight left stroke")
+        self.font["name"].setName("トモ合字の左画を直線に", params.UINameID, 3, 1, 0x411)
+        self.add_feature("ss02", buildLookup([buildSingleSubstSubtable({tomo: straight})]), params)
+
     def add_marks(self):
         """Compose kana with combining dakuten and handakuten into one cell."""
         positions = json.loads((GLYPHS / "mark-positions.json").read_text())
         substitutions = {}
         for code in (0x309A, 0x3099):
             mark = f"kanaMark{code:04X}"
-            self.put(mark, svg_glyph(GLYPHS / f"mark-{code:04x}.svg"), advance=0, mark=True)
+            self.put(mark, self.source(f"mark-{code:04x}.svg"), advance=0, mark=True)
             self.encode(code, mark)
             m = self.small_mark
             small_mark = mark
@@ -370,7 +419,7 @@ def set_names(font: TTFont, family: str):
     for record in table.names:
         if record.nameID in names and record.langID == 0x409:
             record.string = names[record.nameID].encode(record.getEncoding())
-    table.names = [n for n in table.names if n.langID != 0x411]
+    table.names = [n for n in table.names if n.langID != 0x411 or n.nameID >= 256]
     ja = JAPANESE.get(family, family)
     table.setName(ja, 1, 3, 1, 0x411)
     table.setName("Regular", 2, 3, 1, 0x411)
@@ -379,11 +428,12 @@ def set_names(font: TTFont, family: str):
     font["OS/2"].achVendID = "KRDO"
 
 
-def build(out_dir: Path = FONTS, small=None, small_mark=None, family_suffix=""):
+def build(out_dir: Path = FONTS, small=None, small_mark=None, family_suffix="", sources=None):
     font = fetch_klee()
-    builder = Builder(font, small, small_mark)
+    builder = Builder(font, small, small_mark, sources)
     builder.add_small_kana()
     builder.add_historical()
+    builder.add_letters()
     builder.add_marks()
     builder.finish()
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -398,7 +448,7 @@ def build(out_dir: Path = FONTS, small=None, small_mark=None, family_suffix=""):
     options.name_IDs = "*"
     options.name_legacy = True
     options.name_languages = "*"
-    options.layout_features += ["hist", "ss01", "cv01", "cv02"]
+    options.layout_features += ["hist", "hlig", "ss01", "ss02", "cv01", "cv02"]
     options.notdef_outline = True
     options.glyph_names = True
     kata = TTFont(full, recalcTimestamp=False)

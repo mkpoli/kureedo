@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Check the built fonts: names, coverage, feature switches, mark composition, vertical metrics."""
 import sys
+import hashlib
+import json
 from io import BytesIO
 from pathlib import Path
 
@@ -43,7 +45,7 @@ def check(path: Path, family: str, full: bool):
     assert name.getDebugName(6) == family.replace(" ", "") + "-Regular"
     assert name.getDebugName(5) == "Version 0.403" and abs(font["head"].fontRevision - 0.403) < 1e-4
     assert "Klee Project Authors" in name.getDebugName(0) and name.getDebugName(13).startswith("This Font Software")
-    assert all(c in cmap for c in [*range(0x30A1, 0x30FB), *range(0x31F0, 0x3200), 0x3099, 0x309A, 0x309B, 0x309C, 0x30F0, 0x30F1, 0x30F2, 0x30F4, 0x1B127, 0x1B128])
+    assert all(c in cmap for c in [*range(0x30A1, 0x30FB), *range(0x31F0, 0x3200), 0x3099, 0x309A, 0x309B, 0x309C, 0x30F0, 0x30F1, 0x30F2, 0x30F4, 0x1B127, 0x1B128, 0x2A708])
     if not full:
         assert 0x5B50 not in cmap and 0x4E95 not in cmap
 
@@ -67,6 +69,45 @@ def check(path: Path, family: str, full: bool):
         assert font["hmtx"][glyph][0] == 1000
         assert font["glyf"][glyph].yMax + font["vmtx"][glyph][1] == 880, glyph
         assert font["glyf"][glyph].xMin >= 0 and font["glyf"][glyph].xMax <= 1000
+
+    # The missing letters have their own code points, one cell each way; `hlig` forms each
+    # digraph from its letters and nothing else does.
+    DIGRAPHS = {0x2A708: "トモ"}
+    for code in DIGRAPHS:
+        glyph = cmap[code]
+        assert glyph == f"uni{code:04X}" and font["hmtx"][glyph][0] == 1000, glyph
+        assert font["glyf"][glyph].yMax + font["vmtx"][glyph][1] == 880, glyph
+        assert font["glyf"][glyph].xMin >= 0 and font["glyf"][glyph].xMax <= 1000, glyph
+        assert shape(chr(code)) == [(glyph, 1000, 0)] and shape(chr(code), "ttb")[0][2] == -1000, glyph
+    for code, letters in DIGRAPHS.items():
+        plain = [cmap[ord(c)] for c in letters]
+        assert [g for g, *_ in shape(letters)] == plain
+        assert [g for g, *_ in shape(letters, features={"hist": True})] == plain
+        for direction in ("ltr", "ttb"):
+            assert [g for g, *_ in shape("レ" + letters, direction, features={"hlig": True})] == [cmap[0x30EC], cmap[code]], (letters, direction)
+
+    # The same straight-left alternate is reachable directly and through hlig.
+    tomo = cmap[0x2A708]
+    straight = tomo + ".straight"
+    selection = json.loads((ROOT / "docs/votes/tomo/selection.json").read_text())
+    for glyph, expected in selection["glyphSha256"].items():
+        assert hashlib.sha256(font["glyf"][glyph].compile(font["glyf"])).hexdigest() == expected, glyph
+    assert font["glyf"][straight].compile(font["glyf"]) != font["glyf"][tomo].compile(font["glyf"])
+    assert font["hmtx"][straight][0] == font["vmtx"][straight][0] == 1000
+    assert font["glyf"][straight].yMax + font["vmtx"][straight][1] == 880
+    for direction in ("ltr", "ttb"):
+        advance = (1000, 0) if direction == "ltr" else (0, -1000)
+        assert shape("𪜈", direction, {"ss02": True}) == [(straight, *advance)]
+        assert shape("トモ", direction, {"hlig": True}) == [(tomo, *advance)]
+        assert shape("トモ", direction, {"hlig": True, "ss02": True}) == [(straight, *advance)]
+        for kana_feature in ("hkna", "vkna"):
+            assert shape("トモ", direction, {"hlig": True, kana_feature: True}) == [(tomo, *advance)]
+            assert shape("トモ", direction, {"hlig": True, "ss02": True, kana_feature: True}) == [(straight, *advance)]
+        for text in ("トモ", "ネヰヒモト", "𛄧𛄨"):
+            assert shape(text, direction, {"ss02": True}) == shape(text, direction)
+    params = next(r.Feature.FeatureParams for r in font["GSUB"].table.FeatureList.FeatureRecord if r.FeatureTag == "ss02")
+    assert name.getDebugName(params.UINameID) == "Tomo: straight left stroke"
+    assert str(name.getName(params.UINameID, 3, 1, 0x411)) == "トモ合字の左画を直線に"
 
     # Marked kana shape into one cell in both directions; precomposed and decomposed agree.
     for text in ["ツ゚", "ト゚", "セ゚", "ㇷ゚", "カ゚", "キ゚", "ク゚", "ケ゚", "コ゚", "パ", "ガ", "ヅ"]:
@@ -138,4 +179,4 @@ kata = check(ROOT / "fonts/KureedoKata-Regular.ttf", "Kureedo Kata", full=False)
 woff = check(ROOT / "fonts/KureedoKata-Regular.woff2", "Kureedo Kata", full=False)
 assert kata.getGlyphOrder() == woff.getGlyphOrder()
 assert 0x3042 not in woff.getBestCmap()
-print("Checks passed: names, coverage, hist/ss01/cv01/cv02 in both directions, marks, small kana, Klee glyphs intact.")
+print("Checks passed: names, coverage, hist/ss01/ss02/cv01/cv02 and hlig in both directions, marks, small kana, Klee glyphs intact.")

@@ -1,0 +1,74 @@
+{
+  "arena": "2b56c9d4add9d065eb0d696d4ee8486c",
+  "source": "round19-finalists-65.json",
+  "rankingRule": "Finalist comparisons only, excluding repeats: win=1, tie=0.5, loss/neither=0.",
+  "primaryComparisons": 12,
+  "repeatComparisons": 3,
+  "rankings": [
+    {
+      "id": "teb69161684d0b4bc",
+      "wins": 4,
+      "losses": 1,
+      "ties": 1,
+      "neither": 0,
+      "points": 4.5,
+      "n": 6
+    },
+    {
+      "id": "td4240656d6eba2c8",
+      "wins": 2,
+      "losses": 2,
+      "ties": 2,
+      "neither": 0,
+      "points": 3.0,
+      "n": 6
+    },
+    {
+      "id": "tda6e41deab3a1f15",
+      "wins": 2,
+      "losses": 3,
+      "ties": 1,
+      "neither": 0,
+      "points": 2.5,
+      "n": 6
+    },
+    {
+      "id": "t6aceecc0a744626c",
+      "wins": 1,
+      "losses": 3,
+      "ties": 2,
+      "neither": 0,
+      "points": 2.0,
+      "n": 6
+    }
+  ],
+  "repeatChecks": [
+    {
+      "id": "126ee9b5-e412-4cf1-9105-177f1a5c3318",
+      "repeatOf": "06be1bf8-8610-4523-9b78-9436a4c33528",
+      "agreement": true,
+      "firstOutcome": "tie",
+      "repeatOutcome": "tie"
+    },
+    {
+      "id": "42ec2cbf-a866-4bde-ae0e-bc0f16afeb72",
+      "repeatOf": "a5e6a2cf-0023-46e6-955d-df3fa30445f4",
+      "agreement": false,
+      "firstOutcome": "tie",
+      "repeatOutcome": "td4240656d6eba2c8"
+    },
+    {
+      "id": "55b4c0d0-4ce9-4a8e-9727-d021fa86640b",
+      "repeatOf": "8976ec08-e0f2-4ffa-88ca-116c2227cb6b",
+      "agreement": false,
+      "firstOutcome": "tda6e41deab3a1f15",
+      "repeatOutcome": "t6aceecc0a744626c"
+    }
+  ],
+  "winner": "teb69161684d0b4bc",
+  "decision": "Accepted; move to the next character.",
+  "limitations": [
+    "The winner has the highest observed finalist score; the sample is small.",
+    "One of three same-context repeat judgments agreed exactly."
+  ]
+}

@@ -67,3 +67,9 @@ A morphological opening to retract the tapered terminals (which Klee draws short
 ![ㇷ゚ and the marked kana at 16–48 px and in vertical text](images/proof-sizes.png)
 
 A second review of these proofs (2026-09-20) found the ㇷ゚ ring right at 16–32 px and the vertical placement sound, and noted the terminals: Klee's own small kana end shorter and blunter than the scaled letters, most visibly on ㇱ ㇷ ㇰ. An automatic retraction was tried and rejected (it cannot tell a stroke's entry from its end), and a side-by-side at 360 px was judged not worth a hand pass for a text face; the terminals stay as scaled.
+
+## 𪜈
+
+The default outline is the curved-left form `teb69161684d0b4bc` from comparison round 19. Its モ bars rise 9° at the top and 8° in the middle. The left stroke meets the middle bar and reaches only slightly above the upper bar. `ss02` selects the paired straight-left form; the モ contours and cell metrics are the same. Both outlines are in `sources/glyphs/`.
+
+Twenty-two of 25 forms survived the cull. Fifty screening judgments led to four finalists, compared in horizontal and vertical reading text at 24 px. The final stage contained 12 primary comparisons and three repeats. With a win worth one point and a tie half a point, the selected form scored 4.5/6; the others scored 3, 2.5 and 2. Only one of the three repeat judgments agreed exactly, so these results establish a practical choice rather than a precise preference estimate. The ballots, scores and selected design are in `votes/tomo/`.
