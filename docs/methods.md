@@ -73,3 +73,11 @@ A second review of these proofs (2026-09-20) found the ㇷ゚ ring right at 16�
 The default outline is the curved-left form `teb69161684d0b4bc` from comparison round 19. Its モ bars rise 9° at the top and 8° in the middle. The left stroke meets the middle bar and reaches only slightly above the upper bar. `ss02` selects the paired straight-left form; the モ contours and cell metrics are the same. Both outlines are in `sources/glyphs/`.
 
 Twenty-two of 25 forms survived the cull. Fifty screening judgments led to four finalists, compared in horizontal and vertical reading text at 24 px. The final stage contained 12 primary comparisons and three repeats. With a win worth one point and a tie half a point, the selected form scored 4.5/6; the others scored 3, 2.5 and 2. Only one of the three repeat judgments agreed exactly, so these results establish a practical choice rather than a precise preference estimate. The ballots, scores and selected design are in `votes/tomo/`.
+
+## ゠
+
+Two rounds compared paired horizontal and vertical forms in synthetic Japanese passages at 24 px. Round 1 retained four horizontal shapes made from Klee One’s fullwidth hyphen. Round 2 varied their slope and paired them with independently sized, strictly straight vertical strokes made from Klee’s fullwidth upright.
+
+Candidate `dda98e623ad2d77af` won seven of eight primary finalist comparisons, against six of eight for the runner-up. It won both direct comparisons against the runner-up, and all three finalist repeats agreed. Repeats are excluded from ranking. The complete 45-judgment ballot, all round-2 designs and the decision are in `votes/double-hyphen/`. These judgments record one reader’s combined preference for the two writing directions.
+
+The horizontal strokes rise 3°, with nominal length 560 units and stroke-center separation 160 units. The vertical strokes are 560 units long and 51 units wide, with centers 160 units apart. Native stroke ends are retained. `double-hyphen.svg` and `double-hyphen-vert.svg` are the selected outlines; `vert` and `vrt2` select the vertical form. Both forms occupy one 1000-unit cell with vertical origin 880.

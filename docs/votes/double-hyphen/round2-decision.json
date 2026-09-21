@@ -1,0 +1,191 @@
+{
+  "arena": "da0f4382139c005ea87f122edf1fe00e",
+  "source": "round2-finalists-45.json",
+  "status": "selected",
+  "selected": "dda98e623ad2d77af",
+  "selectionRule": "Highest win rate in the balanced finalist stage; repeat judgments excluded from ranking.",
+  "totalJudgments": 45,
+  "primaryComparisons": 36,
+  "repeatComparisons": 9,
+  "finalistRankings": [
+    {
+      "id": "dda98e623ad2d77af",
+      "wins": 7,
+      "losses": 1,
+      "ties": 0,
+      "neither": 0,
+      "comparisons": 8,
+      "rate": 0.875
+    },
+    {
+      "id": "d5b2845b6601b4ed7",
+      "wins": 6,
+      "losses": 2,
+      "ties": 0,
+      "neither": 0,
+      "comparisons": 8,
+      "rate": 0.75
+    },
+    {
+      "id": "da2e52be73c2e4b88",
+      "wins": 3,
+      "losses": 5,
+      "ties": 0,
+      "neither": 0,
+      "comparisons": 8,
+      "rate": 0.375
+    },
+    {
+      "id": "da1ef456d1b70695f",
+      "wins": 2,
+      "losses": 6,
+      "ties": 0,
+      "neither": 0,
+      "comparisons": 8,
+      "rate": 0.25
+    },
+    {
+      "id": "da2caa435637660f2",
+      "wins": 2,
+      "losses": 6,
+      "ties": 0,
+      "neither": 0,
+      "comparisons": 8,
+      "rate": 0.25
+    }
+  ],
+  "cumulativeFinalistRankings": [
+    {
+      "id": "dda98e623ad2d77af",
+      "wins": 11,
+      "losses": 1,
+      "ties": 0,
+      "neither": 0,
+      "comparisons": 12,
+      "rate": 0.9166666666666666
+    },
+    {
+      "id": "d5b2845b6601b4ed7",
+      "wins": 8,
+      "losses": 3,
+      "ties": 0,
+      "neither": 0,
+      "comparisons": 11,
+      "rate": 0.7272727272727273
+    },
+    {
+      "id": "da2caa435637660f2",
+      "wins": 5,
+      "losses": 6,
+      "ties": 0,
+      "neither": 0,
+      "comparisons": 11,
+      "rate": 0.45454545454545453
+    },
+    {
+      "id": "da2e52be73c2e4b88",
+      "wins": 5,
+      "losses": 7,
+      "ties": 0,
+      "neither": 0,
+      "comparisons": 12,
+      "rate": 0.4166666666666667
+    },
+    {
+      "id": "da1ef456d1b70695f",
+      "wins": 4,
+      "losses": 7,
+      "ties": 0,
+      "neither": 1,
+      "comparisons": 12,
+      "rate": 0.3333333333333333
+    }
+  ],
+  "runnerUp": "d5b2845b6601b4ed7",
+  "headToHead": {
+    "primaryWins": 2,
+    "primaryLosses": 0,
+    "repeatWins": 1,
+    "repeatLosses": 0
+  },
+  "repeatChecks": [
+    {
+      "id": "9d1b8fd7-cee8-43a2-9b15-e2b8ab428397",
+      "repeatOf": "d22f3d5a-0143-4bf3-a696-c614857eb289",
+      "stage": "screening",
+      "agreement": true
+    },
+    {
+      "id": "5ec69af7-673b-4f3b-8c38-e801aef6eb14",
+      "repeatOf": "95ca6951-ce68-4453-91a1-7053c8cc67d3",
+      "stage": "screening",
+      "agreement": true
+    },
+    {
+      "id": "ed043769-0b75-4663-91d5-e0929aac8ca4",
+      "repeatOf": "70f79744-9ec2-4394-b247-b48810876150",
+      "stage": "screening",
+      "agreement": false
+    },
+    {
+      "id": "4407274e-41ff-49f2-9411-f6fa36396fe3",
+      "repeatOf": "58562395-f6cc-47f8-b2c5-65bf8a1b1546",
+      "stage": "screening",
+      "agreement": true
+    },
+    {
+      "id": "7f47154d-d853-4348-9313-df974526fe75",
+      "repeatOf": "d4fbfd9f-6969-4ac8-94a0-baf8dd6ec1bd",
+      "stage": "screening",
+      "agreement": true
+    },
+    {
+      "id": "8380c27b-3e20-46f5-9dc4-244549987182",
+      "repeatOf": "a40a96f2-e023-4921-be7f-eec5b4fe62c1",
+      "stage": "screening",
+      "agreement": false
+    },
+    {
+      "id": "5a48001c-75b2-45b2-bad7-974866ec01e7",
+      "repeatOf": "7fd3bb0b-12e5-4f71-bf77-9647500023be",
+      "stage": "finalists",
+      "agreement": true
+    },
+    {
+      "id": "64dacceb-f8eb-41c5-a93c-795c7a83eb90",
+      "repeatOf": "c248fbdb-c653-4eb2-83f7-98f01d2f8766",
+      "stage": "finalists",
+      "agreement": true
+    },
+    {
+      "id": "274578e6-76b5-4037-b252-df5b40669132",
+      "repeatOf": "2f2c1d15-8bf2-4a35-b592-b43fc1ca220d",
+      "stage": "finalists",
+      "agreement": true
+    }
+  ],
+  "repeatAgreements": 7,
+  "finalistRepeatAgreements": 3,
+  "design": {
+    "anchor": "d700fdf50a743f9d6",
+    "variant": "slant-3",
+    "horizontal": {
+      "source": "hyphen",
+      "width": 560,
+      "gap": 160,
+      "angle": 3,
+      "weight": 1.0,
+      "center": 350
+    },
+    "vertical": {
+      "length": 560,
+      "gap": 160,
+      "width": 51
+    }
+  },
+  "fontSha256": "5fb8986df1d94ec19ce0372216518200193c0501666c8000c5dd9131ad3def39",
+  "limitations": [
+    "The comparisons record one reader’s preferences.",
+    "Each judgment combines horizontal and vertical text."
+  ]
+}
