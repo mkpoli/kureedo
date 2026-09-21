@@ -69,3 +69,4 @@ Assembled the same way, not yet compared:
 - Small Kana Extension (𛅕, 𛅤–𛅨, and the hiragana 𛄲 𛅐 𛅑 𛅒): the full-size letter through the same small-kana setting as ㇰ–ㇿ; 𛅨 is the assembled 𛄡 and follows whatever its comparison decides.
 - ゠: Klee's ＝ scaled to 0.6 about its centre, stroke grown back.
 - 𛀀: Klee's ラ, top stroke scaled horizontally to 0.75 about its centre.
+- 𛄠: ト's upright shortened 60/60; ノ mirrored and scaled to 0.6 leaving the upright 0.55 of the way up; ノ at 0.3 leaving it 0.3 of the way up; strokes grown to Klee's weight.
