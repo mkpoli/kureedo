@@ -147,8 +147,16 @@ def fetch_klee():
     return TTFont(KLEE_PATH, recalcTimestamp=False)
 
 
-def svg_glyph(path: Path):
+def svg_glyph(path: Path, *, normalize=False):
+    """Convert an SVG outline, optionally using the study's normalized path winding."""
     pen = TTGlyphPen(None)
+    if normalize:
+        outline = pathops.Path()
+        target = TransformPen(outline.getPen(), (1, 0, 0, -1, 0, BASELINE))
+        for element in ElementTree.parse(path).getroot().iter("{http://www.w3.org/2000/svg}path"):
+            parse_path(element.attrib["d"], target)
+        outline.draw(Cu2QuPen(pen, max_err=0.2, reverse_direction=not outline.clockwise))
+        return pen.glyph()
     curves = Cu2QuPen(TransformPen(pen, (1, 0, 0, -1, 0, BASELINE)), max_err=0.2, reverse_direction=True)
     for element in ElementTree.parse(path).getroot().iter("{http://www.w3.org/2000/svg}path"):
         parse_path(element.attrib["d"], curves)
@@ -168,7 +176,9 @@ class Builder:
         self.name_id = max(self.name_id, 256)
 
     def source(self, svg):
-        return svg_glyph(Path(self.sources.get(svg, GLYPHS / svg)))
+        # Match the accepted tomo font's conversion, including quadratic rounding.
+        return svg_glyph(Path(self.sources.get(svg, GLYPHS / svg)),
+                         normalize=svg in ("tomo.svg", "tomo-straight.svg"))
 
     def put(self, name, glyph, advance=1000, origin=BASELINE, mark=False):
         glyph.recalcBounds(self.font["glyf"])

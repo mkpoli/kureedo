@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Check the built fonts: names, coverage, feature switches, mark composition, vertical metrics."""
 import sys
+import hashlib
+import json
 from io import BytesIO
 from pathlib import Path
 
@@ -87,6 +89,9 @@ def check(path: Path, family: str, full: bool):
     # The same straight-left alternate is reachable directly and through hlig.
     tomo = cmap[0x2A708]
     straight = tomo + ".straight"
+    selection = json.loads((ROOT / "docs/votes/tomo/selection.json").read_text())
+    for glyph, expected in selection["glyphSha256"].items():
+        assert hashlib.sha256(font["glyf"][glyph].compile(font["glyf"])).hexdigest() == expected, glyph
     assert font["glyf"][straight].compile(font["glyf"]) != font["glyf"][tomo].compile(font["glyf"])
     assert font["hmtx"][straight][0] == font["vmtx"][straight][0] == 1000
     assert font["glyf"][straight].yMax + font["vmtx"][straight][1] == 880
