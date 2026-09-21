@@ -68,3 +68,4 @@ Assembled the same way, not yet compared:
 - 𛄦: ヨ compressed horizontally to 0.7 about its centre and moved 70 left; リ's right stroke (x>430) moved 150 right.
 - Small Kana Extension (𛅕, 𛅤–𛅨, and the hiragana 𛄲 𛅐 𛅑 𛅒): the full-size letter through the same small-kana setting as ㇰ–ㇿ; 𛅨 is the assembled 𛄡 and follows whatever its comparison decides.
 - ゠: Klee's ＝ scaled to 0.6 about its centre, stroke grown back.
+- 𛀀: Klee's ラ, top stroke scaled horizontally to 0.75 about its centre.

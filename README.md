@@ -12,6 +12,7 @@ The same editions use letters Klee One lacks. The font adds them at their code p
 |---|---|---|---|
 | 𪜈 | U+2A708 | CJK unified ideograph, the トモ ligature | トモ |
 | ゠ | U+30A0 | KATAKANA-HIRAGANA DOUBLE HYPHEN | — |
+| 𛀀 | U+1B000 | KATAKANA LETTER ARCHAIC E | — |
 
 Two fonts come out of one build:
 
@@ -28,7 +29,7 @@ Download both from the [releases page](https://github.com/mkpoli/kureedo/release
 @font-face {
   font-family: "Kureedo Kata";
   src: url("KureedoKata-Regular.woff2") format("woff2");
-  unicode-range: U+3000-303F, U+3099-309C, U+30A0-30FF, U+31F0-31FF, U+1B127-1B128, U+2A708, U+1B124, U+1B125, U+1B122, U+1B121, U+1B126, U+1B155, U+1B164-1B168;
+  unicode-range: U+3000-303F, U+3099-309C, U+30A0-30FF, U+31F0-31FF, U+1B127-1B128, U+2A708, U+1B124, U+1B125, U+1B122, U+1B121, U+1B126, U+1B155, U+1B164-1B168, U+1B000;
 }
 .edition { font-family: "Kureedo Kata", "Klee One", serif; font-feature-settings: "hist"; }
 ```
@@ -51,7 +52,7 @@ Klee One's own `hkna`/`vkna` alternates of ネ and ヰ also become the historica
 
 ## Coverage of Kureedo Kata
 
-The subset requests U+0020, U+3000–303F, U+3099–309C, U+30A0–30FF, U+31F0–31FF, U+1B127–1B128, U+2A708, U+1B124, U+1B125, U+1B122, U+1B121, U+1B126, U+1B155 and U+1B164–1B168; code points Klee One does not cover (for example U+3031–3032, U+30A0, U+30FF) stay absent. `fonttools ttx -t cmap` lists the exact set. The two historical glyphs are unencoded alternates. Glyphs Klee One does not have and this font adds: the Ainu small kana ㇰ–ㇿ (U+31F0–31FF) and the small kana of Small Kana Extension — 𛅕 (U+1B155), 𛅤 𛅥 𛅦 𛅧 𛅨 (U+1B164–1B168) and, in the full font, the hiragana 𛄲 𛅐 𛅑 𛅒 (U+1B132, U+1B150–1B152) — set the way Klee sets its own small kana (78% of the full-size letter, centred on the baseline, stroke weight restored, shifted up and right in vertical text through `vert`); combining ゛ and ゜ with zero advance; and `ccmp` ligatures that set セ゚ ツ゚ ト゚ ㇷ゚ カ゚ キ゚ ク゚ ケ゚ コ゚ in one cell, horizontally and vertically. The handakuten of ㇷ゚ is scaled with the letter and sits where プ puts its own, at プ's clearance from the stroke; the placement was settled by comparison rounds (`docs/methods.md`).
+The subset requests U+0020, U+3000–303F, U+3099–309C, U+30A0–30FF, U+31F0–31FF, U+1B127–1B128, U+2A708, U+1B124, U+1B125, U+1B122, U+1B121, U+1B126, U+1B155, U+1B164–1B168 and U+1B000; code points Klee One does not cover (for example U+3031–3032, U+30A0, U+30FF) stay absent. `fonttools ttx -t cmap` lists the exact set. The two historical glyphs are unencoded alternates. Glyphs Klee One does not have and this font adds: the Ainu small kana ㇰ–ㇿ (U+31F0–31FF) and the small kana of Small Kana Extension — 𛅕 (U+1B155), 𛅤 𛅥 𛅦 𛅧 𛅨 (U+1B164–1B168) and, in the full font, the hiragana 𛄲 𛅐 𛅑 𛅒 (U+1B132, U+1B150–1B152) — set the way Klee sets its own small kana (78% of the full-size letter, centred on the baseline, stroke weight restored, shifted up and right in vertical text through `vert`); combining ゛ and ゜ with zero advance; and `ccmp` ligatures that set セ゚ ツ゚ ト゚ ㇷ゚ カ゚ キ゚ ク゚ ケ゚ コ゚ in one cell, horizontally and vertically. The handakuten of ㇷ゚ is scaled with the letter and sits where プ puts its own, at プ's clearance from the stroke; the placement was settled by comparison rounds (`docs/methods.md`).
 
 ![Ainu small kana and composed marks](docs/images/ainu.png)
 
@@ -76,6 +77,8 @@ The subset requests U+0020, U+3000–303F, U+3099–309C, U+30A0–30FF, U+31F0�
 **𛄦 from ヨ and リ.** ヨ compressed to 0.7 on the left; リ's long stroke on the right.
 
 **゠ from ＝.** Klee's fullwidth equals sign scaled to 0.6 about its centre.
+
+**𛀀 from ラ.** The code chart draws the letter as ラ with a short top stroke; Klee's ラ with its top stroke scaled to 0.75.
 
 The 0.2 outline keeps Klee's uprights and stroke ends and sets the bars 50 units closer, the upper 30 and the lower 60 units longer; it beat the 0.1 outline and the other finalists in blind comparison. `docs/methods.md` describes how each form was chosen and `docs/votes/` holds the comparison records.
 
