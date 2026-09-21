@@ -43,7 +43,7 @@ def check(path: Path, family: str, full: bool):
     assert name.getDebugName(6) == family.replace(" ", "") + "-Regular"
     assert name.getDebugName(5) == "Version 0.400" and abs(font["head"].fontRevision - 0.4) < 1e-4
     assert "Klee Project Authors" in name.getDebugName(0) and name.getDebugName(13).startswith("This Font Software")
-    assert all(c in cmap for c in [*range(0x30A1, 0x30FB), *range(0x31F0, 0x3200), 0x3099, 0x309A, 0x309B, 0x309C, 0x30F0, 0x30F1, 0x30F2, 0x30F4, 0x1B127, 0x1B128, 0x2A708, 0x1B124, 0x1B125, 0x30FF, 0x1B122, 0x1B121, 0x1B126])
+    assert all(c in cmap for c in [*range(0x30A1, 0x30FB), *range(0x31F0, 0x3200), 0x3099, 0x309A, 0x309B, 0x309C, 0x30F0, 0x30F1, 0x30F2, 0x30F4, 0x1B127, 0x1B128, 0x2A708, 0x1B124, 0x1B125, 0x30FF, 0x1B122, 0x1B121, 0x1B126, 0x1B155, *range(0x1B164, 0x1B169)])
     if not full:
         assert 0x5B50 not in cmap and 0x4E95 not in cmap
 
@@ -95,6 +95,15 @@ def check(path: Path, family: str, full: bool):
     assert shape("ㇷ", "ttb")[0] != shape("ㇷ゚", "ttb")[0]
     # Small kana take a vertical variant that sits higher and to the right than the horizontal
     # glyph; the composite with a mark shares that variant's vertical origin.
+    # Small Kana Extension letters are set like the Ainu small kana: same vertical variant, same top.
+    bases = {0x1B155: "コ", 0x1B164: "ヰ", 0x1B165: "ヱ", 0x1B166: "ヲ", 0x1B167: "ン", 0x1B168: "\U0001B121"}
+    if full:
+        bases.update({0x1B132: "こ", 0x1B150: "ゐ", 0x1B151: "ゑ", 0x1B152: "を"})
+    for code, base in bases.items():
+        glyph, big = font["glyf"][cmap[code]], font["glyf"][cmap[ord(base)]]
+        vert = shape(chr(code), "ttb")[0][0]
+        assert vert != cmap[code] and font["vmtx"][vert][1] == SMALL_VERT_TOP, hex(code)
+        assert 0.7 < (glyph.xMax - glyph.xMin) / (big.xMax - big.xMin) < 0.86, hex(code)
     small, small_vert = cmap[0x31F7], shape("ㇷ", "ttb")[0][0]
     assert small_vert != small and font["vmtx"][small_vert][1] == SMALL_VERT_TOP
     assert font["glyf"][small_vert].xMin - font["glyf"][small].xMin == SMALL_VERT_X
