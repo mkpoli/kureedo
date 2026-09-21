@@ -17,6 +17,8 @@ Two fonts come out of one build:
 
 Download both from the [releases page](https://github.com/mkpoli/kureedo/releases).
 
+Related typeface: [GenZui Serif / 源萃明朝](https://genzui.mkpo.li/), a Noto Serif JP derivative with hentaigana and historical kana.
+
 ## Using the historical forms
 
 ```css
