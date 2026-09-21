@@ -70,6 +70,19 @@ LETTERS = [
     dict(code=0x1B000, svg="archaic-e.svg", letters=None, label="Katakana letter archaic e"),
     dict(code=0x1B120, svg="archaic-yi.svg", letters=None, label="Katakana letter archaic yi"),
     dict(code=0x1B001, svg="hiragana-ye.svg", letters=None, label="Hiragana letter archaic ye", kata=False),
+    dict(code=0x1AFF0, svg="tone-1AFF0.svg", letters=None, label="Minnan tone-2"),
+    dict(code=0x1AFF1, svg="tone-1AFF1.svg", letters=None, label="Minnan tone-3"),
+    dict(code=0x1AFF2, svg="tone-1AFF2.svg", letters=None, label="Minnan tone-4"),
+    dict(code=0x1AFF3, svg="tone-1AFF3.svg", letters=None, label="Minnan tone-5"),
+    dict(code=0x1AFF5, svg="tone-1AFF5.svg", letters=None, label="Minnan tone-7"),
+    dict(code=0x1AFF6, svg="tone-1AFF6.svg", letters=None, label="Minnan tone-8"),
+    dict(code=0x1AFF7, svg="tone-1AFF7.svg", letters=None, label="Minnan nasalized tone-1"),
+    dict(code=0x1AFF8, svg="tone-1AFF8.svg", letters=None, label="Minnan nasalized tone-2"),
+    dict(code=0x1AFF9, svg="tone-1AFF9.svg", letters=None, label="Minnan nasalized tone-3"),
+    dict(code=0x1AFFA, svg="tone-1AFFA.svg", letters=None, label="Minnan nasalized tone-4"),
+    dict(code=0x1AFFB, svg="tone-1AFFB.svg", letters=None, label="Minnan nasalized tone-5"),
+    dict(code=0x1AFFD, svg="tone-1AFFD.svg", letters=None, label="Minnan nasalized tone-7"),
+    dict(code=0x1AFFE, svg="tone-1AFFE.svg", letters=None, label="Minnan nasalized tone-8"),
 ]
 # Small kana Klee One lacks: the code point and the full-size letter it is made from. The Ainu
 # ㇰ–ㇿ, then Small Kana Extension: small コ, ヰ ヱ ヲ ン, small 𛄡, and the hiragana こ ゐ ゑ を.
