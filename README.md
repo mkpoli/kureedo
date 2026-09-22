@@ -124,6 +124,8 @@ The subset requests U+0020, U+3000–303F, U+3099–309C, U+30A0–30FF, U+31F0�
 
 **𬼀 from メ.** The シテ ligature (L2/24-150), which the code chart draws as メ: Klee's メ at 0.92; `hlig` forms it from シテ.
 
+**𬼂 from レ.** Full font only. The なり ligature (L2/24-150), which the code chart draws as an upright with a foot sweeping up to the right: Klee's レ at 0.95; `hlig` forms it from なり.
+
 The 0.2 ヰ outline keeps Klee's uprights and stroke ends and sets the bars 50 units closer, the upper 30 and the lower 60 units longer; it beat the 0.1 outline and the other finalists in blind comparison. `docs/methods.md` describes how each form was chosen, including the small kana and the mark positions, and `docs/votes/` holds the comparison records.
 
 ## Building
