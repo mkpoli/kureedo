@@ -87,3 +87,9 @@ The horizontal strokes rise 3°, with nominal length 560 units and stroke-center
 The selected form joins Klee One’s リ-derived upright head to the unchanged lower ラ contour. Its stem attaches at x=490, rises 190 units above the bar and has no added lean. The head retains its native outline; the shaft extends into the bar to form one connected contour. The same glyph occupies one 1000-unit cell in both directions, with vertical origin 880.
 
 Twenty-seven forms survived the last cull. The 73 judgments comprise 52 primary screening comparisons, six screening repeats, 12 primary finalist comparisons and three finalist repeats, all with horizontal and vertical reading samples shown together at 24 px. Candidate `e47e03ce8e8297cc1` won five of its six primary finalist comparisons and tied the sixth, scoring 5.5/6. The other finalists scored 2, 2 and 1.5 out of six. Repeats are excluded from ranking. None of the nine repeat judgments agreed exactly with the first judgment, so the result supports a practical selection with limited repeat consistency. Including repeats leaves the same candidate first. The ballot, designs, scores and outline hashes are in `votes/archaic-e/`.
+
+## Other letters
+
+Assembled the same way, not yet compared:
+
+- 𛄤: ト's upright (as in 𪜈) beside キ compressed horizontally to 0.72 about its centre and moved 70 units right.
