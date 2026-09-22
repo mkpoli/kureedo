@@ -1,0 +1,169 @@
+{
+  "arena": "1759a69a9de4d947a30b39ca6f3e719b",
+  "source": "round7-finalists-73.json",
+  "rankingRule": "Finalist comparisons only, excluding repeats: win=1, tie=0.5, loss/neither=0; rank by points per comparison.",
+  "totalJudgments": 73,
+  "screeningPrimaryComparisons": 52,
+  "screeningRepeatComparisons": 6,
+  "finalistPrimaryComparisons": 12,
+  "finalistRepeatComparisons": 3,
+  "rankings": [
+    {
+      "id": "e47e03ce8e8297cc1",
+      "wins": 5,
+      "losses": 0,
+      "ties": 1,
+      "neither": 0,
+      "points": 5.5,
+      "n": 6
+    },
+    {
+      "id": "e23e39bc72954a308",
+      "wins": 2,
+      "losses": 3,
+      "ties": 0,
+      "neither": 1,
+      "points": 2,
+      "n": 6
+    },
+    {
+      "id": "ef8246eee0af4deab",
+      "wins": 2,
+      "losses": 3,
+      "ties": 0,
+      "neither": 1,
+      "points": 2,
+      "n": 6
+    },
+    {
+      "id": "e60624e13f2fe2f97",
+      "wins": 1,
+      "losses": 4,
+      "ties": 1,
+      "neither": 0,
+      "points": 1.5,
+      "n": 6
+    }
+  ],
+  "rankingsIncludingRepeats": [
+    {
+      "id": "e47e03ce8e8297cc1",
+      "wins": 6,
+      "losses": 1,
+      "ties": 1,
+      "neither": 0,
+      "points": 6.5,
+      "n": 8
+    },
+    {
+      "id": "e23e39bc72954a308",
+      "wins": 4,
+      "losses": 3,
+      "ties": 0,
+      "neither": 1,
+      "points": 4,
+      "n": 8
+    },
+    {
+      "id": "ef8246eee0af4deab",
+      "wins": 2,
+      "losses": 4,
+      "ties": 0,
+      "neither": 1,
+      "points": 2,
+      "n": 7
+    },
+    {
+      "id": "e60624e13f2fe2f97",
+      "wins": 1,
+      "losses": 5,
+      "ties": 1,
+      "neither": 0,
+      "points": 1.5,
+      "n": 7
+    }
+  ],
+  "repeatChecks": [
+    {
+      "id": "ca81eac1-7b26-48d2-bb8e-eb043782e409",
+      "repeatOf": "a38090d4-f3e6-4da9-bcf7-30548719ea4a",
+      "stage": "screening",
+      "agreement": false,
+      "firstOutcome": "e304174992cfb3646",
+      "repeatOutcome": "tie"
+    },
+    {
+      "id": "8a6eb666-2e20-440b-a1c9-d57fa0687a59",
+      "repeatOf": "d48ca7b8-352a-4268-be8d-cda52babdea7",
+      "stage": "screening",
+      "agreement": false,
+      "firstOutcome": "e47e03ce8e8297cc1",
+      "repeatOutcome": "tie"
+    },
+    {
+      "id": "fd74b0c2-96e2-435e-9dc9-feb63423cabc",
+      "repeatOf": "6efc4114-b543-4030-92e7-45e6297ed61f",
+      "stage": "screening",
+      "agreement": false,
+      "firstOutcome": "neither",
+      "repeatOutcome": "e82b2fb1089dac5c6"
+    },
+    {
+      "id": "fe97d900-7f03-46f0-a33a-58bd98923b84",
+      "repeatOf": "ececb2ad-841d-4baf-a7e3-0982f7377a4f",
+      "stage": "screening",
+      "agreement": false,
+      "firstOutcome": "tie",
+      "repeatOutcome": "e595f2e51bfc599a6"
+    },
+    {
+      "id": "f596c9f7-51cb-4434-88b0-cad8a4a23780",
+      "repeatOf": "c10ad9b5-b75f-4412-9ee2-6928a36b20d6",
+      "stage": "screening",
+      "agreement": false,
+      "firstOutcome": "tie",
+      "repeatOutcome": "ebac4aabf6fe2e050"
+    },
+    {
+      "id": "2371cfe2-8fc4-4944-81f6-f638073fb42b",
+      "repeatOf": "d09bc441-a99c-41a0-b813-505869bdb644",
+      "stage": "screening",
+      "agreement": false,
+      "firstOutcome": "e23e39bc72954a308",
+      "repeatOutcome": "e229d73d269ab960b"
+    },
+    {
+      "id": "fad967d2-1e40-45fc-830c-0e4592a801b2",
+      "repeatOf": "d0a63a6c-153f-4735-85dc-a43d94c2d28e",
+      "stage": "finalists",
+      "agreement": false,
+      "firstOutcome": "neither",
+      "repeatOutcome": "e23e39bc72954a308"
+    },
+    {
+      "id": "e39350d4-769b-4eb6-9741-23b210b6e64b",
+      "repeatOf": "85146a96-4b57-4b25-9c25-f2829b95ce9b",
+      "stage": "finalists",
+      "agreement": false,
+      "firstOutcome": "tie",
+      "repeatOutcome": "e47e03ce8e8297cc1"
+    },
+    {
+      "id": "8ddf9f44-98a3-4664-a82a-9f015ae0867d",
+      "repeatOf": "67be49a1-bcef-49b8-aa91-ab8b35ff9af3",
+      "stage": "finalists",
+      "agreement": false,
+      "firstOutcome": "e47e03ce8e8297cc1",
+      "repeatOutcome": "e23e39bc72954a308"
+    }
+  ],
+  "repeatAgreements": 0,
+  "finalistRepeatAgreements": 0,
+  "winner": "e47e03ce8e8297cc1",
+  "decision": "Confirmed.",
+  "limitations": [
+    "The comparisons record one reader’s combined preference for horizontal and vertical text at 24 px.",
+    "None of the nine same-context repeat judgments agreed exactly; the three finalist repeats were also inconsistent.",
+    "The selected form remains first when repeat judgments are included."
+  ]
+}

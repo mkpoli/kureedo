@@ -180,7 +180,7 @@ class Builder:
     def source(self, svg):
         # Match the accepted study fonts' conversion, including quadratic rounding.
         return svg_glyph(Path(self.sources.get(svg, GLYPHS / svg)),
-                         normalize=svg in ("tomo.svg", "tomo-straight.svg", "double-hyphen.svg", "double-hyphen-vert.svg"))
+                         normalize=svg in ("tomo.svg", "tomo-straight.svg", "double-hyphen.svg", "double-hyphen-vert.svg", "archaic-e.svg"))
 
     def put(self, name, glyph, advance=1000, origin=BASELINE, mark=False):
         glyph.recalcBounds(self.font["glyf"])
