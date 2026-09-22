@@ -73,7 +73,7 @@ def check(path: Path, family: str, full: bool):
     # The missing letters have their own code points, one cell each way; `hlig` forms each
     # digraph from its letters and nothing else does.
     DIGRAPHS = {0x2A708: "トモ"}
-    for code in (*DIGRAPHS, 0x30A0):
+    for code in (*DIGRAPHS, 0x30A0, 0x1B000):
         glyph = cmap[code]
         assert glyph == f"uni{code:04X}" and font["hmtx"][glyph][0] == 1000, glyph
         assert font["glyf"][glyph].yMax + font["vmtx"][glyph][1] == 880, glyph
@@ -117,6 +117,19 @@ def check(path: Path, family: str, full: bool):
     assert vert.numberOfContours == 2 and vert.yMax - vert.yMin == 560
     assert vert.yMax + font["vmtx"]["uni30A0.vert"][1] == 880
     assert font["hmtx"]["uni30A0.vert"][0] == 1000
+
+    # The confirmed archaic-e outline must match the voted-on study glyph exactly.
+    archaic_e = cmap[0x1B000]
+    selection = json.loads((ROOT / "docs/votes/archaic-e/selection.json").read_text())
+    assert hashlib.sha256((ROOT / "sources/glyphs/archaic-e.svg").read_bytes()).hexdigest() == selection["svgSha256"]
+    assert hashlib.sha256(font["glyf"][archaic_e].compile(font["glyf"])).hexdigest() == selection["glyphSha256"][archaic_e]
+    assert font["glyf"][archaic_e].numberOfContours == 1
+    assert list(font["hmtx"][archaic_e]) == selection["metrics"]["horizontal"]
+    assert list(font["vmtx"][archaic_e]) == selection["metrics"]["vertical"]
+    for direction in ("ltr", "ttb"):
+        advance = (1000, 0) if direction == "ltr" else (0, -1000)
+        for features in ({}, {"vert": True, "vrt2": False}, {"vert": False, "vrt2": True}, {"hkna": True}, {"vkna": True}):
+            assert shape("𛀀", direction, features) == [(archaic_e, *advance)]
 
     # Marked kana shape into one cell in both directions; precomposed and decomposed agree.
     for text in ["ツ゚", "ト゚", "セ゚", "ㇷ゚", "カ゚", "キ゚", "ク゚", "ケ゚", "コ゚", "パ", "ガ", "ヅ"]:

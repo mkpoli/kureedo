@@ -1,0 +1,57 @@
+{
+  "status": "accepted",
+  "arena": "1759a69a9de4d947a30b39ca6f3e719b",
+  "candidate": "e47e03ce8e8297cc1",
+  "design": {
+    "construction": "archaic-e-4",
+    "source": "e7854be337d22b713",
+    "head": "ri",
+    "headDesign": {
+      "construction": "archaic-e-3",
+      "source": "e5f7aad706bcdd35c",
+      "top": "ri",
+      "length": 160,
+      "lean": 0,
+      "bodyAngle": 0,
+      "topX": 460,
+      "topY": 660,
+      "previous": "e47574a05c78da93f"
+    },
+    "attachX": 490,
+    "rise": 190,
+    "angle": 0
+  },
+  "source": "round7-finalists-73.json",
+  "analysis": "round7-finalists-analysis.json",
+  "rankingRule": "Finalist comparisons only, excluding repeats: win=1, tie=0.5, loss/neither=0; rank by points per comparison.",
+  "score": {
+    "id": "e47e03ce8e8297cc1",
+    "wins": 5,
+    "losses": 0,
+    "ties": 1,
+    "neither": 0,
+    "points": 5.5,
+    "n": 6
+  },
+  "userDecision": "Confirme it",
+  "glyphSha256": {
+    "uni1B000": "34a23847ec8b0eb61bbeb5b55c645f39b44146a46e953dad5fec5cfccd72cdec"
+  },
+  "svgSha256": "d85e2d29c8ffedfbcbcf2dd14684517e0d829c122b9c599f3f99015fe8763823",
+  "metrics": {
+    "horizontal": [
+      1000,
+      185
+    ],
+    "vertical": [
+      1000,
+      186
+    ]
+  },
+  "bounds": [
+    185.0,
+    -32.0,
+    805.0,
+    694.437744140625
+  ]
+}
