@@ -99,3 +99,4 @@ Assembled the same way, not yet compared:
 - 𛄡: ヽ scaled to 0.6 and moved (−200, 165); エ scaled to 0.88 and lowered 40; both grown to Klee's stroke weight.
 - 𛄦: ヨ compressed horizontally to 0.7 about its centre and moved 70 left; リ's right stroke (x>430) moved 150 right.
 - Small Kana Extension (𛅕, 𛅤–𛅨, and the hiragana 𛄲 𛅐 𛅑 𛅒): the full-size letter through the same small-kana setting as ㇰ–ㇿ; 𛅨 is the assembled 𛄡 and follows whatever its comparison decides.
+- 𛄠: ト's upright shortened 60/60; ノ mirrored and scaled to 0.6 leaving the upright 0.55 of the way up; ノ at 0.3 leaving it 0.3 of the way up; strokes grown to Klee's weight.
