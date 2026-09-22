@@ -1,5 +1,12 @@
 # Kureedo（クレード）
 
+[![Kureedo](https://img.shields.io/github/v/release/mkpoli/kureedo?label=Kureedo&color=1f3b5b)](https://github.com/mkpoli/kureedo/releases/latest/download/Kureedo-Regular.ttf)
+[![Kureedo Kata](https://img.shields.io/github/v/release/mkpoli/kureedo?label=Kureedo%20Kata&color=1f3b5b)](https://github.com/mkpoli/kureedo/releases/latest/download/KureedoKata-Regular.woff2)
+[![Licence: OFL 1.1](https://img.shields.io/badge/licence-OFL%201.1-4c7a4c)](OFL.txt)
+[![Unicode 18.0](https://img.shields.io/badge/Unicode-18.0-7a4c7a)](https://www.unicode.org/charts/PDF/Unicode-18.0/U180-1B100.pdf)
+[![jsDelivr](https://img.shields.io/jsdelivr/gh/hm/mkpoli/kureedo?label=jsDelivr)](https://www.jsdelivr.com/package/gh/mkpoli/kureedo)
+[![kureedo.mkpo.li](https://img.shields.io/website?url=https%3A%2F%2Fkureedo.mkpo.li&label=kureedo.mkpo.li)](https://kureedo.mkpo.li)
+
 Klee One with the letterforms of Edo-period Japanese print, and the kana that Ainu needs. It covers two katakana that woodblock editions used and modern fonts lack: a ネ written like 子 and a ヰ written like 井. Unicode 18.0 encodes them as 𛄧 U+1B127 KATAKANA LETTER ALTERNATE NE and 𛄨 U+1B128 KATAKANA LETTER ALTERNATE WI, and the font covers those code points; the same glyphs are also OpenType alternates of ネ and ヰ, so a text encoded with the ordinary letters can show the historical forms through a feature. It also adds the small katakana ㇰ–ㇿ (U+31F0–31FF), the semi-voiced セ゚ ツ゚ ト゚ ㇷ゚ and the nasal カ゚–コ゚, which Klee One lacks.
 
 Specimen, type tester and webfont CDN: https://kureedo.mkpo.li
