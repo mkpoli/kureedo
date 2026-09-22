@@ -19,6 +19,8 @@ The same editions set トモ as one letter, 𪜈 U+2A708. The font covers that c
 
 ![トモ default, hlig, 𪜈 U+2A708, ss02](docs/images/tomo.png)
 
+Kana Supplement and the hentaigana of Kana Extended-A — 𛀁 U+1B001 and the 285 hentaigana U+1B002–1B11E — are in the full font as the outlines of [Noto Serif Hentaigana](https://github.com/notofonts/hentaigana) (OFL 1.1, the wght 400 instance of the variable font pinned in google/fonts at `8b0a1d0`), unchanged. They are a mincho beside Klee's pen strokes; Klee has no source for cursive kana, and the letters are needed for the texts the historical katakana appear in.
+
 Two fonts come out of one build:
 
 | Font | File | Use |
@@ -141,11 +143,11 @@ python -m venv .venv
 .venv/bin/python scripts/check.py
 ```
 
-The build downloads Klee One Regular from the pinned commit of [fontworks-fonts/Klee](https://github.com/fontworks-fonts/Klee) (`8b05327`) and verifies its SHA-256 before use. `sources/glyphs/` holds the historical outlines as SVG in a 1000-unit em, y down, em top at y=880. `check.py` shapes the built fonts with HarfBuzz: default glyphs, every feature in both writing directions, mark composition, small-kana vertical origins, and byte identity of every Klee One glyph in the full font. `specimen/index.html` shows the result. `site/` holds the specimen site and CDN at kureedo.mkpo.li; `site/README.md` describes how a release is published there.
+The build downloads Klee One Regular from the pinned commit of [fontworks-fonts/Klee](https://github.com/fontworks-fonts/Klee) (`8b05327`) and Noto Serif Hentaigana from the pinned commit of google/fonts, and verifies their SHA-256 before use. `sources/glyphs/` holds the historical outlines as SVG in a 1000-unit em, y down, em top at y=880. `check.py` shapes the built fonts with HarfBuzz: default glyphs, every feature in both writing directions, mark composition, small-kana vertical origins, and byte identity of every Klee One glyph in the full font. `specimen/index.html` shows the result. `site/` holds the specimen site and CDN at kureedo.mkpo.li; `site/README.md` describes how a release is published there.
 
 ## Licence
 
-The fonts are licensed under the SIL Open Font License 1.1 (`OFL.txt`). Klee One is Copyright 2020 The Klee Project Authors; Klee is a trademark of Fontworks Inc., and Kureedo is an independent derivative with no connection to Fontworks. The historical outlines and the scripts in this repository are Copyright 2026 The Kureedo Project Authors; the scripts are released under the MIT License (`LICENSE-scripts.txt`).
+The fonts are licensed under the SIL Open Font License 1.1 (`OFL.txt`). Klee One is Copyright 2020 The Klee Project Authors; the hentaigana outlines are Copyright 2022 The Noto Project Authors (Noto Serif Hentaigana, OFL 1.1); Klee is a trademark of Fontworks Inc., and Kureedo is an independent derivative with no connection to Fontworks. The historical outlines and the scripts in this repository are Copyright 2026 The Kureedo Project Authors; the scripts are released under the MIT License (`LICENSE-scripts.txt`).
 
 ## Author
 
