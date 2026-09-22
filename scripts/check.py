@@ -85,6 +85,11 @@ def check(path: Path, family: str, full: bool):
         assert [g for g, *_ in shape("こと", features={"hlig": True})] == [cmap[0x1B123]]
     else:
         assert all(c not in cmap for c in (0x1B123,))
+    if full:
+        for code in (0x1B11F,):
+            assert cmap[code] == f"uni{code:04X}" and font["hmtx"][cmap[code]][0] == 1000
+    else:
+        assert all(c not in cmap for c in (0x1B11F,))
     for code, letters in DIGRAPHS.items():
         plain = [cmap[ord(c)] for c in letters]
         assert [g for g, *_ in shape(letters)] == plain
