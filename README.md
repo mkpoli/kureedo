@@ -116,6 +116,8 @@ The subset requests U+0020, U+3000–303F, U+3099–309C, U+30A0–30FF, U+31F0�
 
 **𚿰–𚿾, the Minnan tone letters, from Klee's strokes.** Each mark after the code chart, a Klee stroke scaled down and set at the centre of the cell: ノ for tone-2, ヽ for tone-3, 丶 for tone-4 and tone-8, く for tone-5, ト's upright for tone-7; the nasalized ones carry ゜ at 0.45 below the mark. Full-width cells; first assemblies.
 
+**𛄣 from こ and と.** Full font only: こ over と at 0.62, as the digraph stands in a column; `hlig` forms it from こと.
+
 The 0.2 ヰ outline keeps Klee's uprights and stroke ends and sets the bars 50 units closer, the upper 30 and the lower 60 units longer; it beat the 0.1 outline and the other finalists in blind comparison. `docs/methods.md` describes how each form was chosen, including the small kana and the mark positions, and `docs/votes/` holds the comparison records.
 
 ## Building

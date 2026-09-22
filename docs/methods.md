@@ -101,3 +101,4 @@ Assembled the same way, not yet compared:
 - Small Kana Extension (𛅕, 𛅤–𛅨, and the hiragana 𛄲 𛅐 𛅑 𛅒): the full-size letter through the same small-kana setting as ㇰ–ㇿ; 𛅨 is the assembled 𛄡 and follows whatever its comparison decides.
 - 𛄠: ト's upright shortened 60/60; ノ mirrored and scaled to 0.6 leaving the upright 0.55 of the way up; ノ at 0.3 leaving it 0.3 of the way up; strokes grown to Klee's weight.
 - Minnan tone letters: ノ at 0.45, ヽ at 0.55, 丶 at 0.55 and 0.4, く at 0.45, ト's upright at 0.5, each grown to Klee's weight and centred; nasalized forms add ゜ at 0.45 twenty units below the mark, the pair centred. Provisional.
+- 𛄣: こ over と, each scaled to 0.62 and grown to Klee's weight, 10 units apart, the pair centred on the kana body.
