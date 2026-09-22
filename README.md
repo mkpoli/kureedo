@@ -25,7 +25,7 @@ Related typeface: [GenZui Serif / 源萃明朝](https://genzui.mkpo.li/), a Noto
 @font-face {
   font-family: "Kureedo Kata";
   src: url("KureedoKata-Regular.woff2") format("woff2");
-  unicode-range: U+3000-303F, U+3099-309C, U+30A0-30FF, U+31F0-31FF, U+1B127-1B128, U+2A708;
+  unicode-range: U+3000-303F, U+3099-309C, U+30A0-30FF, U+31F0-31FF, U+1B000, U+1B127-1B128, U+2A708;
 }
 .edition { font-family: "Kureedo Kata", "Klee One", serif; font-feature-settings: "hist"; }
 ```
