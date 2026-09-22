@@ -96,6 +96,9 @@ def check(path: Path, family: str, full: bool):
         assert [g for g, *_ in shape("なり", features={"hlig": True})] == [cmap[0x2CF02]]
     else:
         assert all(c not in cmap for c in (0x2CF02,))
+    for code in (0x0323,):
+        assert cmap[code] in font["glyf"] and font["hmtx"][cmap[code]][0] == 0 and font["vmtx"][cmap[code]][0] == 0
+        assert font["GDEF"].table.GlyphClassDef.classDefs[cmap[code]] == 3
     for code, letters in DIGRAPHS.items():
         plain = [cmap[ord(c)] for c in letters]
         assert [g for g, *_ in shape(letters)] == plain

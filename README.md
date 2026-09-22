@@ -128,6 +128,8 @@ The subset requests U+0020, U+3000–303F, U+3099–309C, U+30A0–30FF, U+31F0�
 
 **〱 〲 from 〳 〵 and 〴.** The one-cell repeat marks: Klee's two-cell pair set in one cell at 0.42.
 
+**U+0323 from ・.** The combining dot below of 台湾語仮名 (Klee already has the overline U+0305): ・ at 0.55, set below the cell as a zero-advance mark like Kureedo's ゛゜, under the base that precedes it.
+
 The 0.2 ヰ outline keeps Klee's uprights and stroke ends and sets the bars 50 units closer, the upper 30 and the lower 60 units longer; it beat the 0.1 outline and the other finalists in blind comparison. `docs/methods.md` describes how each form was chosen, including the small kana and the mark positions, and `docs/votes/` holds the comparison records.
 
 ## Building
