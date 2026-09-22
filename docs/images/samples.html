@@ -13,6 +13,9 @@
   .vert { display: flex; gap: 48px; }
   .vert p { writing-mode: vertical-rl; font-size: 28px; line-height: 1.7; height: 15em; margin: 0; }
   .kana { font-size: 34px; letter-spacing: .2em; margin: 0; line-height: 1.6; white-space: nowrap; }
+  .hlig { font-feature-settings: "hlig"; } .ss02 { font-feature-settings: "ss02"; } .hlig2 { font-feature-settings: "hlig", "ss02"; }
+  .pair { display: flex; gap: 40px; align-items: flex-start; }
+  .pair .vcol { writing-mode: vertical-rl; font-size: 96px; line-height: 1.1; height: 3.4em; margin: 0; }
 </style>
 <div class="s" id="forms"><div class="forms">
   <div><p class="label">default</p><div class="big">ネヰ</div></div>
@@ -23,4 +26,20 @@
 <div class="s" id="running"><p class="label">default</p><p class="run">タネ シネ ニハテキ ヲカイ。ネウシヤラシリニ。イヰヱカラカ。</p><p class="label" style="margin-top:14px">hist</p><p class="run hist">タネ シネ ニハテキ ヲカイ。ネウシヤラシリニ。イヰヱカラカ。</p></div><br>
 <div class="s" id="vertical"><div class="vert"><p>タネ シネ ニハテキ ヲカイ。イヰヱカラカ。</p><p class="hist">タネ シネ ニハテキ ヲカイ。イヰヱカラカ。</p></div></div><br>
 <div class="s" id="ainu"><p class="kana">ㇰㇱㇲㇳㇴㇵㇶㇷㇸㇹㇺㇻㇼㇽㇾㇿ</p><p class="kana">セ゚ ツ゚ ト゚ ㇷ゚ カ゚ キ゚ ク゚ ケ゚ コ゚ パ ガ ヅ</p></div>
+<div class="s" id="tomo"><div class="forms">
+  <div><p class="label">トモ default</p><div class="big">トモ</div></div>
+  <div><p class="label">hlig</p><div class="big hlig">トモ</div></div>
+  <div><p class="label">𪜈 U+2A708</p><div class="big">𪜈</div></div>
+  <div><p class="label">ss02</p><div class="big ss02">𪜈</div></div>
+</div></div><br>
+<div class="s" id="archaic-e"><div class="forms">
+  <div><p class="label">𛀀 U+1B000</p><div class="big">𛀀</div></div>
+  <div><p class="label">リ</p><div class="big">リ</div></div>
+  <div><p class="label">ラ</p><div class="big">ラ</div></div>
+  <div><p class="label">エ</p><div class="big">エ</div></div>
+</div></div><br>
+<div class="s" id="double-hyphen"><div class="pair">
+  <div><p class="label">゠ U+30A0 horizontal</p><div class="big">ケ゠テ　ナ゠ヒ</div></div>
+  <div><p class="label">vertical</p><p class="vcol">ケ゠テ</p></div>
+</div></div>
 </html>

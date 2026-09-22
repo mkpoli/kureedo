@@ -17,6 +17,8 @@ Specimen, type tester and webfont CDN: https://kureedo.mkpo.li
 
 The same editions set トモ as one letter, 𪜈 U+2A708. The font covers that code point, and the `hlig` feature forms the ligature from トモ. It also covers 𛀀 U+1B000, the archaic katakana e, and the double hyphen ゠ U+30A0.
 
+![トモ default, hlig, 𪜈 U+2A708, ss02](docs/images/tomo.png)
+
 Two fonts come out of one build:
 
 | Font | File | Use |
@@ -76,13 +78,19 @@ The subset requests U+0020, U+3000–303F, U+3099–309C, U+30A0–30FF, U+31F0�
 
 ![Ainu small kana and composed marks](docs/images/ainu.png)
 
+![Extended kana: the Ainu small kana, the semi-voiced セ゚ ツ゚ ト゚ ㇷ゚ and the nasal カ゚–コ゚](docs/images/ainu-card.png)
+
 ## ゠ double hyphen
 
 ゠ U+30A0 uses two native Klee hyphen strokes rising 3°. Vertical text uses two straight uprights through `vert` or `vrt2`. The selected pair won seven of eight finalist comparisons; the complete ballot and decision are in `docs/votes/double-hyphen/`.
 
+![゠ in horizontal and vertical text](docs/images/double-hyphen.png)
+
 ## 𛀀 archaic katakana e
 
 𛀀 U+1B000 joins an upright head from Klee One’s リ to the lower stroke of ラ. The same outline serves horizontal and vertical text. It won five of six primary finalist comparisons and tied the sixth; the ballot and confirmed design are in `docs/votes/archaic-e/`.
+
+![𛀀 beside リ, ラ and エ](docs/images/archaic-e.png)
 
 ## Sources of the forms
 
