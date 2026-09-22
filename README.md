@@ -104,6 +104,8 @@ The subset requests U+0020, U+3000–303F, U+3099–309C, U+30A0–30FF, U+31F0�
 
 **𛄥 from ト and テ.** The same upright beside テ compressed to 0.72.
 
+**ヿ from コ and 于.** コ without its bottom bar; the foot of the upright takes the hook of Klee's 于, sheared to コ's slant.
+
 The 0.2 ヰ outline keeps Klee's uprights and stroke ends and sets the bars 50 units closer, the upper 30 and the lower 60 units longer; it beat the 0.1 outline and the other finalists in blind comparison. `docs/methods.md` describes how each form was chosen, including the small kana and the mark positions, and `docs/votes/` holds the comparison records.
 
 ## Building
