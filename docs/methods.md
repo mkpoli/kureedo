@@ -104,3 +104,4 @@ Assembled the same way, not yet compared:
 - 𛄣: こ over と, each scaled to 0.62 and grown to Klee's weight, 10 units apart, the pair centred on the kana body.
 - 𛄟: け cut at x<420 (its left stroke); 于 scaled to 0.5, grown to Klee's weight, set 70 units right of it. Provisional.
 - 𬻿: ヽ scaled to 0.5 over し cut below y=300 and stretched horizontally to 1.5; 60 units apart; centred.
+- 𬼀: Klee's メ scaled to 0.92 about its centre, grown to Klee's weight.

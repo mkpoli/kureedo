@@ -85,6 +85,7 @@ LETTERS = [
     dict(code=0x1B123, svg="hiragana-koto.svg", letters="こと", label="Hiragana digraph koto", kata=False),
     dict(code=0x1B11F, svg="hiragana-wu.svg", letters=None, label="Hiragana letter archaic wu", kata=False),
     dict(code=0x2CEFF, svg="nari-katakana.svg", letters="ナリ", label="Katakana nari ligature"),
+    dict(code=0x2CF00, svg="shite.svg", letters="シテ", label="Katakana shite ligature"),
 ]
 # Small kana Klee One lacks: the code point and the full-size letter it is made from. The Ainu
 # ㇰ–ㇿ, then Small Kana Extension: small コ, ヰ ヱ ヲ ン, small 𛄡, and the hiragana こ ゐ ゑ を.
