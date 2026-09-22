@@ -106,3 +106,4 @@ Assembled the same way, not yet compared:
 - 𬻿: ヽ scaled to 0.5 over し cut below y=300 and stretched horizontally to 1.5; 60 units apart; centred.
 - 𬼀: Klee's メ scaled to 0.92 about its centre, grown to Klee's weight.
 - 𬼂: Klee's レ scaled to 0.95 about its centre, grown to Klee's weight.
+- 〱 〲: 〳 (〴) over 〵, each scaled to 0.42 and grown to Klee's weight, the pair centred on the kana body.
