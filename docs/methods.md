@@ -103,3 +103,4 @@ Assembled the same way, not yet compared:
 - Minnan tone letters: ノ at 0.45, ヽ at 0.55, 丶 at 0.55 and 0.4, く at 0.45, ト's upright at 0.5, each grown to Klee's weight and centred; nasalized forms add ゜ at 0.45 twenty units below the mark, the pair centred. Provisional.
 - 𛄣: こ over と, each scaled to 0.62 and grown to Klee's weight, 10 units apart, the pair centred on the kana body.
 - 𛄟: け cut at x<420 (its left stroke); 于 scaled to 0.5, grown to Klee's weight, set 70 units right of it. Provisional.
+- 𬻿: ヽ scaled to 0.5 over し cut below y=300 and stretched horizontally to 1.5; 60 units apart; centred.
