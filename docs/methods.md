@@ -97,3 +97,4 @@ Assembled the same way, not yet compared:
 - ヿ: コ cut below y=170 (its bottom bar removed); the hook of Klee's 于 (y<101), sheared by 0.14 to コ's slant, moved (175, 70) to the foot of the upright.
 - 𛄢: Klee's 于 scaled uniformly to 0.86 about (510, 330), then grown by 4.3 units so the stroke keeps Klee's weight.
 - 𛄡: ヽ scaled to 0.6 and moved (−200, 165); エ scaled to 0.88 and lowered 40; both grown to Klee's stroke weight.
+- 𛄦: ヨ compressed horizontally to 0.7 about its centre and moved 70 left; リ's right stroke (x>430) moved 150 right.
