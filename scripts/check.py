@@ -79,6 +79,12 @@ def check(path: Path, family: str, full: bool):
         assert font["glyf"][glyph].yMax + font["vmtx"][glyph][1] == 880, glyph
         assert font["glyf"][glyph].xMin >= 0 and font["glyf"][glyph].xMax <= 1000, glyph
         assert shape(chr(code)) == [(glyph, 1000, 0)] and shape(chr(code), "ttb")[0][2] == -1000, glyph
+    if full:
+        for code in (0x1B123,):
+            assert cmap[code] == f"uni{code:04X}" and font["hmtx"][cmap[code]][0] == 1000
+        assert [g for g, *_ in shape("こと", features={"hlig": True})] == [cmap[0x1B123]]
+    else:
+        assert all(c not in cmap for c in (0x1B123,))
     for code, letters in DIGRAPHS.items():
         plain = [cmap[ord(c)] for c in letters]
         assert [g for g, *_ in shape(letters)] == plain
