@@ -45,7 +45,7 @@ def check(path: Path, family: str, full: bool):
     assert name.getDebugName(6) == family.replace(" ", "") + "-Regular"
     assert name.getDebugName(5) == "Version 0.403" and abs(font["head"].fontRevision - 0.403) < 1e-4
     assert "Klee Project Authors" in name.getDebugName(0) and name.getDebugName(13).startswith("This Font Software")
-    assert all(c in cmap for c in [*range(0x30A1, 0x30FB), *range(0x31F0, 0x3200), 0x3099, 0x309A, 0x309B, 0x309C, 0x30F0, 0x30F1, 0x30F2, 0x30F4, 0x1B127, 0x1B128, 0x2A708, 0x1B124, 0x1B125, 0x30FF, 0x1B122])
+    assert all(c in cmap for c in [*range(0x30A1, 0x30FB), *range(0x31F0, 0x3200), 0x3099, 0x309A, 0x309B, 0x309C, 0x30F0, 0x30F1, 0x30F2, 0x30F4, 0x1B127, 0x1B128, 0x2A708, 0x1B124, 0x1B125, 0x30FF, 0x1B122, 0x1B121])
     if not full:
         assert 0x5B50 not in cmap and 0x4E95 not in cmap
 
@@ -73,7 +73,7 @@ def check(path: Path, family: str, full: bool):
     # The missing letters have their own code points, one cell each way; `hlig` forms each
     # digraph from its letters and nothing else does.
     DIGRAPHS = {0x2A708: "トモ", 0x1B124: "トキ", 0x1B125: "トテ", 0x30FF: "コト"}
-    for code in (*DIGRAPHS, 0x30A0, 0x1B000, 0x1B122):
+    for code in (*DIGRAPHS, 0x30A0, 0x1B000, 0x1B122, 0x1B121):
         glyph = cmap[code]
         assert glyph == f"uni{code:04X}" and font["hmtx"][glyph][0] == 1000, glyph
         assert font["glyf"][glyph].yMax + font["vmtx"][glyph][1] == 880, glyph
