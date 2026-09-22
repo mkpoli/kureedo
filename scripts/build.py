@@ -44,8 +44,18 @@ KLEE_URL = f"https://raw.githubusercontent.com/fontworks-fonts/Klee/{KLEE_COMMIT
 KLEE_SHA256 = "74cb0a6523cc22b221ceaa7b78b56cea66512ec14b4145fd0102ffe27c30d084"
 KLEE_PATH = ROOT / "sources/klee/KleeOne-Regular.ttf"
 
+# Kana Supplement and the hentaigana of Kana Extended-A come from Noto Serif Hentaigana (OFL),
+# the wght=400 instance of the variable font pinned in google/fonts; Klee has no source for them.
+NOTO_COMMIT = "8b0a1d0f5983c89bc2b93f1b5fb55f9e252744b5"
+NOTO_URL = f"https://raw.githubusercontent.com/google/fonts/{NOTO_COMMIT}/ofl/notoserifhentaigana/NotoSerifHentaigana%5Bwght%5D.ttf"
+NOTO_SHA256 = "94d31f3669977a8464d7f4c6597a2c0bacab636e70548e1a3184ffc7e0a5abf1"
+NOTO_PATH = ROOT / "sources/noto/NotoSerifHentaigana[wght].ttf"
+NOTO_WEIGHT = 400
+HENTAIGANA = range(0x1B001, 0x1B11F)  # 𛀁 and the 285 hentaigana; the katakana of the two blocks stay Kureedo's own
+
 VERSION = (0, 4, 3)  # release tag v0.4.3; name ID 5 and head.fontRevision carry 0.403
 COPYRIGHT = ("Copyright 2020 The Klee Project Authors (https://github.com/fontworks-fonts/Klee); "
+             "hentaigana Copyright 2022 The Noto Project Authors (https://github.com/notofonts/hentaigana); "
              "historical glyphs Copyright 2026 mkpoli (https://mkpo.li, https://github.com/mkpoli/kureedo)")
 URL = "https://github.com/mkpoli/kureedo"
 BASELINE = 880  # y of the em top in the SVG sources (1000-unit em, y down)
@@ -172,14 +182,24 @@ def scaled_glyph(glyph_set, name, scale, dx, dy, weight):
     return tt.glyph()
 
 
+def fetch(url, path, sha256, what):
+    if not path.exists():
+        path.parent.mkdir(parents=True, exist_ok=True)
+        with urlopen(url, timeout=60) as response:
+            path.write_bytes(response.read())
+    if hashlib.sha256(path.read_bytes()).hexdigest() != sha256:
+        raise ValueError(f"{what} checksum mismatch")
+    return TTFont(path, recalcTimestamp=False)
+
+
 def fetch_klee():
-    if not KLEE_PATH.exists():
-        KLEE_PATH.parent.mkdir(parents=True, exist_ok=True)
-        with urlopen(KLEE_URL, timeout=60) as response:
-            KLEE_PATH.write_bytes(response.read())
-    if hashlib.sha256(KLEE_PATH.read_bytes()).hexdigest() != KLEE_SHA256:
-        raise ValueError("Klee One checksum mismatch")
-    return TTFont(KLEE_PATH, recalcTimestamp=False)
+    return fetch(KLEE_URL, KLEE_PATH, KLEE_SHA256, "Klee One")
+
+
+def fetch_noto():
+    """Noto Serif Hentaigana as a static font at NOTO_WEIGHT."""
+    from fontTools.varLib.instancer import instantiateVariableFont
+    return instantiateVariableFont(fetch(NOTO_URL, NOTO_PATH, NOTO_SHA256, "Noto Serif Hentaigana"), {"wght": NOTO_WEIGHT})
 
 
 def svg_glyph(path: Path, *, normalize=False):
@@ -342,6 +362,18 @@ class Builder:
         self.font["name"].setName("トモ合字の左画を直線に", params.UINameID, 3, 1, 0x411)
         self.add_feature("ss02", buildLookup([buildSingleSubstSubtable({tomo: straight})]), params)
 
+    def add_hentaigana(self, noto: TTFont):
+        """Copy Kana Supplement and the hentaigana from Noto Serif Hentaigana, outlines as they are."""
+        source = noto.getGlyphSet()
+        cmap = noto.getBestCmap()
+        for code in HENTAIGANA:
+            pen = TTGlyphPen(None)
+            source[cmap[code]].draw(pen)   # components drawn through, so the copy is self-contained
+            name = f"uni{code:04X}"
+            self.put(name, pen.glyph(), advance=noto["hmtx"][cmap[code]][0])
+            self.encode(code, name)
+            self.cmap[code] = name
+
     def add_marks(self):
         """Compose kana with combining dakuten and handakuten into one cell."""
         positions = json.loads((GLYPHS / "mark-positions.json").read_text())
@@ -475,6 +507,7 @@ def build(out_dir: Path = FONTS, small=None, small_mark=None, family_suffix="", 
     builder = Builder(font, small, small_mark, sources)
     builder.add_historical()
     builder.add_letters()
+    builder.add_hentaigana(fetch_noto())
     builder.add_small_kana()
     builder.add_marks()
     builder.finish()

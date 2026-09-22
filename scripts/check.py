@@ -3,6 +3,7 @@
 import sys
 import hashlib
 import json
+import sys
 from io import BytesIO
 from pathlib import Path
 
@@ -16,6 +17,9 @@ SMALL_VERT_TOP, SMALL_VERT_X = SMALL["vertTop"], SMALL["vertX"]
 
 ROOT = Path(__file__).resolve().parent.parent
 KLEE = TTFont(ROOT / "sources/klee/KleeOne-Regular.ttf")
+sys.path.insert(0, str(ROOT / "scripts"))
+import build as build_script  # noqa: E402
+NOTO = build_script.fetch_noto()
 
 
 def shaper(font: TTFont):
@@ -214,6 +218,20 @@ def check(path: Path, family: str, full: bool):
     labels = {name.getDebugName(i) for i in range(256, 300) if name.getDebugName(i)}
     assert {"Katakana ne, 子-shaped", "Katakana wi, 井-shaped", "Edo-period printed forms"} <= labels, labels
 
+    if full:
+        # Kana Supplement and the hentaigana are Noto Serif Hentaigana's outlines, unchanged.
+        noto_cmap = NOTO.getBestCmap()
+        for code in build_script.HENTAIGANA:
+            assert code in cmap and font["hmtx"][cmap[code]][0] == NOTO["hmtx"][noto_cmap[code]][0], hex(code)
+        from fontTools.pens.recordingPen import RecordingPen
+        flat = lambda pen: [(op, [tuple(round(v) for v in pt) for pt in args]) for op, args in pen.value]
+        for code in (0x1B001, 0x1B050, 0x1B11E):
+            ours, theirs = RecordingPen(), RecordingPen()
+            font.getGlyphSet()[cmap[code]].draw(ours); NOTO.getGlyphSet()[noto_cmap[code]].draw(theirs)
+            assert flat(ours) == flat(theirs), hex(code)   # the instance's coordinates are fractional; the copy rounds them
+        assert "Noto Project Authors" in name.getDebugName(0)
+    else:
+        assert all(code not in cmap for code in build_script.HENTAIGANA)
     if full:
         # Every glyph Klee One ships is still there and unchanged.
         klee_order = KLEE.getGlyphOrder()

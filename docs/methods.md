@@ -108,3 +108,4 @@ Assembled the same way, not yet compared:
 - 𬼂: Klee's レ scaled to 0.95 about its centre, grown to Klee's weight.
 - 〱 〲: 〳 (〴) over 〵, each scaled to 0.42 and grown to Klee's weight, the pair centred on the kana body.
 - U+0323: ・ scaled to 0.55, centred at (−500, −60), under the base that precedes it. Zero advance, mark class. (Klee has U+0305 itself.)
+- 𛀁 and the hentaigana U+1B002–1B11E: Noto Serif Hentaigana's outlines at wght 400, copied as they are, Noto's advances kept.

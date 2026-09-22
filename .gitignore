@@ -5,3 +5,4 @@ __pycache__/
 build/
 fonts/*.ttf
 .wrangler/
+sources/noto/
