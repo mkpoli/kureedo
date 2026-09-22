@@ -107,3 +107,4 @@ Assembled the same way, not yet compared:
 - 𬼀: Klee's メ scaled to 0.92 about its centre, grown to Klee's weight.
 - 𬼂: Klee's レ scaled to 0.95 about its centre, grown to Klee's weight.
 - 〱 〲: 〳 (〴) over 〵, each scaled to 0.42 and grown to Klee's weight, the pair centred on the kana body.
+- U+0323: ・ scaled to 0.55, centred at (−500, −60), under the base that precedes it. Zero advance, mark class. (Klee has U+0305 itself.)

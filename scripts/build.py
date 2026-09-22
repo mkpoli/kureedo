@@ -89,6 +89,7 @@ LETTERS = [
     dict(code=0x2CF02, svg="nari-hiragana.svg", letters="なり", label="Hiragana nari ligature", kata=False),
     dict(code=0x3031, svg="repeat-mark.svg", letters=None, label="Vertical kana repeat mark"),
     dict(code=0x3032, svg="repeat-mark-voiced.svg", letters=None, label="Vertical kana repeat mark, voiced"),
+    dict(code=0x0323, svg="combining-dot-below.svg", letters=None, label="Combining dot below", mark=True),
 ]
 # Small kana Klee One lacks: the code point and the full-size letter it is made from. The Ainu
 # ㇰ–ㇿ, then Small Kana Extension: small コ, ヰ ヱ ヲ ン, small 𛄡, and the hiragana こ ゐ ゑ を.
@@ -312,8 +313,11 @@ class Builder:
         """Add the missing letters at their code points, and `hlig` forming each digraph from its letters."""
         ligatures = {}
         for form in LETTERS:
-            name = f"uni{form['code']:04X}"
-            self.put(name, self.source(form["svg"]))
+            # A combining mark takes no space, like Kureedo's ゛ and ゜; its glyph is named apart
+            # from Klee's own (unencoded) marks.
+            mark = form.get("mark", False)
+            name = f"{'kanaMark' if mark else 'uni'}{form['code']:04X}"
+            self.put(name, self.source(form["svg"]), advance=0 if mark else 1000, mark=mark)
             self.encode(form["code"], name)
             self.cmap[form["code"]] = name
             if form.get("vertical"):
