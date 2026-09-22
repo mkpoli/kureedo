@@ -39,7 +39,7 @@ On the web, either self-host the WOFF2:
   font-family: "Kureedo Kata";
   src: url("KureedoKata-Regular.woff2") format("woff2");
   font-display: swap;
-  unicode-range: U+3000-303F, U+3099-309C, U+30A0-30FF, U+31F0-31FF, U+1B000, U+1B127-1B128, U+2A708, U+1B124, U+1B125, U+1B122, U+1B121, U+1B126;
+  unicode-range: U+3000-303F, U+3099-309C, U+30A0-30FF, U+31F0-31FF, U+1B000, U+1B127-1B128, U+2A708, U+1B124, U+1B125, U+1B122, U+1B121, U+1B126, U+1B155, U+1B164-1B168;
 }
 .edition { font-family: "Kureedo Kata", "Klee One", serif; font-feature-settings: "hist"; }
 ```
@@ -74,7 +74,7 @@ Klee One's own `hkna`/`vkna` alternates of ネ and ヰ also become the historica
 
 ## Coverage of Kureedo Kata
 
-The subset requests U+0020, U+3000–303F, U+3099–309C, U+30A0–30FF, U+31F0–31FF, U+1B000, U+1B127–1B128, U+2A708, U+1B124, U+1B125, U+1B122, U+1B121 and U+1B126; code points Klee One does not cover (for example U+3031–3032, U+30FF) stay absent. `fonttools ttx -t cmap` lists the exact set, and the site shows it block by block. Glyphs Klee One does not have and this font adds: 𛄧 𛄨 𪜈 𛀀 ゠; the Ainu small kana ㇰ–ㇿ (U+31F0–31FF), set the way Klee sets its own small kana (78% of the full-size letter, centred on the baseline, stroke weight brought back to 0.92 of the full-size stroke as Klee's own ッ and ァ keep it, shifted up and right in vertical text through `vert`); combining ゛ and ゜ with zero advance; and `ccmp` ligatures that set セ゚ ツ゚ ト゚ ㇷ゚ カ゚ キ゚ ク゚ ケ゚ コ゚ in one cell, horizontally and vertically. The handakuten of ㇷ゚ is scaled with the letter and sits where プ puts its own, at プ's clearance from the stroke; on the full-size bases it starts where Klee places the dakuten on the same letter and keeps that clearance (`scripts/mark_positions.py`, `docs/methods.md`).
+The subset requests U+0020, U+3000–303F, U+3099–309C, U+30A0–30FF, U+31F0–31FF, U+1B000, U+1B127–1B128, U+2A708, U+1B124, U+1B125, U+1B122, U+1B121, U+1B126, U+1B155 and U+1B164–1B168; code points Klee One does not cover (for example U+3031–3032, U+30FF) stay absent. `fonttools ttx -t cmap` lists the exact set, and the site shows it block by block. Glyphs Klee One does not have and this font adds: 𛄧 𛄨 𪜈 𛀀 ゠; the Ainu small kana ㇰ–ㇿ (U+31F0–31FF) and the small kana of Small Kana Extension — 𛅕 (U+1B155), 𛅤 𛅥 𛅦 𛅧 𛅨 (U+1B164–1B168) and, in the full font, the hiragana 𛄲 𛅐 𛅑 𛅒 (U+1B132, U+1B150–1B152) —, set the way Klee sets its own small kana (78% of the full-size letter, centred on the baseline, stroke weight brought back to 0.92 of the full-size stroke as Klee's own ッ and ァ keep it, shifted up and right in vertical text through `vert`); combining ゛ and ゜ with zero advance; and `ccmp` ligatures that set セ゚ ツ゚ ト゚ ㇷ゚ カ゚ キ゚ ク゚ ケ゚ コ゚ in one cell, horizontally and vertically. The handakuten of ㇷ゚ is scaled with the letter and sits where プ puts its own, at プ's clearance from the stroke; on the full-size bases it starts where Klee places the dakuten on the same letter and keeps that clearance (`scripts/mark_positions.py`, `docs/methods.md`).
 
 ![Ainu small kana and composed marks](docs/images/ainu.png)
 

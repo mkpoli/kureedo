@@ -69,8 +69,13 @@ LETTERS = [
     dict(code=0x1B121, svg="ye.svg", letters=None, label="Katakana letter archaic ye"),
     dict(code=0x1B126, svg="yori.svg", letters='ヨリ', label="Katakana digraph yori"),
 ]
+# Small kana Klee One lacks: the code point and the full-size letter it is made from. The Ainu
+# ㇰ–ㇿ, then Small Kana Extension: small コ, ヰ ヱ ヲ ン, small 𛄡, and the hiragana こ ゐ ゑ を.
+SMALL_KANA = {**dict(zip(range(0x31F0, 0x3200), "クシストヌハヒフヘホムラリルレロ")),
+              0x1B155: "コ", 0x1B164: "ヰ", 0x1B165: "ヱ", 0x1B166: "ヲ", 0x1B167: "ン", 0x1B168: "\U0001B121",
+              0x1B132: "こ", 0x1B150: "ゐ", 0x1B151: "ゑ", 0x1B152: "を"}
 KATA_UNICODES = [0x20, *range(0x3000, 0x3040), *range(0x3099, 0x309D), *range(0x30A0, 0x3100), *range(0x31F0, 0x3200),
-                 *(f["historic"] for f in HISTORICAL), *(l["code"] for l in LETTERS)]
+                 *(f["historic"] for f in HISTORICAL), *(l["code"] for l in LETTERS), 0x1B155, *range(0x1B164, 0x1B169)]
 
 # Ainu small kana follow Klee's own small-kana convention (ッ against ツ): 78% of the full-size
 # letter, centred in the cell on the baseline, and shifted up and to the right in vertical text.
@@ -365,10 +370,11 @@ class Builder:
                 self.add_feature(tag, buildLookup([buildSingleSubstSubtable(dict(self.vertical))]))
 
     def add_small_kana(self):
-        """Klee One lacks U+31F0–31FF. Scale its full-size kana to 65%, set at the lower right."""
+        """Klee One lacks the small kana of U+31F0–31FF and of Small Kana Extension. Each is its
+        full-size letter set the way Klee sets its own small kana (see SMALL)."""
         glyphs = self.font.getGlyphSet()
         sm = self.small
-        for code, base in zip(range(0x31F0, 0x3200), "クシストヌハヒフヘホムラリルレロ"):
+        for code, base in SMALL_KANA.items():
             name = f"uni{code:04X}"
             for suffix, dx, dy in (("", 0, 0), (".vert", sm["vertX"], sm["vertY"])):
                 if suffix and not (dx or dy):
@@ -442,9 +448,9 @@ def set_names(font: TTFont, family: str):
 def build(out_dir: Path = FONTS, small=None, small_mark=None, family_suffix="", sources=None):
     font = fetch_klee()
     builder = Builder(font, small, small_mark, sources)
-    builder.add_small_kana()
     builder.add_historical()
     builder.add_letters()
+    builder.add_small_kana()
     builder.add_marks()
     builder.finish()
     out_dir.mkdir(parents=True, exist_ok=True)
