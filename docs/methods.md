@@ -93,3 +93,4 @@ Twenty-seven forms survived the last cull. The 73 judgments comprise 52 primary 
 Assembled the same way, not yet compared:
 
 - 𛄤: ト's upright (as in 𪜈) beside キ compressed horizontally to 0.72 about its centre and moved 70 units right.
+- 𛄥: the same upright beside テ compressed horizontally to 0.72 about its centre and moved 70 units right.
