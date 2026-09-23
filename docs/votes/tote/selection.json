@@ -17,7 +17,7 @@
   "family": "like-tomo",
   "source": "round8-screening-12.json",
   "analysis": "round8-decision.json",
-  "selectionRule": "Points per comparison among the four leaders across rounds 7–8, repeats excluded: win=1, tie=0.5, loss/neither=0. The selected form also won two of its three primary comparisons against the runner-up and tied the third.",
+  "selectionRule": "Points per comparison among the four leaders across rounds 7–8, repeats excluded: win=1, tie=0.5, loss/neither=0.",
   "score": {
     "id": "c9fc3bb4e6b5d8a57",
     "wins": 3,
@@ -34,7 +34,7 @@
     "primaryLosses": 0,
     "primaryTies": 1,
     "primaryNeither": 0,
-    "repeatWins": -1,
+    "repeatWins": 1,
     "repeatLosses": 1
   },
   "userDecision": "Chose the curved 𪜈-frame form over the round-8 points leader.",
@@ -53,9 +53,14 @@
     ]
   },
   "bounds": [
-    127.4098129272461,
-    -21.525129318237305,
-    888.166259765625,
-    679.8621215820312
-  ]
+    126.0,
+    -22.0,
+    888.0,
+    680.0
+  ],
+  "ballots": [
+    "round7-screening-34.json",
+    "round8-screening-12.json"
+  ],
+  "svg": "sources/glyphs/tote.svg"
 }

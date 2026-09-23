@@ -18,7 +18,7 @@
   },
   "family": "like-tomo",
   "userDecision": "The curved 𪜈-frame form c9fc3b, confirmed over the round-8 points leader.",
-  "selectionRule": "Direct record between the top two plus the study construction tally: c9fc3b beat cfb207 in every primary meeting (2–0–1) and the curved frame led the cross-construction count (10–3 in round 7; assembly 2–1–1 in round 8). Repeat judgments excluded from ranking.",
+  "selectionRule": "Points per comparison among the four leaders across rounds 7–8, repeats excluded: win=1, tie=0.5, loss/neither=0.",
   "pointsRuleResult": {
     "id": "cfb207b3b341d9ac2",
     "points": 2.5,
@@ -118,7 +118,7 @@
     "primaryLosses": 0,
     "primaryTies": 1,
     "primaryNeither": 0,
-    "repeatWins": -1,
+    "repeatWins": 1,
     "repeatLosses": 1
   },
   "repeatChecks": [
@@ -157,7 +157,7 @@
   ],
   "repeatAgreements": 1,
   "findings": {
-    "bend": "Moot. The three curved forms (bend 0.10/0.53/0.77) split evenly: 0.10 vs 0.53 went neither then tie, and 0.77 lost one to each. Round 7’s open bend question closes with no preference.",
+    "bend": "The three curved forms differ in bend (0.10, 0.53, 0.77) and also in width, fit and size. In the final round 0.10 and 0.53 each beat 0.77, while their own pair traded a 'neither' and a tie; the comparisons do not isolate the bend.",
     "size": "Settled in round 6–7: every leader is a scaled-up form (size 1.05–1.10, tall 1.04–1.08).",
     "construction": "Curved 𪜈 frame over the straight assembly: 10–3 across constructions in round 7, and round 8’s cross-construction primaries finished assembly 2–1–1 — the assembly’s two wins were the two curved forms that beat c9fc3b.",
     "bendNote": "c9fc3b carries bend 0.77; since bend does not separate, the value is incidental to the selection."
@@ -168,5 +168,9 @@
     "Only one of four reversed repeats agreed in round 8 (two of six in round 7).",
     "The top two form a cycle with the other finalists: cfb207 beat both forms that beat c9fc3b, so the points rule and the direct record disagree."
   ],
-  "svg": "selected.svg"
+  "svg": "sources/glyphs/tote.svg",
+  "ballots": [
+    "round7-screening-34.json",
+    "round8-screening-12.json"
+  ]
 }
