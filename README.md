@@ -39,7 +39,7 @@ On the web, either self-host the WOFF2:
   font-family: "Kureedo Kata";
   src: url("KureedoKata-Regular.woff2") format("woff2");
   font-display: swap;
-  unicode-range: U+3000-303F, U+3099-309C, U+30A0-30FF, U+31F0-31FF, U+1B000, U+1B127-1B128, U+2A708, U+1B124;
+  unicode-range: U+3000-303F, U+3099-309C, U+30A0-30FF, U+31F0-31FF, U+1B000, U+1B127-1B128, U+2A708, U+1B124, U+1B125;
 }
 .edition { font-family: "Kureedo Kata", "Klee One", serif; font-feature-settings: "hist"; }
 ```
@@ -74,7 +74,7 @@ Klee One's own `hkna`/`vkna` alternates of ネ and ヰ also become the historica
 
 ## Coverage of Kureedo Kata
 
-The subset requests U+0020, U+3000–303F, U+3099–309C, U+30A0–30FF, U+31F0–31FF, U+1B000, U+1B127–1B128, U+2A708 and U+1B124; code points Klee One does not cover (for example U+3031–3032, U+30FF) stay absent. `fonttools ttx -t cmap` lists the exact set, and the site shows it block by block. Glyphs Klee One does not have and this font adds: 𛄧 𛄨 𪜈 𛀀 ゠; the Ainu small kana ㇰ–ㇿ (U+31F0–31FF), set the way Klee sets its own small kana (78% of the full-size letter, centred on the baseline, stroke weight brought back to 0.92 of the full-size stroke as Klee's own ッ and ァ keep it, shifted up and right in vertical text through `vert`); combining ゛ and ゜ with zero advance; and `ccmp` ligatures that set セ゚ ツ゚ ト゚ ㇷ゚ カ゚ キ゚ ク゚ ケ゚ コ゚ in one cell, horizontally and vertically. The handakuten of ㇷ゚ is scaled with the letter and sits where プ puts its own, at プ's clearance from the stroke; on the full-size bases it starts where Klee places the dakuten on the same letter and keeps that clearance (`scripts/mark_positions.py`, `docs/methods.md`).
+The subset requests U+0020, U+3000–303F, U+3099–309C, U+30A0–30FF, U+31F0–31FF, U+1B000, U+1B127–1B128, U+2A708, U+1B124 and U+1B125; code points Klee One does not cover (for example U+3031–3032, U+30FF) stay absent. `fonttools ttx -t cmap` lists the exact set, and the site shows it block by block. Glyphs Klee One does not have and this font adds: 𛄧 𛄨 𪜈 𛀀 ゠; the Ainu small kana ㇰ–ㇿ (U+31F0–31FF), set the way Klee sets its own small kana (78% of the full-size letter, centred on the baseline, stroke weight brought back to 0.92 of the full-size stroke as Klee's own ッ and ァ keep it, shifted up and right in vertical text through `vert`); combining ゛ and ゜ with zero advance; and `ccmp` ligatures that set セ゚ ツ゚ ト゚ ㇷ゚ カ゚ キ゚ ク゚ ケ゚ コ゚ in one cell, horizontally and vertically. The handakuten of ㇷ゚ is scaled with the letter and sits where プ puts its own, at プ's clearance from the stroke; on the full-size bases it starts where Klee places the dakuten on the same letter and keeps that clearance (`scripts/mark_positions.py`, `docs/methods.md`).
 
 ![Ainu small kana and composed marks](docs/images/ainu.png)
 
@@ -101,6 +101,8 @@ The subset requests U+0020, U+3000–303F, U+3099–309C, U+30A0–30FF, U+31F0�
 **𪜈 from ト and モ.** The default has a curved 丿-like left stroke joined to モ. Its upper and middle bars rise 9° and 8° respectively; their contours retain Klee One’s pen terminals. `ss02` uses a straight left stroke with the same モ. The proportions follow the Unicode code chart glyph for [U+2A708](https://www.unicode.org/charts/PDF/U2A700.pdf) (source JK-65004) and the printed instances in 池田霧渓『種痘弁義』(1858), [image 6](https://dl.ndl.go.jp/api/iiif/2539156/R0000006/full/full/0/default.jpg) (国立国会図書館, [doi:10.11501/2539156](https://doi.org/10.11501/2539156), public domain), located through the みんなで翻刻 transcription ([honkoku-data v3](https://github.com/yuta1984/honkoku-data), CC BY-SA 4.0). The print sets the left stroke no taller than the モ and joins the bars to it; the code chart leaves them apart. The selected font outline joins the middle bar to the left stroke.
 
 **𛄤 from ト and キ.** ト's upright, shortened as in 𪜈, beside キ compressed to 0.72 of its width.
+
+**𛄥 from ト and テ.** Klee One's テ set on 𪜈's frame the way the モ sits on it. The same outline serves horizontal and vertical text. It won two of three primary comparisons against the form assembled from ト's upright and a compressed テ, and tied the third; the ballot and confirmed design are in `docs/votes/tote/`.
 
 The 0.2 ヰ outline keeps Klee's uprights and stroke ends and sets the bars 50 units closer, the upper 30 and the lower 60 units longer; it beat the 0.1 outline and the other finalists in blind comparison. `docs/methods.md` describes how each form was chosen, including the small kana and the mark positions, and `docs/votes/` holds the comparison records.
 

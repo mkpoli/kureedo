@@ -1,0 +1,66 @@
+{
+  "status": "accepted",
+  "arena": "cc3f1ec5b1d60fffd46988df51865487",
+  "candidate": "c9fc3bb4e6b5d8a57",
+  "design": {
+    "sx": 0.832,
+    "fit": 0.974,
+    "dy": 4,
+    "entry": 0.343,
+    "right": -8,
+    "gap": 38,
+    "bend": 0.77,
+    "size": 1.053,
+    "tall": 1.075,
+    "_family": "like-tomo"
+  },
+  "family": "like-tomo",
+  "source": "round8-screening-12.json",
+  "analysis": "round8-decision.json",
+  "selectionRule": "Points per comparison among the four leaders across rounds 7–8, repeats excluded: win=1, tie=0.5, loss/neither=0.",
+  "score": {
+    "id": "c9fc3bb4e6b5d8a57",
+    "wins": 3,
+    "losses": 2,
+    "ties": 1,
+    "neither": 0,
+    "points": 3.5,
+    "n": 6,
+    "rate": 0.5833333333333334
+  },
+  "runnerUp": "cfb207b3b341d9ac2",
+  "headToHead": {
+    "primaryWins": 2,
+    "primaryLosses": 0,
+    "primaryTies": 1,
+    "primaryNeither": 0,
+    "repeatWins": 1,
+    "repeatLosses": 1
+  },
+  "userDecision": "Chose the curved 𪜈-frame form over the round-8 points leader.",
+  "glyphSha256": {
+    "uni1B125": "71e4536b4be36d989285b386357ba3dc1ca2ca4c868c25998460a29fc160e20f"
+  },
+  "svgSha256": "9917ccbb7c7c39ca1ccfb909101222650610517385d7800cd0b24853c7cc0b46",
+  "metrics": {
+    "horizontal": [
+      1000,
+      126
+    ],
+    "vertical": [
+      1000,
+      200
+    ]
+  },
+  "bounds": [
+    126.0,
+    -22.0,
+    888.0,
+    680.0
+  ],
+  "ballots": [
+    "round7-screening-34.json",
+    "round8-screening-12.json"
+  ],
+  "svg": "sources/glyphs/tote.svg"
+}

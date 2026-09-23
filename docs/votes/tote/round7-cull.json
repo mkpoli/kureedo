@@ -1,0 +1,24 @@
+{
+  "arena": "910367d1598fd9a7b001dc7154deff1b",
+  "protocol": "screening-to-finalists",
+  "kept": [
+    "c4471d9fb2b95b4cf",
+    "c9fc3bb4e6b5d8a57",
+    "cfb207b3b341d9ac2",
+    "c60d33df243101574"
+  ],
+  "rejected": [
+    "cb0563cabf44380bc",
+    "c4368be1ff73655bc",
+    "ca16899fd513bc285",
+    "cb37d96a3880ca163",
+    "cbefa69f4b4a7caa6",
+    "c49ac91f57740b166",
+    "c612de62135d5bfa9",
+    "c7a10e28605247c05",
+    "cd4949cb05e5300ee",
+    "c52f5c3161edbb750",
+    "c08a5edb12d6640eb"
+  ],
+  "note": "The four leaders of the 34-judgment screening (28 non-repeat comparisons): points per comparison, ties broken by fewer \"neither\". Round 8 compares them."
+}

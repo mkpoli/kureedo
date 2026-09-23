@@ -1,0 +1,176 @@
+{
+  "arena": "cc3f1ec5b1d60fffd46988df51865487",
+  "source": "round8-screening-12.json",
+  "analysis": "round8-decision.json",
+  "status": "accepted",
+  "candidate": "c9fc3bb4e6b5d8a57",
+  "design": {
+    "sx": 0.832,
+    "fit": 0.974,
+    "dy": 4,
+    "entry": 0.343,
+    "right": -8,
+    "gap": 38,
+    "bend": 0.77,
+    "size": 1.053,
+    "tall": 1.075,
+    "_family": "like-tomo"
+  },
+  "family": "like-tomo",
+  "userDecision": "The curved 𪜈-frame form c9fc3b, confirmed over the round-8 points leader.",
+  "selectionRule": "Points per comparison among the four leaders across rounds 7–8, repeats excluded: win=1, tie=0.5, loss/neither=0.",
+  "pointsRuleResult": {
+    "id": "cfb207b3b341d9ac2",
+    "points": 2.5,
+    "n": 4,
+    "note": "Points per comparison in round 8 alone ranks the assembly form first (2.5/4 vs 1.5/4); it beats the two curved forms that beat c9fc3b, a cycle the user resolved against the rule."
+  },
+  "totalJudgments": 12,
+  "primaryComparisons": 8,
+  "repeatComparisons": 4,
+  "round8Rankings": [
+    {
+      "id": "cfb207b3b341d9ac2",
+      "wins": 2,
+      "losses": 1,
+      "ties": 1,
+      "neither": 0,
+      "points": 2.5,
+      "n": 4,
+      "rate": 0.625
+    },
+    {
+      "id": "c9fc3bb4e6b5d8a57",
+      "wins": 1,
+      "losses": 2,
+      "ties": 1,
+      "neither": 0,
+      "points": 1.5,
+      "n": 4,
+      "rate": 0.375
+    },
+    {
+      "id": "c4471d9fb2b95b4cf",
+      "wins": 1,
+      "losses": 1,
+      "ties": 1,
+      "neither": 1,
+      "points": 1.5,
+      "n": 4,
+      "rate": 0.375
+    },
+    {
+      "id": "c60d33df243101574",
+      "wins": 1,
+      "losses": 1,
+      "ties": 1,
+      "neither": 1,
+      "points": 1.5,
+      "n": 4,
+      "rate": 0.375
+    }
+  ],
+  "cumulativeFinalistRankings": [
+    {
+      "id": "c9fc3bb4e6b5d8a57",
+      "wins": 3,
+      "losses": 2,
+      "ties": 1,
+      "neither": 0,
+      "points": 3.5,
+      "n": 6,
+      "rate": 0.5833333333333334
+    },
+    {
+      "id": "cfb207b3b341d9ac2",
+      "wins": 2,
+      "losses": 2,
+      "ties": 1,
+      "neither": 0,
+      "points": 2.5,
+      "n": 5,
+      "rate": 0.5
+    },
+    {
+      "id": "c4471d9fb2b95b4cf",
+      "wins": 1,
+      "losses": 1,
+      "ties": 1,
+      "neither": 1,
+      "points": 1.5,
+      "n": 4,
+      "rate": 0.375
+    },
+    {
+      "id": "c60d33df243101574",
+      "wins": 1,
+      "losses": 2,
+      "ties": 1,
+      "neither": 1,
+      "points": 1.5,
+      "n": 5,
+      "rate": 0.3
+    }
+  ],
+  "runnerUp": "cfb207b3b341d9ac2",
+  "headToHead": {
+    "primaryWins": 2,
+    "primaryLosses": 0,
+    "primaryTies": 1,
+    "primaryNeither": 0,
+    "repeatWins": 1,
+    "repeatLosses": 1
+  },
+  "repeatChecks": [
+    {
+      "id": "a74123cb-9dc8-41e2-81de-9cebbd10d6e4",
+      "repeatOf": "3040bcc6-8c88-4ecf-977b-6287c5efcea8",
+      "stage": "screening",
+      "agreement": false,
+      "firstOutcome": "c9fc3bb4e6b5d8a57",
+      "repeatOutcome": "cfb207b3b341d9ac2"
+    },
+    {
+      "id": "7efe3d3b-d188-4197-8e46-928bde314894",
+      "repeatOf": "0802e275-1199-49d1-b84a-46cb39b24c4f",
+      "stage": "screening",
+      "agreement": false,
+      "firstOutcome": "neither",
+      "repeatOutcome": "tie"
+    },
+    {
+      "id": "72a8fce9-586e-458d-890c-aae9b129d196",
+      "repeatOf": "525ddafd-c0bf-471e-8421-ef2a9b5f39ec",
+      "stage": "screening",
+      "agreement": true,
+      "firstOutcome": "cfb207b3b341d9ac2",
+      "repeatOutcome": "cfb207b3b341d9ac2"
+    },
+    {
+      "id": "5f798afc-452b-482f-90d5-d4869835dcf6",
+      "repeatOf": "dd6f1710-f6dc-48ba-b855-5935358b1310",
+      "stage": "screening",
+      "agreement": false,
+      "firstOutcome": "c60d33df243101574",
+      "repeatOutcome": "c9fc3bb4e6b5d8a57"
+    }
+  ],
+  "repeatAgreements": 1,
+  "findings": {
+    "bend": "The three curved forms differ in bend (0.10, 0.53, 0.77) and also in width, fit and size. In the final round 0.10 and 0.53 each beat 0.77, while their own pair traded a 'neither' and a tie; the comparisons do not isolate the bend.",
+    "size": "Settled in round 6–7: every leader is a scaled-up form (size 1.05–1.10, tall 1.04–1.08).",
+    "construction": "Curved 𪜈 frame over the straight assembly: 10–3 across constructions in round 7, and round 8’s cross-construction primaries finished assembly 2–1–1 — the assembly’s two wins were the two curved forms that beat c9fc3b.",
+    "bendNote": "c9fc3b carries bend 0.77; since bend does not separate, the value is incidental to the selection."
+  },
+  "limitations": [
+    "The comparisons record one reader’s preferences.",
+    "Each judgment combines horizontal and vertical text.",
+    "Only one of four reversed repeats agreed in round 8 (two of six in round 7).",
+    "The top two form a cycle with the other finalists: cfb207 beat both forms that beat c9fc3b, so the points rule and the direct record disagree."
+  ],
+  "svg": "sources/glyphs/tote.svg",
+  "ballots": [
+    "round7-screening-34.json",
+    "round8-screening-12.json"
+  ]
+}
