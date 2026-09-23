@@ -102,7 +102,7 @@ The subset requests U+0020, U+3000–303F, U+3099–309C, U+30A0–30FF, U+31F0�
 
 **𛄤 from ト and キ.** ト's upright, shortened as in 𪜈, beside キ compressed to 0.72 of its width.
 
-**𛄥 from ト and テ.** The same upright beside テ compressed to 0.72.
+**𛄥 from ト and テ.** Klee One's テ set on 𪜈's frame the way the モ sits on it. The same outline serves horizontal and vertical text. It won two of three primary comparisons against the form assembled from ト's upright and a compressed テ, and tied the third; the ballot and confirmed design are in `docs/votes/tote/`.
 
 The 0.2 ヰ outline keeps Klee's uprights and stroke ends and sets the bars 50 units closer, the upper 30 and the lower 60 units longer; it beat the 0.1 outline and the other finalists in blind comparison. `docs/methods.md` describes how each form was chosen, including the small kana and the mark positions, and `docs/votes/` holds the comparison records.
 

@@ -88,9 +88,14 @@ The selected form joins Klee One’s リ-derived upright head to the unchanged l
 
 Twenty-seven forms survived the last cull. The 73 judgments comprise 52 primary screening comparisons, six screening repeats, 12 primary finalist comparisons and three finalist repeats, all with horizontal and vertical reading samples shown together at 24 px. Candidate `e47e03ce8e8297cc1` won five of its six primary finalist comparisons and tied the sixth, scoring 5.5/6. The other finalists scored 2, 2 and 1.5 out of six. Repeats are excluded from ranking. None of the nine repeat judgments agreed exactly with the first judgment, so the result supports a practical selection with limited repeat consistency. Including repeats leaves the same candidate first. The ballot, designs, scores and outline hashes are in `votes/archaic-e/`.
 
+## 𛄥
+
+The selected form takes 𪜈's curved left stroke, with Klee One's テ set beside it the way the モ is set: its right edge 8 units short of the モ's, its top bar cut off 0.34 of the way into the left stroke, its height 0.97 of the left stroke's and its width 0.83 of Klee's テ. Strokes other than the bar keep 38 units clear of the left stroke. The part below the bar takes 0.77 of the stroke's bend. The whole letter is scaled 1.053 about its centre and stretched 1.075 vertically. The same glyph occupies one 1000-unit cell in both directions, with vertical origin 880.
+
+Eight rounds of comparison reduced two constructions of the letter to four leaders: ト's upright assembled beside a compressed テ, and 𪜈's frame with テ set where the モ sits. The final round's 12 judgments are eight primary comparisons and four reversed repeats, all with horizontal and vertical reading samples shown together at 24 px. Candidate `c9fc3bb4e6b5d8a57` won two of its three primary comparisons against the assembled form `cfb207b3b341d9ac2` and tied the third; in comparisons among the four leaders it scores 3.5/6 and the assembled form 2.5/5. The final round's scores put the assembled form first at 2.5/4, each of the three curved forms taking 1.5/4. The curved forms differ in `bend` (0.10, 0.53 and 0.77); their comparisons separated nothing among themselves. Repeats are excluded from ranking. One of the four repeat judgments agreed with its first judgment, so the result supports a practical selection with limited repeat consistency. The ballots, designs, scores and outline hashes are in `votes/tote/`.
+
 ## Other letters
 
 Assembled the same way, not yet compared:
 
 - 𛄤: ト's upright (as in 𪜈) beside キ compressed horizontally to 0.72 about its centre and moved 70 units right.
-- 𛄥: the same upright beside テ compressed horizontally to 0.72 about its centre and moved 70 units right.

@@ -131,6 +131,15 @@ def check(path: Path, family: str, full: bool):
         for features in ({}, {"vert": True, "vrt2": False}, {"vert": False, "vrt2": True}, {"hkna": True}, {"vkna": True}):
             assert shape("𛀀", direction, features) == [(archaic_e, *advance)]
 
+    # The confirmed tote outline must match the voted-on study glyph exactly.
+    tote = cmap[0x1B125]
+    selection = json.loads((ROOT / "docs/votes/tote/selection.json").read_text())
+    assert hashlib.sha256((ROOT / "sources/glyphs/tote.svg").read_bytes()).hexdigest() == selection["svgSha256"]
+    assert hashlib.sha256(font["glyf"][tote].compile(font["glyf"])).hexdigest() == selection["glyphSha256"][tote]
+    assert font["glyf"][tote].numberOfContours == 2
+    assert list(font["hmtx"][tote]) == selection["metrics"]["horizontal"]
+    assert list(font["vmtx"][tote]) == selection["metrics"]["vertical"]
+
     # Marked kana shape into one cell in both directions; precomposed and decomposed agree.
     for text in ["ツ゚", "ト゚", "セ゚", "ㇷ゚", "カ゚", "キ゚", "ク゚", "ケ゚", "コ゚", "パ", "ガ", "ヅ"]:
         for direction in ("ltr", "ttb"):
