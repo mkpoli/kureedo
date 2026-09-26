@@ -15,7 +15,7 @@ Specimen, type tester and webfont CDN: https://kureedo.mkpo.li
 
 ![ネ and ヰ: default, hist, cv01, cv02](docs/images/forms.png)
 
-The same editions set トモ as one letter, 𪜈 U+2A708. The font covers that code point, and the `hlig` feature forms the ligature from トモ. It also covers 𛀀 U+1B000, the archaic katakana e, the double hyphen ゠ U+30A0, and the kana repeat marks 〱 U+3031 and 〲 U+3032.
+The same editions set トモ as one letter, 𪜈 U+2A708. The font covers that code point, and the `hlig` feature forms the ligature from トモ. It also covers 𛀀 U+1B000, the archaic katakana e, the double hyphen ゠ U+30A0, the kana repeat marks 〱 U+3031 and 〲 U+3032, and the digraph ヿ U+30FF, which `hlig` also forms from コト.
 
 ![トモ default, hlig, 𪜈 U+2A708, ss02](docs/images/tomo.png)
 
@@ -74,7 +74,7 @@ Klee One's own `hkna`/`vkna` alternates of ネ and ヰ also become the historica
 
 ## Coverage of Kureedo Kata
 
-The subset requests U+0020, U+3000–303F, U+3099–309C, U+30A0–30FF, U+31F0–31FF, U+1B000, U+1B127–1B128 and U+2A708; code points Klee One does not cover (for example U+30FF) stay absent. `fonttools ttx -t cmap` lists the exact set, and the site shows it block by block. Glyphs Klee One does not have and this font adds: 𛄧 𛄨 𪜈 𛀀 ゠ 〱 〲; the Ainu small kana ㇰ–ㇿ (U+31F0–31FF), set the way Klee sets its own small kana (78% of the full-size letter, centred on the baseline, stroke weight brought back to 0.92 of the full-size stroke as Klee's own ッ and ァ keep it, shifted up and right in vertical text through `vert`); combining ゛ and ゜ with zero advance; and `ccmp` ligatures that set セ゚ ツ゚ ト゚ ㇷ゚ カ゚ キ゚ ク゚ ケ゚ コ゚ in one cell, horizontally and vertically. The handakuten of ㇷ゚ is scaled with the letter and sits where プ puts its own, at プ's clearance from the stroke; on the full-size bases it starts where Klee places the dakuten on the same letter and keeps that clearance (`scripts/mark_positions.py`, `docs/methods.md`).
+The subset requests U+0020, U+3000–303F, U+3099–309C, U+30A0–30FF, U+31F0–31FF, U+1B000, U+1B127–1B128 and U+2A708; code points Klee One does not cover (for example the Hangzhou numerals U+3021–3029) stay absent. `fonttools ttx -t cmap` lists the exact set, and the site shows it block by block. Glyphs Klee One does not have and this font adds: 𛄧 𛄨 𪜈 𛀀 ゠ 〱 〲 ヿ; the Ainu small kana ㇰ–ㇿ (U+31F0–31FF), set the way Klee sets its own small kana (78% of the full-size letter, centred on the baseline, stroke weight brought back to 0.92 of the full-size stroke as Klee's own ッ and ァ keep it, shifted up and right in vertical text through `vert`); combining ゛ and ゜ with zero advance; and `ccmp` ligatures that set セ゚ ツ゚ ト゚ ㇷ゚ カ゚ キ゚ ク゚ ケ゚ コ゚ in one cell, horizontally and vertically. The handakuten of ㇷ゚ is scaled with the letter and sits where プ puts its own, at プ's clearance from the stroke; on the full-size bases it starts where Klee places the dakuten on the same letter and keeps that clearance (`scripts/mark_positions.py`, `docs/methods.md`).
 
 ![Ainu small kana and composed marks](docs/images/ainu.png)
 
@@ -95,6 +95,10 @@ The subset requests U+0020, U+3000–303F, U+3099–309C, U+30A0–30FF, U+31F0�
 ## 〱 〲 kana repeat mark
 
 〱 U+3031 and 〲 U+3032 are Klee One's two-cell 〳 and 〵 joined at their own elbow into one glyph. Its outline is 1,823 units tall, close to GenZui Serif's 1,840, on a one-em horizontal advance, and it takes two cells in vertical text: the vertical advance is 2,000 units, half an em above and below the em box. 〲 adds the dakuten Klee sets beside 〴. The outlines and the settings behind them are in `docs/votes/repeat-mark/`.
+
+## ヿ koto digraph
+
+ヿ U+30FF is the bar, corner and upright of Klee One's 刁 with the upright made perpendicular to the baseline and ended with the plain foot of 川's right stroke. The bar rises 5.29°, as the top bar of Klee's コ does. `hlig` forms it from コト. The settings and the written forms it was compared with are in `docs/votes/koto/`.
 
 ## Sources of the forms
 

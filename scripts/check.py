@@ -45,7 +45,7 @@ def check(path: Path, family: str, full: bool):
     assert name.getDebugName(6) == family.replace(" ", "") + "-Regular"
     assert name.getDebugName(5) == "Version 0.500" and abs(font["head"].fontRevision - 0.5) < 1e-4
     assert "Klee Project Authors" in name.getDebugName(0) and name.getDebugName(13).startswith("This Font Software")
-    assert all(c in cmap for c in [*range(0x30A1, 0x30FB), *range(0x31F0, 0x3200), 0x3099, 0x309A, 0x309B, 0x309C, 0x30F0, 0x30F1, 0x30F2, 0x30F4, 0x1B127, 0x1B128, 0x2A708, 0x3031, 0x3032])
+    assert all(c in cmap for c in [*range(0x30A1, 0x30FB), *range(0x31F0, 0x3200), 0x3099, 0x309A, 0x309B, 0x309C, 0x30F0, 0x30F1, 0x30F2, 0x30F4, 0x1B127, 0x1B128, 0x2A708, 0x3031, 0x3032, 0x30FF])
     if not full:
         assert 0x5B50 not in cmap and 0x4E95 not in cmap
 
@@ -72,7 +72,7 @@ def check(path: Path, family: str, full: bool):
 
     # The missing letters have their own code points, one cell each way; `hlig` forms each
     # digraph from its letters and nothing else does.
-    DIGRAPHS = {0x2A708: "トモ"}
+    DIGRAPHS = {0x2A708: "トモ", 0x30FF: "コト"}
     for code in (*DIGRAPHS, 0x30A0, 0x1B000):
         glyph = cmap[code]
         assert glyph == f"uni{code:04X}" and font["hmtx"][glyph][0] == 1000, glyph
@@ -85,6 +85,11 @@ def check(path: Path, family: str, full: bool):
         assert [g for g, *_ in shape(letters, features={"hist": True})] == plain
         for direction in ("ltr", "ttb"):
             assert [g for g, *_ in shape("レ" + letters, direction, features={"hlig": True})] == [cmap[0x30EC], cmap[code]], (letters, direction)
+
+    # A marked second letter stays a marked letter: ト゚ after コ is not ヿ.
+    for direction in ("ltr", "ttb"):
+        glyphs = [g for g, *_ in shape("コト\u309A", direction, features={"hlig": True})]
+        assert glyphs[0] == cmap[ord("コ")] and len(glyphs) == 2 and cmap[0x30FF] not in glyphs, (direction, glyphs)
 
     # The same straight-left alternate is reachable directly and through hlig.
     tomo = cmap[0x2A708]
@@ -130,6 +135,12 @@ def check(path: Path, family: str, full: bool):
         advance = (1000, 0) if direction == "ltr" else (0, -1000)
         for features in ({}, {"vert": True, "vrt2": False}, {"vert": False, "vrt2": True}, {"hkna": True}, {"vkna": True}):
             assert shape("𛀀", direction, features) == [(archaic_e, *advance)]
+
+    # ヿ is the tuned outline: one stroke, bar and upright joined.
+    koto = json.loads((ROOT / "docs/votes/koto/selection.json").read_text())
+    assert hashlib.sha256((ROOT / "sources/glyphs/koto.svg").read_bytes()).hexdigest() == koto["svgSha256"]
+    assert font["glyf"][cmap[0x30FF]].numberOfContours == 1
+    assert hashlib.sha256(font["glyf"][cmap[0x30FF]].compile(font["glyf"])).hexdigest() == koto["glyphSha256"]
 
     # The repeat marks are the tuned outlines, one em wide and two ems tall in vertical text.
     selection = json.loads((ROOT / "docs/votes/repeat-mark/selection.json").read_text())

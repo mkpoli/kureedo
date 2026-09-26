@@ -62,6 +62,7 @@ LETTERS = [
     dict(code=0x1B000, svg="archaic-e.svg", letters=None, label="Katakana letter archaic e"),
     dict(code=0x30A0, svg="double-hyphen.svg", vertical="double-hyphen-vert.svg", letters=None, label="Katakana-hiragana double hyphen"),
     dict(code=0x2A708, svg="tomo.svg", letters="トモ", label="Katakana tomo ligature"),
+    dict(code=0x30FF, svg="koto.svg", letters="コト", label="Katakana digraph koto"),
     # The kana repeat mark spans two cells: in vertical text its box is two ems tall, reaching
     # half an em above and below the em box, as GenZui Serif sets it.
     dict(code=0x3031, svg="repeat-mark.svg", letters=None, vadvance=2000, label="Vertical kana repeat mark"),
@@ -185,7 +186,7 @@ class Builder:
         # Match the accepted study fonts' conversion, including quadratic rounding.
         return svg_glyph(Path(self.sources.get(svg, GLYPHS / svg)),
                          normalize=svg in ("tomo.svg", "tomo-straight.svg", "double-hyphen.svg", "double-hyphen-vert.svg", "archaic-e.svg",
-                                          "repeat-mark.svg", "repeat-mark-voiced.svg"))
+                                          "repeat-mark.svg", "repeat-mark-voiced.svg", "koto.svg"))
 
     def put(self, name, glyph, advance=1000, origin=BASELINE, mark=False, vadvance=1000):
         glyph.recalcBounds(self.font["glyf"])
@@ -282,8 +283,8 @@ class Builder:
         self.add_feature("ss01", historical, params)
 
     def add_letters(self):
-        """Add the missing letters at their code points, and `hlig` forming each digraph from its letters."""
-        ligatures = {}
+        """Add the missing letters at their code points; `add_digraphs` forms the digraphs from their letters."""
+        self.ligatures = {}
         for form in LETTERS:
             name = f"uni{form['code']:04X}"
             vadvance = form.get("vadvance", 1000)
@@ -299,10 +300,15 @@ class Builder:
                     base = self.cmap[ord(char)]
                     variants.append([base + suffix for suffix in ("", ".hori", ".vert")
                                      if base + suffix in self.order])
-                ligatures.update({letters: name for letters in product(*variants)})
-        self.add_feature("hlig", buildLookup([buildLigatureSubstSubtable(ligatures)]))
+                self.ligatures.update({letters: name for letters in product(*variants)})
 
-        # The accepted tomo has a curved default and a paired straight-left form.
+    def add_digraphs(self):
+        """`hlig` forming each digraph from its letters. Its lookup comes after the mark lookups, so `ccmp`
+        has already composed a marked letter (ト゚) and コト゚ stays コ and ト゚."""
+        self.add_feature("hlig", buildLookup([buildLigatureSubstSubtable(self.ligatures)]))
+
+        # The accepted tomo has a curved default and a paired straight-left form; `ss02` comes after
+        # `hlig`, so a 𪜈 formed from トモ takes it too.
         tomo = self.cmap[0x2A708]
         straight = tomo + ".straight"
         self.put(straight, self.source("tomo-straight.svg"))
@@ -446,6 +452,7 @@ def build(out_dir: Path = FONTS, small=None, small_mark=None, family_suffix="", 
     builder.add_historical()
     builder.add_letters()
     builder.add_marks()
+    builder.add_digraphs()
     builder.finish()
     out_dir.mkdir(parents=True, exist_ok=True)
 
