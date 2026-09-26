@@ -86,6 +86,11 @@ def check(path: Path, family: str, full: bool):
         for direction in ("ltr", "ttb"):
             assert [g for g, *_ in shape("レ" + letters, direction, features={"hlig": True})] == [cmap[0x30EC], cmap[code]], (letters, direction)
 
+    # A marked second letter stays a marked letter: ト゚ after コ is not ヿ.
+    for direction in ("ltr", "ttb"):
+        glyphs = [g for g, *_ in shape("コト\u309A", direction, features={"hlig": True})]
+        assert glyphs[0] == cmap[ord("コ")] and len(glyphs) == 2 and cmap[0x30FF] not in glyphs, (direction, glyphs)
+
     # The same straight-left alternate is reachable directly and through hlig.
     tomo = cmap[0x2A708]
     straight = tomo + ".straight"
