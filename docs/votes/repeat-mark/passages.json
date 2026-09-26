@@ -1,0 +1,45 @@
+{
+ "source": "みんなで翻刻 transcriptions, honkoku-data v3 (https://github.com/yuta1984/honkoku-data), CC BY-SA 4.0; each line verbatim, cut to a window around the mark",
+ "samples": {
+  "〱": [
+   {
+    "text": "み出。しば〱見かへりて鄕導（みちしるべ）するを。為朝（ためとも）もはやくそのこゝろを得（え）て。",
+    "work": "鎭西八郎爲朝外傳椿説弓張月（前編）",
+    "page": "p023",
+    "note": "Verbatim from the transcription, cut to a window around the mark."
+   },
+   {
+    "text": "一切の食物の毒にあたり又いろ〱の草木きのこ魚鳥獣なと喰",
+    "work": "公儀御触之部",
+    "page": "p099",
+    "note": "Verbatim from the transcription, cut to a window around the mark."
+   },
+   {
+    "text": "㐂の頃はチンチロリンとなくを松虫しといひリン〱となく",
+    "work": "千蟲譜 3巻. [3]",
+    "page": "p077",
+    "note": "Verbatim from the transcription, cut to a window around the mark."
+   }
+  ],
+  "〲": [
+   {
+    "text": "役もいやと鯔（いわし）の臭（くさゝ）をこらへ狗骨（ひいらぎ）で目をつく〲と",
+    "work": "根無草後編",
+    "page": "p016",
+    "note": "Verbatim from the transcription, cut to a window around the mark."
+   },
+   {
+    "text": "常（つね）〲心得あるべき也　扨（さて）亦（また）大いに震（ふる）ひし跡（あと）日々（まいにち）昼夜（ちうや）にかぎらず",
+    "work": "地震並出火細見記",
+    "page": "p002",
+    "note": "Verbatim from the transcription, cut to a window around the mark."
+   },
+   {
+    "text": "そのゆへに。つれ〲草にも",
+    "work": "伊勢物語大全",
+    "page": "p010",
+    "note": "Verbatim from the transcription, cut to a window around the mark."
+   }
+  ]
+ }
+}

@@ -94,7 +94,7 @@ The subset requests U+0020, U+3000–303F, U+3099–309C, U+30A0–30FF, U+31F0�
 
 ## 〱 〲 kana repeat mark
 
-〱 U+3031 and 〲 U+3032 are Klee One's two-cell 〳 and 〵 joined at their own elbow into one glyph. Like GenZui Serif's, the mark is one em wide and 1,840 units tall, and takes two cells in vertical text: its vertical advance is 2,000 units, half an em above and below the em box. 〲 adds the dakuten Klee sets beside 〴. The outlines and the settings behind them are in `docs/votes/repeat-mark/`.
+〱 U+3031 and 〲 U+3032 are Klee One's two-cell 〳 and 〵 joined at their own elbow into one glyph. Its outline is 1,823 units tall, close to GenZui Serif's 1,840, on a one-em horizontal advance, and it takes two cells in vertical text: the vertical advance is 2,000 units, half an em above and below the em box. 〲 adds the dakuten Klee sets beside 〴. The outlines and the settings behind them are in `docs/votes/repeat-mark/`.
 
 ## Sources of the forms
 

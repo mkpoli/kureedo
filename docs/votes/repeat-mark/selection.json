@@ -1,5 +1,5 @@
 {
- "note": "〱 U+3031 and 〲 U+3032 set by hand on the historical-kana tune pages (one judge), from Klee One’s 〳 and 〵 joined at the elbow; the outline is the builder’s output for the recorded design.",
+ "note": "〱 U+3031 and 〲 U+3032 set by hand on a tuning page (one judge) that draws the mark with the construction that produced sources/glyphs/repeat-mark.svg and repeat-mark-voiced.svg: Klee One’s 〳 and 〵 joined at the elbow, 〲 with the dakuten of 〴.",
  "forms": {
   "〱": {
    "svg": "repeat-mark.svg",
@@ -46,5 +46,19 @@
     "mark_weight": 36
    }
   }
- }
+ },
+ "judgeNotes": [
+  {
+   "date": "2026-09-26",
+   "note": "Forms scaled into one em were too small; the mark should be at least as large as GenZui Serif’s."
+  },
+  {
+   "date": "2026-09-26",
+   "note": "In vertical text GenZui Serif’s mark takes two cells and the one-cell forms took one; the vertical advance became 2,000."
+  }
+ ],
+ "references": [
+  "GenZui Serif v0.113, https://github.com/mkpoli/GenZui/releases/tag/v0.113 (〱: 1,840 units tall, vertical advance 2,000)",
+  "BabelStone Han, https://www.babelstone.co.uk/Fonts/Han.html (〱 set in one em; shown beside the early forms)"
+ ]
 }
