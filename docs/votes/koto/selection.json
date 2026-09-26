@@ -1,0 +1,50 @@
+{
+ "note": "ヿ U+30FF set by hand on a tuning page (one judge) that draws the construction that produced sources/glyphs/koto.svg: the bar, corner and upright of Klee One’s 刁, the upright straightened, and the plain foot of 川’s right stroke.",
+ "svg": "koto.svg",
+ "svgSha256": "e81c184c225f741bc28257e0bca84e707f76b338bc5f3c57a4b10ca3ceaac519",
+ "contours": 1,
+ "ballot": "tune-result.json",
+ "tunePage": "2528357b1553a653a09e7f513aa1121c",
+ "design": {
+  "bar_cut": 165,
+  "foot": 15,
+  "lean": 0,
+  "dx": -60,
+  "dy": 26,
+  "size": 1,
+  "tall": 0.9,
+  "bold": 12,
+  "bar_bold": 2,
+  "width": 1.03,
+  "bar_slope": 5.29
+ },
+ "judgeVerdict": "not best but okay",
+ "fixed": {
+  "upright": "perpendicular to the baseline",
+  "barSlopeDegrees": 5.29,
+  "barSlopeBasis": "Klee One’s コ top bar rises 5.29° (ロ 5.30°, モ 5.64°, エ 4.35°), measured on the stroke centre line"
+ },
+ "judgeNotes": [
+  {
+   "round": 1,
+   "note": "should not have hook"
+  },
+  {
+   "round": 2,
+   "note": "vertical bar must stay straight"
+  },
+  {
+   "round": 3,
+   "note": "not very sane. Other fonts like GenZui Serif and GenZui Sans also have ヿ"
+  },
+  {
+   "stage": "tune",
+   "note": "the upright perpendicular to the baseline; the bar at the angle of コ, エ, オ, モ; a shorter bar and longer upright after the written forms, though not as short as they are"
+  }
+ ],
+ "references": [
+  "GenZui Serif v0.113, https://github.com/mkpoli/GenZui/releases/tag/v0.113 (ヿ shown in the same passages)",
+  "GenZui Sans 0.101, local build (its ヿ matches the 0.102 build)",
+  "Written forms: written-forms.json"
+ ]
+}

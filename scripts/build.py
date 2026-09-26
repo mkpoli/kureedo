@@ -62,6 +62,7 @@ LETTERS = [
     dict(code=0x1B000, svg="archaic-e.svg", letters=None, label="Katakana letter archaic e"),
     dict(code=0x30A0, svg="double-hyphen.svg", vertical="double-hyphen-vert.svg", letters=None, label="Katakana-hiragana double hyphen"),
     dict(code=0x2A708, svg="tomo.svg", letters="トモ", label="Katakana tomo ligature"),
+    dict(code=0x30FF, svg="koto.svg", letters="コト", label="Katakana digraph koto"),
     # The kana repeat mark spans two cells: in vertical text its box is two ems tall, reaching
     # half an em above and below the em box, as GenZui Serif sets it.
     dict(code=0x3031, svg="repeat-mark.svg", letters=None, vadvance=2000, label="Vertical kana repeat mark"),
@@ -185,7 +186,7 @@ class Builder:
         # Match the accepted study fonts' conversion, including quadratic rounding.
         return svg_glyph(Path(self.sources.get(svg, GLYPHS / svg)),
                          normalize=svg in ("tomo.svg", "tomo-straight.svg", "double-hyphen.svg", "double-hyphen-vert.svg", "archaic-e.svg",
-                                          "repeat-mark.svg", "repeat-mark-voiced.svg"))
+                                          "repeat-mark.svg", "repeat-mark-voiced.svg", "koto.svg"))
 
     def put(self, name, glyph, advance=1000, origin=BASELINE, mark=False, vadvance=1000):
         glyph.recalcBounds(self.font["glyf"])

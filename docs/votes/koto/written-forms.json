@@ -1,0 +1,126 @@
+{
+ "source": "The glyph atlas (https://atlas.mkpo.li/lzh/character/U+30FF): every ヿ there is from 蝦夷草紙, 国文学研究資料館, marked public domain (PDM 1.0). Twelve clear crops without a hook, shown beside the form while it was set.",
+ "measured": "width/height of the ink, 2nd–98th percentile: 0.36–0.69, median 0.52",
+ "crops": [
+  {
+   "id": "hk:60cea8fb013aea6ece937dde8bffc2bb:62:L20:be9c7f9d3d4d:18",
+   "image": "https://atlas.mkpo.li/atlas/media/57b1e2d959eb4863ae7b502bbc0b4bca43708502875514169e07b8b7ec10fa83.webp",
+   "work": "蝦夷草紙（国文学研究資料館）",
+   "page": 63,
+   "holder": "国文学研究資料館",
+   "licence": "PDM-1.0",
+   "rights": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "sha256": "2405d1f18a1e469e0c9007bfd1e3d18cbfee263a97d85ad6c3306fe47711d684"
+  },
+  {
+   "id": "hk:60cea8fb013aea6ece937dde8bffc2bb:101:L9:be9c7f9d3d4d:11",
+   "image": "https://atlas.mkpo.li/atlas/media/c668d865367f1e662e3145a6e49edf3f61cca8fbb21eb77c893856843b06c2e5.webp",
+   "work": "蝦夷草紙（国文学研究資料館）",
+   "page": 102,
+   "holder": "国文学研究資料館",
+   "licence": "PDM-1.0",
+   "rights": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "sha256": "d7c4d1d839acf11c414012b85711428d4a8a20cc2ade07f65c50e6928dcd5f6e"
+  },
+  {
+   "id": "hk:60cea8fb013aea6ece937dde8bffc2bb:56:L17:be9c7f9d3d4d:17",
+   "image": "https://atlas.mkpo.li/atlas/media/73d10f3a5d86ab23ea9c4f5b642f00ba09de02e4d6e28c460a9728007e1c42fb.webp",
+   "work": "蝦夷草紙（国文学研究資料館）",
+   "page": 57,
+   "holder": "国文学研究資料館",
+   "licence": "PDM-1.0",
+   "rights": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "sha256": "22d9d8d0ee27ab3bc144431f6a07d54c44614cd478fd191f75a4386113abe59a"
+  },
+  {
+   "id": "hk:60cea8fb013aea6ece937dde8bffc2bb:44:L14:be9c7f9d3d4d:20",
+   "image": "https://atlas.mkpo.li/atlas/media/183e9df2f8c4d429240d46e956e7f5fea71ea876e15a905dd2779a39db8f5d63.webp",
+   "work": "蝦夷草紙（国文学研究資料館）",
+   "page": 45,
+   "holder": "国文学研究資料館",
+   "licence": "PDM-1.0",
+   "rights": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "sha256": "67ae7853b35e0beb09b6dbfcf404bc095530c4982cd090fde4f722af4e05b289"
+  },
+  {
+   "id": "hk:60cea8fb013aea6ece937dde8bffc2bb:119:L14:be9c7f9d3d4d:12",
+   "image": "https://atlas.mkpo.li/atlas/media/30c7a0cf9a2f2e6c0b2759daf6b58faa0bcd38ac754f152a4fc150756d1bda3a.webp",
+   "work": "蝦夷草紙（国文学研究資料館）",
+   "page": 120,
+   "holder": "国文学研究資料館",
+   "licence": "PDM-1.0",
+   "rights": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "sha256": "6b5f7e9d95981da1af9f96d41b5a07ed857754df2c18c28b8dd40e0e6c705197"
+  },
+  {
+   "id": "hk:60cea8fb013aea6ece937dde8bffc2bb:92:L13:be9c7f9d3d4d:12",
+   "image": "https://atlas.mkpo.li/atlas/media/f4bb61a6bf3b8e10b1c42624e13b87e2bd05039283498a4bd6804fe7ab38c16c.webp",
+   "work": "蝦夷草紙（国文学研究資料館）",
+   "page": 93,
+   "holder": "国文学研究資料館",
+   "licence": "PDM-1.0",
+   "rights": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "sha256": "df374527948da8179da84ee82e0f1d183f31044272f6204b2ebdd6c137912f83"
+  },
+  {
+   "id": "hk:60cea8fb013aea6ece937dde8bffc2bb:79:L9:be9c7f9d3d4d:4",
+   "image": "https://atlas.mkpo.li/atlas/media/7bd1f0da9f232c8343d30ca5ccdb85a53d637ced6b91ec3b84c16e3f943e128b.webp",
+   "work": "蝦夷草紙（国文学研究資料館）",
+   "page": 80,
+   "holder": "国文学研究資料館",
+   "licence": "PDM-1.0",
+   "rights": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "sha256": "a708b16b43aff742e6bfa9ac8610fda7fd03b7f599b29d601a387b33df6605bb"
+  },
+  {
+   "id": "hk:60cea8fb013aea6ece937dde8bffc2bb:37:L10:be9c7f9d3d4d:3",
+   "image": "https://atlas.mkpo.li/atlas/media/3e40bc9bfbef1dc8583b2802e8bfdc77145383efbcd06d6339932da26b8c3e56.webp",
+   "work": "蝦夷草紙（国文学研究資料館）",
+   "page": 38,
+   "holder": "国文学研究資料館",
+   "licence": "PDM-1.0",
+   "rights": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "sha256": "4c9562b9f3d65d199d544491d93c51f1c596074466e3e52fef0bdc165f0c677d"
+  },
+  {
+   "id": "hk:60cea8fb013aea6ece937dde8bffc2bb:76:L15:be9c7f9d3d4d:20",
+   "image": "https://atlas.mkpo.li/atlas/media/c0ccb3f653b996d8702fd8c128409b070545c3afcb525021cfef90387cf2ecf1.webp",
+   "work": "蝦夷草紙（国文学研究資料館）",
+   "page": 77,
+   "holder": "国文学研究資料館",
+   "licence": "PDM-1.0",
+   "rights": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "sha256": "0d7591a55de317301bfc771e72aa28adaf811d98a823b94caa537c132b6bb3f1"
+  },
+  {
+   "id": "hk:60cea8fb013aea6ece937dde8bffc2bb:76:L18:be9c7f9d3d4d:4",
+   "image": "https://atlas.mkpo.li/atlas/media/855aec033d3a0e11ba6ad2d174a4ef48a740c7e858ffa28c7c7489c120525971.webp",
+   "work": "蝦夷草紙（国文学研究資料館）",
+   "page": 77,
+   "holder": "国文学研究資料館",
+   "licence": "PDM-1.0",
+   "rights": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "sha256": "439d6f5b1528cd7fe5a483171fb46c8f584141d66f3ba35469ba30673704db24"
+  },
+  {
+   "id": "hk:60cea8fb013aea6ece937dde8bffc2bb:75:L5:be9c7f9d3d4d:4",
+   "image": "https://atlas.mkpo.li/atlas/media/3a50ad4678aab8ec926cc3d1c7902572eab1c6d3e9833f805e5e1f7a5d843185.webp",
+   "work": "蝦夷草紙（国文学研究資料館）",
+   "page": 76,
+   "holder": "国文学研究資料館",
+   "licence": "PDM-1.0",
+   "rights": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "sha256": "d5b4720694611b6f8d545870f9961fe65a01a482ee33ec73c657c8ad99cd9a3b"
+  },
+  {
+   "id": "hk:60cea8fb013aea6ece937dde8bffc2bb:39:L17:be9c7f9d3d4d:14",
+   "image": "https://atlas.mkpo.li/atlas/media/09dd972ea649d1a5fdf364af155b18865eee7138a270a6323d3b8a6ab895d53e.webp",
+   "work": "蝦夷草紙（国文学研究資料館）",
+   "page": 40,
+   "holder": "国文学研究資料館",
+   "licence": "PDM-1.0",
+   "rights": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "sha256": "1359e7499450da9fc5dc4aa845c5ab29d2a8fd906fd5293df369a78d654195cd"
+  }
+ ]
+}
