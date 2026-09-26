@@ -62,6 +62,10 @@ LETTERS = [
     dict(code=0x1B000, svg="archaic-e.svg", letters=None, label="Katakana letter archaic e"),
     dict(code=0x30A0, svg="double-hyphen.svg", vertical="double-hyphen-vert.svg", letters=None, label="Katakana-hiragana double hyphen"),
     dict(code=0x2A708, svg="tomo.svg", letters="トモ", label="Katakana tomo ligature"),
+    # The kana repeat mark spans two cells: in vertical text its box is two ems tall, reaching
+    # half an em above and below the em box, as GenZui Serif sets it.
+    dict(code=0x3031, svg="repeat-mark.svg", letters=None, vadvance=2000, label="Vertical kana repeat mark"),
+    dict(code=0x3032, svg="repeat-mark-voiced.svg", letters=None, vadvance=2000, label="Vertical kana repeat mark with voiced sound mark"),
 ]
 KATA_UNICODES = [0x20, *range(0x3000, 0x3040), *range(0x3099, 0x309D), *range(0x30A0, 0x3100), *range(0x31F0, 0x3200),
                  *(f["historic"] for f in HISTORICAL), *(l["code"] for l in LETTERS)]
@@ -180,13 +184,14 @@ class Builder:
     def source(self, svg):
         # Match the accepted study fonts' conversion, including quadratic rounding.
         return svg_glyph(Path(self.sources.get(svg, GLYPHS / svg)),
-                         normalize=svg in ("tomo.svg", "tomo-straight.svg", "double-hyphen.svg", "double-hyphen-vert.svg", "archaic-e.svg"))
+                         normalize=svg in ("tomo.svg", "tomo-straight.svg", "double-hyphen.svg", "double-hyphen-vert.svg", "archaic-e.svg",
+                                          "repeat-mark.svg", "repeat-mark-voiced.svg"))
 
-    def put(self, name, glyph, advance=1000, origin=BASELINE, mark=False):
+    def put(self, name, glyph, advance=1000, origin=BASELINE, mark=False, vadvance=1000):
         glyph.recalcBounds(self.font["glyf"])
         self.font["glyf"][name] = glyph
         self.font["hmtx"][name] = (advance, glyph.xMin)
-        self.font["vmtx"][name] = (0 if mark else 1000, origin - glyph.yMax)
+        self.font["vmtx"][name] = (0 if mark else vadvance, origin - glyph.yMax)
         self.order.append(name)
         if mark:
             self.font["GDEF"].table.GlyphClassDef.classDefs[name] = 3
@@ -281,7 +286,8 @@ class Builder:
         ligatures = {}
         for form in LETTERS:
             name = f"uni{form['code']:04X}"
-            self.put(name, self.source(form["svg"]))
+            vadvance = form.get("vadvance", 1000)
+            self.put(name, self.source(form["svg"]), vadvance=vadvance, origin=BASELINE + (vadvance - 1000) // 2)
             self.encode(form["code"], name)
             self.cmap[form["code"]] = name
             if form.get("vertical"):

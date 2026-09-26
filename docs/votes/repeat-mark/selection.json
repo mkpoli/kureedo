@@ -1,0 +1,50 @@
+{
+ "note": "〱 U+3031 and 〲 U+3032 set by hand on the historical-kana tune pages (one judge), from Klee One’s 〳 and 〵 joined at the elbow; the outline is the builder’s output for the recorded design.",
+ "forms": {
+  "〱": {
+   "svg": "repeat-mark.svg",
+   "svgSha256": "a2633bef38f371f82ff7314084685aba9897a48543353ea57f6f8ff8498fd773",
+   "contours": 1,
+   "ballot": "repeat-mark-tune-result.json",
+   "tunePage": "ebd045ad9ad13ff77118fe0d2c8c9a9b",
+   "design": {
+    "height": 1840,
+    "sx": 1.04,
+    "dx": 0,
+    "dy": -20,
+    "rotate": 0,
+    "slant": 0,
+    "weight": 53.4,
+    "upper_angle": -1.3,
+    "upper_len": 1,
+    "lower_angle": 0,
+    "lower_len": 1
+   }
+  },
+  "〲": {
+   "svg": "repeat-mark-voiced.svg",
+   "svgSha256": "39b1760dac15f419951c879174b5c11cf3206388f3429d59f373d170f80d3412",
+   "contours": 3,
+   "ballot": "repeat-mark-voiced-tune-result.json",
+   "tunePage": "b422f9b3400585cbe29c4a948ed36270",
+   "design": {
+    "height": 1840,
+    "sx": 1.04,
+    "dx": 0,
+    "dy": -20,
+    "rotate": 0,
+    "slant": 0,
+    "weight": 53.4,
+    "upper_angle": -1.3,
+    "upper_len": 1,
+    "lower_angle": 0,
+    "lower_len": 1,
+    "mark_s": 1.11,
+    "mark_dx": -35,
+    "mark_dy": 15,
+    "mark_rot": 3,
+    "mark_weight": 36
+   }
+  }
+ }
+}

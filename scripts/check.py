@@ -45,7 +45,7 @@ def check(path: Path, family: str, full: bool):
     assert name.getDebugName(6) == family.replace(" ", "") + "-Regular"
     assert name.getDebugName(5) == "Version 0.403" and abs(font["head"].fontRevision - 0.403) < 1e-4
     assert "Klee Project Authors" in name.getDebugName(0) and name.getDebugName(13).startswith("This Font Software")
-    assert all(c in cmap for c in [*range(0x30A1, 0x30FB), *range(0x31F0, 0x3200), 0x3099, 0x309A, 0x309B, 0x309C, 0x30F0, 0x30F1, 0x30F2, 0x30F4, 0x1B127, 0x1B128, 0x2A708])
+    assert all(c in cmap for c in [*range(0x30A1, 0x30FB), *range(0x31F0, 0x3200), 0x3099, 0x309A, 0x309B, 0x309C, 0x30F0, 0x30F1, 0x30F2, 0x30F4, 0x1B127, 0x1B128, 0x2A708, 0x3031, 0x3032])
     if not full:
         assert 0x5B50 not in cmap and 0x4E95 not in cmap
 
@@ -130,6 +130,16 @@ def check(path: Path, family: str, full: bool):
         advance = (1000, 0) if direction == "ltr" else (0, -1000)
         for features in ({}, {"vert": True, "vrt2": False}, {"vert": False, "vrt2": True}, {"hkna": True}, {"vkna": True}):
             assert shape("𛀀", direction, features) == [(archaic_e, *advance)]
+
+    # The repeat marks are the tuned outlines, one em wide and two ems tall in vertical text.
+    selection = json.loads((ROOT / "docs/votes/repeat-mark/selection.json").read_text())
+    for char, form in selection["forms"].items():
+        glyph = cmap[ord(char)]
+        assert hashlib.sha256((ROOT / "sources/glyphs" / form["svg"]).read_bytes()).hexdigest() == form["svgSha256"]
+        assert font["glyf"][glyph].numberOfContours == form["contours"]
+        assert font["hmtx"][glyph][0] == 1000 and font["vmtx"][glyph][0] == 2000
+        assert font["glyf"][glyph].yMax + font["vmtx"][glyph][1] == 1380
+        assert shape(char) == [(glyph, 1000, 0)] and shape(char, "ttb") == [(glyph, 0, -2000)]
 
     # Marked kana shape into one cell in both directions; precomposed and decomposed agree.
     for text in ["ツ゚", "ト゚", "セ゚", "ㇷ゚", "カ゚", "キ゚", "ク゚", "ケ゚", "コ゚", "パ", "ガ", "ヅ"]:
