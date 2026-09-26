@@ -140,6 +140,7 @@ def check(path: Path, family: str, full: bool):
     koto = json.loads((ROOT / "docs/votes/koto/selection.json").read_text())
     assert hashlib.sha256((ROOT / "sources/glyphs/koto.svg").read_bytes()).hexdigest() == koto["svgSha256"]
     assert font["glyf"][cmap[0x30FF]].numberOfContours == 1
+    assert hashlib.sha256(font["glyf"][cmap[0x30FF]].compile(font["glyf"])).hexdigest() == koto["glyphSha256"]
 
     # The repeat marks are the tuned outlines, one em wide and two ems tall in vertical text.
     selection = json.loads((ROOT / "docs/votes/repeat-mark/selection.json").read_text())

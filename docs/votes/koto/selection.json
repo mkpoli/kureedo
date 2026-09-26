@@ -1,7 +1,7 @@
 {
  "note": "ヿ U+30FF set by hand on a tuning page (one judge) that draws the construction that produced sources/glyphs/koto.svg: the bar, corner and upright of Klee One’s 刁, the upright straightened, and the plain foot of 川’s right stroke.",
  "svg": "koto.svg",
- "svgSha256": "e81c184c225f741bc28257e0bca84e707f76b338bc5f3c57a4b10ca3ceaac519",
+ "svgSha256": "eefae17a22512ac392bacda969e0ede924214dec1444f434310ebfaa6fb3a626",
  "contours": 1,
  "ballot": "tune-result.json",
  "tunePage": "2528357b1553a653a09e7f513aa1121c",
@@ -22,7 +22,7 @@
  "fixed": {
   "upright": "perpendicular to the baseline",
   "barSlopeDegrees": 5.29,
-  "barSlopeBasis": "Klee One’s コ top bar rises 5.29° (ロ 5.30°, モ 5.64°, エ 4.35°), measured on the stroke centre line"
+  "barSlopeBasis": "the chord of the bar's centre line at 20% and 80% of the way from the pen entry to the upright; Klee One's コ top bar measures 5.28° this way"
  },
  "judgeNotes": [
   {
@@ -46,5 +46,6 @@
   "GenZui Serif v0.113, https://github.com/mkpoli/GenZui/releases/tag/v0.113 (ヿ shown in the same passages)",
   "GenZui Sans 0.101, local build (its ヿ matches the 0.102 build)",
   "Written forms: written-forms.json"
- ]
+ ],
+ "glyphSha256": "b37d5325d5f9f04a765a8618a63ce871da83de693bf26b025972e583ee692798"
 }
