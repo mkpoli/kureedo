@@ -1,0 +1,22 @@
+{
+  "source": {
+    "file": "LXGWWenKai-Light.ttf",
+    "weight": "Light",
+    "version": "1.530",
+    "url": "https://github.com/lxgw/LxgwWenKai/releases/download/v1.530/LXGWWenKai-Light.ttf",
+    "sha256": "9a50e3f0f51fad60d68152d5191bce1a495bfc4b9ceb1cee24833835511d1dca",
+    "size": 28625516,
+    "encoded": 46926,
+    "glyphs": 47334,
+    "repertoire_matches_regular": true
+  },
+  "japanese_base": "Klee One Regular, pinned commit 8b0532731b63ad8a445ca341d8d7d941079b83ab",
+  "method": "Twice filled outline area divided by outline perimeter, on shared Han characters; compare the same character at 1000 UPM. Regional form differences may affect this proxy.",
+  "sample_count": 138,
+  "characters": "一二三十人口大小上下左右中山川田土木本末未日月水火金天年時分文字語心骨辻辺世界和平学校生命森雨雪風春夏秋冬花草竹林色白黒赤青石玉米耳目手足力休体住位信高長安家室宮京都海池湖河流清明星空雲電光国王主正村町市道通行来去入出東西南北好女子男父母兄弟姉妹友愛見聞言読書話食飲車馬門開閉",
+  "median_ratio_to_klee_regular": {
+    "Light": 1.0567819952276527,
+    "Regular": 1.2817760082173784
+  },
+  "upstream_weight_explanation": "https://github.com/lxgw/LxgwWenKai#项目简介"
+}

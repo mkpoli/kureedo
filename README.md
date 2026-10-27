@@ -19,39 +19,36 @@ The same editions set トモ as one letter, 𪜈 U+2A708. The font covers that c
 
 ![トモ default, hlig, 𪜈 U+2A708, ss02](docs/images/tomo.png)
 
-Two fonts come out of one build:
+Three editions come out of one build, each as TTF for installation and WOFF2 for the web:
 
-| Font | File | Use |
+| Font | File stem | Use |
 |---|---|---|
-| Kureedo | `Kureedo-Regular.ttf` | Desktop. The whole of Klee One Regular plus the historical glyphs, the extended kana and the features (8.7 MB). |
-| Kureedo Kata | `KureedoKata-Regular.woff2`, `.ttf` | Web. Kana, kana punctuation and marks only (24 KB as WOFF2). Pair it with Klee One or another Japanese font for kanji and Latin. |
+| Kureedo Full | `KureedoFull-Regular` | Japanese base and Kureedo additions plus missing characters from LXGW WenKai Light 1.530. 46,923 encoded characters; shared code points retain the Japanese base's glyphs. |
+| Kureedo Kana | `KureedoKana-Regular` | Available hiragana, katakana, halfwidth kana, kana punctuation and historical forms from the Japanese base. Pair with another font for kanji and Latin. |
+| Kureedo Additions | `KureedoAdditions-Regular` | The 26 code points Kureedo supplies beyond Klee One, for fallback at those code points. |
 
-Download both from the [releases page](https://github.com/mkpoli/kureedo/releases); each release also carries `OFL.txt` and `SHA256SUMS.txt`.
+Published packages are on the [releases page](https://github.com/mkpoli/kureedo/releases). The three-edition lineup is available from source; the current 0.4.3 release uses the earlier Kureedo/Kureedo Kata packaging. [Coverage and edition notes](docs/coverage.md) give the measured gaps and the scope of each edition.
 
 Related typeface: [GenZui Serif / 源萃明朝](https://genzui.mkpo.li/), a Noto Serif JP derivative with hentaigana and historical kana.
 
 ## Using the fonts
 
-On the web, either self-host the WOFF2:
+For a kana overlay, self-host the WOFF2:
 
 ```css
 @font-face {
-  font-family: "Kureedo Kata";
-  src: url("KureedoKata-Regular.woff2") format("woff2");
+  font-family: "Kureedo Kana";
+  src: url("KureedoKana-Regular.woff2") format("woff2");
   font-display: swap;
-  unicode-range: U+3000-303F, U+3099-309C, U+30A0-30FF, U+31F0-31FF, U+1B000, U+1B127-1B128, U+2A708;
 }
-.edition { font-family: "Kureedo Kata", "Klee One", serif; font-feature-settings: "hist"; }
+.edition { font-family: "Kureedo Kana", "Klee One", serif; font-feature-settings: "hist"; }
 ```
 
-or load it from kureedo.mkpo.li. `/kureedo.css` follows the latest release; `/vX.Y.Z/kureedo.css` and the WOFF2 beside it are pinned and immutable, served with CORS and a one-year cache. The GitHub tags also work through jsDelivr (`https://cdn.jsdelivr.net/gh/mkpoli/kureedo@v0.4.3/fonts/KureedoKata-Regular.woff2`).
+On the desktop, install `KureedoFull-Regular.ttf` and pick Kureedo Full. Historical forms come from the OpenType feature panel (Word: Font dialog, Advanced; LibreOffice: append `:hist` to the font name) or by typing U+1B127 and U+1B128 directly. ㇷ (U+31F7) followed by the combining handakuten U+309A gives ㇷ゚; セ゚ ツ゚ ト゚ and カ゚–コ゚ work the same way.
 
-```html
-<link rel="stylesheet" href="https://kureedo.mkpo.li/kureedo.css">
-<link rel="stylesheet" href="https://kureedo.mkpo.li/v0.4.3/kureedo.css">
-```
+Kureedo Additions is a fallback for the 26 added code points. Select Full or Kana for features applied to ordinary kana, including `hist` for ネ/ヰ and `hlig` for トモ/コト.
 
-On the desktop, install `Kureedo-Regular.ttf` and pick it as the font. The historical forms come from the OpenType feature panel (Word: Font dialog, Advanced; LibreOffice: append `:hist` to the font name) or by typing U+1B127 and U+1B128 directly. ㇷ (U+31F7) followed by the combining handakuten U+309A gives ㇷ゚; セ゚ ツ゚ ト゚ and カ゚–コ゚ work the same way.
+The published CDN still serves the earlier Kureedo Kata release. Its `/kureedo.css` alias follows published releases; `/v0.4.3/kureedo.css` and the WOFF2 beside it are pinned, with CORS and a one-year cache. Source-built Kana and Additions can be self-hosted until their release.
 
 ### Historical forms
 
@@ -70,11 +67,11 @@ Text encoded with the Kana Extended-A letters needs no feature. For text encoded
 
 ![Vertical text with and without hist](docs/images/vertical.png)
 
-Klee One's own `hkna`/`vkna` alternates of ネ and ヰ also become the historical forms when a historical feature is on. In the full font, `hwid` and `ruby` keep Klee One's shapes and `aalt` lists the historical forms; Kureedo Kata carries none of those three features. Word processors list the character variants under their feature names; the fonts carry English and Japanese names.
+Klee One's own `hkna`/`vkna` alternates of ネ and ヰ also become the historical forms when a historical feature is on. In the full font, `hwid` and `ruby` keep Klee One's shapes and `aalt` lists the historical forms; Kureedo Kana carries none of those three features. Word processors list the character variants under their feature names; the fonts carry English and Japanese names. Kureedo Additions supports direct character input; use Kana or Full for features applied to ordinary kana.
 
-## Coverage of Kureedo Kata
+## Coverage of Kureedo Kana
 
-The subset requests U+0020, U+3000–303F, U+3099–309C, U+30A0–30FF, U+31F0–31FF, U+1B000, U+1B127–1B128 and U+2A708; code points Klee One does not cover (for example the Hangzhou numerals U+3021–3029) stay absent. `fonttools ttx -t cmap` lists the exact set, and the site shows it block by block. Glyphs Klee One does not have and this font adds: 𛄧 𛄨 𪜈 𛀀 ゠ 〱 〲 ヿ; the Ainu small kana ㇰ–ㇿ (U+31F0–31FF), set the way Klee sets its own small kana (78% of the full-size letter, centred on the baseline, stroke weight brought back to 0.92 of the full-size stroke as Klee's own ッ and ァ keep it, shifted up and right in vertical text through `vert`); combining ゛ and ゜ with zero advance; and `ccmp` ligatures that set セ゚ ツ゚ ト゚ ㇷ゚ カ゚ キ゚ ク゚ ケ゚ コ゚ in one cell, horizontally and vertically. The handakuten of ㇷ゚ is scaled with the letter and sits where プ puts its own, at プ's clearance from the stroke; on the full-size bases it starts where Klee places the dakuten on the same letter and keeps that clearance (`scripts/mark_positions.py`, `docs/methods.md`).
+The Kana subset contains 311 encoded characters available in the Japanese base: hiragana, katakana, halfwidth kana, kana punctuation and marks, and Kureedo's historical forms. Its requested ranges cover U+0020, U+3000–30FF, U+31F0–31FF, U+FF61–FF9F, U+1AFF0–1B16F and U+2A708. Unsupported code points remain absent. `fonttools ttx -t cmap` lists the exact set. Glyphs Klee One does not have and this font adds: 𛄧 𛄨 𪜈 𛀀 ゠ 〱 〲 ヿ; the Ainu small kana ㇰ–ㇿ (U+31F0–31FF), set the way Klee sets its own small kana (78% of the full-size letter, centred on the baseline, stroke weight brought back to 0.92 of the full-size stroke as Klee's own ッ and ァ keep it, shifted up and right in vertical text through `vert`); combining ゛ and ゜ with zero advance; and `ccmp` ligatures that set セ゚ ツ゚ ト゚ ㇷ゚ カ゚ キ゚ ク゚ ケ゚ コ゚ in one cell, horizontally and vertically. The handakuten of ㇷ゚ is scaled with the letter and sits where プ puts its own, at プ's clearance from the stroke; on the full-size bases it starts where Klee places the dakuten on the same letter and keeps that clearance (`scripts/mark_positions.py`, `docs/methods.md`).
 
 ![Ainu small kana and composed marks](docs/images/ainu.png)
 
@@ -117,13 +114,15 @@ python -m venv .venv
 .venv/bin/pip install -r requirements.txt
 .venv/bin/python scripts/build.py
 .venv/bin/python scripts/check.py
+.venv/bin/python scripts/check_editions.py
+.venv/bin/python scripts/package.py
 ```
 
-The build downloads Klee One Regular from the pinned commit of [fontworks-fonts/Klee](https://github.com/fontworks-fonts/Klee) (`8b05327`) and verifies its SHA-256 before use. `sources/glyphs/` holds the historical outlines as SVG in a 1000-unit em, y down, em top at y=880. `check.py` shapes the built fonts with HarfBuzz: default glyphs, every feature in both writing directions, mark composition, small-kana vertical origins, and byte identity of every Klee One glyph in the full font. `specimen/index.html` shows the result. `site/` holds the specimen site and CDN at kureedo.mkpo.li; `site/README.md` describes how a release is published there.
+The build downloads Klee One Regular from the pinned commit of [fontworks-fonts/Klee](https://github.com/fontworks-fonts/Klee) (`8b05327`) and verifies its SHA-256 before use. The Full edition also downloads the checksum-pinned LXGW WenKai 1.530 Light release. Its outlines and layout dependencies supply only missing public code points; donor private-use entries and variation sequences are excluded. `sources/glyphs/` holds the historical outlines as SVG in a 1000-unit em, y down, em top at y=880. `check.py` shapes the built fonts with HarfBuzz: default glyphs, every feature in both writing directions, mark composition, small-kana vertical origins, and byte identity of every Klee One glyph in the full font. `specimen/index.html` shows the result. `site/` holds the specimen site and CDN at kureedo.mkpo.li; `site/README.md` describes how a release is published there.
 
 ## Licence
 
-The fonts are licensed under the SIL Open Font License 1.1 (`OFL.txt`). Klee One is Copyright 2020 The Klee Project Authors; Klee is a trademark of Fontworks Inc., and Kureedo is an independent derivative with no connection to Fontworks. The historical outlines and the scripts in this repository are Copyright 2026 The Kureedo Project Authors; the scripts are released under the MIT License (`LICENSE-scripts.txt`).
+The fonts are licensed under the SIL Open Font License 1.1 (`OFL.txt`). The Full edition includes LXGW WenKai contributions, Copyright 2021–2026 LXGW; its upstream notice and reserved font names are in `sources/wenkai/OFL.txt` and in the Full font metadata. Distributions of Full must include that notice alongside `OFL.txt`. Klee One is Copyright 2020 The Klee Project Authors; Klee is a trademark of Fontworks Inc., and Kureedo is an independent derivative with no connection to Fontworks. The historical outlines and the scripts in this repository are Copyright 2026 The Kureedo Project Authors; the scripts are released under the MIT License (`LICENSE-scripts.txt`).
 
 ## Author
 

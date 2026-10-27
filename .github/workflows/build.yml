@@ -13,10 +13,13 @@ jobs:
       - run: pip install -r requirements.txt
       - run: python scripts/build.py
       - run: python scripts/check.py
-      - run: git diff --exit-code --stat -- fonts/KureedoKata-Regular.woff2 || (echo "committed webfont differs from the build" && exit 1)
+      - run: python scripts/check_editions.py
+      - run: python scripts/package.py
       - uses: actions/upload-artifact@v4
         with:
           name: fonts
           path: |
             fonts/
             OFL.txt
+            sources/wenkai/OFL.txt
+            build/packages/

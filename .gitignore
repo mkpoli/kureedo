@@ -1,7 +1,9 @@
 sources/klee/
+sources/wenkai/*.ttf
 .venv/
 node_modules/
 __pycache__/
 build/
 fonts/*.ttf
+fonts/*.woff2
 .wrangler/
