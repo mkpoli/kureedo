@@ -28,10 +28,20 @@ def private_use(cp):
             or 0x100000 <= cp <= 0x10FFFD)
 
 
+#: CJK unified and compatibility ideograph blocks, Unicode 18.0. Seal, Tangut and
+#: the other supplementary-plane blocks are drawings of their own, not ideographs.
+IDEOGRAPH_RANGES = (
+    (0x3400, 0x4DBF), (0x4E00, 0x9FFF), (0xF900, 0xFAFF),
+    (0x20000, 0x2A6DF), (0x2A700, 0x2B73F), (0x2B740, 0x2B81F),
+    (0x2B820, 0x2CEAF), (0x2CEB0, 0x2EBEF), (0x2EBF0, 0x2EE5F),
+    (0x2F800, 0x2FA1F), (0x30000, 0x3134F), (0x31350, 0x323AF),
+    (0x323B0, 0x3347F),
+)
+
+
 def is_ideograph(cp):
     """CJK unified and compatibility ideographs, the glyphs the weight model covers."""
-    return (0x3400 <= cp <= 0x4DBF or 0x4E00 <= cp <= 0x9FFF
-            or 0xF900 <= cp <= 0xFAFF or 0x20000 <= cp <= 0x3FFFF)
+    return any(start <= cp <= stop for start, stop in IDEOGRAPH_RANGES)
 
 
 def normalizable_names(font, codepoints):

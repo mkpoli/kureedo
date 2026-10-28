@@ -32,7 +32,7 @@ For every imported unified or compatibility ideograph:
 
 Glyphs shared with a non-ideograph code point are skipped. Simple Hangul,
 Latin, punctuation and symbols stay exactly as the donor drew them; 23 of the
-13,896 imported non-ideographs are composite radicals that reuse an ideograph
+13,946 imported non-ideographs are composite radicals that reuse an ideograph
 component, and they follow that component's new weight.
 
 ## Result
