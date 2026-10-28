@@ -1,12 +1,5 @@
 #!/usr/bin/env python3
-"""Build Kureedo from the pinned Klee One release.
-
-Two targets come out of one source tree:
-
-  fonts/Kureedo-Regular.ttf        the whole of Klee One with the historical
-                                   glyphs and features added (desktop)
-  fonts/KureedoKata-Regular.woff2  the kana subset for the web, plus a TTF
-  fonts/KureedoKata-Regular.ttf    of the same subset
+"""Build Full, Kana and Additions editions of Kureedo.
 
 Historical forms are alternates. Default ネ and ヰ stay Klee's; `hist`, `ss01`
 and the per-letter `cv01`/`cv02` switch to the 子-shaped ネ and 井-shaped ヰ.
@@ -35,6 +28,7 @@ from fontTools.pens.ttGlyphPen import TTGlyphPen
 from fontTools.svgLib.path import parse_path
 from fontTools.ttLib import TTFont
 from fontTools.ttLib.tables import otTables
+from wenkai import extend_coverage, font_buffer
 
 ROOT = Path(__file__).resolve().parent.parent
 GLYPHS = ROOT / "sources/glyphs"
@@ -68,8 +62,10 @@ LETTERS = [
     dict(code=0x3031, svg="repeat-mark.svg", letters=None, vadvance=2000, label="Vertical kana repeat mark"),
     dict(code=0x3032, svg="repeat-mark-voiced.svg", letters=None, vadvance=2000, label="Vertical kana repeat mark with voiced sound mark"),
 ]
-KATA_UNICODES = [0x20, *range(0x3000, 0x3040), *range(0x3099, 0x309D), *range(0x30A0, 0x3100), *range(0x31F0, 0x3200),
-                 *(f["historic"] for f in HISTORICAL), *(l["code"] for l in LETTERS)]
+# The Kana edition covers the available forms in all seven kana blocks,
+# halfwidth kana, kana punctuation, and Kureedo's CJK-encoded TOMO ligature.
+KANA_UNICODES = [0x20, *range(0x3000, 0x3100), *range(0x31F0, 0x3200),
+                 *range(0xFF61, 0xFFA0), *range(0x1AFF0, 0x1B170), 0x2A708]
 
 # Ainu small kana follow Klee's own small-kana convention (ッ against ツ): 78% of the full-size
 # letter, centred in the cell on the baseline, and shifted up and to the right in vertical text.
@@ -422,7 +418,9 @@ class Builder:
         self.font.setGlyphOrder(self.order)
 
 
-JAPANESE = {"Kureedo": "クレード", "Kureedo Kata": "クレード カタ"}
+JAPANESE = {"Kureedo Japanese": "クレード 日本語",
+            "Kureedo Full": "クレード フル", "Kureedo Kana": "クレード かな",
+            "Kureedo Additions": "クレード 追加字"}
 
 
 def set_names(font: TTFont, family: str):
@@ -445,8 +443,37 @@ def set_names(font: TTFont, family: str):
     font["OS/2"].achVendID = "KRDO"
 
 
+def subset_font(font, unicodes):
+    options = subset.Options()
+    options.hinting = False
+    options.name_IDs = "*"
+    options.name_legacy = True
+    options.name_languages = "*"
+    options.layout_features += ["hist", "hlig", "ss01", "ss02", "cv01", "cv02"]
+    options.notdef_outline = True
+    options.glyph_names = True
+    result = TTFont(font_buffer(font), recalcTimestamp=False)
+    sub = subset.Subsetter(options=options)
+    sub.populate(unicodes=unicodes)
+    sub.subset(result)
+    return result
+
+
+def save_edition(font, family, out_dir):
+    result = []
+    for flavor, suffix in ((None, ".ttf"), ("woff2", ".woff2")):
+        font.flavor = flavor
+        out = out_dir / (family.replace(" ", "") + "-Regular" + suffix)
+        font.save(out)
+        result.append(out)
+        print(f"Built {out.name} ({out.stat().st_size:,} bytes)")
+    font.flavor = None
+    return result
+
+
 def build(out_dir: Path = FONTS, small=None, small_mark=None, family_suffix="", sources=None):
     font = fetch_klee()
+    original_points = set(font.getBestCmap())
     builder = Builder(font, small, small_mark, sources)
     builder.add_small_kana()
     builder.add_historical()
@@ -456,30 +483,23 @@ def build(out_dir: Path = FONTS, small=None, small_mark=None, family_suffix="", 
     builder.finish()
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    set_names(font, "Kureedo" + family_suffix)
-    full = out_dir / f"Kureedo{family_suffix.replace(' ', '')}-Regular.ttf"
-    font.save(full)
-    print(f"Built {full} ({full.stat().st_size:,} bytes)")
-
-    options = subset.Options()
-    options.hinting = False
-    options.name_IDs = "*"
-    options.name_legacy = True
-    options.name_languages = "*"
-    options.layout_features += ["hist", "hlig", "ss01", "ss02", "cv01", "cv02"]
-    options.notdef_outline = True
-    options.glyph_names = True
-    kata = TTFont(full, recalcTimestamp=False)
-    sub = subset.Subsetter(options=options)
-    sub.populate(unicodes=KATA_UNICODES)
-    sub.subset(kata)
-    set_names(kata, "Kureedo Kata" + family_suffix)
-    for flavor, suffix in ((None, ".ttf"), ("woff2", ".woff2")):
-        kata.flavor = flavor
-        out = out_dir / f"KureedoKata{family_suffix.replace(' ', '')}-Regular{suffix}"
-        kata.save(out)
-        print(f"Built {out} ({out.stat().st_size:,} bytes)")
-    return full, out
+    # Retain the Japanese reference for checks and derive the kana overlays.
+    set_names(font, "Kureedo Japanese" + family_suffix)
+    reference = ROOT / "build/japanese-base.ttf"
+    reference.parent.mkdir(parents=True, exist_ok=True)
+    font.save(reference)
+    outputs = {}
+    scopes = {"Kureedo Kana": KANA_UNICODES,
+              "Kureedo Additions": set(font.getBestCmap()) - original_points}
+    for family, points in scopes.items():
+        edition = subset_font(font, points)
+        set_names(edition, family + family_suffix)
+        outputs[family] = save_edition(edition, family + family_suffix, out_dir)
+    # Name the base before merging, so the merger can append donor attribution.
+    set_names(font, "Kureedo Full" + family_suffix)
+    full = extend_coverage(font)
+    outputs["Kureedo Full"] = save_edition(full, "Kureedo Full" + family_suffix, out_dir)
+    return outputs["Kureedo Full"][0], outputs["Kureedo Kana"][1]
 
 
 if __name__ == "__main__":

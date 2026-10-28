@@ -10,7 +10,7 @@ import uharfbuzz as hb
 from fontTools.ttLib import TTFont
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from build import SMALL  # noqa: E402
+from build import SMALL, JAPANESE  # noqa: E402
 
 SMALL_VERT_TOP, SMALL_VERT_X = SMALL["vertTop"], SMALL["vertX"]
 
@@ -200,7 +200,7 @@ def check(path: Path, family: str, full: bool):
                     if st.LookupType == 3:
                         assert hist_ne in st.alternates[ne] and hist_wi in st.alternates[wi]
     ja = {n.nameID: str(n) for n in name.names if n.langID == 0x411}
-    assert ja[1] in ("クレード", "クレード カタ") and ja[4].endswith(" Regular"), ja
+    assert ja[1] == JAPANESE[family] and ja[4].endswith(" Regular"), ja
 
     # Feature UI names are present for the character variants and the stylistic set.
     labels = {name.getDebugName(i) for i in range(256, 300) if name.getDebugName(i)}
@@ -217,9 +217,10 @@ def check(path: Path, family: str, full: bool):
     return font
 
 
-check(ROOT / "fonts/Kureedo-Regular.ttf", "Kureedo", full=True)
-kata = check(ROOT / "fonts/KureedoKata-Regular.ttf", "Kureedo Kata", full=False)
-woff = check(ROOT / "fonts/KureedoKata-Regular.woff2", "Kureedo Kata", full=False)
-assert kata.getGlyphOrder() == woff.getGlyphOrder()
-assert 0x3042 not in woff.getBestCmap()
+check(ROOT / "build/japanese-base.ttf", "Kureedo Japanese", full=True)
+check(ROOT / "fonts/KureedoFull-Regular.ttf", "Kureedo Full", full=True)
+kana = check(ROOT / "fonts/KureedoKana-Regular.ttf", "Kureedo Kana", full=False)
+woff = check(ROOT / "fonts/KureedoKana-Regular.woff2", "Kureedo Kana", full=False)
+assert kana.getGlyphOrder() == woff.getGlyphOrder()
+assert 0x3042 in woff.getBestCmap()
 print("Checks passed: names, coverage, hist/ss01/ss02/cv01/cv02 and hlig in both directions, marks, small kana, Klee glyphs intact.")
