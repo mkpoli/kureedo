@@ -52,8 +52,13 @@ relative to Klee Regular is 1.057 for WenKai Light and 1.282 for WenKai Regular.
 Regional forms affect this estimate; it is a weight comparison, not a claim of
 identical outlines. [Measurement details](weight-match.json) record the sample
 and source hash. Light and Regular have identical encoded repertoires, so this
-weight choice retains all 46,923 characters. The import uses unmodified Light
-outlines, and Kureedo's existing glyphs retain their original weight.
+weight choice retains all 46,923 characters.
+
+The added simplified glyphs were assembled from cut Klee SemiBold strokes, so
+Light alone leaves them heavier than Klee's own drawings. Each imported
+ideograph is therefore eroded to the thickness Klee's density model predicts
+for its ink area; advances and vertical origins stay ([weight matching](weight.md)).
+Kureedo's existing glyphs retain their original weight.
 
 ## Choosing an edition
 
@@ -115,10 +120,13 @@ Japanese IVD coverage.
 ```
 
 The build pins the donor URL and SHA-256. Checks compare every original glyph's
-compiled outline and both advances, every imported glyph's coordinates and
-metrics, default shaping at every original code point in both directions,
-historical features, combining marks, names, donor stroke weight and edition boundaries. TTF and
-WOFF2 repertoires must agree. The original Japanese outlines and metrics are preserved in Full.
+compiled outline and both advances, every imported ideograph's normalized
+outline and metrics, every other imported glyph's donor outline and metrics apart from
+composite radicals that reuse an ideograph component,
+the imported weight distribution, default shaping at every original code point
+in both directions, historical features, combining marks, names, donor stroke
+weight and edition boundaries. TTF and WOFF2 repertoires must agree. The original
+Japanese outlines and metrics are preserved in Full.
 
 Packages under `build/packages/` contain TTF, WOFF2, a local stylesheet, usage
 notes, license notices and checksums. Full includes the upstream WenKai notice

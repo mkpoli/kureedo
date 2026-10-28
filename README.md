@@ -23,7 +23,7 @@ Three editions come out of one build, each as TTF for installation and WOFF2 for
 
 | Font | File stem | Use |
 |---|---|---|
-| Kureedo Full | `KureedoFull-Regular` | Japanese base and Kureedo additions plus missing characters from LXGW WenKai Light 1.530. 46,923 encoded characters; shared code points retain the Japanese base's glyphs. |
+| Kureedo Full | `KureedoFull-Regular` | Japanese base and Kureedo additions plus missing characters from LXGW WenKai Light 1.530. 46,923 encoded characters; shared code points retain the Japanese base's glyphs, and imported ideographs are weight-matched to Klee's density curve. |
 | Kureedo Kana | `KureedoKana-Regular` | Available hiragana, katakana, halfwidth kana, kana punctuation and historical forms from the Japanese base. Pair with another font for kanji and Latin. |
 | Kureedo Additions | `KureedoAdditions-Regular` | The 26 code points Kureedo supplies beyond Klee One, for fallback at those code points. |
 
@@ -118,7 +118,7 @@ python -m venv .venv
 .venv/bin/python scripts/package.py
 ```
 
-The build downloads Klee One Regular from the pinned commit of [fontworks-fonts/Klee](https://github.com/fontworks-fonts/Klee) (`8b05327`) and verifies its SHA-256 before use. The Full edition also downloads the checksum-pinned LXGW WenKai 1.530 Light release. Its outlines and layout dependencies supply only missing public code points; donor private-use entries and variation sequences are excluded. `sources/glyphs/` holds the historical outlines as SVG in a 1000-unit em, y down, em top at y=880. `check.py` shapes the built fonts with HarfBuzz: default glyphs, every feature in both writing directions, mark composition, small-kana vertical origins, and byte identity of every Klee One glyph in the full font. `specimen/index.html` shows the result. `site/` holds the specimen site and CDN at kureedo.mkpo.li; `site/README.md` describes how a release is published there.
+The build downloads Klee One Regular from the pinned commit of [fontworks-fonts/Klee](https://github.com/fontworks-fonts/Klee) (`8b05327`) and verifies its SHA-256 before use. The Full edition also downloads the checksum-pinned LXGW WenKai 1.530 Light release. Its outlines and layout dependencies supply only missing public code points; donor private-use entries and variation sequences are excluded. Imported ideographs are eroded to the stroke width Klee's density model predicts; advances and vertical origins stay, and shared glyphs are untouched ([weight notes](docs/weight.md)). `sources/glyphs/` holds the historical outlines as SVG in a 1000-unit em, y down, em top at y=880. `check.py` shapes the built fonts with HarfBuzz: default glyphs, every feature in both writing directions, mark composition, small-kana vertical origins, and byte identity of every Klee One glyph in the full font. `specimen/index.html` shows the result. `site/` holds the specimen site and CDN at kureedo.mkpo.li; `site/README.md` describes how a release is published there.
 
 ## Licence
 
