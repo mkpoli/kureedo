@@ -43,7 +43,7 @@ a count of every simplified character in Unicode.
 WenKai is a Klee One derivative and uses the same 1,000-unit em. The donor
 subset retains layout dependencies and vertical forms. Kureedo's original
 script fallback behavior and feature names are preserved across the merge.
-The Full edition contains 52,231 glyphs.
+The Full edition contains 52,232 glyphs: the reserved donor 鱼 outline adds one glyph name.
 
 WenKai Light is the donor weight. WenKai calls its Klee SemiBold-based weight
 “Regular” ([upstream explanation](https://github.com/lxgw/LxgwWenKai#项目简介)).

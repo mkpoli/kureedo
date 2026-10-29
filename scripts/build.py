@@ -67,6 +67,10 @@ LETTERS = [
 KANA_UNICODES = [0x20, *range(0x3000, 0x3100), *range(0x31F0, 0x3200),
                  *range(0xFF61, 0xFFA0), *range(0x1AFF0, 0x1B170), 0x2A708]
 
+#: Imported code points redrawn from Klee parts. Their outlines replace the
+#: normalized WenKai glyph in Full; the other editions do not carry them.
+DESIGNED_IMPORTS = {0x9C7C: "yu.svg"}
+
 # Ainu small kana follow Klee's own small-kana convention (ッ against ツ): 78% of the full-size
 # letter, centred in the cell on the baseline, and shifted up and to the right in vertical text.
 # `weight` is the stroke thickness the scaled glyph keeps, as a fraction of the full-size
@@ -459,6 +463,42 @@ def subset_font(font, unicodes):
     return result
 
 
+def apply_designed_imports(font):
+    """Replace imported glyphs with outlines drawn from Klee sources."""
+    for cp, svg in sorted(DESIGNED_IMPORTS.items()):
+        name = font.getBestCmap().get(cp)
+        if name is None:
+            raise ValueError(f"U+{cp:04X} is not in the merged font")
+        glyph = svg_glyph(GLYPHS / svg, normalize=True)
+        glyph.recalcBounds(font["glyf"])
+        # A retained composite may reference this glyph. Keep the donor outline
+        # under its own name and point that composite at it, so only the encoded
+        # character changes.
+        references = [g for g in font["glyf"].glyphs.values()
+                      if g.isComposite() and any(c.glyphName == name for c in g.components)]
+        if references:
+            preserved = name + ".donor"
+            if preserved in font.getGlyphOrder():
+                raise ValueError(f"Glyph name collision: {preserved}")
+            font["glyf"][preserved] = font["glyf"][name]
+            font["hmtx"][preserved] = font["hmtx"][name]
+            if "vmtx" in font:
+                font["vmtx"][preserved] = font["vmtx"][name]
+            font.setGlyphOrder([*font.getGlyphOrder(), preserved])
+            for glyph_ref in references:
+                for component in glyph_ref.components:
+                    if component.glyphName == name:
+                        component.glyphName = preserved
+        old_ymax = font["glyf"][name].yMax
+        font["glyf"][name] = glyph
+        advance, _ = font["hmtx"][name]
+        font["hmtx"][name] = (advance, glyph.xMin)
+        vertical, top = font["vmtx"][name]
+        font["vmtx"][name] = (vertical, top + old_ymax - glyph.yMax)
+    if DESIGNED_IMPORTS:
+        font["maxp"].recalc(font)
+
+
 def save_edition(font, family, out_dir):
     result = []
     for flavor, suffix in ((None, ".ttf"), ("woff2", ".woff2")):
@@ -498,6 +538,7 @@ def build(out_dir: Path = FONTS, small=None, small_mark=None, family_suffix="", 
     # Name the base before merging, so the merger can append donor attribution.
     set_names(font, "Kureedo Full" + family_suffix)
     full = extend_coverage(font)
+    apply_designed_imports(full)
     outputs["Kureedo Full"] = save_edition(full, "Kureedo Full" + family_suffix, out_dir)
     return outputs["Kureedo Full"][0], outputs["Kureedo Kana"][1]
 
