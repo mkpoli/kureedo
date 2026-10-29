@@ -24,7 +24,7 @@
 <meta name="color-scheme" content="light dark">
 <link rel="canonical" href="https://kureedo.mkpo.li/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
-<link rel="preload" href="/fonts/KureedoKata-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/KureedoKana-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Klee+One&display=swap">
 <script type="application/ld+json">
@@ -46,8 +46,8 @@
 </script>
 <style>
   @font-face {
-    font-family: "Kureedo Kata";
-    src: url("/fonts/KureedoKata-Regular.woff2") format("woff2");
+    font-family: "Kureedo Kana";
+    src: url("/fonts/KureedoKana-Regular.woff2") format("woff2");
     font-display: block;
     unicode-range: U+3000-303F, U+3099-309C, U+30A0-30FF, U+31F0-31FF, U+1B127-1B128;
   }
@@ -113,7 +113,7 @@
     background-image: radial-gradient(var(--dot) 1px, transparent 1.2px);
     background-size: 24px 24px;
     color: var(--ink);
-    font-family: "Kureedo Kata", "Klee One", "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-family: "Kureedo Kana", "Klee One", "Hiragino Mincho ProN", "Yu Mincho", serif;
     line-height: 1.75;
     font-size: 17px;
     overflow-x: hidden;
@@ -221,6 +221,7 @@
   .intro .lead { margin-top: 0; }
   .download { margin: 2rem 0 0; }
   .buttons { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem 1.5rem; margin: .75rem 8px 0 0; }
+  .buttons .wide { grid-column: span 2; }
   .buttons .button { width: 100%; }
   .intro > .small-links { flex-direction: column; gap: .5rem; padding-top: .35rem; }
   @media (max-width: 64rem) { .intro { grid-template-columns: 1fr; } .intro > .small-links { flex-direction: row; gap: .25rem 1.5rem; } .buttons { margin-bottom: .5rem; } }
@@ -272,7 +273,7 @@
   /* section headings: label — line — number */
   section { margin-top: 5rem; }
   h2 { display: flex; align-items: center; gap: 1rem; margin: 0 0 1.5rem; font-weight: 400; font-size: .75rem; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); scroll-margin-top: 4rem; }
-  h2 .ja { color: var(--ink); font-family: "Kureedo Kata", "Klee One", serif; font-size: 1.15rem; letter-spacing: .1em; }
+  h2 .ja { color: var(--ink); font-family: "Kureedo Kana", "Klee One", serif; font-size: 1.15rem; letter-spacing: .1em; }
   h2 .line { flex: 1; height: 1px; background: var(--rule); }
   h2 .num { color: var(--accent); }
 
@@ -287,11 +288,11 @@
   .controls .group { display: inline-flex; gap: .5rem; align-items: center; flex-wrap: wrap; }
   .seg { display: inline-flex; }
   .seg .tag + .tag { margin-left: -1px; }
-  .insert .tag { font-family: "Kureedo Kata", "Klee One", serif; font-size: 1.1rem; letter-spacing: 0; text-transform: none; padding: .15em .55em; }
+  .insert .tag { font-family: "Kureedo Kana", "Klee One", serif; font-size: 1.1rem; letter-spacing: 0; text-transform: none; padding: .15em .55em; }
   .controls .reset { color: var(--muted); }
   #sample {
     display: block; margin: 0; padding: 1.5rem 1.5rem; min-height: 10rem; outline: none;
-    font-family: "Kureedo Kata", "Klee One", "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-family: "Kureedo Kana", "Klee One", "Hiragino Mincho ProN", "Yu Mincho", serif;
     font-size: 48px; line-height: 1.7; overflow-wrap: anywhere; white-space: pre-wrap;
   }
   #sample:focus { box-shadow: inset 0 0 0 2px var(--accent); }
@@ -342,7 +343,7 @@
   .glyphs button { flex: none; width: 4.4rem; box-shadow: 0 0 0 1px var(--rule); }
   .glyphs button {
     position: relative; aspect-ratio: 1; padding: 0 0 .8rem; border: 0; background: var(--panel); color: var(--ink); cursor: default;
-    font-family: "Kureedo Kata", "Klee One", serif; font-size: 1.9rem; line-height: 1;
+    font-family: "Kureedo Kana", "Klee One", serif; font-size: 1.9rem; line-height: 1;
     transition: transform .12s ease, box-shadow .12s ease;
   }
   .glyphs button::after {
@@ -351,7 +352,7 @@
   }
   .glyphs button.added { color: var(--accent); box-shadow: 0 0 0 1px var(--rule), inset 0 0 0 2px var(--accent); }
   .glyph-group { display: flex; flex-wrap: wrap; align-items: baseline; gap: .4rem 1rem; margin: 1.75rem 0 .5rem; font-weight: 400; }
-  .glyph-group .ja { font-family: "Kureedo Kata", "Klee One", serif; font-size: 1.05rem; letter-spacing: .08em; }
+  .glyph-group .ja { font-family: "Kureedo Kana", "Klee One", serif; font-size: 1.05rem; letter-spacing: .08em; }
   .glyph-group + .glyphs { margin-top: 0; }
   .glyphs button:hover, .glyphs button:focus-visible { outline: none; z-index: 2; transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--shadow), 0 0 0 1px var(--ink); }
   .glyphs button:hover::after, .glyphs button:focus::after { opacity: 1; }
@@ -385,7 +386,7 @@
   .switch-text { font-size: .9rem; }
   .switch-text code { font-size: .85em; }
   .hist-demo { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin: 0 0 1rem; }
-  .hist-demo .demo { font-family: "Kureedo Kata", "Klee One", serif; font-size: 1.6rem; line-height: 1.4; }
+  .hist-demo .demo { font-family: "Kureedo Kana", "Klee One", serif; font-size: 1.6rem; line-height: 1.4; }
   .hist-demo .demo.hist { font-feature-settings: "hist"; }
   .snippet .copy.done { color: var(--accent); border-color: var(--accent); }
   .usage dl { margin: 0 0 1rem; }
@@ -443,17 +444,18 @@
       <button id="theme" class="tag" type="button" aria-label="配色を切り替える　Toggle light and dark" title="明／暗"><span class="sun" aria-hidden="true">☀</span><span class="moon" aria-hidden="true">☾</span> <span>明／暗</span></button>
     </div>
     <div class="ticks" aria-hidden="true"></div>
-    <div class="mast-meta"><span class="label accent">Unicode 18.0 · Kana Extended-A</span><span class="label">拡張仮名 ㇰ–ㇿ · ㇷ゚ · カ゚</span><span class="label"><a href="https://mkpo.li" rel="author">まくぽり mkpoli</a> · v0.4.3 · OFL 1.1</span></div>
+    <div class="mast-meta"><span class="label accent">Unicode 18.0 · Kana Extended-A</span><span class="label">拡張仮名 ㇰ–ㇿ · ㇷ゚ · カ゚</span><span class="label"><a href="https://mkpo.li" rel="author">まくぽり mkpoli</a> · v0.5.0 · OFL 1.1</span></div>
 
     <div class="intro">
     <div class="prose">
       <p class="lead">Klee Oneに、江戸・明治の版本に見られる片仮名の字形を加えたフリーフォント。Unicode 18.0で符号化された<a class="ch" href="#hero" title="U+1B127 KATAKANA LETTER ALTERNATE NE">𛄧</a>と<a class="ch" href="#hero" title="U+1B128 KATAKANA LETTER ALTERNATE WI">𛄨</a>を収録し、<b class="ch">ネ</b><b class="ch">ヰ</b>からもOpenType機能<code>hist</code>で同じ字形に切り替えられる。アイヌ語の小書き片仮名<b class="ch">ㇰ–ㇿ</b>、半濁点付きの<b class="ch">セ゚</b><b class="ch">ツ゚</b><b class="ch">ト゚</b><b class="ch">ㇷ゚</b>、鼻濁音の<b class="ch">カ゚</b>–<b class="ch">コ゚</b>も収める。</p>
       <p class="en" lang="en">A free font based on Klee One for historical Japanese katakana and Ainu. It includes the Edo–Meiji printed forms <a class="ch en" href="#hero" title="U+1B127 KATAKANA LETTER ALTERNATE NE">𛄧</a> and <a class="ch en" href="#hero" title="U+1B128 KATAKANA LETTER ALTERNATE WI">𛄨</a> (Unicode 18.0), also available from <b class="ch en">ネ</b> and <b class="ch en">ヰ</b> through <code>hist</code>. Extended kana: the Ainu small kana <b class="ch en">ㇰ–ㇿ</b>, the semi-voiced <b class="ch en">セ゚</b> <b class="ch en">ツ゚</b> <b class="ch en">ト゚</b> <b class="ch en">ㇷ゚</b>, and the nasal <b class="ch en">カ゚</b>–<b class="ch en">コ゚</b>.</p>
+      <p class="lead">v0.5.0では<b>Kureedo Full</b>を追加。Klee Oneの全字形に、Klee Oneが持たない36,719字をLXGW WenKai Light（霞鹜文楷）1.530から補い、46,923字にした。取り込んだ字形はKlee Oneの線幅に合わせ直している。</p>
+      <p class="en" lang="en">v0.5.0 adds <b>Kureedo Full</b>: Klee One's whole repertoire plus the 36,719 characters Klee One lacks, from LXGW WenKai Light 1.530, re-matched to Klee's stroke weight — 46,923 in all.</p>
     </div>
       <ul class="small-links">
         <li><a href="https://github.com/mkpoli/kureedo/releases">すべてのリリース　All releases</a></li>
-        <li><a href="https://github.com/mkpoli/kureedo/releases/download/v0.4.3/OFL.txt">OFL.txt</a></li>
-        <li><a href="https://github.com/mkpoli/kureedo/releases/download/v0.4.3/SHA256SUMS.txt">SHA256SUMS.txt</a></li>
+        <li><a href="https://github.com/mkpoli/kureedo/releases/download/v0.5.0/editions.json">editions.json（字数・チェックサム）</a></li>
         <li><a href="https://x.com/mkpoli/status/2101202819110015016">発表ツイート（𛄧𛄨）</a></li>
         <li><a href="https://x.com/mkpoli/status/2101640648965382274">発表ツイート（拡張仮名）</a></li>
       </ul>
@@ -462,8 +464,9 @@
     <div class="download" id="download">
       <span class="label">無料ダウンロード　<span lang="en">Free font download</span></span>
       <div class="buttons">
-        <a class="button" href="https://github.com/mkpoli/kureedo/releases/download/v0.4.3/Kureedo-Regular.ttf"><b>Kureedo-Regular.ttf</b><span class="mono">デスクトップ · v0.4.3 · 8.7 MB</span></a>
-        <a class="button web" href="https://github.com/mkpoli/kureedo/releases/download/v0.4.3/KureedoKata-Regular.woff2"><b>KureedoKata-Regular.woff2</b><span class="mono">ウェブ（仮名・記号のみ） · v0.4.3 · 24 KB</span></a>
+        <a class="button wide" href="https://github.com/mkpoli/kureedo/releases/download/v0.5.0/KureedoFull-Regular.zip"><b>KureedoFull-Regular.zip</b><span class="mono">デスクトップ（46,923字） · v0.5.0 · 30.2 MB</span></a>
+        <a class="button web" href="https://github.com/mkpoli/kureedo/releases/download/v0.5.0/KureedoKana-Regular.zip"><b>KureedoKana-Regular.zip</b><span class="mono">ウェブ（仮名・記号のみ） · v0.5.0 · 128 KB</span></a>
+        <a class="button web" href="https://github.com/mkpoli/kureedo/releases/download/v0.5.0/KureedoAdditions-Regular.zip"><b>KureedoAdditions-Regular.zip</b><span class="mono">Klee One 併用（追加26字） · v0.5.0 · 19 KB</span></a>
       </div>
     </div>
 
@@ -527,8 +530,8 @@
         <button type="button" class="tag reset" id="reset">戻す</button>
       </div>
       <div id="sample" contenteditable="true" spellcheck="false" role="textbox" aria-multiline="true" aria-label="試し書き">ア𛄧 シ𛄧 ト𛄧 イ𛄨ヱカラ。𛄧コ フ𛄧 カ𛄧 𛄨ド 𛄨ノシシ<br>ポロ イチャ サラニㇷ゚ アセ ワ アㇷ゚カサン コㇿ シㇰ ノ。</div>
-      <p>テキストは自由に書き換えられる。仮名と記号はKureedo Kata、漢字とラテン文字はKlee Oneで表示される。<code>hist</code>を有効にすると、<b class="ch">ネ</b><b class="ch">ヰ</b>と入力した文字も版本の字形になる。</p>
-    <p class="en" lang="en">Type anything: kana are set in Kureedo Kata, kanji and Latin fall back to Klee One. With <code>hist</code> on, ordinary <b class="ch en">ネ</b> and <b class="ch en">ヰ</b> take the printed forms.</p>
+      <p>テキストは自由に書き換えられる。仮名と記号はKureedo Kana、漢字とラテン文字はKlee Oneで表示される。<code>hist</code>を有効にすると、<b class="ch">ネ</b><b class="ch">ヰ</b>と入力した文字も版本の字形になる。</p>
+    <p class="en" lang="en">Type anything: kana are set in Kureedo Kana, kanji and Latin fall back to Klee One. With <code>hist</code> on, ordinary <b class="ch en">ネ</b> and <b class="ch en">ヰ</b> take the printed forms.</p>
     </div>
   </section>
 
@@ -599,16 +602,118 @@
 
   <section>
     <h2 id="glyphs"><span class="ja">収録文字</span><span>Glyphs</span><span class="line"></span><span class="num">07</span></h2>
-    <p class="prose">ウェブ用のKureedo Kataに入っている文字をブロックごとに示す。枠の付いた字はKlee Oneにはなく、Kureedoが加えたもの。デスクトップ用のKureedo-Regular.ttfはこれに加えてKlee One Regular全体を収録する。</p>
-    <p class="en prose" lang="en">The Kureedo Kata webfont, block by block, set live in the font. Framed cells are letters Klee One does not have; the desktop TTF adds the whole of Klee One Regular. Hover a cell for its code point.</p>
+    <p class="prose">ウェブ用のKureedo Kanaに入っている文字をブロックごとに示す。枠の付いた字はKlee Oneにはなく、Kureedoが加えたもの。デスクトップ用のKureedo Fullは、Klee One全体とLXGW WenKai Lightから補った36,719字を収録する。</p>
+    <p class="en prose" lang="en">The Kureedo Kana webfont, block by block, set live in the font. Framed cells are letters Klee One does not have; the Kureedo Full desktop font adds Klee One and the 36,719 characters taken from LXGW WenKai Light. Hover a cell for its code point.</p>
 <!-- glyphs:start -->
 <h3 class="glyph-group"><span class="ja">新しい文字</span><span class="label">Kana Extended-A · U+1B127–1B128 · Unicode 18.0 · 2字　·　2字はKlee Oneにない</span></h3>
 <div class="glyphs">
 <button type="button" class="added" data-cp="U+1B127" title="U+1B127　Kureedoが追加　added by Kureedo">𛄧</button>
 <button type="button" class="added" data-cp="U+1B128" title="U+1B128　Kureedoが追加　added by Kureedo">𛄨</button>
 </div>
-<h3 class="glyph-group"><span class="ja">片仮名</span><span class="label">Katakana · U+30A0–30FF · 94字</span></h3>
+<h3 class="glyph-group"><span class="ja">追加の文字</span><span class="label">U+1B000 · U+2A708 · 2字　·　2字はKlee Oneにない</span></h3>
 <div class="glyphs">
+<button type="button" class="added" data-cp="U+1B000" title="U+1B000　Kureedoが追加　added by Kureedo">𛀀</button>
+<button type="button" class="added" data-cp="U+2A708" title="U+2A708　Kureedoが追加　added by Kureedo">𪜈</button>
+</div>
+<h3 class="glyph-group"><span class="ja">ひらがな</span><span class="label">Hiragana · U+3041–3096 · 93字　·　2字はKlee Oneにない</span></h3>
+<div class="glyphs">
+<button type="button" data-cp="U+3041" title="U+3041">ぁ</button>
+<button type="button" data-cp="U+3042" title="U+3042">あ</button>
+<button type="button" data-cp="U+3043" title="U+3043">ぃ</button>
+<button type="button" data-cp="U+3044" title="U+3044">い</button>
+<button type="button" data-cp="U+3045" title="U+3045">ぅ</button>
+<button type="button" data-cp="U+3046" title="U+3046">う</button>
+<button type="button" data-cp="U+3047" title="U+3047">ぇ</button>
+<button type="button" data-cp="U+3048" title="U+3048">え</button>
+<button type="button" data-cp="U+3049" title="U+3049">ぉ</button>
+<button type="button" data-cp="U+304A" title="U+304A">お</button>
+<button type="button" data-cp="U+304B" title="U+304B">か</button>
+<button type="button" data-cp="U+304C" title="U+304C">が</button>
+<button type="button" data-cp="U+304D" title="U+304D">き</button>
+<button type="button" data-cp="U+304E" title="U+304E">ぎ</button>
+<button type="button" data-cp="U+304F" title="U+304F">く</button>
+<button type="button" data-cp="U+3050" title="U+3050">ぐ</button>
+<button type="button" data-cp="U+3051" title="U+3051">け</button>
+<button type="button" data-cp="U+3052" title="U+3052">げ</button>
+<button type="button" data-cp="U+3053" title="U+3053">こ</button>
+<button type="button" data-cp="U+3054" title="U+3054">ご</button>
+<button type="button" data-cp="U+3055" title="U+3055">さ</button>
+<button type="button" data-cp="U+3056" title="U+3056">ざ</button>
+<button type="button" data-cp="U+3057" title="U+3057">し</button>
+<button type="button" data-cp="U+3058" title="U+3058">じ</button>
+<button type="button" data-cp="U+3059" title="U+3059">す</button>
+<button type="button" data-cp="U+305A" title="U+305A">ず</button>
+<button type="button" data-cp="U+305B" title="U+305B">せ</button>
+<button type="button" data-cp="U+305C" title="U+305C">ぜ</button>
+<button type="button" data-cp="U+305D" title="U+305D">そ</button>
+<button type="button" data-cp="U+305E" title="U+305E">ぞ</button>
+<button type="button" data-cp="U+305F" title="U+305F">た</button>
+<button type="button" data-cp="U+3060" title="U+3060">だ</button>
+<button type="button" data-cp="U+3061" title="U+3061">ち</button>
+<button type="button" data-cp="U+3062" title="U+3062">ぢ</button>
+<button type="button" data-cp="U+3063" title="U+3063">っ</button>
+<button type="button" data-cp="U+3064" title="U+3064">つ</button>
+<button type="button" data-cp="U+3065" title="U+3065">づ</button>
+<button type="button" data-cp="U+3066" title="U+3066">て</button>
+<button type="button" data-cp="U+3067" title="U+3067">で</button>
+<button type="button" data-cp="U+3068" title="U+3068">と</button>
+<button type="button" data-cp="U+3069" title="U+3069">ど</button>
+<button type="button" data-cp="U+306A" title="U+306A">な</button>
+<button type="button" data-cp="U+306B" title="U+306B">に</button>
+<button type="button" data-cp="U+306C" title="U+306C">ぬ</button>
+<button type="button" data-cp="U+306D" title="U+306D">ね</button>
+<button type="button" data-cp="U+306E" title="U+306E">の</button>
+<button type="button" data-cp="U+306F" title="U+306F">は</button>
+<button type="button" data-cp="U+3070" title="U+3070">ば</button>
+<button type="button" data-cp="U+3071" title="U+3071">ぱ</button>
+<button type="button" data-cp="U+3072" title="U+3072">ひ</button>
+<button type="button" data-cp="U+3073" title="U+3073">び</button>
+<button type="button" data-cp="U+3074" title="U+3074">ぴ</button>
+<button type="button" data-cp="U+3075" title="U+3075">ふ</button>
+<button type="button" data-cp="U+3076" title="U+3076">ぶ</button>
+<button type="button" data-cp="U+3077" title="U+3077">ぷ</button>
+<button type="button" data-cp="U+3078" title="U+3078">へ</button>
+<button type="button" data-cp="U+3079" title="U+3079">べ</button>
+<button type="button" data-cp="U+307A" title="U+307A">ぺ</button>
+<button type="button" data-cp="U+307B" title="U+307B">ほ</button>
+<button type="button" data-cp="U+307C" title="U+307C">ぼ</button>
+<button type="button" data-cp="U+307D" title="U+307D">ぽ</button>
+<button type="button" data-cp="U+307E" title="U+307E">ま</button>
+<button type="button" data-cp="U+307F" title="U+307F">み</button>
+<button type="button" data-cp="U+3080" title="U+3080">む</button>
+<button type="button" data-cp="U+3081" title="U+3081">め</button>
+<button type="button" data-cp="U+3082" title="U+3082">も</button>
+<button type="button" data-cp="U+3083" title="U+3083">ゃ</button>
+<button type="button" data-cp="U+3084" title="U+3084">や</button>
+<button type="button" data-cp="U+3085" title="U+3085">ゅ</button>
+<button type="button" data-cp="U+3086" title="U+3086">ゆ</button>
+<button type="button" data-cp="U+3087" title="U+3087">ょ</button>
+<button type="button" data-cp="U+3088" title="U+3088">よ</button>
+<button type="button" data-cp="U+3089" title="U+3089">ら</button>
+<button type="button" data-cp="U+308A" title="U+308A">り</button>
+<button type="button" data-cp="U+308B" title="U+308B">る</button>
+<button type="button" data-cp="U+308C" title="U+308C">れ</button>
+<button type="button" data-cp="U+308D" title="U+308D">ろ</button>
+<button type="button" data-cp="U+308E" title="U+308E">ゎ</button>
+<button type="button" data-cp="U+308F" title="U+308F">わ</button>
+<button type="button" data-cp="U+3090" title="U+3090">ゐ</button>
+<button type="button" data-cp="U+3091" title="U+3091">ゑ</button>
+<button type="button" data-cp="U+3092" title="U+3092">を</button>
+<button type="button" data-cp="U+3093" title="U+3093">ん</button>
+<button type="button" data-cp="U+3094" title="U+3094">ゔ</button>
+<button type="button" data-cp="U+3095" title="U+3095">ゕ</button>
+<button type="button" data-cp="U+3096" title="U+3096">ゖ</button>
+<button type="button" class="added" data-cp="U+3099" title="U+3099　Kureedoが追加　added by Kureedo">◌゙</button>
+<button type="button" class="added" data-cp="U+309A" title="U+309A　Kureedoが追加　added by Kureedo">◌゚</button>
+<button type="button" data-cp="U+309B" title="U+309B">゛</button>
+<button type="button" data-cp="U+309C" title="U+309C">゜</button>
+<button type="button" data-cp="U+309D" title="U+309D">ゝ</button>
+<button type="button" data-cp="U+309E" title="U+309E">ゞ</button>
+<button type="button" data-cp="U+309F" title="U+309F">ゟ</button>
+</div>
+<h3 class="glyph-group"><span class="ja">片仮名</span><span class="label">Katakana · U+30A0–30FF · 96字　·　2字はKlee Oneにない</span></h3>
+<div class="glyphs">
+<button type="button" class="added" data-cp="U+30A0" title="U+30A0　Kureedoが追加　added by Kureedo">゠</button>
 <button type="button" data-cp="U+30A1" title="U+30A1">ァ</button>
 <button type="button" data-cp="U+30A2" title="U+30A2">ア</button>
 <button type="button" data-cp="U+30A3" title="U+30A3">ィ</button>
@@ -703,6 +808,7 @@
 <button type="button" data-cp="U+30FC" title="U+30FC">ー</button>
 <button type="button" data-cp="U+30FD" title="U+30FD">ヽ</button>
 <button type="button" data-cp="U+30FE" title="U+30FE">ヾ</button>
+<button type="button" class="added" data-cp="U+30FF" title="U+30FF　Kureedoが追加　added by Kureedo">ヿ</button>
 </div>
 <h3 class="glyph-group"><span class="ja">小書き片仮名（アイヌ語）</span><span class="label">Katakana Phonetic Extensions · U+31F0–31FF · 16字　·　16字はKlee Oneにない</span></h3>
 <div class="glyphs">
@@ -730,7 +836,7 @@
 <button type="button" data-cp="U+309B" title="U+309B">゛</button>
 <button type="button" data-cp="U+309C" title="U+309C">゜</button>
 </div>
-<h3 class="glyph-group"><span class="ja">記号・句読点</span><span class="label">CJK Symbols and Punctuation · U+3000–303F · 36字</span></h3>
+<h3 class="glyph-group"><span class="ja">記号・句読点</span><span class="label">CJK Symbols and Punctuation · U+3000–303F · 38字　·　2字はKlee Oneにない</span></h3>
 <div class="glyphs">
 <button type="button" data-cp="U+3000" title="U+3000">　</button>
 <button type="button" data-cp="U+3001" title="U+3001">、</button>
@@ -762,12 +868,80 @@
 <button type="button" data-cp="U+301F" title="U+301F">〟</button>
 <button type="button" data-cp="U+3020" title="U+3020">〠</button>
 <button type="button" data-cp="U+3030" title="U+3030">〰</button>
+<button type="button" class="added" data-cp="U+3031" title="U+3031　Kureedoが追加　added by Kureedo">〱</button>
+<button type="button" class="added" data-cp="U+3032" title="U+3032　Kureedoが追加　added by Kureedo">〲</button>
 <button type="button" data-cp="U+3033" title="U+3033">〳</button>
 <button type="button" data-cp="U+3034" title="U+3034">〴</button>
 <button type="button" data-cp="U+3035" title="U+3035">〵</button>
 <button type="button" data-cp="U+3036" title="U+3036">〶</button>
 <button type="button" data-cp="U+303B" title="U+303B">〻</button>
 <button type="button" data-cp="U+303D" title="U+303D">〽</button>
+</div>
+<h3 class="glyph-group"><span class="ja">半角片仮名</span><span class="label">Halfwidth Katakana · U+FF61–FF9F · 63字</span></h3>
+<div class="glyphs">
+<button type="button" data-cp="U+FF61" title="U+FF61">｡</button>
+<button type="button" data-cp="U+FF62" title="U+FF62">｢</button>
+<button type="button" data-cp="U+FF63" title="U+FF63">｣</button>
+<button type="button" data-cp="U+FF64" title="U+FF64">､</button>
+<button type="button" data-cp="U+FF65" title="U+FF65">･</button>
+<button type="button" data-cp="U+FF66" title="U+FF66">ｦ</button>
+<button type="button" data-cp="U+FF67" title="U+FF67">ｧ</button>
+<button type="button" data-cp="U+FF68" title="U+FF68">ｨ</button>
+<button type="button" data-cp="U+FF69" title="U+FF69">ｩ</button>
+<button type="button" data-cp="U+FF6A" title="U+FF6A">ｪ</button>
+<button type="button" data-cp="U+FF6B" title="U+FF6B">ｫ</button>
+<button type="button" data-cp="U+FF6C" title="U+FF6C">ｬ</button>
+<button type="button" data-cp="U+FF6D" title="U+FF6D">ｭ</button>
+<button type="button" data-cp="U+FF6E" title="U+FF6E">ｮ</button>
+<button type="button" data-cp="U+FF6F" title="U+FF6F">ｯ</button>
+<button type="button" data-cp="U+FF70" title="U+FF70">ｰ</button>
+<button type="button" data-cp="U+FF71" title="U+FF71">ｱ</button>
+<button type="button" data-cp="U+FF72" title="U+FF72">ｲ</button>
+<button type="button" data-cp="U+FF73" title="U+FF73">ｳ</button>
+<button type="button" data-cp="U+FF74" title="U+FF74">ｴ</button>
+<button type="button" data-cp="U+FF75" title="U+FF75">ｵ</button>
+<button type="button" data-cp="U+FF76" title="U+FF76">ｶ</button>
+<button type="button" data-cp="U+FF77" title="U+FF77">ｷ</button>
+<button type="button" data-cp="U+FF78" title="U+FF78">ｸ</button>
+<button type="button" data-cp="U+FF79" title="U+FF79">ｹ</button>
+<button type="button" data-cp="U+FF7A" title="U+FF7A">ｺ</button>
+<button type="button" data-cp="U+FF7B" title="U+FF7B">ｻ</button>
+<button type="button" data-cp="U+FF7C" title="U+FF7C">ｼ</button>
+<button type="button" data-cp="U+FF7D" title="U+FF7D">ｽ</button>
+<button type="button" data-cp="U+FF7E" title="U+FF7E">ｾ</button>
+<button type="button" data-cp="U+FF7F" title="U+FF7F">ｿ</button>
+<button type="button" data-cp="U+FF80" title="U+FF80">ﾀ</button>
+<button type="button" data-cp="U+FF81" title="U+FF81">ﾁ</button>
+<button type="button" data-cp="U+FF82" title="U+FF82">ﾂ</button>
+<button type="button" data-cp="U+FF83" title="U+FF83">ﾃ</button>
+<button type="button" data-cp="U+FF84" title="U+FF84">ﾄ</button>
+<button type="button" data-cp="U+FF85" title="U+FF85">ﾅ</button>
+<button type="button" data-cp="U+FF86" title="U+FF86">ﾆ</button>
+<button type="button" data-cp="U+FF87" title="U+FF87">ﾇ</button>
+<button type="button" data-cp="U+FF88" title="U+FF88">ﾈ</button>
+<button type="button" data-cp="U+FF89" title="U+FF89">ﾉ</button>
+<button type="button" data-cp="U+FF8A" title="U+FF8A">ﾊ</button>
+<button type="button" data-cp="U+FF8B" title="U+FF8B">ﾋ</button>
+<button type="button" data-cp="U+FF8C" title="U+FF8C">ﾌ</button>
+<button type="button" data-cp="U+FF8D" title="U+FF8D">ﾍ</button>
+<button type="button" data-cp="U+FF8E" title="U+FF8E">ﾎ</button>
+<button type="button" data-cp="U+FF8F" title="U+FF8F">ﾏ</button>
+<button type="button" data-cp="U+FF90" title="U+FF90">ﾐ</button>
+<button type="button" data-cp="U+FF91" title="U+FF91">ﾑ</button>
+<button type="button" data-cp="U+FF92" title="U+FF92">ﾒ</button>
+<button type="button" data-cp="U+FF93" title="U+FF93">ﾓ</button>
+<button type="button" data-cp="U+FF94" title="U+FF94">ﾔ</button>
+<button type="button" data-cp="U+FF95" title="U+FF95">ﾕ</button>
+<button type="button" data-cp="U+FF96" title="U+FF96">ﾖ</button>
+<button type="button" data-cp="U+FF97" title="U+FF97">ﾗ</button>
+<button type="button" data-cp="U+FF98" title="U+FF98">ﾘ</button>
+<button type="button" data-cp="U+FF99" title="U+FF99">ﾙ</button>
+<button type="button" data-cp="U+FF9A" title="U+FF9A">ﾚ</button>
+<button type="button" data-cp="U+FF9B" title="U+FF9B">ﾛ</button>
+<button type="button" data-cp="U+FF9C" title="U+FF9C">ﾜ</button>
+<button type="button" data-cp="U+FF9D" title="U+FF9D">ﾝ</button>
+<button type="button" data-cp="U+FF9E" title="U+FF9E">ﾞ</button>
+<button type="button" data-cp="U+FF9F" title="U+FF9F">ﾟ</button>
 </div>
 <h3 class="glyph-group"><span class="ja">空白</span><span class="label">Space · U+0020 · 1字</span></h3>
 <div class="glyphs">
@@ -800,19 +974,19 @@
 
   <section class="usage">
     <h2 id="usage"><span class="ja">使い方</span><span>Usage</span><span class="line"></span><span class="num">09</span></h2>
-    <div class="doc"><div class="note"><p>Kureedoはデスクトップ向けにKlee One Regular全体と歴史的字形を収録した書体で、Kureedo Kataは仮名・仮名句読点・記号のみを収めた約24KBのウェブ用書体。</p>
-    <p class="en" lang="en">Kureedo carries the whole of Klee One Regular; Kureedo Kata is the web subset of kana and marks only.</p></div><div class="body">
+    <div class="doc"><div class="note"><p>Kureedo FullはKlee One全体に、LXGW WenKai Lightから補った36,719字と歴史的字形を加えた46,923字の書体。Kureedo Kanaは仮名・仮名句読点・記号のみを収めた約55KBのウェブ用書体。</p>
+    <p class="en" lang="en">Kureedo Full carries Klee One and 36,719 characters from LXGW WenKai Light; Kureedo Kana is the web subset of kana and marks only.</p></div><div class="body">
     <dl>
       <dt>ウェブ　Web</dt>
       <dd>
 <div class="snippet-head"><span class="label">CSS</span><label class="switch"><input type="checkbox" id="web-hist" checked><span class="track" aria-hidden="true"></span><span class="switch-text"><code>hist</code></span></label></div>
 <div class="snippet"><pre><code id="web-css">@font-face {
-  font-family: "Kureedo Kata";
-  src: url("KureedoKata-Regular.woff2") format("woff2");
+  font-family: "Kureedo Kana";
+  src: url("KureedoKana-Regular.woff2") format("woff2");
   unicode-range: U+3000-303F, U+3099-309C, U+30A0-30FF, U+31F0-31FF, U+1B127-1B128;
 }
 .edition {
-  font-family: "Kureedo Kata", "Klee One", serif;
+  font-family: "Kureedo Kana", "Klee One", serif;
   font-feature-settings: "hist";
 }</code></pre><button type="button" class="tag copy" id="web-copy" data-copy="">Copy</button></div>
 <div class="hist-demo"><span class="label">.edition</span><span class="demo" id="web-demo">アネ　シネ　トネ　イヰヱカラ。</span></div>
@@ -820,7 +994,7 @@
       <dd>普通の<b class="ch">ネ</b>や<b class="ch">ヰ</b>を版本の字形で表示するかどうかは、<code>hist</code>の有無で切り替わる。上の見本と<code>.edition</code>の中身が連動する。</dd>
       <dd class="en" lang="en">Whether ordinary <b class="ch en">ネ</b> and <b class="ch en">ヰ</b> take the printed forms depends on <code>hist</code>; the sample and the <code>.edition</code> rule above follow the toggle.</dd>
       <dt>Word・LibreOffice</dt>
-      <dd>Kureedo-Regular.ttfをインストールして書体として選択する。歴史的字形は、OpenType機能の設定（Wordはフォントダイアログの「詳細設定」、LibreOfficeはフォント名に<code>:hist</code>を指定）で表示させるか、𛄧 U+1B127・𛄨 U+1B128を直接入力する。</dd>
+      <dd>KureedoFull-Regular.ttfをインストールして書体として選択する。歴史的字形は、OpenType機能の設定（Wordはフォントダイアログの「詳細設定」、LibreOfficeはフォント名に<code>:hist</code>を指定）で表示させるか、𛄧 U+1B127・𛄨 U+1B128を直接入力する。</dd>
       <dd class="en" lang="en">Install the TTF and pick it as the font; the historical forms come from the OpenType feature panel (Word: Font dialog, Advanced; LibreOffice: append <code>:hist</code> to the font name) or by typing U+1B127 and U+1B128 directly.</dd>
       <dt>アイヌ語の小書き仮名と半濁点　Ainu small kana and handakuten</dt>
       <dd><b class="ch">ㇷ</b>（U+31F7）に続けて結合用半濁点<b class="ch">゚</b>（U+309A）を入力すると<b class="ch">ㇷ゚</b>になる。<b class="ch">セ゚</b><b class="ch">ツ゚</b><b class="ch">ト゚</b>も同様。</dd>
@@ -832,34 +1006,34 @@
 
   <section class="usage">
     <h2 id="cdn"><span class="ja">ウェブフォント配信</span><span>Webfont CDN</span><span class="line"></span><span class="num">10</span></h2>
-    <div class="doc"><div class="note"><p>kureedo.mkpo.liから直接読み込める。<code>/kureedo.css</code>は最新版を指し、<code>/v0.4.3/</code>以下は版を固定した不変のファイル（CORS許可、キャッシュ期間1年）。</p>
-    <p class="en" lang="en">The stylesheet at <code>/kureedo.css</code> follows the latest release; files under <code>/v0.4.3/</code> are pinned and immutable, served with CORS and a one-year cache.</p></div><div class="body">
+    <div class="doc"><div class="note"><p>kureedo.mkpo.liから直接読み込める。<code>/kureedo.css</code>は最新版を指し、<code>/v0.5.0/</code>以下は版を固定した不変のファイル（CORS許可、キャッシュ期間1年）。</p>
+    <p class="en" lang="en">The stylesheet at <code>/kureedo.css</code> follows the latest release; files under <code>/v0.5.0/</code> are pinned and immutable, served with CORS and a one-year cache.</p></div><div class="body">
     <dl>
       <dt>最新版　Latest</dt>
       <dd>
 <div class="snippet"><pre><code>&lt;link rel="stylesheet" href="https://kureedo.mkpo.li/kureedo.css"&gt;</code></pre><button type="button" class="tag copy" data-copy="&lt;link rel=&quot;stylesheet&quot; href=&quot;https://kureedo.mkpo.li/kureedo.css&quot;&gt;">Copy</button></div>
 <div class="snippet"><pre><code>.edition {
-  font-family: "Kureedo Kata", "Klee One", serif;
+  font-family: "Kureedo Kana", "Klee One", serif;
   font-feature-settings: "hist";
 }</code></pre><button type="button" class="tag copy" data-copy='.edition {
-  font-family: "Kureedo Kata", "Klee One", serif;
+  font-family: "Kureedo Kana", "Klee One", serif;
   font-feature-settings: "hist";
 }'>Copy</button></div>
       </dd>
       <dt>版を固定　Pinned</dt>
       <dd>
-<div class="snippet"><pre><code>&lt;link rel="stylesheet" href="https://kureedo.mkpo.li/v0.4.3/kureedo.css"&gt;</code></pre><button type="button" class="tag copy" data-copy="&lt;link rel=&quot;stylesheet&quot; href=&quot;https://kureedo.mkpo.li/v0.4.3/kureedo.css&quot;&gt;">Copy</button></div>
+<div class="snippet"><pre><code>&lt;link rel="stylesheet" href="https://kureedo.mkpo.li/v0.5.0/kureedo.css"&gt;</code></pre><button type="button" class="tag copy" data-copy="&lt;link rel=&quot;stylesheet&quot; href=&quot;https://kureedo.mkpo.li/v0.5.0/kureedo.css&quot;&gt;">Copy</button></div>
       </dd>
       <dt>jsDelivr（GitHubのタグから）</dt>
       <dd>
 <div class="snippet"><pre><code>@font-face {
-  font-family: "Kureedo Kata";
-  src: url("https://cdn.jsdelivr.net/gh/mkpoli/kureedo@v0.4.3/fonts/KureedoKata-Regular.woff2") format("woff2");
+  font-family: "Kureedo Kana";
+  src: url("https://cdn.jsdelivr.net/gh/mkpoli/kureedo@v0.5.0/fonts/KureedoKana-Regular.woff2") format("woff2");
   font-display: swap;
   unicode-range: U+3000-303F, U+3099-309C, U+30A0-30FF, U+31F0-31FF, U+1B127-1B128;
 }</code></pre><button type="button" class="tag copy" data-copy='@font-face {
-  font-family: "Kureedo Kata";
-  src: url("https://cdn.jsdelivr.net/gh/mkpoli/kureedo@v0.4.3/fonts/KureedoKata-Regular.woff2") format("woff2");
+  font-family: "Kureedo Kana";
+  src: url("https://cdn.jsdelivr.net/gh/mkpoli/kureedo@v0.5.0/fonts/KureedoKana-Regular.woff2") format("woff2");
   font-display: swap;
   unicode-range: U+3000-303F, U+3099-309C, U+30A0-30FF, U+31F0-31FF, U+1B127-1B128;
 }'>Copy</button></div>
