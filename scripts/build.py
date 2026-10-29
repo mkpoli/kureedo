@@ -69,7 +69,7 @@ KANA_UNICODES = [0x20, *range(0x3000, 0x3100), *range(0x31F0, 0x3200),
 
 #: Imported code points redrawn from Klee parts. Their outlines replace the
 #: normalized WenKai glyph in Full; the other editions do not carry them.
-DESIGNED_IMPORTS = {0x8D1D: "bei.svg", 0x9C7C: "yu.svg"}
+DESIGNED_IMPORTS = {0x5458: "yuan.svg", 0x8D1D: "bei.svg", 0x8D21: "gong.svg", 0x8D23: "ze.svg", 0x9C7C: "yu.svg"}
 
 # Ainu small kana follow Klee's own small-kana convention (ッ against ツ): 78% of the full-size
 # letter, centred in the cell on the baseline, and shifted up and to the right in vertical text.
