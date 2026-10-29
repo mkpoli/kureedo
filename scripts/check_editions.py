@@ -7,7 +7,9 @@ from fontTools.ttLib import TTFont
 from fontTools.ttLib.tables.O_S_2f_2 import calcCodePageRanges, intersectUnicodeRanges
 
 from build import JAPANESE, KANA_UNICODES, stroke_thickness
-from wenkai import fetch_wenkai, private_use
+from wenkai import (MIN_EROSION, erode_glyph, fetch_wenkai, is_ideograph,
+                    normalizable_names, normalization_radius, private_use,
+                    target_thickness, thickness_area, weight_model)
 
 ROOT = Path(__file__).resolve().parent.parent
 FONTS = ROOT / "fonts"
@@ -51,13 +53,70 @@ def check():
         assert base["glyf"][name].compile(base["glyf"]) == full["glyf"][name].compile(full["glyf"]), name
         for tag in ("hmtx", "vmtx"):
             assert base[tag][name] == full[tag][name], (tag, name)
-    for cp in sorted(set(after) - set(before)):
+    model = weight_model(base)
+    donor_set, base_set = donor.getGlyphSet(), base.getGlyphSet()
+    full_set = full.getGlyphSet()
+    imported = sorted(set(after) - set(before))
+    ideographs = [cp for cp in imported if is_ideograph(cp)]
+    subset_cps = {cp for cp in donor.getBestCmap() if cp not in before and not private_use(cp)}
+    eligible = normalizable_names(donor, subset_cps)
+    normalized = [cp for cp in ideographs if donor.getBestCmap()[cp] in eligible]
+    for cp in imported:
         target, source = after[cp], donor.getBestCmap()[cp]
-        a = full["glyf"][target].getCoordinates(full["glyf"])
-        b = donor["glyf"][source].getCoordinates(donor["glyf"])
-        assert a == b, f"WenKai outline U+{cp:04X}"
+        assert full["hmtx"][target][0] == donor["hmtx"][source][0], (cp, "hmtx advance")
+        assert full["vmtx"][target][0] == donor["vmtx"][source][0], (cp, "vmtx advance")
+        if source in eligible:
+            continue
+        # A radical can reuse an ideograph as a component; that component's new
+        # weight carries through. Its composite transform is unchanged.
+        if full["glyf"][target].isComposite() or donor["glyf"][source].isComposite():
+            assert full["glyf"][target].isComposite() and donor["glyf"][source].isComposite(), cp
+            assert ([(c.x, c.y, c.flags) for c in full["glyf"][target].components]
+                    == [(c.x, c.y, c.flags) for c in donor["glyf"][source].components]), cp
+        else:
+            assert (full["glyf"][target].getCoordinates(full["glyf"])
+                    == donor["glyf"][source].getCoordinates(donor["glyf"])), f"WenKai outline U+{cp:04X}"
         for tag in ("hmtx", "vmtx"):
             assert full[tag][target] == donor[tag][source], (cp, tag)
+    # Every sampled ideograph is the donor's outline eroded by the weight model.
+    for cp in normalized[::97]:
+        target, source = after[cp], donor.getBestCmap()[cp]
+        radius = normalization_radius(donor_set, source, model)
+        glyph = erode_glyph(donor, source, radius, donor_set) if radius >= MIN_EROSION else None
+        if glyph is None:
+            assert (full["glyf"][target].getCoordinates(full["glyf"])
+                    == donor["glyf"][source].getCoordinates(donor["glyf"])), cp
+            assert full["hmtx"][target] == donor["hmtx"][source], cp
+            continue
+        assert (full["glyf"][target].getCoordinates(full["glyf"])
+                == glyph.getCoordinates(full["glyf"])), f"Normalized outline U+{cp:04X}"
+        assert full["hmtx"][target][1] == glyph.xMin, (cp, "lsb")
+        expected_top = donor["vmtx"][source][1] + donor["glyf"][source].yMax - glyph.yMax
+        assert full["vmtx"][target] == (donor["vmtx"][source][0], expected_top), (cp, "vmtx")
+    # The imported ideographs now follow Klee's thickness/density model.
+    residuals, changed_residuals = [], []
+    for cp in ideographs:
+        source = donor.getBestCmap()[cp]
+        measured = thickness_area(full_set, after[cp])
+        donor_measured = thickness_area(donor_set, source)
+        assert measured and donor_measured, cp
+        residual = measured[0] / target_thickness(donor_measured[1], model)
+        residuals.append(residual)
+        radius = normalization_radius(donor_set, source, model)
+        if source in eligible and radius >= MIN_EROSION:
+            changed_residuals.append(residual)
+    klee_residuals = []
+    for cp, name in base.getBestCmap().items():
+        if not is_ideograph(cp):
+            continue
+        measured = thickness_area(base_set, name)
+        if measured:
+            klee_residuals.append(measured[0] / target_thickness(measured[1], model))
+    p90 = sorted(klee_residuals)[int(0.9 * (len(klee_residuals) - 1))]
+    assert abs(median(changed_residuals) - 1.0) <= 0.02, (
+        "Normalized weight residual", median(changed_residuals))
+    assert sum(r > p90 for r in changed_residuals) / len(changed_residuals) <= 0.15, "Normalized weight tail"
+    assert sum(r > 1.10 for r in residuals) / len(residuals) <= 0.01, "Uncorrected heavy glyphs"
     for tag, fields in {"hhea": ("ascent", "descent", "lineGap"),
                         "vhea": ("ascent", "descent", "lineGap"),
                         "OS/2": ("sTypoAscender", "sTypoDescender", "sTypoLineGap",
@@ -101,7 +160,7 @@ def check():
     for direction in ("ltr", "ttb"):
         assert len(shape(extra_hb, "ㇷ゚", direction)) == 1
         assert shape(extra_hb, "𪜈", direction) != shape(extra_hb, "𪜈", direction, {"ss02": True})
-    print("Edition checks passed: 46,923 characters, all imported outlines and metrics, Japanese shaping, three TTF/WOFF2 families.")
+    print("Edition checks passed: 46,923 characters, normalized imported weight, donor metrics, Japanese shaping, three TTF/WOFF2 families.")
 
 
 if __name__ == "__main__":
