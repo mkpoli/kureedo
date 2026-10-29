@@ -1,13 +1,13 @@
 # Kureedo（クレード）
 
-[![Kureedo](https://img.shields.io/github/v/release/mkpoli/kureedo?label=Kureedo&color=1f3b5b)](https://github.com/mkpoli/kureedo/releases/latest/download/Kureedo-Regular.ttf)
-[![Kureedo Kata](https://img.shields.io/github/v/release/mkpoli/kureedo?label=Kureedo%20Kata&color=1f3b5b)](https://github.com/mkpoli/kureedo/releases/latest/download/KureedoKata-Regular.woff2)
+[![Kureedo Full](https://img.shields.io/github/v/release/mkpoli/kureedo?label=Kureedo%20Full&color=1f3b5b)](https://github.com/mkpoli/kureedo/releases/latest/download/KureedoFull-Regular.zip)
+[![Kureedo Kana](https://img.shields.io/github/v/release/mkpoli/kureedo?label=Kureedo%20Kana&color=1f3b5b)](https://github.com/mkpoli/kureedo/releases/latest/download/KureedoKana-Regular.zip)
 [![Licence: OFL 1.1](https://img.shields.io/badge/licence-OFL%201.1-4c7a4c)](OFL.txt)
 [![Unicode 18.0](https://img.shields.io/badge/Unicode-18.0-7a4c7a)](https://www.unicode.org/charts/PDF/Unicode-18.0/U180-1B100.pdf)
 [![jsDelivr](https://img.shields.io/jsdelivr/gh/hm/mkpoli/kureedo?label=jsDelivr)](https://www.jsdelivr.com/package/gh/mkpoli/kureedo)
 [![kureedo.mkpo.li](https://img.shields.io/website?url=https%3A%2F%2Fkureedo.mkpo.li&label=kureedo.mkpo.li)](https://kureedo.mkpo.li)
 
-Klee One with the letterforms of Edo-period Japanese print, and the kana that Ainu needs. It covers two katakana that woodblock editions used and modern fonts lack: a ネ written like 子 and a ヰ written like 井. Unicode 18.0 encodes them as 𛄧 U+1B127 KATAKANA LETTER ALTERNATE NE and 𛄨 U+1B128 KATAKANA LETTER ALTERNATE WI, and the font covers those code points; the same glyphs are also OpenType alternates of ネ and ヰ, so a text encoded with the ordinary letters can show the historical forms through a feature. It also adds the small katakana ㇰ–ㇿ (U+31F0–31FF), the semi-voiced セ゚ ツ゚ ト゚ ㇷ゚ and the nasal カ゚–コ゚, which Klee One lacks.
+Kureedo is a Klee One derivative for kana that ordinary Japanese fonts leave out. Its historical forms follow Edo-period Japanese print: among them a ネ written like 子 and a ヰ written like 井. Unicode 18.0 encodes them as 𛄧 U+1B127 KATAKANA LETTER ALTERNATE NE and 𛄨 U+1B128 KATAKANA LETTER ALTERNATE WI, and the font covers those code points; the same glyphs are also alternates of ネ and ヰ selected by `hist`, `cv01` and `cv02`, so text encoded with the ordinary letters can show them. It also adds the small katakana ㇰ–ㇿ (U+31F0–31FF), the semi-voiced セ゚ ツ゚ ト゚ ㇷ゚ and the nasal カ゚–コ゚ that Ainu writes and Klee One lacks.
 
 Specimen, type tester and webfont CDN: https://kureedo.mkpo.li
 
@@ -15,21 +15,27 @@ Specimen, type tester and webfont CDN: https://kureedo.mkpo.li
 
 ![ネ and ヰ: default, hist, cv01, cv02](docs/images/forms.png)
 
-The same editions set トモ as one letter, 𪜈 U+2A708. The font covers that code point, and the `hlig` feature forms the ligature from トモ. It also covers 𛀀 U+1B000, the archaic katakana e, the double hyphen ゠ U+30A0, the kana repeat marks 〱 U+3031 and 〲 U+3032, and the digraph ヿ U+30FF, which `hlig` also forms from コト.
+The same woodblock editions set トモ as one letter, 𪜈 U+2A708. The font covers that code point, and the `hlig` feature forms the ligature from トモ. It also covers 𛀀 U+1B000, the archaic katakana e, the double hyphen ゠ U+30A0, the kana repeat marks 〱 U+3031 and 〲 U+3032, and the digraph ヿ U+30FF, which `hlig` also forms from コト.
 
 ![トモ default, hlig, 𪜈 U+2A708, ss02](docs/images/tomo.png)
 
-Three editions come out of one build, each as TTF for installation and WOFF2 for the web:
+Related typeface: [GenZui Serif / 源萃明朝](https://genzui.mkpo.li/), a Noto Serif JP derivative with hentaigana and historical kana.
+
+## Editions
+
+One build produces three editions, each as TTF for installation and WOFF2 for the web:
 
 | Font | File stem | Use |
 |---|---|---|
-| Kureedo Full | `KureedoFull-Regular` | Japanese base and Kureedo additions plus missing characters from LXGW WenKai Light 1.530. 46,923 encoded characters; shared code points retain the Japanese base's glyphs, and imported ideographs are weight-matched to Klee's density curve. |
+| Kureedo Full | `KureedoFull-Regular` | Standalone font for running text. Japanese base, Kureedo additions, and every public Unicode code point Klee One lacks, imported from LXGW WenKai Light 1.530: 46,923 encoded characters, enough for Chinese, Hangul and other scripts to set alongside Japanese without a fallback. Shared code points keep the Japanese base's glyphs; imported ideographs are eroded to the weight Klee's density model predicts ([weight notes](docs/weight.md)), and 贝 is rebuilt from Klee's 貝 and 人 ([notes](docs/bei.md)), 鱼 from 魚 and 一 ([notes](docs/yu.md)). |
 | Kureedo Kana | `KureedoKana-Regular` | Available hiragana, katakana, halfwidth kana, kana punctuation and historical forms from the Japanese base. Pair with another font for kanji and Latin. |
 | Kureedo Additions | `KureedoAdditions-Regular` | The 26 code points Kureedo supplies beyond Klee One, for fallback at those code points. |
 
-Published packages are on the [releases page](https://github.com/mkpoli/kureedo/releases). The three-edition lineup is available from source; the current 0.4.3 release uses the earlier Kureedo/Kureedo Kata packaging. [Coverage and edition notes](docs/coverage.md) give the measured gaps and the scope of each edition.
+Published packages are on the [releases page](https://github.com/mkpoli/kureedo/releases); 0.5.0 carries the three editions, earlier releases the Kureedo and Kureedo Kata pair.
 
-Related typeface: [GenZui Serif / 源萃明朝](https://genzui.mkpo.li/), a Noto Serif JP derivative with hentaigana and historical kana.
+## Scope
+
+Kureedo is a kana font first. The imported outlines in Full stay WenKai's drawings apart from the weight pass and the two rebuilt characters, so Full closes coverage gaps rather than supplying Klee-style ideographs. The kana side stays narrow: hentaigana in Kana Supplement, unencoded regional kana, the Okinawan private-use letters and IVD variation sequences are absent. [Coverage and edition notes](docs/coverage.md) measure the gaps and delimit each edition.
 
 ## Using the fonts
 
@@ -48,7 +54,7 @@ On the desktop, install `KureedoFull-Regular.ttf` and pick Kureedo Full. Histori
 
 Kureedo Additions is a fallback for the 26 added code points. Select Full or Kana for features applied to ordinary kana, including `hist` for ネ/ヰ and `hlig` for トモ/コト.
 
-The published CDN still serves the earlier Kureedo Kata release. Its `/kureedo.css` alias follows published releases; `/v0.4.3/kureedo.css` and the WOFF2 beside it are pinned, with CORS and a one-year cache. Source-built Kana and Additions can be self-hosted until their release.
+The published CDN still serves the 0.4.3 Kureedo Kata stylesheet, since the site has not deployed 0.5.0. Its `/kureedo.css` alias follows the deployed release and `/v0.4.3/kureedo.css` and the WOFF2 beside it are pinned, with CORS and a one-year cache. Use the 0.5.0 zips from the releases page meanwhile.
 
 ### Historical forms
 

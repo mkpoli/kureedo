@@ -81,8 +81,8 @@ alternate of 𪜈. Select Kana for `hist` applied to ordinary ネ/ヰ,
 These operations require the base letters and their substitutions in the
 same font. A minimal additions-only fallback cannot provide them across fonts.
 
-The three-edition files are source-build outputs. Published release 0.4.3 retains
-its earlier Kureedo/Kureedo Kata packaging.
+The three editions are also published, in release 0.5.0. Releases 0.4.3 and
+earlier keep the Kureedo and Kureedo Kata packaging.
 
 ## Remaining kana coverage
 
