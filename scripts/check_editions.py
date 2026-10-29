@@ -47,7 +47,7 @@ def check():
     expected = set(before) | {cp for cp in donor.getBestCmap() if not private_use(cp)}
     assert set(after) == expected and len(after) == 46923
     assert len(before) == 10204
-    assert len(full.getGlyphOrder()) == 52232 < 65536
+    assert len(full.getGlyphOrder()) == 52233 < 65536
     assert all(after[cp] == name for cp, name in before.items())
     assert full.getGlyphOrder()[:len(base.getGlyphOrder())] == base.getGlyphOrder()
     for name in base.getGlyphOrder():
@@ -91,19 +91,22 @@ def check():
         residual = measured[0] / target_thickness(measured[1], model)
         assert 0.95 <= residual <= 1.05, ("Designed weight", cp, residual)
 
-    # U+2EE5 is a composite over 鱼. It keeps the donor's normalized outline
-    # through a preserved glyph, so replacing U+9C7C does not change the radical.
-    radical = full["glyf"][after[0x2EE5]]
-    assert radical.isComposite() and len(radical.components) == 1
-    preserved = full["glyf"][radical.components[0].glyphName]
-    source = donor.getBestCmap()[0x9C7C]
-    radius = normalization_radius(donor_set, source, model)
-    expected = (erode_glyph(donor, source, radius, donor_set)
-                if radius >= MIN_EROSION else donor["glyf"][source])
-    assert (preserved.getCoordinates(full["glyf"])
-            == expected.getCoordinates(full["glyf"])), "U+2EE5 donor component"
-    assert (radical.getCoordinates(full["glyf"])
-            == expected.getCoordinates(full["glyf"])), "U+2EE5 resolved outline"
+    # Retained composites over a designed glyph keep the donor's normalized
+    # outline through a preserved glyph, so only the encoded character changes.
+    for radical_cp, designed_cp in ((0x2EE5, 0x9C7C), (0x2EC9, 0x8D1D)):
+        radical = full["glyf"][after[radical_cp]]
+        preserved_name = after[designed_cp] + ".donor"
+        assert radical.isComposite() and len(radical.components) == 1, radical_cp
+        assert (radical.components[0].glyphName == preserved_name
+                and (radical.components[0].x, radical.components[0].y) == (0, 0)), radical_cp
+        source = donor.getBestCmap()[designed_cp]
+        radius = normalization_radius(donor_set, source, model)
+        expected = (erode_glyph(donor, source, radius, donor_set)
+                    if radius >= MIN_EROSION else donor["glyf"][source])
+        assert (full["glyf"][preserved_name].getCoordinates(full["glyf"])
+                == expected.getCoordinates(full["glyf"])), f"Preserved U+{designed_cp:04X}"
+        assert (radical.getCoordinates(full["glyf"])
+                == expected.getCoordinates(full["glyf"])), f"Resolved U+{radical_cp:04X}"
 
     # Every sampled ideograph is the donor's outline eroded by the weight model.
     for cp in normalized[::97]:
