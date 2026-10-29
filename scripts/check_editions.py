@@ -93,26 +93,20 @@ def check():
 
     # Retained composites over a designed glyph keep the donor's normalized
     # outline through a preserved glyph, so only the encoded character changes.
-    for cp in DESIGNED_IMPORTS:
-        source = donor.getBestCmap()[cp]
-        preserved_name = source + ".donor"
-        if preserved_name not in full.getGlyphOrder():
-            continue
+    for radical_cp, designed_cp in ((0x2EE5, 0x9C7C), (0x2EC9, 0x8D1D)):
+        radical = full["glyf"][after[radical_cp]]
+        preserved_name = after[designed_cp] + ".donor"
+        assert radical.isComposite() and len(radical.components) == 1, radical_cp
+        assert (radical.components[0].glyphName == preserved_name
+                and (radical.components[0].x, radical.components[0].y) == (0, 0)), radical_cp
+        source = donor.getBestCmap()[designed_cp]
         radius = normalization_radius(donor_set, source, model)
         expected = (erode_glyph(donor, source, radius, donor_set)
                     if radius >= MIN_EROSION else donor["glyf"][source])
         assert (full["glyf"][preserved_name].getCoordinates(full["glyf"])
-                == expected.getCoordinates(full["glyf"])), f"Preserved U+{cp:04X}"
-        for glyph_name in full.getGlyphOrder():
-            glyph = full["glyf"][glyph_name]
-            if not glyph.isComposite():
-                continue
-            refs = [c for c in glyph.components if c.glyphName == preserved_name]
-            if not refs:
-                continue
-            assert len(refs) == 1 and (refs[0].x, refs[0].y) == (0, 0), glyph_name
-            assert (glyph.getCoordinates(full["glyf"])
-                    == expected.getCoordinates(full["glyf"])), glyph_name
+                == expected.getCoordinates(full["glyf"])), f"Preserved U+{designed_cp:04X}"
+        assert (radical.getCoordinates(full["glyf"])
+                == expected.getCoordinates(full["glyf"])), f"Resolved U+{radical_cp:04X}"
 
     # Every sampled ideograph is the donor's outline eroded by the weight model.
     for cp in normalized[::97]:
