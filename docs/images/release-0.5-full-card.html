@@ -1,0 +1,79 @@
+<!doctype html>
+<meta charset="utf-8">
+<style>
+  @font-face { font-family: KF; src: url("../../fonts/KureedoFull-Regular.ttf") format("truetype"); }
+  @font-face { font-family: WK; src: url("../../sources/wenkai/LXGWWenKai-Light.ttf") format("truetype"); }
+  :root { --ink: #17140f; --paper: #ece5d6; --card: #fbf8f1; --rule: #c9bda3; --rule2: #e6dfd0; --accent: #a43f1f; --muted: #857a66; }
+  * { box-sizing: border-box; }
+  body { margin: 0; width: 1600px; height: 900px; background: var(--paper); display: flex; align-items: center; justify-content: center; color: var(--ink); font-family: KF, serif;
+         background-image: radial-gradient(var(--rule) .9px, transparent 1px); background-size: 18px 18px; }
+  .frame { width: 1520px; height: 820px; background: var(--card); border: 3px solid var(--ink); position: relative; box-shadow: 16px 16px 0 var(--ink); display: grid; grid-template-rows: 78px 662px 80px; }
+  .frame::before { content: ""; position: absolute; inset: 9px; border: 1px solid var(--rule); pointer-events: none; }
+  .corner { position: absolute; width: 30px; height: 30px; border: 3px solid var(--accent); pointer-events: none; z-index: 2; }
+  .c1 { top: -3px; left: -3px; border-right: 0; border-bottom: 0; } .c2 { top: -3px; right: -3px; border-left: 0; border-bottom: 0; }
+  .c3 { bottom: -3px; left: -3px; border-right: 0; border-top: 0; } .c4 { bottom: -3px; right: -3px; border-left: 0; border-top: 0; }
+  .top { display: grid; grid-template-columns: auto 1fr auto; align-items: center; padding: 10px 44px 0; border-bottom: 2px solid var(--ink); gap: 30px; }
+  .top .ver { font: 600 20px/1 ui-monospace, monospace; letter-spacing: .22em; color: var(--accent); }
+  .top .ver small, .top .blk small { display: block; font-size: 11px; line-height: 1; letter-spacing: .14em; color: var(--muted); font-weight: 500; margin-top: 8px; }
+  .top .mid { display: grid; grid-template-rows: 1fr auto; align-items: center; height: 100%; padding-top: 2px; }
+  .top .ticks { height: 10px; background: repeating-linear-gradient(90deg, var(--rule) 0 1px, transparent 1px 12px); align-self: end; }
+  .top .prov { font: 500 11px/1 ui-monospace, monospace; letter-spacing: .14em; color: var(--muted); text-align: center; position: relative; top: 10px; }
+  .top .blk { font: 600 20px/1 ui-monospace, monospace; letter-spacing: .14em; color: var(--muted); text-align: right; }
+  .body { display: grid; grid-template-columns: 1fr 380px; min-height: 0; }
+  .letters { display: grid; grid-template-columns: repeat(5, 1fr); min-height: 0; }
+  .char { display: grid; grid-template-rows: 1fr auto; padding: 10px 10px 18px; min-height: 0; overflow: hidden; }
+  .char + .char { border-left: 1px solid var(--rule); }
+  .g { font-size: 158px; line-height: 1; display: flex; align-items: center; justify-content: center; min-height: 0; }
+  .meta { text-align: center; }
+  .cp { font: 700 24px/1 ui-monospace, monospace; letter-spacing: .04em; }
+  .nm { font: 500 13px/1.3 'Roboto Condensed', 'Nimbus Sans Narrow', sans-serif; color: var(--muted); letter-spacing: .1em; margin-top: 10px; min-height: 3.9em; }
+  .eq { height: 52px; display: flex; align-items: center; justify-content: center; gap: 4px; margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--rule2); font: 500 13px/1.2 ui-monospace, monospace; letter-spacing: .08em; color: var(--muted); }
+  .eq b { font: 400 26px KF, serif; color: var(--ink); vertical-align: -3px; margin: 0 5px; }
+  .eq .new { color: var(--accent); font-weight: 700; margin-left: 8px; }
+  .side { border-left: 2px solid #b9ac93; display: grid; grid-template-rows: auto 1fr auto; min-height: 0; overflow: hidden; }
+  .side h3 { margin: 0; padding: 14px 0 12px; text-align: center; font: 600 14px/1 ui-monospace, monospace; letter-spacing: .28em; color: var(--muted); border-bottom: 1px solid var(--rule); }
+  .weight { display: grid; grid-template-rows: 1fr 1fr; min-height: 0; }
+  .row { display: grid; grid-template-columns: 128px 1fr; align-items: center; gap: 14px; padding: 10px 20px; }
+  .row + .row { border-top: 1px solid var(--rule2); }
+  .row .gl { font-size: 108px; line-height: 1; text-align: center; }
+  .row .lbl { display: block; font: 700 13px/1 ui-monospace, monospace; letter-spacing: .16em; color: var(--accent); }
+  .row .sub { display: block; font: 500 12px/1.5 ui-monospace, monospace; letter-spacing: .04em; color: var(--muted); margin-top: 8px; }
+  .note { padding: 2px 22px 12px; font: 500 12px/1.65 ui-monospace, monospace; color: var(--muted); letter-spacing: .02em; }
+  .note b { color: var(--ink); }
+  .src { font: 500 11px/1.5 ui-monospace, monospace; color: var(--muted); letter-spacing: .04em; text-align: center; padding: 9px 12px 8px; border-top: 1px solid var(--rule2); }
+  .bot { display: grid; grid-template-columns: 1fr 300px; align-items: center; padding: 0 44px; border-top: 2px solid var(--ink); overflow: hidden; }
+  .bot .s { font-size: 25px; line-height: 1; position: relative; top: -8px; letter-spacing: .07em; white-space: nowrap; display: flex; align-items: center; gap: 16px; }
+  .bot .s small { font: 600 12px/1 ui-monospace, monospace; letter-spacing: .25em; color: var(--accent); }
+  .bot .note { font: 500 13px/1 ui-monospace, monospace; letter-spacing: .1em; color: var(--muted); text-align: right; display: grid; gap: 9px; padding: 0; }
+  .bot .note b { font-size: 15px; line-height: 1; letter-spacing: .3em; }
+</style>
+<div class="frame">
+  <span class="corner c1"></span><span class="corner c2"></span><span class="corner c3"></span><span class="corner c4"></span>
+  <div class="top">
+    <span class="ver">KUREEDO 0.5 FULL<small>36,719 CHARACTERS FROM LXGW WENKAI</small></span>
+    <span class="mid"><span class="prov">U+672F · U+6C49 · U+8BED · U+9F99 · U+9F9F</span><span class="ticks"></span></span>
+    <span class="blk">46,923 CHARACTERS<small>WENKAI LIGHT · 1.06× KLEE STEMS</small></span>
+  </div>
+  <div class="body">
+    <div class="letters">
+      <div class="char"><div class="g">术</div><div class="meta"><div class="cp">U+672F</div><div class="nm">CJK UNIFIED IDEOGRAPH-672F<br>木 + 丶</div><div class="eq">KLEE<span class="new">NO GLYPH</span></div></div></div>
+      <div class="char"><div class="g">汉</div><div class="meta"><div class="cp">U+6C49</div><div class="nm">SIMPLIFIED<br>OF 漢</div><div class="eq"><b>漢</b>→<b>汉</b></div></div></div>
+      <div class="char"><div class="g">语</div><div class="meta"><div class="cp">U+8BED</div><div class="nm">SIMPLIFIED<br>OF 語</div><div class="eq"><b>語</b>→<b>语</b></div></div></div>
+      <div class="char"><div class="g">龙</div><div class="meta"><div class="cp">U+9F99</div><div class="nm">SIMPLIFIED<br>OF 龍</div><div class="eq"><b>龍</b>→<b>龙</b></div></div></div>
+      <div class="char"><div class="g">龟</div><div class="meta"><div class="cp">U+9F9F</div><div class="nm">SIMPLIFIED<br>OF 龜</div><div class="eq"><b>龜</b>→<b>龟</b></div></div></div>
+    </div>
+    <div class="side">
+      <h3>WEIGHT</h3>
+      <div class="weight">
+        <div class="row"><span class="gl" style="font-family:WK">术</span><span><span class="lbl">LXGW WENKAI LIGHT</span><span class="sub">the donor, outlined for a Klee SemiBold base</span></span></div>
+        <div class="row"><span class="gl">术</span><span><span class="lbl">KUREEDO FULL</span><span class="sub">normalised to Klee's weight; Klee's own glyphs keep theirs</span></span></div>
+      </div>
+      <div class="note">On 138 shared Han characters, WenKai Light's stems measure <b>1.06×</b> Klee Regular; WenKai Regular, <b>1.28×</b>. Light is the closer match, so imported strokes sit beside Klee's. All <b>6,763</b> GB2312 ideographs are covered; Klee alone drew 3,780.</div>
+      <div class="src">LXGW WenKai Light 1.530 · SIL OFL 1.1<br>46,923 encoded characters · 52,231 glyphs</div>
+    </div>
+  </div>
+  <div class="bot">
+    <span class="s"><small>ZH</small><span>汉字　汉语　龙马精神</span><span style="font-family:WK;color:var(--muted)">/ 漢語</span></span>
+    <span class="note"><b>KUREEDO FULL</b><span>kureedo.mkpo.li</span></span>
+  </div>
+</div>
