@@ -69,7 +69,7 @@ KANA_UNICODES = [0x20, *range(0x3000, 0x3100), *range(0x31F0, 0x3200),
 
 #: Imported code points redrawn from Klee parts. Their outlines replace the
 #: normalized WenKai glyph in Full; the other editions do not carry them.
-DESIGNED_IMPORTS = {0x9C7C: "yu.svg"}
+DESIGNED_IMPORTS = {0x8D1D: "bei.svg", 0x9C7C: "yu.svg"}
 
 # Ainu small kana follow Klee's own small-kana convention (ッ against ツ): 78% of the full-size
 # letter, centred in the cell on the baseline, and shifted up and to the right in vertical text.
@@ -474,8 +474,13 @@ def apply_designed_imports(font):
         # A retained composite may reference this glyph. Keep the donor outline
         # under its own name and point that composite at it, so only the encoded
         # character changes.
-        references = [g for g in font["glyf"].glyphs.values()
-                      if g.isComposite() and any(c.glyphName == name for c in g.components)]
+        references = []
+        for glyph_name in font.getGlyphOrder():
+            candidate = font["glyf"][glyph_name]
+            if not candidate.isComposite():
+                continue
+            if name in candidate.getComponentNames(font["glyf"]):
+                references.append(candidate)
         if references:
             preserved = name + ".donor"
             if preserved in font.getGlyphOrder():
@@ -484,7 +489,11 @@ def apply_designed_imports(font):
             font["hmtx"][preserved] = font["hmtx"][name]
             if "vmtx" in font:
                 font["vmtx"][preserved] = font["vmtx"][name]
-            font.setGlyphOrder([*font.getGlyphOrder(), preserved])
+            order = list(font.getGlyphOrder())
+            if preserved not in order:
+                order.append(preserved)
+            font.setGlyphOrder(order)
+            font["glyf"].glyphOrder = order
             for glyph_ref in references:
                 for component in glyph_ref.components:
                     if component.glyphName == name:
