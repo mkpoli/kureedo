@@ -5,22 +5,20 @@
 has four dots.
 
 The designed glyph takes Klee 魚's upper strokes and 田 unchanged, drops the
-four dots, and sets Klee 一 as the bottom bar, scaled to the bar box. The result
-is eroded 2.3 units to Klee's weight model (stroke width 47.8 → 43.3), so it
-matches the imported layer's weight rather than WenKai's raw Light outlines.
+four dots, and sets Klee 一 as the bottom bar. The bar takes WenKai's 鱼 width
+and sits 25 units above its bar box, narrowing the gap to the 田. The outline is
+eroded 2.3 units to Klee's weight model (stroke width 47.8 → 43.0), matching the
+imported layer rather than WenKai's raw Light weight.
 
 ![Klee 魚, the designed 鱼 and WenKai's 鱼](images/yu.png)
 
-The upper part and the bar are Klee's own strokes. The bar sits at the width and
-height of WenKai's 鱼 bar, and the whole glyph keeps a 1,000-unit advance. The
-glyph is a replacement in Full only: `DESIGNED_IMPORTS` in `scripts/build.py`
-overrides the imported outline after the merge. Kana and Additions do not carry
-it, and no other edition's repertoire changes.
+The upper part and the bar are Klee's own strokes. The glyph keeps a
+1,000-unit advance. It is a replacement in Full only: `DESIGNED_IMPORTS` in
+`scripts/build.py` overrides the imported outline after the merge. Kana and
+Additions do not carry it, and no other edition's repertoire changes.
 
 The result is not a repaint of WenKai's glyph: the 田, the top stroke and the
-bar keep Klee's terminals. The optical placement still needs a text-size review;
-the upper part sits a little higher than WenKai's, leaving a wider gap above the
-bar.
+bar keep Klee's terminals. The bar placement still needs a text-size review.
 
 ## Checks
 
