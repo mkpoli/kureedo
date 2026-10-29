@@ -1,32 +1,28 @@
-# 贝 from Klee's 貝 and 人
+# 贝 from WenKai's frame and Klee's 丿
 
 贝 U+8D1D is the simplified form of 貝. BabelStone IDS uses it as a leaf in 76
-imported ideographs. Klee draws 貝 with a closed 目 frame and four short legs;
-贝 needs an open 冂 frame and a long 人 inside it.
+imported ideographs. WenKai's frame and right dot are already close to Klee's
+drawing; the long left 丿 is the stroke that differs.
 
-The frame is Klee 貝's outer contour with the 目 interior and bottom bar cut
-away, leaving a 冂. The legs are Klee 人 scaled into the 贝 leg box. The two are
-unioned and dilated 6.5 units to Klee's weight model: measured stroke width 34.0 → 46.5, close to Klee 貝's 45.7 and WenKai
-贝's 44.9. Unlike 鱼, the scaled 人 lost
-weight, so dilation, not erosion, brings it back.
+The design keeps WenKai's normalized frame and right dot and replaces only the
+left 丿 with Klee's 丿 U+4E3F. The Klee stroke is fitted to the donor 丿's box:
+0.916× across and 0.775× down, with the box edges aligned. The resulting glyph
+measures 45.3 against Klee's model target of 45.6, a residual of 0.993.
 
-![Klee 貝, the designed 贝 and WenKai's 贝](images/bei.png)
+![WenKai's 贝, Klee's 丿 and the designed 贝](images/bei.png)
 
-The glyph replaces WenKai's U+8D1D outline in Full only through
-`DESIGNED_IMPORTS`. The retained radical U+2EC9 is a composite over 贝; its donor
-outline is preserved under `u8D1D.donor` and the composite retargeted there, so
-only U+8D1D's resolved outline changes. The Full font gains one more glyph name;
-the encoded repertoire is unchanged.
-
-The frame's inner corners are rectangular rather than Klee's drawn inner
-corners, and the 人 sits a little wider than WenKai's. It needs a text-size
-review before any further use.
+The frame, the right dot and the 1,000-unit advance stay as WenKai normalized
+them. The glyph replaces U+8D1D in Full only through `DESIGNED_IMPORTS`. The
+retained radical U+2EC9 is a composite over 贝; its donor outline is preserved
+under `u8D1D.donor` and the composite retargeted there, so only U+8D1D's resolved
+outline changes. The Full font gains one glyph name; the encoded repertoire is
+unchanged.
 
 ## Checks
 
 `check_editions.py` compares the built glyph with the SVG, checks its weight,
-and verifies every preserved donor component and its resolved composite. The
-same loop covers the U+2EE5 fish radical from the earlier design.
+and verifies the preserved U+2EE5 and U+2EC9 components and their resolved
+composites.
 
 ## Sources
 
