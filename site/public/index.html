@@ -71,6 +71,9 @@
     --shadow: #1a1613;
     --dot: #cbc2af;
     --button-ink: #faf7f0;
+    --sp-pill-a: #ffe6ef; --sp-pill-b: #fff0e0; --sp-line: #ffc2d6; --sp-text: #c2185b; --sp-heart: #ff4f88;
+    --sp-glow: #ffd9e5; --sp-box: #fff1f5; --sp-num-bg: #c2185b; --sp-num-ink: #fff1f5; --sp-ring: #faf7f0;
+    --sp-veil: rgba(26, 22, 19, .5);
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
@@ -87,6 +90,9 @@
       --shadow: #574c40;
       --dot: #2c2620;
       --button-ink: #14110e;
+      --sp-pill-a: #3a1a28; --sp-pill-b: #33231a; --sp-line: #6e3450; --sp-text: #ff8fb5; --sp-heart: #ff4f88;
+      --sp-glow: #4a2234; --sp-box: #2a1a22; --sp-num-bg: #ff8fb5; --sp-num-ink: #2a0f1a; --sp-ring: #1c1813;
+      --sp-veil: rgba(0, 0, 0, .6);
     }
   }
   :root[data-theme="dark"] {
@@ -103,6 +109,9 @@
     --shadow: #574c40;
     --dot: #2c2620;
     --button-ink: #14110e;
+    --sp-pill-a: #3a1a28; --sp-pill-b: #33231a; --sp-line: #6e3450; --sp-text: #ff8fb5; --sp-heart: #ff4f88;
+    --sp-glow: #4a2234; --sp-box: #2a1a22; --sp-num-bg: #ff8fb5; --sp-num-ink: #2a0f1a; --sp-ring: #1c1813;
+    --sp-veil: rgba(0, 0, 0, .6);
   }
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
@@ -189,7 +198,7 @@
   }
   .tag:hover { color: var(--accent); border-color: var(--accent); }
   .tag[aria-pressed="true"], .tag.on { background: var(--ink); color: var(--button-ink); border-color: var(--ink); }
-  #theme { margin-bottom: .6rem; }
+  .mast-actions { display: flex; align-items: center; gap: .6rem; margin-bottom: .6rem; }
   #theme .moon { display: none; }
   :root[data-theme="dark"] #theme .sun { display: none; }
   :root[data-theme="dark"] #theme .moon { display: inline; }
@@ -423,6 +432,89 @@
     .snippet .copy { position: static; }
     .snippet pre { width: 100%; padding-right: 1.25rem; }
   }
+
+  /* Sponsor: a pink pill led by the author's face, and the dialog it opens. */
+  .sponsor {
+    display: inline-flex; align-items: center; gap: 9px; flex: none; height: 38px; padding: 0 15px 0 6px;
+    border: 1px solid var(--sp-line); border-radius: 999px;
+    background: linear-gradient(135deg, var(--sp-pill-a), var(--sp-pill-b)); color: var(--sp-text);
+    font: 700 13px/1 ui-sans-serif, system-ui, sans-serif; white-space: nowrap; cursor: pointer;
+  }
+  .sponsor:focus-visible, .sponsor-close:focus-visible, .sponsor-kofi:focus-visible, .sponsor-company:focus-visible { outline: 2px solid var(--sp-text); outline-offset: 2px; }
+  .sponsor-face { position: relative; flex: none; width: 24px; height: 24px; }
+  .sponsor-face img { display: block; width: 100%; height: 100%; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 1.5px var(--sp-ring), 0 0 0 2.5px var(--sp-line); }
+  .sponsor-face svg { position: absolute; inset-inline-end: -4px; bottom: -3px; width: 12px; height: 12px; fill: var(--sp-heart); stroke: var(--sp-ring); stroke-width: 2.5; paint-order: stroke; overflow: visible; transform-origin: 50% 60%; }
+  @media (max-width: 720px) {
+    .mast-row { flex-direction: column-reverse; align-items: stretch; gap: 0; }
+    .mast-actions { justify-content: flex-end; margin-bottom: .2rem; }
+    .sponsor { width: 38px; padding: 0; justify-content: center; }
+    .sponsor-label { display: none; }
+  }
+  .sponsor-dialog {
+    width: min(480px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); padding: 0; margin: auto;
+    border: 1px solid var(--ink); border-radius: 16px; background: var(--panel); color: var(--ink);
+    box-shadow: 8px 8px 0 var(--shadow); overflow: auto; font-size: 14px; line-height: 1.65;
+  }
+  .sponsor-dialog::backdrop { background: var(--sp-veil); backdrop-filter: blur(6px); }
+  .sponsor-dialog header { display: flex; align-items: center; justify-content: space-between; padding: 14px 14px 0 24px; }
+  .sponsor-dialog h2, .sponsor-dialog h3 { display: block; margin: 0; text-transform: none; letter-spacing: 0; font-family: inherit; }
+  .sponsor-dialog h2 { font-size: 22px; font-weight: 700; color: var(--ink); }
+  .sponsor-dialog h2 span, .sponsor-dialog h3 span { margin-inline-start: .6em; font-size: .6em; font-weight: 400; color: var(--muted); }
+  .sponsor-close { display: grid; place-items: center; width: 36px; height: 36px; padding: 0; border: 0; border-radius: 50%; background: none; color: var(--muted); cursor: pointer; }
+  .sponsor-close:hover { background: var(--well); color: var(--ink); }
+  .sponsor-close svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; }
+  .sponsor-sheet { display: flex; flex-direction: column; gap: 14px; padding: 4px 24px 22px; }
+  .sponsor-sheet p { margin: 0; }
+  .sponsor-en { display: block; margin-top: .2em; font-family: ui-sans-serif, system-ui, sans-serif; font-size: .88em; line-height: 1.5; color: var(--muted); }
+  .sponsor-hero { position: relative; display: grid; place-items: center; height: 136px; background: radial-gradient(closest-side, var(--sp-glow), transparent); }
+  .sponsor-portrait { position: relative; width: 112px; height: 112px; }
+  .sponsor-portrait img { display: block; width: 100%; height: 100%; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 4px var(--sp-ring), 0 0 0 6px var(--sp-line), 0 10px 24px rgba(255, 79, 136, .3); }
+  .sponsor-portrait svg { position: absolute; inset-inline-end: -2px; bottom: 2px; width: 34px; height: 34px; fill: var(--sp-heart); stroke: var(--sp-ring); stroke-width: 2; paint-order: stroke; overflow: visible; transform-origin: 50% 60%; filter: drop-shadow(0 3px 6px rgba(255, 79, 136, .35)); }
+  .sponsor-portrait ellipse { fill: #fff; stroke: none; opacity: .6; }
+  .sponsor-spark { position: absolute; color: var(--sp-heart); opacity: .75; }
+  .sponsor-spark:nth-of-type(2) { top: 22px; inset-inline-start: calc(50% - 84px); font-size: 14px; }
+  .sponsor-spark:nth-of-type(3) { top: 12px; inset-inline-start: calc(50% + 66px); font-size: 10px; }
+  .sponsor-spark:nth-of-type(4) { bottom: 20px; inset-inline-start: calc(50% - 76px); font-size: 11px; }
+  .sponsor-ask { font-weight: 700; color: var(--sp-text); }
+  .sponsor-ask .sponsor-en { font-weight: 400; }
+  .sponsor-how { padding: 12px 14px; border: 1px dashed var(--sp-line); border-radius: 14px; background: var(--sp-box); }
+  .sponsor-how h3 { margin-bottom: 8px; font-size: 12px; font-weight: 700; color: var(--sp-text); }
+  .sponsor-how ol { display: flex; flex-direction: column; gap: 8px; margin: 0; padding: 0; list-style: none; counter-reset: step; }
+  .sponsor-how li { display: flex; align-items: baseline; gap: 8px; font-size: 13px; line-height: 1.45; counter-increment: step; }
+  .sponsor-how li::before { content: counter(step); display: grid; place-items: center; flex: none; width: 20px; height: 20px; border-radius: 50%; background: var(--sp-num-bg); color: var(--sp-num-ink); font: 700 11px/1 ui-sans-serif, system-ui, sans-serif; transform: translateY(-1px); }
+  .sponsor-dialog .sponsor-kofi { display: flex; align-items: center; gap: 12px; padding: 12px 18px 12px 12px; border-radius: 999px; background: linear-gradient(135deg, #d81b60, #b0124f); color: #fff; text-decoration: none; box-shadow: 0 6px 16px rgba(216, 27, 96, .32); }
+  .sponsor-kofi .sponsor-en { color: inherit; opacity: .9; }
+  .sponsor-mark { display: grid; place-items: center; flex: none; width: 38px; height: 38px; border-radius: 50%; background: rgba(255, 255, 255, .22); }
+  .sponsor-mark svg, .sponsor-arrow, .sponsor-company svg { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .sponsor-mark svg { width: 20px; height: 20px; }
+  .sponsor-arrow { flex: none; width: 18px; height: 18px; }
+  .sponsor-arrow:dir(rtl) { transform: scaleX(-1); }
+  .sponsor-copy { display: flex; flex: 1; flex-direction: column; gap: 1px; min-width: 0; }
+  .sponsor-copy strong { font-size: 13.5px; }
+  .sponsor-copy small { font-size: 12px; line-height: 1.4; }
+  .sponsor-kofi .sponsor-copy strong { font-size: 15px; }
+  .sponsor-dialog .sponsor-company { display: flex; align-items: flex-start; gap: 10px; padding: 8px 12px; border-radius: 12px; color: var(--muted); text-decoration: none; }
+  .sponsor-company:hover { background: var(--well); color: var(--ink); }
+  .sponsor-company svg { flex: none; width: 16px; height: 16px; margin-top: 2px; }
+  .sponsor-company .sponsor-copy strong { font-size: 12.5px; color: var(--ink); }
+  .sponsor-company strong .sponsor-en { font-weight: 400; }
+  .sponsor-sheet .sponsor-thanks { font-size: 12.5px; line-height: 1.5; color: var(--muted); text-align: center; }
+  @media (prefers-reduced-motion: no-preference) {
+    .sponsor { transition: transform .18s ease, box-shadow .18s ease; }
+    .sponsor:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(255, 79, 136, .28); }
+    .sponsor-face svg, .sponsor-portrait svg { animation: sponsor-beat 2.8s ease-in-out infinite; }
+    .sponsor:hover .sponsor-face svg, .sponsor:focus-visible .sponsor-face svg { animation: sponsor-bounce .6s ease-in-out infinite; }
+    .sponsor-spark { animation: sponsor-twinkle 2.4s ease-in-out infinite; }
+    .sponsor-spark:nth-of-type(3) { animation-delay: .8s; }
+    .sponsor-spark:nth-of-type(4) { animation-delay: 1.6s; }
+    .sponsor-dialog[open] { animation: sponsor-arrive .32s cubic-bezier(.2, .8, .2, 1); }
+    .sponsor-kofi { transition: transform .18s ease, box-shadow .18s ease; }
+    .sponsor-kofi:hover { transform: translateY(-1px); box-shadow: 0 8px 22px rgba(216, 27, 96, .42); }
+  }
+  @keyframes sponsor-beat { 0%, 70%, 100% { transform: scale(1); } 78% { transform: scale(1.18); } 86% { transform: scale(.96); } 93% { transform: scale(1.1); } }
+  @keyframes sponsor-bounce { 0%, 100% { transform: translateY(0) scale(1); } 40% { transform: translateY(-2px) scale(1.18) rotate(-8deg); } }
+  @keyframes sponsor-twinkle { 0%, 100% { opacity: .2; transform: scale(.7); } 50% { opacity: .9; transform: scale(1); } }
+  @keyframes sponsor-arrive { from { opacity: 0; transform: translateY(14px) scale(.98); } }
 </style>
 </head>
 <body>
@@ -441,7 +533,10 @@
   <header class="masthead">
     <div class="mast-row">
       <h1 class="wordmark">Kureedo<small>クレード</small></h1>
+      <div class="mast-actions">
+      <button type="button" class="sponsor" aria-label="スポンサー　Sponsor" aria-haspopup="dialog" aria-controls="sponsor-dialog"><span class="sponsor-face" aria-hidden="true"><img src="/sponsor/sponsor-face.webp" alt="" width="24" height="24"><svg viewBox="0 0 24 24"><path d="M12 21s-8.5-5.1-8.5-11.3A4.7 4.7 0 0 1 12 6.9a4.7 4.7 0 0 1 8.5 2.8C20.5 15.9 12 21 12 21Z"/></svg></span><span class="sponsor-label">Sponsor</span></button>
       <button id="theme" class="tag" type="button" aria-label="配色を切り替える　Toggle light and dark" title="明／暗"><span class="sun" aria-hidden="true">☀</span><span class="moon" aria-hidden="true">☾</span> <span>明／暗</span></button>
+      </div>
     </div>
     <div class="ticks" aria-hidden="true"></div>
     <div class="mast-meta"><span class="label accent">Unicode 18.0 · Kana Extended-A</span><span class="label">拡張仮名 ㇰ–ㇿ · ㇷ゚ · カ゚</span><span class="label"><a href="https://mkpo.li" rel="author">まくぽり mkpoli</a> · v0.5.0 · OFL 1.1</span></div>
@@ -1061,6 +1156,22 @@
     <p>Kureedo is an independent derivative of Klee One (Fontworks). Klee One © 2020 The Klee Project Authors; Klee is a trademark of Fontworks Inc. Kureedo has no connection to Fontworks.</p>
   </footer>
 </main>
+<dialog id="sponsor-dialog" class="sponsor-dialog" aria-labelledby="sponsor-title">
+  <header><h2 id="sponsor-title">スポンサー<span lang="en">Sponsor</span></h2><button type="button" class="sponsor-close" aria-label="閉じる　Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></header>
+  <div class="sponsor-sheet">
+    <div class="sponsor-hero" aria-hidden="true"><span class="sponsor-portrait"><img src="/sponsor/sponsor-portrait.webp" alt="" width="112" height="112" loading="lazy"><svg viewBox="0 0 24 24"><path d="M12 21s-8.5-5.1-8.5-11.3A4.7 4.7 0 0 1 12 6.9a4.7 4.7 0 0 1 8.5 2.8C20.5 15.9 12 21 12 21Z"/><ellipse cx="7.6" cy="9.6" rx="1.5" ry="2.1" transform="rotate(-30 7.6 9.6)"/></svg></span><span class="sponsor-spark">✦</span><span class="sponsor-spark">✦</span><span class="sponsor-spark">✦</span></div>
+    <p class="sponsor-lead">文字が好きでこのフォントを作っていて、これまでに自腹で数百ドルをつぎ込んできました。今は仕事がなく、わずかなTAの給料では家賃や食費すらまかなえません。日によっては、ご飯を食べるのさえやっとのこともあります。<span class="sponsor-en" lang="en">I make this font out of love for characters, and I've put several hundred dollars of my own into it. I don't have a job, and my small TA pay doesn't cover rent and food. Some days I can barely afford to eat.</span></p>
+    <p class="sponsor-ask">開発を続けられるよう、どうか力を貸してください🥺 たった1&#8288;ドルでも、今日の私のごはん代として本当に助かります。<span class="sponsor-en" lang="en">Please help me keep going 🥺 Even one dollar helps me eat today.</span></p>
+    <div class="sponsor-how"><h3>応援の方法<span lang="en">How to help</span></h3><ol role="list">
+      <li><span>下のKo-fiをタップしてください。<span class="sponsor-en" lang="en">Tap Ko-fi below.</span></span></li>
+      <li><span>お好きな金額を選んでください。少額でもすごく嬉しいです。<span class="sponsor-en" lang="en">Pick any amount. Small is fine.</span></span></li>
+      <li><span>PayPalまたはカードでお支払いいただけます。会員登録は不要です。<span class="sponsor-en" lang="en">Pay with PayPal or a card. No sign-up needed.</span></span></li>
+    </ol></div>
+    <a class="sponsor-kofi" href="https://ko-fi.com/mkpoli" target="_blank" rel="noreferrer"><span class="sponsor-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 9h12v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4ZM16 11h2a2.5 2.5 0 0 1 0 5h-2M7 3v3M11 2v3M15 3v3"/></svg></span><span class="sponsor-copy"><strong>Ko-fi</strong><small>1回だけでも、毎月でも<span class="sponsor-en" lang="en">One-time or monthly</span></small></span><svg class="sponsor-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+    <a class="sponsor-company" href="mailto:mkpoli@mkpo.li?subject=Sponsorship%20on%20kureedo.mkpo.li"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v12H3zM3 7l9 6 9-6"/></svg><span class="sponsor-copy"><strong>企業スポンサー<span class="sponsor-en" lang="en">Company sponsorship</span></strong><small>このサイトへの広告掲載も大歓迎です。mkpoli@mkpo.liまでぜひご連絡ください。<span class="sponsor-en" lang="en">I'd love to put your ad on this site. Please write to mkpoli@mkpo.li.</span></small></span></a>
+    <p class="sponsor-thanks">最後まで読んでくださり本当にありがとうございます。みなさんの温かい応援が私のごはんになり、このフォントをもっと育てていく力になります💗<span class="sponsor-en" lang="en">Thank you for reading this far. Your help keeps me fed and keeps this font growing 💗</span></p>
+  </div>
+</dialog>
 <script>
   (function () {
     var root = document.documentElement;
@@ -1074,6 +1185,18 @@
       root.setAttribute("data-theme", next);
       try { localStorage.setItem("theme", next); } catch (e) {}
     });
+
+    // A click on the backdrop closes the dialog; one on its own scrollbar also targets it, so only a click outside its box counts.
+    var sponsorDialog = document.getElementById("sponsor-dialog");
+    var sponsorPill = document.querySelector(".sponsor");
+    sponsorPill.addEventListener("click", function () { sponsorDialog.showModal(); });
+    sponsorDialog.querySelector(".sponsor-close").addEventListener("click", function () { sponsorDialog.close(); });
+    sponsorDialog.addEventListener("click", function (e) {
+      if (e.target !== sponsorDialog) return;
+      var r = sponsorDialog.getBoundingClientRect();
+      if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) sponsorDialog.close();
+    });
+    sponsorDialog.addEventListener("close", function () { sponsorPill.focus(); });
 
     var topnav = document.getElementById("topnav");
     var hero = document.getElementById("hero");
