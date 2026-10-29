@@ -6,7 +6,8 @@ import uharfbuzz as hb
 from fontTools.ttLib import TTFont
 from fontTools.ttLib.tables.O_S_2f_2 import calcCodePageRanges, intersectUnicodeRanges
 
-from build import JAPANESE, KANA_UNICODES, stroke_thickness
+from build import (DESIGNED_IMPORTS, GLYPHS, JAPANESE, KANA_UNICODES,
+                   stroke_thickness, svg_glyph)
 from wenkai import (MIN_EROSION, erode_glyph, fetch_wenkai, is_ideograph,
                     normalizable_names, normalization_radius, private_use,
                     target_thickness, thickness_area, weight_model)
@@ -65,7 +66,7 @@ def check():
         target, source = after[cp], donor.getBestCmap()[cp]
         assert full["hmtx"][target][0] == donor["hmtx"][source][0], (cp, "hmtx advance")
         assert full["vmtx"][target][0] == donor["vmtx"][source][0], (cp, "vmtx advance")
-        if source in eligible:
+        if cp in DESIGNED_IMPORTS or source in eligible:
             continue
         # A radical can reuse an ideograph as a component; that component's new
         # weight carries through. Its composite transform is unchanged.
@@ -78,6 +79,18 @@ def check():
                     == donor["glyf"][source].getCoordinates(donor["glyf"])), f"WenKai outline U+{cp:04X}"
         for tag in ("hmtx", "vmtx"):
             assert full[tag][target] == donor[tag][source], (cp, tag)
+    # Designed imports are the SVG outlines, not the donor's.
+    for cp, svg in DESIGNED_IMPORTS.items():
+        target = after[cp]
+        assert full["hmtx"][target][0] == 1000, (cp, "advance")
+        expected = svg_glyph(GLYPHS / svg, normalize=True)
+        assert (full["glyf"][target].getCoordinates(full["glyf"])
+                == expected.getCoordinates(full["glyf"])), f"Designed outline U+{cp:04X}"
+        measured = thickness_area(full_set, target)
+        assert measured, cp
+        residual = measured[0] / target_thickness(measured[1], model)
+        assert 0.95 <= residual <= 1.05, ("Designed weight", cp, residual)
+
     # Every sampled ideograph is the donor's outline eroded by the weight model.
     for cp in normalized[::97]:
         target, source = after[cp], donor.getBestCmap()[cp]
