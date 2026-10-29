@@ -471,6 +471,24 @@ def apply_designed_imports(font):
             raise ValueError(f"U+{cp:04X} is not in the merged font")
         glyph = svg_glyph(GLYPHS / svg, normalize=True)
         glyph.recalcBounds(font["glyf"])
+        # A retained composite may reference this glyph. Keep the donor outline
+        # under its own name and point that composite at it, so only the encoded
+        # character changes.
+        references = [g for g in font["glyf"].glyphs.values()
+                      if g.isComposite() and any(c.glyphName == name for c in g.components)]
+        if references:
+            preserved = name + ".donor"
+            if preserved in font.getGlyphOrder():
+                raise ValueError(f"Glyph name collision: {preserved}")
+            font["glyf"][preserved] = font["glyf"][name]
+            font["hmtx"][preserved] = font["hmtx"][name]
+            if "vmtx" in font:
+                font["vmtx"][preserved] = font["vmtx"][name]
+            font.setGlyphOrder([*font.getGlyphOrder(), preserved])
+            for glyph_ref in references:
+                for component in glyph_ref.components:
+                    if component.glyphName == name:
+                        component.glyphName = preserved
         old_ymax = font["glyf"][name].yMax
         font["glyf"][name] = glyph
         advance, _ = font["hmtx"][name]

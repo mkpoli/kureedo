@@ -15,7 +15,10 @@ imported layer rather than WenKai's raw Light weight.
 The upper part and the bar are Klee's own strokes. The glyph keeps a
 1,000-unit advance. It is a replacement in Full only: `DESIGNED_IMPORTS` in
 `scripts/build.py` overrides the imported outline after the merge. Kana and
-Additions do not carry it, and no other edition's repertoire changes.
+Additions do not carry it, and no other edition's repertoire changes. The
+retained radical U+2EE5 is a composite over 鱼; its donor outline is kept under
+the name `u9C7C.donor` and the composite is retargeted there, so only U+9C7C's
+resolved outline changes.
 
 The result is not a repaint of WenKai's glyph: the 田, the top stroke and the
 bar keep Klee's terminals. The bar placement still needs a text-size review.
