@@ -10,17 +10,20 @@ from pathlib import Path
 from fontTools.ttLib import TTFont
 
 SITE = Path(__file__).resolve().parent.parent
-FONT = SITE / "public/fonts/KureedoKata-Regular.woff2"
+FONT = SITE / "public/fonts/KureedoKana-Regular.woff2"
 KLEE = SITE.parent / "sources/klee/KleeOne-Regular.ttf"
 HTML = SITE / "public/index.html"
 
 # (title, subtitle, range) in the order shown.
 GROUPS = [
     ("新しい文字", "Kana Extended-A · U+1B127–1B128 · Unicode 18.0", range(0x1B127, 0x1B129)),
+    ("追加の文字", "U+1B000 · U+2A708", (0x1B000, 0x2A708)),
+    ("ひらがな", "Hiragana · U+3041–3096", range(0x3040, 0x30A0)),
     ("片仮名", "Katakana · U+30A0–30FF", range(0x30A0, 0x3100)),
     ("小書き片仮名（アイヌ語）", "Katakana Phonetic Extensions · U+31F0–31FF", range(0x31F0, 0x3200)),
     ("濁点・半濁点", "Voicing marks · U+3099–309C · combining and spacing", range(0x3099, 0x309D)),
     ("記号・句読点", "CJK Symbols and Punctuation · U+3000–303F", range(0x3000, 0x3040)),
+    ("半角片仮名", "Halfwidth Katakana · U+FF61–FF9F", range(0xFF61, 0xFFA0)),
     ("空白", "Space · U+0020", range(0x20, 0x21)),
 ]
 

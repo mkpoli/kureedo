@@ -25,3 +25,7 @@
 /kureedo.css
   Access-Control-Allow-Origin: *
   Cache-Control: public, max-age=86400
+
+/v0.5.0/*
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=31536000, immutable
