@@ -26,8 +26,8 @@ bottom 贝; they need a cut that follows the component boundary.
 
 ## Checks
 
-`check_editions.py` compares each built glyph with its SVG and checks its weight
-against the model. The preserved U+2EE5 and U+2EC9 radicals from the earlier
+`check_editions.py` compares each designed import with its SVG and checks its
+weight against the model. The preserved U+2EE5 and U+2EC9 radicals from the earlier
 designs remain covered.
 
 ## Sources
