@@ -126,6 +126,12 @@ python -m venv .venv
 
 The build downloads Klee One Regular from the pinned commit of [fontworks-fonts/Klee](https://github.com/fontworks-fonts/Klee) (`8b05327`) and verifies its SHA-256 before use. The Full edition also downloads the checksum-pinned LXGW WenKai 1.530 Light release. Its outlines and layout dependencies supply only missing public code points; donor private-use entries and variation sequences are excluded. Imported ideographs are eroded to the stroke width Klee's density model predicts; advances and vertical origins stay, and shared glyphs are untouched ([weight notes](docs/weight.md)). `sources/glyphs/` holds the historical outlines as SVG in a 1000-unit em, y down, em top at y=880. `check.py` shapes the built fonts with HarfBuzz: default glyphs, every feature in both writing directions, mark composition, small-kana vertical origins, and byte identity of every Klee One glyph in the full font. `specimen/index.html` shows the result. `site/` holds the specimen site and CDN at kureedo.mkpo.li; `site/README.md` describes how a release is published there.
 
+## Sponsor
+
+I build Kureedo on my own, with no funding behind it, and it's free for everyone. If it's useful to you, a tip on [Ko-fi](https://ko-fi.com/mkpoli) gives me time to keep improving it. Companies interested in sponsoring can write to mkpoli@mkpo.li.
+
+[![Support me on Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/mkpoli)
+
 ## Licence
 
 The fonts are licensed under the SIL Open Font License 1.1 (`OFL.txt`). The Full edition includes LXGW WenKai contributions, Copyright 2021–2026 LXGW; its upstream notice and reserved font names are in `sources/wenkai/OFL.txt` and in the Full font metadata. Distributions of Full must include that notice alongside `OFL.txt`. Klee One is Copyright 2020 The Klee Project Authors; Klee is a trademark of Fontworks Inc., and Kureedo is an independent derivative with no connection to Fontworks. The historical outlines and the scripts in this repository are Copyright 2026 The Kureedo Project Authors; the scripts are released under the MIT License (`LICENSE-scripts.txt`).
