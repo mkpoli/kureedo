@@ -527,6 +527,7 @@
   .site-select-chev { flex: none; width: .9rem; height: .9rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: square; transition: transform .15s ease; }
   .wordmark .site-select-chev { width: clamp(1.1rem, 2.2vw, 1.6rem); height: clamp(1.1rem, 2.2vw, 1.6rem); margin-top: .5em; color: var(--muted); }
   .site-select-trigger[aria-expanded="true"] .site-select-chev { transform: rotate(180deg); }
+  @media (max-width: 400px) { .wordmark .site-select-trigger { gap: .1em; } .wordmark .site-select-trigger small { margin-left: 0; } }
   .site-select-menu {
     position: fixed; inset: auto; margin: 0; padding: .35rem; min-width: 15rem; max-width: calc(100vw - 16px);
     border: 1px solid var(--ink); background: var(--panel); color: var(--ink); box-shadow: 6px 6px 0 var(--shadow);
@@ -1238,7 +1239,7 @@
     var open = null;
     function upgrade(link) {
       var current = link.getAttribute("data-site-select");
-      var trigger = el("button", { type: "button", "class": "site-select-trigger", "aria-haspopup": "menu", "aria-expanded": "false", "aria-label": LABEL });
+      var trigger = el("button", { type: "button", "class": "site-select-trigger", "aria-haspopup": "menu", "aria-expanded": "false", "aria-label": "Kureedo: " + LABEL });
       while (link.firstChild) trigger.append(link.firstChild);
       trigger.append(icon("site-select-chev", CHEVRON));
       var menu = el("div", { "class": "site-select-menu", role: "menu", popover: "manual", "aria-label": LABEL });
