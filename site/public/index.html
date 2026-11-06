@@ -1194,9 +1194,14 @@
       try { localStorage.setItem("theme", next); } catch (e) {}
     });
 
-    // A click on the backdrop closes the dialog; one on its own scrollbar also targets it, so only a click outside its box counts.
+    // The backdrop closes the dialog only when the press and the release both land outside its box, so a text selection dragged out of the box stays open. A press on the box's own scrollbar also targets the dialog, so the test is by position.
     var sponsorDialog = document.getElementById("sponsor-dialog");
     var sponsorPill = document.querySelector(".sponsor");
+    var sponsorPressedOutside = false;
+    function sponsorOutside(e) {
+      var r = sponsorDialog.getBoundingClientRect();
+      return e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom;
+    }
     // The roll's script and element come in when the dialog first opens, so a page view asks the supporters service for nothing.
     var sponsorRoll = sponsorDialog.querySelector(".sponsor-roll");
     var sponsorRollLoaded = false;
@@ -1215,12 +1220,11 @@
       sponsorRoll.replaceChildren(roll);
     });
     sponsorDialog.querySelector(".sponsor-close").addEventListener("click", function () { sponsorDialog.close(); });
+    sponsorDialog.addEventListener("pointerdown", function (e) { sponsorPressedOutside = sponsorOutside(e); });
     sponsorDialog.addEventListener("click", function (e) {
-      if (e.target !== sponsorDialog) return;
-      var r = sponsorDialog.getBoundingClientRect();
-      if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) sponsorDialog.close();
+      if (e.target === sponsorDialog && sponsorPressedOutside && sponsorOutside(e)) sponsorDialog.close();
     });
-    sponsorDialog.addEventListener("close", function () { sponsorRoll.replaceChildren(); sponsorPill.focus(); });
+    sponsorDialog.addEventListener("close", function () { sponsorPressedOutside = false; sponsorRoll.replaceChildren(); sponsorPill.focus(); });
 
     var topnav = document.getElementById("topnav");
     var hero = document.getElementById("hero");
