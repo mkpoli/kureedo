@@ -54,7 +54,7 @@ On the desktop, install `KureedoFull-Regular.ttf` and pick Kureedo Full. Histori
 
 Kureedo Additions is a fallback for the 26 added code points. Select Full or Kana for features applied to ordinary kana, including `hist` for ネ/ヰ and `hlig` for トモ/コト.
 
-The published CDN still serves the 0.4.3 Kureedo Kata stylesheet, since the site has not deployed 0.5.0. Its `/kureedo.css` alias follows the deployed release and `/v0.4.3/kureedo.css` and the WOFF2 beside it are pinned, with CORS and a one-year cache. Use the 0.5.0 zips from the releases page meanwhile.
+The CDN serves the 0.5.0 Kureedo Kana stylesheet. `https://kureedo.mkpo.li/kureedo.css` follows the deployed release, and `/v0.5.0/kureedo.css` and the WOFF2 beside it are pinned, with CORS and a one-year cache.
 
 ### Historical forms
 
