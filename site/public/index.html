@@ -440,7 +440,7 @@
     background: linear-gradient(135deg, var(--sp-pill-a), var(--sp-pill-b)); color: var(--sp-text);
     font: 700 13px/1 ui-sans-serif, system-ui, sans-serif; white-space: nowrap; cursor: pointer;
   }
-  .sponsor:focus-visible, .sponsor-close:focus-visible, .sponsor-kofi:focus-visible, .sponsor-company:focus-visible { outline: 2px solid var(--sp-text); outline-offset: 2px; }
+  .sponsor:focus-visible, .sponsor-close:focus-visible, .sponsor-tip:focus-visible, .sponsor-company:focus-visible { outline: 2px solid var(--sp-text); outline-offset: 2px; }
   .sponsor-face { position: relative; flex: none; width: 24px; height: 24px; }
   .sponsor-face img { display: block; width: 100%; height: 100%; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 1.5px var(--sp-ring), 0 0 0 2.5px var(--sp-line); }
   .sponsor-face svg { position: absolute; inset-inline-end: -4px; bottom: -3px; width: 12px; height: 12px; fill: var(--sp-heart); stroke: var(--sp-ring); stroke-width: 2.5; paint-order: stroke; overflow: visible; transform-origin: 50% 60%; }
@@ -482,8 +482,11 @@
   .sponsor-how ol { display: flex; flex-direction: column; gap: 8px; margin: 0; padding: 0; list-style: none; counter-reset: step; }
   .sponsor-how li { display: flex; align-items: baseline; gap: 8px; font-size: 13px; line-height: 1.45; counter-increment: step; }
   .sponsor-how li::before { content: counter(step); display: grid; place-items: center; flex: none; width: 20px; height: 20px; border-radius: 50%; background: var(--sp-num-bg); color: var(--sp-num-ink); font: 700 11px/1 ui-sans-serif, system-ui, sans-serif; transform: translateY(-1px); }
-  .sponsor-dialog .sponsor-kofi { display: flex; align-items: center; gap: 12px; padding: 12px 18px 12px 12px; border-radius: 999px; border: 1px solid light-dark(#202020, rgb(255 255 255 / .2)); background: #202020; color: #fff; text-decoration: none; box-shadow: 0 6px 16px rgba(32, 32, 32, .28); }
-  .sponsor-kofi .sponsor-en { color: inherit; opacity: .9; }
+  .sponsor-tips { display: flex; flex-direction: column; gap: 10px; }
+  .sponsor-dialog .sponsor-tip { display: flex; align-items: center; gap: 12px; padding: 12px 18px 12px 12px; border-radius: 999px; color: #fff; text-decoration: none; box-shadow: 0 6px 16px var(--tip-glow); }
+  .sponsor-kofi { --tip-glow: rgba(32, 32, 32, .28); --tip-glow-hover: rgba(32, 32, 32, .38); background: #202020; border: 1px solid light-dark(#202020, rgb(255 255 255 / .2)); }
+  .sponsor-ofuse { --tip-glow: rgba(38, 125, 160, .3); --tip-glow-hover: rgba(38, 125, 160, .42); background: #267da0; border: 1px solid #267da0; }
+  .sponsor-tip .sponsor-en { color: inherit; opacity: .9; }
   .sponsor-dialog .sponsor-mark { display: block; flex: none; width: 38px; height: 30px; object-fit: contain; }
   .sponsor-arrow, .sponsor-company svg { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
   .sponsor-arrow { flex: none; width: 18px; height: 18px; }
@@ -491,7 +494,7 @@
   .sponsor-copy { display: flex; flex: 1; flex-direction: column; gap: 1px; min-width: 0; }
   .sponsor-copy strong { font-size: 13.5px; }
   .sponsor-copy small { font-size: 12px; line-height: 1.4; }
-  .sponsor-kofi .sponsor-copy strong { font-size: 15px; }
+  .sponsor-tip .sponsor-copy strong { font-size: 15px; }
   .sponsor-dialog .sponsor-company { display: flex; align-items: flex-start; gap: 10px; padding: 8px 12px; border-radius: 12px; color: var(--muted); text-decoration: none; }
   .sponsor-company:hover { background: var(--well); color: var(--ink); }
   .sponsor-company svg { flex: none; width: 16px; height: 16px; margin-top: 2px; }
@@ -507,8 +510,8 @@
     .sponsor-spark:nth-of-type(3) { animation-delay: .8s; }
     .sponsor-spark:nth-of-type(4) { animation-delay: 1.6s; }
     .sponsor-dialog[open] { animation: sponsor-arrive .32s cubic-bezier(.2, .8, .2, 1); }
-    .sponsor-kofi { transition: transform .18s ease, box-shadow .18s ease; }
-    .sponsor-kofi:hover { transform: translateY(-1px); box-shadow: 0 8px 22px rgba(32, 32, 32, .38); }
+    .sponsor-tip { transition: transform .18s ease, box-shadow .18s ease; }
+    .sponsor-tip:hover { transform: translateY(-1px); box-shadow: 0 8px 22px var(--tip-glow-hover); }
   }
   @keyframes sponsor-beat { 0%, 70%, 100% { transform: scale(1); } 78% { transform: scale(1.18); } 86% { transform: scale(.96); } 93% { transform: scale(1.1); } }
   @keyframes sponsor-bounce { 0%, 100% { transform: translateY(0) scale(1); } 40% { transform: translateY(-2px) scale(1.18) rotate(-8deg); } }
@@ -1162,11 +1165,14 @@
     <p class="sponsor-lead">Kureedoは資金援助を受けず、個人で開発しています。どなたでも無料で利用でき、これからもずっと無料のまま提供し続けたいと思っています。<span class="sponsor-en" lang="en">I build Kureedo on my own, with no funding behind it. It's free for everyone, and I'd like to keep it that way.</span></p>
     <p class="sponsor-ask">もしKureedoがお役に立っているなら、チップをいただけると、改善を続けていく時間を作ることができます。<span class="sponsor-en" lang="en">If Kureedo is useful to you, a tip gives me time to keep improving it.</span></p>
     <div class="sponsor-how"><h3>チップの送り方<span lang="en">How to tip</span></h3><ol role="list">
-      <li><span>下のKo-fiをタップ。<span class="sponsor-en" lang="en">Tap Ko-fi below.</span></span></li>
-      <li><span>お好きな金額を選べます。<span class="sponsor-en" lang="en">Pick any amount.</span></span></li>
-      <li><span>PayPalまたはカードでお支払い。登録は不要です。<span class="sponsor-en" lang="en">Pay with PayPal or a card. No sign-up needed.</span></span></li>
+      <li><span>下のどちらかのボタンを押します。<span class="sponsor-en" lang="en">Tap either button below.</span></span></li>
+      <li><span>金額を選びます。<span class="sponsor-en" lang="en">Pick an amount.</span></span></li>
+      <li><span>カードで支払います。登録は不要です。<span class="sponsor-en" lang="en">Pay by card. No sign-up needed.</span></span></li>
     </ol></div>
-    <a class="sponsor-kofi" href="https://ko-fi.com/mkpoli" target="_blank" rel="noreferrer"><img class="sponsor-mark" src="/brand/kofi-symbol.svg" alt="" width="34" height="27"><span class="sponsor-copy"><strong>Ko-fi</strong><small>1回だけでも、毎月でも<span class="sponsor-en" lang="en">One-time or monthly</span></small></span><svg class="sponsor-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+    <div class="sponsor-tips">
+      <a class="sponsor-tip sponsor-ofuse" href="https://ofuse.me/mkpoli" target="_blank" rel="noreferrer"><img class="sponsor-mark" src="/brand/ofuse-icon.svg" alt="" width="26" height="28"><span class="sponsor-copy"><strong>OFUSE</strong><small>メッセージ付きチップ<span class="sponsor-en" lang="en">Tip with a message</span></small></span><svg class="sponsor-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+      <a class="sponsor-tip sponsor-kofi" href="https://ko-fi.com/mkpoli" target="_blank" rel="noreferrer"><img class="sponsor-mark" src="/brand/kofi-symbol.svg" alt="" width="34" height="27"><span class="sponsor-copy"><strong>Ko-fi</strong><small>1回だけでも、毎月でも<span class="sponsor-en" lang="en">One-time or monthly</span></small></span><svg class="sponsor-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+    </div>
     <a class="sponsor-company" href="mailto:mkpoli@mkpo.li?subject=Sponsorship%20on%20kureedo.mkpo.li"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v12H3zM3 7l9 6 9-6"/></svg><span class="sponsor-copy"><strong>企業様からのスポンサーも受け付けています。<span class="sponsor-en" lang="en">Companies can sponsor too.</span></strong><small>mkpoli@mkpo.liまでご連絡ください。<span class="sponsor-en" lang="en">Write to mkpoli@mkpo.li.</span></small></span></a>
     <p class="sponsor-thanks">Kureedoをご利用いただきありがとうございます💗<span class="sponsor-en" lang="en">Thank you for using Kureedo 💗</span></p>
   </div>
