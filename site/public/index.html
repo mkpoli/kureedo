@@ -500,6 +500,8 @@
   .sponsor-company svg { flex: none; width: 16px; height: 16px; margin-top: 2px; }
   .sponsor-company .sponsor-copy strong { font-size: 12.5px; color: var(--ink); }
   .sponsor-company strong .sponsor-en { font-weight: 400; }
+  .sponsor-roll { --sp-text: var(--ink); --sp-muted: var(--muted); }
+  .sponsor-roll:empty { display: none; }
   .sponsor-sheet .sponsor-thanks { font-size: 12.5px; line-height: 1.5; color: var(--muted); text-align: center; }
   @media (prefers-reduced-motion: no-preference) {
     .sponsor { transition: transform .18s ease, box-shadow .18s ease; }
@@ -1174,6 +1176,7 @@
       <a class="sponsor-tip sponsor-kofi" href="https://ko-fi.com/mkpoli" target="_blank" rel="noreferrer"><img class="sponsor-mark" src="/brand/kofi-symbol.svg" alt="" width="34" height="27"><span class="sponsor-copy"><strong>Ko-fi</strong><small>1回だけでも、毎月でも<span class="sponsor-en" lang="en">One-time or monthly</span></small></span><svg class="sponsor-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
     </div>
     <a class="sponsor-company" href="mailto:mkpoli@mkpo.li?subject=Sponsorship%20on%20kureedo.mkpo.li"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v12H3zM3 7l9 6 9-6"/></svg><span class="sponsor-copy"><strong>企業様からのスポンサーも受け付けています。<span class="sponsor-en" lang="en">Companies can sponsor too.</span></strong><small>mkpoli@mkpo.liまでご連絡ください。<span class="sponsor-en" lang="en">Write to mkpoli@mkpo.li.</span></small></span></a>
+    <div class="sponsor-roll"></div>
     <p class="sponsor-thanks">Kureedoをご利用いただきありがとうございます💗<span class="sponsor-en" lang="en">Thank you for using Kureedo 💗</span></p>
   </div>
 </dialog>
@@ -1194,14 +1197,30 @@
     // A click on the backdrop closes the dialog; one on its own scrollbar also targets it, so only a click outside its box counts.
     var sponsorDialog = document.getElementById("sponsor-dialog");
     var sponsorPill = document.querySelector(".sponsor");
-    sponsorPill.addEventListener("click", function () { sponsorDialog.showModal(); });
+    // The roll's script and element come in when the dialog first opens, so a page view asks the supporters service for nothing.
+    var sponsorRoll = sponsorDialog.querySelector(".sponsor-roll");
+    var sponsorRollLoaded = false;
+    sponsorPill.addEventListener("click", function () {
+      sponsorDialog.showModal();
+      if (!sponsorRollLoaded) {
+        sponsorRollLoaded = true;
+        var script = document.createElement("script");
+        script.type = "module";
+        script.src = "https://supporters.mkpo.li/roll.js";
+        document.head.append(script);
+      }
+      var roll = document.createElement("supporters-roll");
+      roll.setAttribute("label", "最近の支援者 / Recent supporters");
+      roll.setAttribute("anonymous", "匿名希望 / Someone");
+      sponsorRoll.replaceChildren(roll);
+    });
     sponsorDialog.querySelector(".sponsor-close").addEventListener("click", function () { sponsorDialog.close(); });
     sponsorDialog.addEventListener("click", function (e) {
       if (e.target !== sponsorDialog) return;
       var r = sponsorDialog.getBoundingClientRect();
       if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) sponsorDialog.close();
     });
-    sponsorDialog.addEventListener("close", function () { sponsorPill.focus(); });
+    sponsorDialog.addEventListener("close", function () { sponsorRoll.replaceChildren(); sponsorPill.focus(); });
 
     var topnav = document.getElementById("topnav");
     var hero = document.getElementById("hero");
